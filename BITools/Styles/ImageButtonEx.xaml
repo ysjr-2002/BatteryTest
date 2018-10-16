@@ -1,0 +1,31 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:BITools.UIControls"
+    xmlns:local="clr-namespace:BITools.Styles">
+    <Style TargetType="controls:ImageButtonEx">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ImageButtonEx">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image
+                            Name="imgOk"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Source="{TemplateBinding NormalImage}"
+                            Stretch="Uniform" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="UIElement.IsMouseOver" Value="true">
+                            <Setter TargetName="imgOk" Property="Image.Source" Value="{Binding HoverImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                        <Trigger Property="UIElement.IsEnabled" Value="false">
+                            <Setter TargetName="imgOk" Property="Image.Source" Value="{Binding DisableImage, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

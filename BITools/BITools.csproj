@@ -1,0 +1,635 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{821B070A-6B62-4EB2-B19B-7A8A9502391A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BITools</RootNamespace>
+    <AssemblyName>BITools</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.UnityExtensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Core\BoolToVisibilityConverter.cs" />
+    <Compile Include="Core\FileManager.cs" />
+    <Compile Include="Core\ImageViewerViewModel.cs" />
+    <Compile Include="Core\NetworkValueBrushConvert.cs" />
+    <Compile Include="Core\NullToVisibleConverter.cs" />
+    <Compile Include="Core\PageInfo.cs" />
+    <Compile Include="Core\Util.cs" />
+    <Compile Include="Styles\ComboBoxStyle.cs" />
+    <Compile Include="Styles\WindowStyle.xaml.cs">
+      <DependentUpon>WindowStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\UIHelper.cs" />
+    <Compile Include="UIControls\HZDateTimePicker.xaml.cs">
+      <DependentUpon>HZDateTimePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\HZWaitLoading.xaml.cs">
+      <DependentUpon>HZWaitLoading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\ImageButtonEx.cs" />
+    <Compile Include="UIControls\PagerControl.xaml.cs">
+      <DependentUpon>PagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\WatermarkComboBox.cs" />
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Styles\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\CalendarStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\CheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ComboBoxItemStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ImageButtonEx.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\RepeatButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\sys.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ToolkitCompontStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\WatermarkComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIControls\HZDateTimePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIControls\HZWaitLoading.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIControls\PagerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BIDataAccess\BIDataAccess.csproj">
+      <Project>{B9B2D268-AC97-4605-A185-8C83748A7BF6}</Project>
+      <Name>BIDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BILogic\BILogic.csproj">
+      <Project>{3c4ffa3a-2433-4986-a83b-60fe69fcbf43}</Project>
+      <Name>BILogic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\main\window_max.png" />
+    <Resource Include="Images\main\window_max_hover.png" />
+    <Resource Include="Images\main\window_normal.png" />
+    <Resource Include="Images\main\window_normal_hover.png" />
+    <Content Include="Libs\Common.dll" />
+    <Resource Include="Resources\startloading.gif" />
+    <Resource Include="Images\close.png" />
+    <Resource Include="Images\closehover.png" />
+    <Resource Include="Images\login\password-icon.png" />
+    <Resource Include="Images\login\user-icon.png" />
+    <Resource Include="Images\main\arr_down.png" />
+    <Resource Include="Images\main\Arr_down_1.png" />
+    <Resource Include="Images\main\Arr_down_2.png" />
+    <Resource Include="Images\main\Arr_up_1.png" />
+    <Resource Include="Images\main\Arr_up_2.png" />
+    <Resource Include="Images\main\bigdata.png" />
+    <Resource Include="Images\main\bottom_logo.png" />
+    <Resource Include="Images\main\close.png" />
+    <Resource Include="Images\main\closehover.png" />
+    <Resource Include="Images\main\down.png" />
+    <Resource Include="Images\main\fun_cion.png" />
+    <Resource Include="Images\main\icon_cam.png" />
+    <Resource Include="Images\main\icon_car.png" />
+    <Resource Include="Images\main\icon_people.png" />
+    <Resource Include="Images\main\icon_serach.png" />
+    <Resource Include="Images\main\img_calender.png" />
+    <Resource Include="Images\main\locus.png" />
+    <Resource Include="Images\main\map.png" />
+    <Resource Include="Images\main\message.png" />
+    <Resource Include="Images\main\min.png" />
+    <Resource Include="Images\main\minhover.png" />
+    <Resource Include="Images\main\NoRecord.png" />
+    <Resource Include="Images\main\time.png" />
+    <Resource Include="Images\main\tips_warning.png" />
+    <Resource Include="Images\main\top_logo.png" />
+    <Resource Include="Images\main\u1814.gif" />
+    <Resource Include="Images\main\up.png" />
+    <Resource Include="Images\main\user.png" />
+    <Resource Include="Images\main\warning.png" />
+    <Resource Include="Images\main\暂无图片.png" />
+    <Resource Include="Images\max.png" />
+    <Resource Include="Images\maxhover.png" />
+    <Resource Include="Images\min.png" />
+    <Resource Include="Images\minhover.png" />
+    <Resource Include="Images\next_hover.png" />
+    <Resource Include="Images\next_normal.png" />
+    <Resource Include="Images\pre_hover.png" />
+    <Resource Include="Images\pre_normal.png" />
+    <Resource Include="Images\submenu-bth-ISC-click.png" />
+    <Resource Include="Images\submenu-bth-ISC-normal.png" />
+    <Resource Include="Images\submenu-bth-SC-click.png" />
+    <Resource Include="Images\submenu-bth-SC-normal.png" />
+    <Resource Include="Images\submenu-bth-UD-click.png" />
+    <Resource Include="Images\submenu-bth-UD-normal.png" />
+    <Resource Include="Images\submenu-bth-VS-click.png" />
+    <Resource Include="Images\submenu-bth-VS-normal.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-01.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-02.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-03.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-04.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-05.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-06.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-07.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-08.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-09.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-10.png" />
+    <Resource Include="Images\VideoTools\Home-bth-disabled.png-11.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-01.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-02.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-03.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-04.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-05.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-06.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-07.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-08.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-09.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-10.png" />
+    <Resource Include="Images\VideoTools\Home-bth-hover.png-11.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-01.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-02.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-03.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-04.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-05.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-06.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-07.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-08.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-09.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-10.png" />
+    <Resource Include="Images\VideoTools\Home-bth-normal.png-11.png" />
+    <Resource Include="Images\VideoTools\hz-disable.png" />
+    <Resource Include="Images\VideoTools\hz-hover.png" />
+    <Resource Include="Images\VideoTools\hz-normal.png" />
+    <Resource Include="Images\VideoTools\ImageViewer\Next.png" />
+    <Resource Include="Images\VideoTools\ImageViewer\next_hover.png" />
+    <Resource Include="Images\VideoTools\ImageViewer\previous.png" />
+    <Resource Include="Images\VideoTools\ImageViewer\pre_hover.png" />
+    <Resource Include="Images\VideoTools\ImageViewer\Redo.png" />
+    <Resource Include="Images\VideoTools\ImageViewer\Size_Auto.png" />
+    <Resource Include="Images\VideoTools\ImageViewer\Undo.png" />
+    <Resource Include="Images\VideoTools\Motion\del.png" />
+    <Resource Include="Images\VideoTools\Motion\polygon_hover.png" />
+    <Resource Include="Images\VideoTools\Motion\polygon_normal.png" />
+    <Resource Include="Images\VideoTools\Motion\rectangle_hover.png" />
+    <Resource Include="Images\VideoTools\Motion\rectangle_normal.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\01.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\02.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\03.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\down_c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\down_n.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-car-click.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-car-hover.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-car-normal.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-d-click.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-d-hover.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-d-normal.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-fx-c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-fx-h.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-fx-normal.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-kx-c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-kx-h.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-kx-n.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-pc-c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-pc-h.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-pc-n.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-people-click.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-people-hover.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-people-normal.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-xiao-click.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-xiao-hover.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-xiao-normal.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-xq-c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-xq-h.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-xq-normal.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-yqys-c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-yqys-h.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-yqys-n.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-yt-c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-yt-h.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-yt-n.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-z-click.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-z-hover.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\kzpc-z-normal.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\left_c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\left_n.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\ok_h.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\ok_n.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\right_c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\right_n.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\up_c.png" />
+    <Resource Include="Images\VideoTools\ObjectFilter\up_n.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\abs_hover.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\abs_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\add_file_hover.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\add_file_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\add_folder_hover.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\add_folder_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\delete_folder_hover.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\delete_folder_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\delete_hover.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\delete_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\fileinfo_hover.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\fileinfo_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\filelocation_hover.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\filelocation_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\folder_close.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\folder_open.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\synced_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\trans_hover.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\trans_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\video_failure.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\video_normal.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\video_pause.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\video_playing.png" />
+    <Resource Include="Images\VideoTools\ResourceManager\video_processing.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\1.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\10.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\11.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\12.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\13.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\2.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\3.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\4.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\5.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\6.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\7.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\8.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\9.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\bf-bth-hover.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\bf-bth-normal.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\d-bth-hover.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\ddpx-bth-hover.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\ddpx-bth-normal.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\delete-bth-hover.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\delete-bth-normal.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\sk-bth-hover.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\sk-bth-normal.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\sousuo-bth-hover.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\sousuo-bth-normal.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\zt-bth-hover.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\zt-bth-normal.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\人脸识别_tab_normal.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\人脸识别_tab_selected.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\创建任务.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\删除.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\新建目录.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\未标题-2.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\车辆识别_tab_normal.png" />
+    <Resource Include="Images\VideoTools\VehicleIdentifyTool\车辆识别_tab_selected.png" />
+    <Resource Include="Images\VideoTools\VehicleRecognition\01.png" />
+    <Resource Include="Images\VideoTools\VehicleRecognition\02.png" />
+    <Resource Include="Images\VideoTools\VehicleRecognition\车型库.png" />
+    <Resource Include="Images\VideoTools\VehicleRecognition\车型检索.png" />
+    <Resource Include="Images\VideoTools\VehicleRecognition\车型检索02.png" />
+    <Resource Include="Images\VideoTools\VehicleRecognition\车型识别.png" />
+    <Resource Include="Images\VideoTools\VehicleRecognition\车型识别02.png" />
+    <Resource Include="Images\VideoTools\VideoAbstract\abs_download_click.png" />
+    <Resource Include="Images\VideoTools\VideoAbstract\abs_download_hover.png" />
+    <Resource Include="Images\VideoTools\VideoAbstract\abs_download_normal.png" />
+    <Resource Include="Images\VideoTools\VideoAbstract\abs_rect_check.png" />
+    <Resource Include="Images\VideoTools\VideoAbstract\abs_rect_hover.png" />
+    <Resource Include="Images\VideoTools\VideoAbstract\abs_rect_normal.png" />
+    <Resource Include="Images\VideoTools\VideoAbstract\abs_time_check.png" />
+    <Resource Include="Images\VideoTools\VideoAbstract\abs_time_hover.png" />
+    <Resource Include="Images\VideoTools\VideoAbstract\abs_time_normal.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btndelete_disable.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btndelete_normal.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnimport_disable.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnimport_normal.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnmergestart_disable.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnmergestart_normal.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnmovedown_disable.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnmovedown_normal.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnmoveup_disable.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnmoveup_normal.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnopendir_disable.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\btnopendir_normal.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\listview_bgn.png" />
+    <Resource Include="Images\VideoTools\VideoMerger\videoicon.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\down.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\oneFrameBack.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\oneFrameBack_hove.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\oneFrameFront.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\oneFrameFront_hove.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\submenu-bth-ISC-click.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\submenu-bth-ISC-normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\submenu-bth-SC-click.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\submenu-bth-SC-normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\submenu-bth-UD-click.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\submenu-bth-UD-normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\submenu-bth-VS-click.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\submenu-bth-VS-normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\back_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\back_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\back_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\cut_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\cut_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\cut_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\cut_save_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\cut_save_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\cut_save_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\cycle_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\cycle_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\cycle_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\fast_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\fast_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\fast_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\frame_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\frame_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\frame_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\fullscreen_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\fullscreen_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\fullscreen_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\pause_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\pause_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\pause_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\play_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\play_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\play_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\quality_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\quality_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\quality_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\seg_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\seg_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\seg_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\slow_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\slow_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\slow_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\snap_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\snap_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\snap_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\stop_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\stop_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\stop_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v1_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v1_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v1_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v2_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v2_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v2_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v4_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v4_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v4_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v6_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v6_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v6_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v9_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v9_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\v9_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\zoom_check.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\zoom_hover.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\Toolbar\zoom_normal.png" />
+    <Resource Include="Images\VideoTools\VideoPlayer\up.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\hover-2.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\hover-3.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\hover-4.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\hover.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\kzpc-bc.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\kzpc-s.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\kzpc-x-d.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\kzpc-x.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\normal-2.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\normal-3.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\normal-4.png" />
+    <Resource Include="Images\VideoTools\VideoSnapshot\normal.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btndelete_disable.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btndelete_normal.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btnimport_disable.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btnimport_normal.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btnopendir_disable.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btnopendir_normal.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btntranspause_disable.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btntranspause_normal.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btntransstart_disable.png" />
+    <Resource Include="Images\VideoTools\VideoTrans\btntransstart_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player-Right_expansion-hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player-Right_expansion_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_cut_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_cut_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_Exit_Fullscreen_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_Exit_Fullscreen_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_Fast_forward_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_Fast_forward_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_Full_screen_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_Full_screen_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_left_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_left_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_pause_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_pause_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_play_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_play_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_Printscreen_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_Printscreen_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_Return_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_Return_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_right_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_right_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_Segment_play_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\Player_Segment_play_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_Slow down_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_Slow down_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_Stop_hover.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\player_Stop_normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\record-back-normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\record-back-over.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\record-forward-normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\record-forward-over.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\record-zoom-normal.png" />
+    <Resource Include="Images\VideoTools\ViewoRecord\record-zoom-over.png" />
+    <Resource Include="Images\VideoTools\人脸识别-click.png" />
+    <Resource Include="Images\VideoTools\人脸识别-disabled.png" />
+    <Resource Include="Images\VideoTools\人脸识别-hover.png" />
+    <Resource Include="Images\VideoTools\人脸识别-normal.png" />
+    <Resource Include="Images\VideoTools\车辆识别-click.png" />
+    <Resource Include="Images\VideoTools\车辆识别-disabled.png" />
+    <Resource Include="Images\VideoTools\车辆识别-hover.png" />
+    <Resource Include="Images\VideoTools\车辆识别-normal.png" />
+    <Resource Include="Images\wait.gif" />
+    <Content Include="Libs\Microsoft.Practices.Prism.dll" />
+    <Content Include="Libs\Microsoft.Practices.Prism.UnityExtensions.dll" />
+    <Content Include="Libs\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="Libs\Microsoft.Practices.Unity.dll" />
+    <Content Include="Libs\System.Windows.Interactivity.dll" />
+    <Content Include="Libs\WpfAnimatedGif.dll" />
+    <Content Include="Libs\Xceed.Wpf.Toolkit.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
