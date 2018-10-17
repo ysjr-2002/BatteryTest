@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace BITools.SystemManager
 {
     /// <summary>
-    /// DeviceParamWindow.xaml 的交互逻辑
+    /// UserWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class DeviceParamWindow : BaseWindow
+    public partial class UserWindow : BaseWindow
     {
-        public DeviceParamWindow()
+        public UserWindow()
         {
             InitializeComponent();
         }

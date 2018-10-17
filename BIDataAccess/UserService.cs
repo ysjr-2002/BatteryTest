@@ -11,9 +11,16 @@ namespace BIDataAccess
     {
         public List<UserInfo> GetUsers()
         {
-            using (var db = new batteryEntities())
+            try
             {
-                return db.UserInfoes.ToList();
+                using (var db = new batteryEntities())
+                {
+                    return db.UserInfoes.ToList();
+                }
+            }
+            catch
+            {
+                return new List<UserInfo>();
             }
         }
     }

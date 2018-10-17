@@ -109,6 +109,9 @@
     <Compile Include="SystemManager\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemManager\AgingParamWindow.xaml.cs">
+      <DependentUpon>AgingParamWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemManager\DeviceParamWindow.xaml.cs">
       <DependentUpon>DeviceParamWindow.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,9 @@
     </Compile>
     <Compile Include="SystemManager\UIControls\UIPortView.xaml.cs">
       <DependentUpon>UIPortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\UserWindow.xaml.cs">
+      <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\UIHelper.cs" />
     <Compile Include="UIControls\HZDateTimePicker.xaml.cs">
@@ -221,6 +227,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SystemManager\AgingParamWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SystemManager\DeviceParamWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SystemManager\UIControls\UIPortView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\UserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -29,9 +29,9 @@ namespace BITools
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            List<UserInfo> users = new UserManager().getUser();
+            //List<UserInfo> users = new UserManager().getUser();
             this.Hide();
-            var window = new DeviceParamWindow();
+            var window = new AgingParamWindow();
             window.ShowDialog();
         }
 
