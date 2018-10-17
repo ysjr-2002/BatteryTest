@@ -7,6 +7,8 @@
     <!--  FFD6DBE9  -->
     <SolidColorBrush x:Key="MainTitleBackground" Color="#FF2E69C5" />
 
+    <SolidColorBrush x:Key="sepeatorLineBrush" Color="#FF0000"></SolidColorBrush>
+
     <SolidColorBrush x:Key="MainWindow.Nav.DefaultBackground" Color="#FF2e69c5" />
     <SolidColorBrush x:Key="MainWindow.Nav.Button.DefaultBackground" Color="#FF2e69c5" />
     <SolidColorBrush x:Key="MainWindow.Nav.Gap.Background" Color="#FF427AD2" />

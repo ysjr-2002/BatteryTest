@@ -94,6 +94,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\BaseWindow.cs" />
     <Compile Include="Core\BoolToVisibilityConverter.cs" />
     <Compile Include="Core\FileManager.cs" />
     <Compile Include="Core\ImageViewerViewModel.cs" />
@@ -105,9 +106,36 @@
     <Compile Include="Styles\WindowStyle.xaml.cs">
       <DependentUpon>WindowStyle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemManager\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\DeviceParamWindow.xaml.cs">
+      <DependentUpon>DeviceParamWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\PassWordWindow.xaml.cs">
+      <DependentUpon>PassWordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\SettingWindow.xaml.cs">
+      <DependentUpon>SettingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\UIControls\UIAlarmView.xaml.cs">
+      <DependentUpon>UIAlarmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\UIControls\UICodeView.xaml.cs">
+      <DependentUpon>UICodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\UIControls\UIOtherView.xaml.cs">
+      <DependentUpon>UIOtherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\UIControls\UIPortView.xaml.cs">
+      <DependentUpon>UIPortView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\UIHelper.cs" />
     <Compile Include="UIControls\HZDateTimePicker.xaml.cs">
       <DependentUpon>HZDateTimePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\HZSelectNumeric.xaml.cs">
+      <DependentUpon>HZSelectNumeric.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIControls\HZWaitLoading.xaml.cs">
       <DependentUpon>HZWaitLoading.xaml</DependentUpon>
@@ -116,6 +144,7 @@
     <Compile Include="UIControls\PagerControl.xaml.cs">
       <DependentUpon>PagerControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIControls\SnappingPixelsBitmap.cs" />
     <Compile Include="UIControls\WatermarkComboBox.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
@@ -188,9 +217,45 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SystemManager\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\DeviceParamWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\PassWordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\SettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\UIControls\UIAlarmView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\UIControls\UICodeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\UIControls\UIOtherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\UIControls\UIPortView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UIControls\HZDateTimePicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIControls\HZSelectNumeric.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIControls\HZWaitLoading.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -244,6 +309,10 @@
     <Resource Include="Images\main\window_max_hover.png" />
     <Resource Include="Images\main\window_normal.png" />
     <Resource Include="Images\main\window_normal_hover.png" />
+    <Resource Include="Images\Arr_down_1.png" />
+    <Resource Include="Images\Arr_down_2.png" />
+    <Resource Include="Images\Arr_up_1.png" />
+    <Resource Include="Images\Arr_up_2.png" />
     <Content Include="Libs\Common.dll" />
     <Resource Include="Resources\startloading.gif" />
     <Resource Include="Images\close.png" />
@@ -624,6 +693,9 @@
     <Content Include="Libs\System.Windows.Interactivity.dll" />
     <Content Include="Libs\WpfAnimatedGif.dll" />
     <Content Include="Libs\Xceed.Wpf.Toolkit.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

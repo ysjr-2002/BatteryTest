@@ -1,0 +1,168 @@
+﻿<Window
+    x:Class="BITools.SystemManager.DeviceParamWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BITools.SystemManager"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syscontrols="clr-namespace:BITools.UIControls"
+    Title="DeviceParamWindow"
+    Width="800"
+    Height="600"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="24" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Width" Value="130" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Text="温度设定" />
+                <Path
+                    VerticalAlignment="Center"
+                    Stroke="{StaticResource sepeatorLineBrush}"
+                    StrokeThickness="1">
+                    <Path.Data>
+                        <LineGeometry StartPoint="0,0" EndPoint="200,0" />
+                    </Path.Data>
+                </Path>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Text="加热(℃)" />
+                <syscontrols:HZSelectNumeric
+                    Height="32"
+                    IncrementText="35"
+                    MaxValue="100"
+                    MinValue="1" />
+
+                <TextBlock Margin="10,0,2,0" Text="设定(℃)" />
+                <syscontrols:HZSelectNumeric
+                    Height="32"
+                    IncrementText="35"
+                    MaxValue="100"
+                    MinValue="1" />
+
+                <TextBlock Margin="10,0,2,0" Text="排风(℃)" />
+                <syscontrols:HZSelectNumeric
+                    Height="32"
+                    IncrementText="35"
+                    MaxValue="100"
+                    MinValue="1" />
+
+                <TextBlock Margin="10,0,2,0" Text="报警(℃)" />
+                <syscontrols:HZSelectNumeric
+                    Height="32"
+                    IncrementText="35"
+                    MaxValue="100"
+                    MinValue="1" />
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <TextBlock Text="老化参数" />
+                <Path
+                    VerticalAlignment="Center"
+                    Stroke="{StaticResource sepeatorLineBrush}"
+                    StrokeThickness="1">
+                    <Path.Data>
+                        <LineGeometry StartPoint="0,0" EndPoint="200,0" />
+                    </Path.Data>
+                </Path>
+            </StackPanel>
+
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock Text="输出通道" />
+                    <syscontrols:HZSelectNumeric
+                        Height="32"
+                        IncrementText="35"
+                        MaxValue="100"
+                        MinValue="1" />
+
+                    <TextBlock Text="通道并联" />
+                    <ComboBox />
+
+                    <CheckBox VerticalAlignment="Center" Content="分层设置" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button Content="添加通道" />
+                    <Button Content="清空所有通道" />
+                    <TextBlock Text="注:选中当前通道【右键】可操作 复制 粘贴 删除 动作 " />
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="40" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Content="载入机型参数" />
+            <Button Grid.Row="1" Content="保存机型参数" />
+            <Button Grid.Row="2" Content="机型参数另存为" />
+            <Grid Grid.Row="3">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="警示自动停止" />
+                    <Path
+                        VerticalAlignment="Center"
+                        Stroke="{StaticResource sepeatorLineBrush}"
+                        StrokeThickness="1">
+                        <Path.Data>
+                            <LineGeometry StartPoint="0,0" EndPoint="200,0" />
+                        </Path.Data>
+                    </Path>
+                </StackPanel>
+            </Grid>
+            <WrapPanel Grid.Row="4" Width="80">
+                <CheckBox Content="A" />
+                <CheckBox Margin="5,0,0,0" Content="B" />
+                <CheckBox Content="C" />
+                <CheckBox Margin="5,0,0,0" Content="D" />
+                <CheckBox Content="E" />
+                <CheckBox Margin="5,0,0,0" Content="F" />
+            </WrapPanel>
+            <Button Grid.Row="5" Content="机型参数另存为" />
+        </Grid>
+    </Grid>
+</Window>

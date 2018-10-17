@@ -1,5 +1,6 @@
 ﻿using BIDataAccess.entities;
 using BILogic;
+using BITools.SystemManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace BITools
         {
             List<UserInfo> users = new UserManager().getUser();
             this.Hide();
-            var window = new MainWindow();
+            var window = new DeviceParamWindow();
             window.ShowDialog();
         }
 
