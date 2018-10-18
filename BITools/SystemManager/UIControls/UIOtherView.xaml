@@ -53,7 +53,7 @@
                 VerticalAlignment="Center"
                 Content="上电检测延时"
                 Style="{StaticResource CheckBox.MapToolBar.Style}" />
-            <syscontrols:HZSelectNumeric
+            <syscontrols:SelectNumeric
                 x:Name="aa"
                 Height="32"
                 MaxValue="100"

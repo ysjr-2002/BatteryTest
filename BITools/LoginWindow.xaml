@@ -199,6 +199,7 @@
                 Grid.Column="1"
                 Style="{StaticResource UserNameTextStyle}"
                 Text="admin" />
+            
             <PasswordBox
                 x:Name="txtPsw"
                 Grid.Row="3"

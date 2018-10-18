@@ -57,7 +57,7 @@
                 VerticalAlignment="Center"
                 Content="警示"
                 Style="{StaticResource CheckBox.MapToolBar.Style}" />
-            <syscontrols:HZSelectNumeric
+            <syscontrols:SelectNumeric
                 x:Name="aa"
                 Height="32"
                 IncrementText="2"
@@ -89,7 +89,7 @@
 
             <StackPanel Height="40" Orientation="Horizontal">
                 <TextBlock Text="产品无输出开始测试" />
-                <syscontrols:HZSelectNumeric
+                <syscontrols:SelectNumeric
                     x:Name="bb"
                     Height="32"
                     IncrementText="2"
@@ -105,7 +105,7 @@
 
             <StackPanel Height="40" Orientation="Horizontal">
                 <TextBlock Text="数据连续采集" />
-                <syscontrols:HZSelectNumeric
+                <syscontrols:SelectNumeric
                     x:Name="cc"
                     Height="32"
                     IncrementText="2"

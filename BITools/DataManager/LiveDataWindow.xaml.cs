@@ -13,17 +13,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BITools.SystemManager
+namespace BITools.DataManager
 {
     /// <summary>
-    /// UserWindow.xaml 的交互逻辑
+    /// 区间数据查询
     /// </summary>
-    public partial class UserWindow : BaseWindow
+    public partial class LiveDataWindow : BaseWindow
     {
-        public UserWindow()
+        public LiveDataWindow()
         {
             InitializeComponent();
-            this.DataContext = new UserManagerViewModel();
+            this.DataContext = new LiveDataViewModel();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace BITools.UIControls
     /// <summary>
     /// HZDateTimePicker.xaml 的交互逻辑
     /// </summary>
-    public partial class HZDateTimePicker : UserControl
+    public partial class DateTimePicker : UserControl
     {
         private CheckBox _checkBox;
         internal TextBox _textBox;
@@ -154,16 +154,16 @@ namespace BITools.UIControls
 
         // Using a DependencyProperty as the backing store for TheDate.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Text", typeof(DateTime?), typeof(HZDateTimePicker), new FrameworkPropertyMetadata(DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(HZDateTimePicker.OnValueChanged), new CoerceValueCallback(HZDateTimePicker.CoerceValue), true, System.Windows.Data.UpdateSourceTrigger.PropertyChanged));
+            DependencyProperty.Register("Text", typeof(DateTime?), typeof(DateTimePicker), new FrameworkPropertyMetadata(DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(DateTimePicker.OnValueChanged), new CoerceValueCallback(DateTimePicker.CoerceValue), true, System.Windows.Data.UpdateSourceTrigger.PropertyChanged));
 
 
         static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            (d as HZDateTimePicker)._blockManager.Render();
+            (d as DateTimePicker)._blockManager.Render();
         }
 
 
-        public static readonly DependencyProperty WaterMarkProperty = DependencyProperty.Register("WaterMark", typeof(string), typeof(HZDateTimePicker), new PropertyMetadata("", new PropertyChangedCallback(OnWaterMarkChanged)));
+        public static readonly DependencyProperty WaterMarkProperty = DependencyProperty.Register("WaterMark", typeof(string), typeof(DateTimePicker), new PropertyMetadata("", new PropertyChangedCallback(OnWaterMarkChanged)));
         public string WaterMark
         {
             get { return (string)GetValue(WaterMarkProperty); }
@@ -176,7 +176,7 @@ namespace BITools.UIControls
             var newValue = (string)args.NewValue;
             if (!string.IsNullOrEmpty(newValue))
             {
-                HZDateTimePicker source = (HZDateTimePicker)sender;
+                DateTimePicker source = (DateTimePicker)sender;
                 source.txtwatermark.Text = (string)args.NewValue;
             }
         }
@@ -196,7 +196,7 @@ namespace BITools.UIControls
             }
         }
 
-        public HZDateTimePicker()
+        public DateTimePicker()
         {
             this.Initializ();
             this._blockManager = new BlockManager(this, this.FormatString);
@@ -215,7 +215,7 @@ namespace BITools.UIControls
                 this.RemoveHandler(TextBoxValueChangedProperty, value);
             }
         }
-        public static readonly RoutedEvent TextBoxValueChangedProperty = EventManager.RegisterRoutedEvent("TextChangedEvent", RoutingStrategy.Bubble, typeof(TextBoxValueChangedEventHandler), typeof(HZDateTimePicker));
+        public static readonly RoutedEvent TextBoxValueChangedProperty = EventManager.RegisterRoutedEvent("TextChangedEvent", RoutingStrategy.Bubble, typeof(TextBoxValueChangedEventHandler), typeof(DateTimePicker));
         private void Initializ()
         {
             InitializeComponent();
@@ -437,7 +437,7 @@ namespace BITools.UIControls
 
     internal sealed class BlockManager
     {
-        internal HZDateTimePicker _dameer;
+        internal DateTimePicker _dameer;
         private List<Block> _blocks;
         private string _format;
         private Block _selectedBlock;
@@ -455,7 +455,7 @@ namespace BITools.UIControls
                 "fff", "ff", "f",
                 "K", "g"};
 
-        public BlockManager(HZDateTimePicker dameer, string format)
+        public BlockManager(DateTimePicker dameer, string format)
         {
             //Debug.WriteLine("BlockManager");
             this._dameer = dameer;

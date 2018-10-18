@@ -1,0 +1,118 @@
+﻿<Window
+    x:Class="BITools.MsgBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BITools"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding ElementName=myTitle, Path=Text}"
+    Width="318"
+    MinHeight="186"
+    MaxHeight="700"
+    VerticalAlignment="Center"
+    AllowsTransparency="True"
+    Background="{x:Null}"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border
+            MinHeight="186"
+            MaxHeight="700"
+            Margin="5"
+            VerticalAlignment="Center"
+            Background="White"
+            BorderBrush="{StaticResource WindowBorderBrush}"
+            BorderThickness="1"
+            MouseLeftButtonDown="Border_MouseLeftButtonDown"
+            SnapsToDevicePixels="True">
+            <Grid Name="grid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Background="{StaticResource WindowCaptionBackground}" SnapsToDevicePixels="True">
+                    <TextBlock
+                        x:Name="myTitle"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Foreground="White" />
+                    <Button
+                        x:Name="closeButton"
+                        Margin="0,0,4,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Click="closeButton_Click"
+                        Style="{StaticResource FrameCaptionCloseButtonStyle}" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+                        Name="imgIcon"
+                        Width="64"
+                        Height="64"
+                        Margin="19,0,0,0"
+                        UseLayoutRounding="True" />
+                    <ScrollViewer
+                        Grid.Column="1"
+                        Width="209"
+                        Margin="15,5,0,5"
+                        VerticalScrollBarVisibility="Auto">
+                        <TextBlock
+                            Name="txtbMessage"
+                            Margin="0,0,5,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            TextWrapping="Wrap" />
+                    </ScrollViewer>
+                    <Border
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Height="48"
+                        HorizontalAlignment="Stretch"
+                        BorderBrush="{StaticResource WindowButtonGapLineBrush}"
+                        BorderThickness="0,1,0,0"
+                        SnapsToDevicePixels="True">
+                        <StackPanel
+                            Margin="0,0,17,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Button
+                                Name="btnOK"
+                                Width="60"
+                                Height="26"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Click="btnOK_Click"
+                                Content="确定"
+                                IsDefault="True"
+                                Style="{StaticResource OKStyle}" />
+                            <Button
+                                Name="btnCancel"
+                                Height="26"
+                                Margin="8,0,0,0"
+                                Padding="17,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Click="btnCancel_Click"
+                                Content="取消"
+                                Style="{StaticResource CancelStyle}" />
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

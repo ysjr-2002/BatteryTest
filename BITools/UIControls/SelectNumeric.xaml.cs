@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 
 namespace BITools.UIControls
 {
-    public partial class HZSelectNumeric : UserControl
+    public partial class SelectNumeric : UserControl
     {
         bool isError = false;
         Brush lastBdBrush = Application.Current.Resources["TextBox.Border.Brush"] as Brush;
-        public HZSelectNumeric()
+        public SelectNumeric()
         {
             InitializeComponent();
             bd.BorderBrush = lastBdBrush;
@@ -31,7 +31,7 @@ namespace BITools.UIControls
             get { return (int)GetValue(IncrementProperty); }
             set { SetValue(IncrementProperty, value); }
         }
-        public static readonly DependencyProperty IncrementProperty = DependencyProperty.RegisterAttached("Increment", typeof(int), typeof(HZSelectNumeric), new
+        public static readonly DependencyProperty IncrementProperty = DependencyProperty.RegisterAttached("Increment", typeof(int), typeof(SelectNumeric), new
 FrameworkPropertyMetadata(IncrementChanged));
 
         private static void IncrementChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -39,7 +39,7 @@ FrameworkPropertyMetadata(IncrementChanged));
             try
             {
                 int newValue = (int)e.NewValue;
-                HZSelectNumeric item = sender as HZSelectNumeric;
+                SelectNumeric item = sender as SelectNumeric;
                 TextBox tb = (TextBox)LogicalTreeHelper.FindLogicalNode(item, "txt");
                 //TextBox tb = UIHelper.FindChild<TextBox>(item, "txt");
                 tb.Text = newValue.ToString();
@@ -59,14 +59,14 @@ FrameworkPropertyMetadata(IncrementChanged));
                     IncrementTextChangedEvent(this, new EventArgs());
             }
         }
-        public static readonly DependencyProperty IncrementTextProperty = DependencyProperty.RegisterAttached("IncrementText", typeof(string), typeof(HZSelectNumeric), new
+        public static readonly DependencyProperty IncrementTextProperty = DependencyProperty.RegisterAttached("IncrementText", typeof(string), typeof(SelectNumeric), new
 FrameworkPropertyMetadata(IncrementTextChanged));
         private static void IncrementTextChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             try
             {
                 if (e.NewValue == null) return;
-                HZSelectNumeric item = sender as HZSelectNumeric;
+                SelectNumeric item = sender as SelectNumeric;
                 item.Increment = Convert.ToInt32(e.NewValue);
                 item.txt.Text = item.Increment.ToString();
             }
@@ -78,12 +78,12 @@ FrameworkPropertyMetadata(IncrementTextChanged));
             get { return (int)GetValue(MaxValueProperty); }
             set { SetValue(MaxValueProperty, value); }
         }
-        public static readonly DependencyProperty MaxValueProperty = DependencyProperty.RegisterAttached("MaxValue", typeof(int), typeof(HZSelectNumeric), new
+        public static readonly DependencyProperty MaxValueProperty = DependencyProperty.RegisterAttached("MaxValue", typeof(int), typeof(SelectNumeric), new
 FrameworkPropertyMetadata(MaxValueChanged));
 
         private static void MaxValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            HZSelectNumeric source = (HZSelectNumeric)sender;
+            SelectNumeric source = (SelectNumeric)sender;
             source.txt_TextChanged(null, null);
         }
 
@@ -93,18 +93,18 @@ FrameworkPropertyMetadata(MaxValueChanged));
             get { return (int)GetValue(MinValueProperty); }
             set { SetValue(MinValueProperty, value); }
         }
-        public static readonly DependencyProperty MinValueProperty = DependencyProperty.RegisterAttached("MinValue", typeof(int), typeof(HZSelectNumeric), new
+        public static readonly DependencyProperty MinValueProperty = DependencyProperty.RegisterAttached("MinValue", typeof(int), typeof(SelectNumeric), new
 FrameworkPropertyMetadata(MinValueChanged));
 
         private static void MinValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            HZSelectNumeric source = (HZSelectNumeric)sender;
+            SelectNumeric source = (SelectNumeric)sender;
             source.txt_TextChanged(null, null);
         }
 
         public static readonly DependencyProperty WaterMarkProperty =
            DependencyProperty.Register("WaterMark", typeof(string),
-           typeof(HZSelectNumeric),
+           typeof(SelectNumeric),
            new PropertyMetadata("TextBlock", new PropertyChangedCallback(OnWaterMarkChanged)));
         public string WaterMark
         {
@@ -116,7 +116,7 @@ FrameworkPropertyMetadata(MinValueChanged));
         static void OnWaterMarkChanged(object sender, DependencyPropertyChangedEventArgs args)
         {
             var newValue = (string)args.NewValue;
-            HZSelectNumeric source = (HZSelectNumeric)sender;
+            SelectNumeric source = (SelectNumeric)sender;
             source.txtWaterMark.Text = newValue;
             if (!string.IsNullOrEmpty(newValue))
             {

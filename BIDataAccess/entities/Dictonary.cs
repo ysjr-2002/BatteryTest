@@ -12,12 +12,11 @@ namespace BIDataAccess.entities
     using System;
     using System.Collections.Generic;
     
-    public partial class UserInfo
+    public partial class Dictonary
     {
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public System.DateTime CreateTime { get; set; }
-        public int Permission { get; set; }
+        public int ID { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
+        public string Value { get; set; }
     }
 }

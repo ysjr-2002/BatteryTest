@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BITools.DataManager;
+using BITools.SystemManager;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,7 +17,7 @@ namespace BITools
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            LoginWindow window = new LoginWindow();
+            var window = new UserWindow();
             Application.Current.MainWindow = window;
             window.Show();
         }

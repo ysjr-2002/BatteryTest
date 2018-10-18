@@ -18,16 +18,16 @@ namespace BITools.UIControls
     /// <summary>
     /// HZWaitLoading.xaml 的交互逻辑
     /// </summary>
-    public partial class HZWaitLoading : UserControl
+    public partial class WaitLoading : UserControl
     {
-        public HZWaitLoading()
+        public WaitLoading()
         {
             InitializeComponent();
         }
 
         public static readonly DependencyProperty TextProperty =
                    DependencyProperty.Register("Text", typeof(string),
-                   typeof(HZWaitLoading),
+                   typeof(WaitLoading),
                    new PropertyMetadata("TextBox", new PropertyChangedCallback(OnTextChanged)));
         public string Text
         {
@@ -41,7 +41,7 @@ namespace BITools.UIControls
             var newValue = (string)args.NewValue;
             if (!string.IsNullOrEmpty(newValue))
             {
-                HZWaitLoading source = (HZWaitLoading)sender;
+                WaitLoading source = (WaitLoading)sender;
                 source.txt.Text = (string)args.NewValue;
             }
         }

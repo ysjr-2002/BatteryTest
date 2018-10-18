@@ -45,6 +45,14 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\Microsoft.Practices.Prism.dll</HintPath>
@@ -97,11 +105,21 @@
     <Compile Include="Base\BaseWindow.cs" />
     <Compile Include="Core\BoolToVisibilityConverter.cs" />
     <Compile Include="Core\FileManager.cs" />
+    <Compile Include="Core\FunExt.cs" />
     <Compile Include="Core\ImageViewerViewModel.cs" />
     <Compile Include="Core\NetworkValueBrushConvert.cs" />
     <Compile Include="Core\NullToVisibleConverter.cs" />
     <Compile Include="Core\PageInfo.cs" />
     <Compile Include="Core\Util.cs" />
+    <Compile Include="DataManager\LiveDataWindow.xaml.cs">
+      <DependentUpon>LiveDataWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager\ProductBarcodeWindow.xaml.cs">
+      <DependentUpon>ProductBarcodeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MsgBox.xaml.cs">
+      <DependentUpon>MsgBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Styles\ComboBoxStyle.cs" />
     <Compile Include="Styles\WindowStyle.xaml.cs">
       <DependentUpon>WindowStyle.xaml</DependentUpon>
@@ -137,14 +155,18 @@
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\UIHelper.cs" />
-    <Compile Include="UIControls\HZDateTimePicker.xaml.cs">
-      <DependentUpon>HZDateTimePicker.xaml</DependentUpon>
+    <Compile Include="UIControls\BlockView.xaml.cs">
+      <DependentUpon>BlockView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UIControls\HZSelectNumeric.xaml.cs">
-      <DependentUpon>HZSelectNumeric.xaml</DependentUpon>
+    <Compile Include="UIControls\ButtonEx.cs" />
+    <Compile Include="UIControls\DateTimePicker.xaml.cs">
+      <DependentUpon>DateTimePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UIControls\HZWaitLoading.xaml.cs">
-      <DependentUpon>HZWaitLoading.xaml</DependentUpon>
+    <Compile Include="UIControls\SelectNumeric.xaml.cs">
+      <DependentUpon>SelectNumeric.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\WaitLoading.xaml.cs">
+      <DependentUpon>WaitLoading.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIControls\ImageButtonEx.cs" />
     <Compile Include="UIControls\PagerControl.xaml.cs">
@@ -152,6 +174,16 @@
     </Compile>
     <Compile Include="UIControls\SnappingPixelsBitmap.cs" />
     <Compile Include="UIControls\WatermarkComboBox.cs" />
+    <Compile Include="ViewModel\LiveDataViewModel.cs" />
+    <Compile Include="ViewModel\UserManagerViewModel.cs" />
+    <Page Include="DataManager\LiveDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataManager\ProductBarcodeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +203,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MsgBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\ButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -263,15 +299,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UIControls\HZDateTimePicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UIControls\HZSelectNumeric.xaml">
+    <Page Include="Styles\ButtonEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UIControls\HZWaitLoading.xaml">
+    <Page Include="UIControls\BlockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIControls\DateTimePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIControls\SelectNumeric.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIControls\WaitLoading.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -299,6 +343,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Document\斯康达BTS100软件操作说明书.pdf" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -317,6 +362,10 @@
       <Project>{3c4ffa3a-2433-4986-a83b-60fe69fcbf43}</Project>
       <Name>BILogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BIModel\BIModel.csproj">
+      <Project>{1ED8FE59-4EA2-4D20-B380-948BB1AB0031}</Project>
+      <Name>BIModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\main\window_max.png" />
@@ -327,6 +376,20 @@
     <Resource Include="Images\Arr_down_2.png" />
     <Resource Include="Images\Arr_up_1.png" />
     <Resource Include="Images\Arr_up_2.png" />
+    <Resource Include="Images\excel.png" />
+    <Resource Include="Images\bar_code.png" />
+    <Resource Include="Images\detail.png" />
+    <Resource Include="Images\light.png" />
+    <Resource Include="Images\begin.png" />
+    <Resource Include="Images\begin_disable.png" />
+    <Resource Include="Images\pause.png" />
+    <Resource Include="Images\pause_disable.png" />
+    <Resource Include="Images\stop.png" />
+    <Resource Include="Images\stop_disable.png" />
+    <Resource Include="Images\refresh.png" />
+    <Resource Include="Images\icon_asking.png" />
+    <Resource Include="Images\icon_done.png" />
+    <Resource Include="Images\icon_warn.png" />
     <Content Include="Libs\Common.dll" />
     <Resource Include="Resources\startloading.gif" />
     <Resource Include="Images\close.png" />
@@ -708,9 +771,7 @@
     <Content Include="Libs\WpfAnimatedGif.dll" />
     <Content Include="Libs\Xceed.Wpf.Toolkit.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

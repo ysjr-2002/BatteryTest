@@ -1,30 +1,36 @@
-﻿<base:BaseWindow x:Class="BITools.SystemManager.AgingParamWindow"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:base="clr-namespace:BITools"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:local="clr-namespace:BITools.SystemManager"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 xmlns:syscontrols="clr-namespace:BITools.UIControls"
-                 Title="修改老化环境参数"
-                 Width="400"
-                 Height="300"
-                 Style="{StaticResource WindowStyleWithCloseBtn}"
-                 mc:Ignorable="d">
+﻿<base:BaseWindow
+    x:Class="BITools.SystemManager.AgingParamWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="clr-namespace:BITools"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BITools.SystemManager"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syscontrols="clr-namespace:BITools.UIControls"
+    Title="修改老化环境参数"
+    Width="400"
+    Height="300"
+    Style="{StaticResource WindowStyleWithCloseBtn}"
+    mc:Ignorable="d">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="Margin" Value="0,0,5,0" />
         </Style>
-        <Style TargetType="syscontrols:HZSelectNumeric">
-            <Setter Property="Height" Value="20" />
+        <Style TargetType="syscontrols:SelectNumeric">
+            <Setter Property="Height" Value="26" />
         </Style>
 
         <Style x:Key="tbTemperature" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Margin" Value="5,0,0,0" />
+        </Style>
+
+        <Style BasedOn="{StaticResource OKStyle}" TargetType="Button">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="30" />
         </Style>
     </Window.Resources>
     <Grid>
@@ -44,70 +50,84 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="1"
-                   Grid.Column="0"
-                   Text="加热温度:" />
-        <syscontrols:HZSelectNumeric x:Name="aa"
-                                     Grid.Row="1"
-                                     Grid.Column="1"
-                                     IncrementText="2"
-                                     MaxValue="100"
-                                     MinValue="1" />
-        <TextBlock Grid.Row="1"
-                   Grid.Column="2"
-                   Style="{StaticResource tbTemperature}"
-                   Text="℃" />
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="加热温度:" />
+        <syscontrols:SelectNumeric
+            x:Name="aa"
+            Grid.Row="1"
+            Grid.Column="1"
+            IncrementText="2"
+            MaxValue="100"
+            MinValue="1" />
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="2"
+            Style="{StaticResource tbTemperature}"
+            Text="℃" />
 
-        <Button Grid.Row="1"
-                Grid.RowSpan="2"
-                Grid.Column="3"
-                Content="更改设置参数" />
+        <Button
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="3"
+            Content="更改设置参数" />
 
-        <TextBlock Grid.Row="2"
-                   Grid.Column="0"
-                   Text="加热温度:" />
-        <syscontrols:HZSelectNumeric x:Name="bb"
-                                     Grid.Row="2"
-                                     Grid.Column="1"
-                                     IncrementText="2"
-                                     MaxValue="100"
-                                     MinValue="1" />
-        <TextBlock Grid.Row="2"
-                   Grid.Column="2"
-                   Style="{StaticResource tbTemperature}"
-                   Text="℃" />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="烧机温度:" />
+        <syscontrols:SelectNumeric
+            x:Name="bb"
+            Grid.Row="2"
+            Grid.Column="1"
+            IncrementText="2"
+            MaxValue="100"
+            MinValue="1" />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="2"
+            Style="{StaticResource tbTemperature}"
+            Text="℃" />
 
-        <TextBlock Grid.Row="3"
-                   Grid.Column="0"
-                   Text="加热温度:" />
-        <syscontrols:HZSelectNumeric x:Name="cc"
-                                     Grid.Row="3"
-                                     Grid.Column="1"
-                                     IncrementText="2"
-                                     MaxValue="100"
-                                     MinValue="1" />
-        <TextBlock Grid.Row="3"
-                   Grid.Column="2"
-                   Style="{StaticResource tbTemperature}"
-                   Text="℃" />
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Text="排风温度:" />
+        <syscontrols:SelectNumeric
+            x:Name="cc"
+            Grid.Row="3"
+            Grid.Column="1"
+            IncrementText="2"
+            MaxValue="100"
+            MinValue="1" />
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="2"
+            Style="{StaticResource tbTemperature}"
+            Text="℃" />
 
-        <Button Grid.Row="3"
-                Grid.RowSpan="2"
-                Grid.Column="3"
-                Content="取消" />
+        <Button
+            Grid.Row="3"
+            Grid.RowSpan="2"
+            Grid.Column="3"
+            Content="取消" />
 
-        <TextBlock Grid.Row="4"
-                   Grid.Column="0"
-                   Text="加热温度:" />
-        <syscontrols:HZSelectNumeric x:Name="dd"
-                                     Grid.Row="4"
-                                     Grid.Column="1"
-                                     IncrementText="2"
-                                     MaxValue="100"
-                                     MinValue="1" />
-        <TextBlock Grid.Row="4"
-                   Grid.Column="2"
-                   Style="{StaticResource tbTemperature}"
-                   Text="℃" />
+        <TextBlock
+            Grid.Row="4"
+            Grid.Column="0"
+            Text="报警温度:" />
+        <syscontrols:SelectNumeric
+            x:Name="dd"
+            Grid.Row="4"
+            Grid.Column="1"
+            IncrementText="2"
+            MaxValue="100"
+            MinValue="1" />
+        <TextBlock
+            Grid.Row="4"
+            Grid.Column="2"
+            Style="{StaticResource tbTemperature}"
+            Text="℃" />
     </Grid>
 </base:BaseWindow>

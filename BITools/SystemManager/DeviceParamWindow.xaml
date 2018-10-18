@@ -55,25 +55,25 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="加热(℃)" />
-                <syscontrols:HZSelectNumeric Height="32"
+                <syscontrols:SelectNumeric Height="32"
                                              IncrementText="35"
                                              MaxValue="100"
                                              MinValue="1" />
 
                 <TextBlock Text="设定(℃)" />
-                <syscontrols:HZSelectNumeric Height="32"
+                <syscontrols:SelectNumeric Height="32"
                                              IncrementText="35"
                                              MaxValue="100"
                                              MinValue="1" />
 
                 <TextBlock Text="排风(℃)" />
-                <syscontrols:HZSelectNumeric Height="32"
+                <syscontrols:SelectNumeric Height="32"
                                              IncrementText="35"
                                              MaxValue="100"
                                              MinValue="1" />
 
                 <TextBlock Text="报警(℃)" />
-                <syscontrols:HZSelectNumeric Height="32"
+                <syscontrols:SelectNumeric Height="32"
                                              IncrementText="35"
                                              MaxValue="100"
                                              MinValue="1" />
@@ -99,7 +99,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <TextBlock Text="输出通道" />
-                    <syscontrols:HZSelectNumeric Height="32"
+                    <syscontrols:SelectNumeric Height="32"
                                                  IncrementText="35"
                                                  MaxValue="100"
                                                  MinValue="1" />

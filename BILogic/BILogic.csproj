@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserManager.cs" />
+    <Compile Include="UserImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BIDataAccess\BIDataAccess.csproj">

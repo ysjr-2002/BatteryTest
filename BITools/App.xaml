@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/BITools;component/Styles/sys.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/ImageButtonEx.xaml" />
+                <ResourceDictionary Source="/BITools;component/Styles/ButtonEx.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/DataGridStyle.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/ButtonStyle.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/ComboBoxItemStyle.xaml" />

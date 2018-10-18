@@ -25,6 +25,7 @@ namespace BIDataAccess.entities
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Dictonary> Dictonaries { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
     }
 }

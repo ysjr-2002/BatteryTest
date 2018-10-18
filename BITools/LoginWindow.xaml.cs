@@ -1,5 +1,6 @@
 ﻿using BIDataAccess.entities;
 using BILogic;
+using BITools.DataManager;
 using BITools.SystemManager;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace BITools
         {
             //List<UserInfo> users = new UserManager().getUser();
             this.Hide();
-            var window = new AgingParamWindow();
+            var window = new LiveDataWindow();
             window.ShowDialog();
         }
 

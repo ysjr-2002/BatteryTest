@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 
 namespace BILogic
 {
-    public class UserManager
+    public class UserImpl
     {
         public List<UserInfo> getUser()
         {
             return new BIDataAccess.UserService().GetUsers();
+        }
+
+        public bool CreateUser(UserInfo user)
+        {
+            return new BIDataAccess.UserService().CreateUser(user);
         }
     }
 }
