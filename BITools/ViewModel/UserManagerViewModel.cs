@@ -1,5 +1,6 @@
 ﻿using BIDataAccess.entities;
 using BILogic;
+using BIModel;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
 using System;
@@ -12,9 +13,11 @@ using System.Windows.Input;
 
 namespace BITools.ViewModel
 {
-    public class UserManagerViewModel : PropertyNotifyObject
+    public class UserManagerViewModel : BaseViewModel
     {
         private UserImpl userImpl;
+        private UserInfo selectedUser = null;
+        private const string PASSWORD_DEFAULT = "123456";
 
         public UserManagerViewModel()
         {
@@ -57,7 +60,6 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.IsHistory, value); }
         }
 
-        public ICommand LoadedCommand { get { return new DelegateCommand(QueryUser); } }
         public ICommand CreateCommand { get { return new DelegateCommand(CreateUser); } }
         public ICommand DeleteCommand { get { return new DelegateCommand(DeleteUser); } }
         public ICommand DetailCommand { get { return new DelegateCommand<UserInfo>(DetailUser); } }
@@ -68,36 +70,53 @@ namespace BITools.ViewModel
         {
             if (Name.IsEmpty())
             {
-                MsgBox.WarningShow("请输入用户名称！");
+                MsgBox.WarningShow("请输入登录用户名！");
                 return;
             }
 
             UserInfo user = new UserInfo();
             user.UserName = Name;
-            user.Password = "123456";
+            user.Password = PASSWORD_DEFAULT;
             user.CreateTime = DateTime.Now;
             user.Permission = (IsUser ? 1 : 0) | (IsConfig ? 2 : 0) | (IsDevice ? 4 : 0) | (IsHistory ? 8 : 0);
 
             bool flag = userImpl.CreateUser(user);
-            QueryUser();
+            Loaded();
         }
 
         private void DetailUser(UserInfo user)
         {
+            selectedUser = user;
+            Name = user.UserName;
 
+            IsUser = ((((int)SystemModule.User) & user.Permission) == (int)SystemModule.User);
+            IsUser = ((((int)SystemModule.Config) & user.Permission) == (int)SystemModule.Config);
+            IsUser = ((((int)SystemModule.Device) & user.Permission) == (int)SystemModule.Device);
+            IsUser = ((((int)SystemModule.History) & user.Permission) == (int)SystemModule.History);
         }
 
         private void DeleteUser()
         {
+            if (selectedUser == null)
+                return;
 
+            userImpl.DeleteUser(selectedUser);
+            selectedUser = null;
+
+            Loaded();
         }
 
         private void PasswordReset()
         {
+            if (selectedUser == null)
+                return;
 
+            selectedUser.Password = PASSWORD_DEFAULT;
+            userImpl.DeleteUser(selectedUser);
+            selectedUser = null;
         }
 
-        private void QueryUser()
+        protected override void Loaded()
         {
             var list = userImpl.getUser();
             UserCollection = new ObservableCollection<UserInfo>(list);

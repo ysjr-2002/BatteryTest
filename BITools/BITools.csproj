@@ -70,6 +70,7 @@
       <HintPath>Libs\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -103,12 +104,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Base\BaseWindow.cs" />
-    <Compile Include="Core\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converts\BoolToVisibilityConverter.cs" />
+    <Compile Include="Core\Config.cs" />
     <Compile Include="Core\FileManager.cs" />
     <Compile Include="Core\FunExt.cs" />
-    <Compile Include="Core\ImageViewerViewModel.cs" />
-    <Compile Include="Core\NetworkValueBrushConvert.cs" />
-    <Compile Include="Core\NullToVisibleConverter.cs" />
+    <Compile Include="Converts\NetworkValueBrushConvert.cs" />
+    <Compile Include="Converts\NullToVisibleConverter.cs" />
     <Compile Include="Core\PageInfo.cs" />
     <Compile Include="Core\Util.cs" />
     <Compile Include="DataManager\LiveDataWindow.xaml.cs">
@@ -162,6 +163,9 @@
     <Compile Include="UIControls\DateTimePicker.xaml.cs">
       <DependentUpon>DateTimePicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIControls\LayerView.xaml.cs">
+      <DependentUpon>LayerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIControls\SelectNumeric.xaml.cs">
       <DependentUpon>SelectNumeric.xaml</DependentUpon>
     </Compile>
@@ -174,7 +178,10 @@
     </Compile>
     <Compile Include="UIControls\SnappingPixelsBitmap.cs" />
     <Compile Include="UIControls\WatermarkComboBox.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LiveDataViewModel.cs" />
+    <Compile Include="ViewModel\PassWordViewModel.cs" />
+    <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\UserManagerViewModel.cs" />
     <Page Include="DataManager\LiveDataWindow.xaml">
       <SubType>Designer</SubType>
@@ -310,6 +317,10 @@
     <Page Include="UIControls\DateTimePicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIControls\LayerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIControls\SelectNumeric.xaml">
       <SubType>Designer</SubType>

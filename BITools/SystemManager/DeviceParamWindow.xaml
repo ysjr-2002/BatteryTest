@@ -6,7 +6,7 @@
                  xmlns:local="clr-namespace:BITools.SystemManager"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:syscontrols="clr-namespace:BITools.UIControls"
-                 Title="DeviceParamWindow"
+                 Title="机型设置"
                  Width="1000"
                  Height="700"
                  Style="{StaticResource WindowStyleWithCloseBtn}"
@@ -37,7 +37,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="auto" />
-                <RowDefinition></RowDefinition>
+                <RowDefinition />
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
@@ -56,27 +56,27 @@
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="加热(℃)" />
                 <syscontrols:SelectNumeric Height="32"
-                                             IncrementText="35"
-                                             MaxValue="100"
-                                             MinValue="1" />
+                                           IncrementText="35"
+                                           MaxValue="100"
+                                           MinValue="1" />
 
                 <TextBlock Text="设定(℃)" />
                 <syscontrols:SelectNumeric Height="32"
-                                             IncrementText="35"
-                                             MaxValue="100"
-                                             MinValue="1" />
+                                           IncrementText="35"
+                                           MaxValue="100"
+                                           MinValue="1" />
 
                 <TextBlock Text="排风(℃)" />
                 <syscontrols:SelectNumeric Height="32"
-                                             IncrementText="35"
-                                             MaxValue="100"
-                                             MinValue="1" />
+                                           IncrementText="35"
+                                           MaxValue="100"
+                                           MinValue="1" />
 
                 <TextBlock Text="报警(℃)" />
                 <syscontrols:SelectNumeric Height="32"
-                                             IncrementText="35"
-                                             MaxValue="100"
-                                             MinValue="1" />
+                                           IncrementText="35"
+                                           MaxValue="100"
+                                           MinValue="1" />
 
             </StackPanel>
 
@@ -100,9 +100,9 @@
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <TextBlock Text="输出通道" />
                     <syscontrols:SelectNumeric Height="32"
-                                                 IncrementText="35"
-                                                 MaxValue="100"
-                                                 MinValue="1" />
+                                               IncrementText="35"
+                                               MaxValue="100"
+                                               MinValue="1" />
 
                     <TextBlock Margin="10,0,5,0" Text="通道并联" />
                     <ComboBox />

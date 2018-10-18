@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="BITools.UIControls.LayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:BITools.UIControls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:syscontrols="clr-namespace:BITools.UIControls"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="borderBrush" Color="#CCCCCC" />
+    </UserControl.Resources>
+    <Grid Grid.Row="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <syscontrols:ButtonEx Grid.Column="0"
+                                  Content="上电检测"
+                                  NormalImage="/BITools;component/Images/detail.png"
+                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx Grid.Column="1"
+                                  Content="开始测试"
+                                  DisableImage="/BITools;component/Images/begin_disable.png"
+                                  NormalImage="/BITools;component/Images/begin.png"
+                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx Grid.Column="2"
+                                  Content="暂停测试"
+                                  DisableImage="/BITools;component/Images/pause_disable.png"
+                                  NormalImage="/BITools;component/Images/pause.png"
+                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx Grid.Column="3"
+                                  Content="停止测试"
+                                  DisableImage="/BITools;component/Images/stop_disable.png"
+                                  IsEnabled="False"
+                                  NormalImage="/BITools;component/Images/stop.png"
+                                  NormalImagePlacement="Top" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <syscontrols:ButtonEx Grid.Column="0"
+                                  Content="老化总时间"
+                                  NormalImage="/BITools;component/Images/refresh.png"
+                                  NormalImagePlacement="Right" />
+
+            <TextBox Grid.Column="1" />
+
+            <syscontrols:ButtonEx Grid.Column="2"
+                                  Content="老化时间"
+                                  NormalImage="/BITools;component/Images/refresh.png"
+                                  NormalImagePlacement="Right" />
+
+            <TextBox Grid.Column="3" />
+
+            <TextBlock Grid.Column="4" Text="老化进度" />
+            <TextBlock Grid.Column="5" Text="测试等待 ...0%" />
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <syscontrols:ButtonEx Grid.Column="0"
+                                  Content="查看数据"
+                                  NormalImage="/BITools;component/Images/detail.png" />
+            <syscontrols:ButtonEx Grid.Column="1"
+                                  Content="产品条形码"
+                                  NormalImage="/BITools;component/Images/bar_code.png" />
+            <syscontrols:ButtonEx Grid.Column="2"
+                                  Content="报警复位"
+                                  NormalImage="/BITools;component/Images/light.png" />
+        </Grid>
+
+        <!--  测试状态说明  -->
+        <Grid Grid.Row="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="测试状态说明" />
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <syscontrols:ButtonEx Content="脱机" />
+                <syscontrols:ButtonEx Content="下载参数中" />
+                <syscontrols:ButtonEx Content="停止拉载" />
+                <syscontrols:ButtonEx Content="拉载异常" />
+                <syscontrols:ButtonEx Content="无产品" />
+                <syscontrols:ButtonEx Content="欠压" />
+                <syscontrols:ButtonEx Content="欠流" />
+                <syscontrols:ButtonEx Content="过压" />
+                <syscontrols:ButtonEx Content="过流" />
+                <syscontrols:ButtonEx Content="无输出" />
+                <syscontrols:ButtonEx Content="合格" />
+                <syscontrols:ButtonEx Content="负载保护" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Background="#CCDFF0">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="TextAlignment" Value="Center" />
+                    <Setter Property="Foreground" Value="#000000" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0"
+                    Margin="1"
+                    BorderBrush="{StaticResource borderBrush}"
+                    BorderThickness="1">
+                <TextBlock Text="L1" />
+            </Border>
+            <syscontrols:BlockView Grid.Column="1" />
+            <syscontrols:BlockView Grid.Column="2" />
+            <syscontrols:BlockView Grid.Column="3" />
+            <syscontrols:BlockView Grid.Column="4" />
+            <syscontrols:BlockView Grid.Column="5" />
+            <syscontrols:BlockView Grid.Column="6" />
+            <syscontrols:BlockView Grid.Column="7" />
+            <syscontrols:BlockView Grid.Column="8" />
+        </Grid>
+    </Grid>
+</UserControl>

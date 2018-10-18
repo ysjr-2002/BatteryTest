@@ -9,6 +9,25 @@ namespace BIDataAccess
 {
     public class UserService
     {
+        public bool Login(string name, string password)
+        {
+            try
+            {
+                using (var db = new batteryEntities())
+                {
+                    var item = db.UserInfoes.FirstOrDefault(s => s.UserName == name && s.Password == password);
+                    if (item != null)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public List<UserInfo> GetUsers()
         {
             try
@@ -51,6 +70,43 @@ namespace BIDataAccess
                     entry.State = System.Data.Entity.EntityState.Modified;
                     var ret = db.SaveChanges();
                     return ret >= 1;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteUser(UserInfo user)
+        {
+            try
+            {
+                using (var db = new batteryEntities())
+                {
+                    var entry = db.Entry<UserInfo>(user);
+                    db.UserInfoes.Remove(user);
+                    entry.State = System.Data.Entity.EntityState.Deleted;
+                    var ret = db.SaveChanges();
+                    return ret >= 1;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdatePassWord(int userId, string password)
+        {
+            try
+            {
+                using (var db = new batteryEntities())
+                {
+                    var user = db.UserInfoes.First((s) => s.UserID == userId);
+                    user.Password = password;
+                    var ret = db.SaveChanges();
+                    return ret >= 0;
                 }
             }
             catch

@@ -196,7 +196,7 @@ namespace BITools
         /// <param name="message"></param>
         /// <param name="MsgBoxButton"></param>
         /// <returns></returns>
-        public static MsgBoxResult SuccessShow(string Title, string message, MsgBoxButton MsgBoxButton = MsgBoxButton.OK)
+        public static MsgBoxResult SuccessShow(string message, string Title = "提示", MsgBoxButton MsgBoxButton = MsgBoxButton.OK)
         {
             if (Application.Current == null) return MsgBoxResult.Cancel;
 
@@ -209,7 +209,7 @@ namespace BITools
                     new Typeface(msgbox.txtbMessage.FontFamily, msgbox.txtbMessage.FontStyle, msgbox.txtbMessage.FontWeight, msgbox.txtbMessage.FontStretch, msgbox.txtbMessage.FontFamily),
                     msgbox.txtbMessage.FontSize,
                     Brushes.Black);
-                msgbox.myTitle.Text = "提示";
+                msgbox.myTitle.Text = Title;
                 msgbox.txtbMessage.Text = message;
                 msgbox.btnOK.Visibility = Visibility.Visible;
                 if (MsgBoxButton == MsgBoxButton.OKCancel)
