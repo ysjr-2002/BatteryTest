@@ -85,13 +85,12 @@ namespace BIDataAccess
                 using (var db = new batteryEntities())
                 {
                     var entry = db.Entry<UserInfo>(user);
-                    db.UserInfoes.Remove(user);
                     entry.State = System.Data.Entity.EntityState.Deleted;
                     var ret = db.SaveChanges();
                     return ret >= 1;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }

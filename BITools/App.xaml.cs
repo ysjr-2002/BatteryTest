@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace BITools
 {
@@ -17,7 +18,7 @@ namespace BITools
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var window = new MainWindow();
+            var window = new DeviceParamWindow();
             Application.Current.MainWindow = window;
             window.Show();
         }

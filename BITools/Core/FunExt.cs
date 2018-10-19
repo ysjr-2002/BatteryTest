@@ -23,8 +23,16 @@ namespace BITools
 
         public static List<string> GetSerialPorts()
         {
-            var items = SerialPort.GetPortNames();
-            return items.ToList();
+            var items = SerialPort.GetPortNames().ToList();
+            items.Clear();
+            items.Insert(0, "无");
+            items.Insert(1, "COM1");
+            items.Insert(2, "COM2");
+            items.Insert(3, "COM3");
+            items.Insert(4, "COM4");
+            items.Insert(5, "COM5");
+            items.Insert(6, "COM6");
+            return items;
         }
     }
 }

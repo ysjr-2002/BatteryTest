@@ -6,12 +6,14 @@
     xmlns:local="clr-namespace:BITools.SystemManager.UIControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
-    d:DesignWidth="300"
+    d:DesignWidth="500"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <Style TargetType="TextBox">
-            <Setter Property="Width" Value="130" />
-            <Setter Property="Height" Value="30" />
+        <Style BasedOn="{StaticResource TBBaseStyle}" TargetType="TextBox">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="MaxLength" Value="6" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
 
@@ -42,36 +44,54 @@
             Grid.Row="1"
             Grid.Column="1"
             Content="台车01：" />
-        <TextBox Grid.Row="1" Grid.Column="2" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="2"
+            Text="{Binding Config.AName}" />
 
         <Label
             Grid.Row="1"
             Grid.Column="3"
             Content="台车02：" />
-        <TextBox Grid.Row="1" Grid.Column="4" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="4"
+            Text="{Binding Config.BName}" />
 
         <Label
             Grid.Row="2"
             Grid.Column="1"
             Content="台车03：" />
-        <TextBox Grid.Row="2" Grid.Column="2" />
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="2"
+            Text="{Binding Config.CName}" />
 
         <Label
             Grid.Row="2"
             Grid.Column="3"
             Content="台车04：" />
-        <TextBox Grid.Row="2" Grid.Column="4" />
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="4"
+            Text="{Binding Config.DName}" />
 
         <Label
             Grid.Row="3"
             Grid.Column="1"
             Content="台车05：" />
-        <TextBox Grid.Row="3" Grid.Column="2" />
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="2"
+            Text="{Binding Config.EName}" />
 
         <Label
             Grid.Row="3"
             Grid.Column="3"
             Content="台车06：" />
-        <TextBox Grid.Row="3" Grid.Column="4" />
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="4"
+            Text="{Binding Config.FName}" />
     </Grid>
 </UserControl>

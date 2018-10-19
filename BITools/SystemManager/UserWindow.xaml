@@ -118,7 +118,7 @@
                         Margin="5,0"
                         Command="{Binding DeleteCommand}"
                         Content="删除" />
-                    <Button Command="{Binding PasswordResetCommand}" Content="密码重置" />
+                    <Button Command="{Binding PassWordResetCommand}" Content="密码重置" />
                 </StackPanel>
 
                 <TextBlock

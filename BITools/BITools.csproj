@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -72,6 +73,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -178,7 +180,9 @@
     </Compile>
     <Compile Include="UIControls\SnappingPixelsBitmap.cs" />
     <Compile Include="UIControls\WatermarkComboBox.cs" />
+    <Compile Include="ViewModel\AgingParamViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\DeviceParamViewModel.cs" />
     <Compile Include="ViewModel\LiveDataViewModel.cs" />
     <Compile Include="ViewModel\PassWordViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
@@ -251,8 +255,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\TextBoxStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ToolkitCompontStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -401,6 +405,10 @@
     <Resource Include="Images\icon_asking.png" />
     <Resource Include="Images\icon_done.png" />
     <Resource Include="Images\icon_warn.png" />
+    <Resource Include="Images\Add.png" />
+    <Resource Include="Images\update.png" />
+    <Resource Include="Images\add1.png" />
+    <Resource Include="Images\removeall.png" />
     <Content Include="Libs\Common.dll" />
     <Resource Include="Resources\startloading.gif" />
     <Resource Include="Images\close.png" />

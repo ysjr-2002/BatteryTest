@@ -12,7 +12,17 @@ namespace BITools.ViewModel
     public abstract class BaseViewModel : PropertyNotifyObject
     {
         public ICommand LoadedCommand { get { return new DelegateCommand(Loaded); } }
+        public ICommand SaveCommand { get { return new DelegateCommand(Save); } }
+        public ICommand CancelCommand { get { return new DelegateCommand(Cancel); } }
 
         protected abstract void Loaded();
+        protected virtual void Save()
+        {
+        }
+
+        protected virtual void Cancel()
+        {
+
+        }
     }
 }

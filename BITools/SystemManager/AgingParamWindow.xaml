@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:base="clr-namespace:BITools"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:BITools.SystemManager"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
@@ -12,6 +13,11 @@
     Height="300"
     Style="{StaticResource WindowStyleWithCloseBtn}"
     mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -29,7 +35,7 @@
         </Style>
 
         <Style BasedOn="{StaticResource OKStyle}" TargetType="Button">
-            <Setter Property="Width" Value="120" />
+            <Setter Property="Width" Value="100" />
             <Setter Property="Height" Value="30" />
         </Style>
     </Window.Resources>
@@ -55,10 +61,9 @@
             Grid.Column="0"
             Text="加热温度:" />
         <syscontrols:SelectNumeric
-            x:Name="aa"
             Grid.Row="1"
             Grid.Column="1"
-            IncrementText="2"
+            IncrementText="{Binding JiaRe, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
             MaxValue="100"
             MinValue="1" />
         <TextBlock
@@ -71,6 +76,7 @@
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="3"
+            Command="{Binding SaveCommand}"
             Content="更改设置参数" />
 
         <TextBlock
@@ -81,7 +87,7 @@
             x:Name="bb"
             Grid.Row="2"
             Grid.Column="1"
-            IncrementText="2"
+            IncrementText="{Binding ShaoJi, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
             MaxValue="100"
             MinValue="1" />
         <TextBlock
@@ -98,7 +104,7 @@
             x:Name="cc"
             Grid.Row="3"
             Grid.Column="1"
-            IncrementText="2"
+            IncrementText="{Binding PaiFeng, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
             MaxValue="100"
             MinValue="1" />
         <TextBlock
@@ -111,6 +117,7 @@
             Grid.Row="3"
             Grid.RowSpan="2"
             Grid.Column="3"
+            Command="{Binding CancelCommand}"
             Content="取消" />
 
         <TextBlock
@@ -121,7 +128,7 @@
             x:Name="dd"
             Grid.Row="4"
             Grid.Column="1"
-            IncrementText="2"
+            IncrementText="{Binding BaoJing, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
             MaxValue="100"
             MinValue="1" />
         <TextBlock

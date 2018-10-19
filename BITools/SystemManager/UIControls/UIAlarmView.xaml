@@ -13,6 +13,16 @@
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+
+        <LineGeometry
+            x:Key="line"
+            StartPoint="0,0"
+            EndPoint="400,0" />
+
+        <Style TargetType="Path">
+            <Setter Property="Margin" Value="2,0,0,0" />
+            <Setter Property="Stroke" Value="{StaticResource sepeatorLineBrush}" />
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -27,9 +37,9 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <StackPanel
@@ -40,12 +50,8 @@
             <TextBlock Text="警示自动停止" />
             <Path
                 VerticalAlignment="Center"
-                Stroke="Red"
-                StrokeThickness="1">
-                <Path.Data>
-                    <LineGeometry StartPoint="0,0" EndPoint="200,0" />
-                </Path.Data>
-            </Path>
+                Data="{StaticResource line}"
+                StrokeThickness="1" />
         </StackPanel>
 
         <StackPanel
@@ -56,14 +62,16 @@
             <CheckBox
                 VerticalAlignment="Center"
                 Content="警示"
+                IsChecked="{Binding Config.IsAlarm}"
                 Style="{StaticResource CheckBox.MapToolBar.Style}" />
             <syscontrols:SelectNumeric
                 x:Name="aa"
                 Height="32"
-                IncrementText="2"
+                Margin="5,0,0,0"
+                IncrementText="{Binding Config.S1, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                 MaxValue="100"
                 MinValue="1" />
-            <TextBlock Text="秒(20~3600)后自动停止" />
+            <TextBlock Margin="2,0,0,0" Text="秒(20~3600)后自动停止" />
         </StackPanel>
 
         <StackPanel
@@ -73,12 +81,8 @@
             <TextBlock Text="产品不良提示" />
             <Path
                 VerticalAlignment="Center"
-                Stroke="Red"
-                StrokeThickness="1">
-                <Path.Data>
-                    <LineGeometry StartPoint="0,0" EndPoint="200,0" />
-                </Path.Data>
-            </Path>
+                Data="{StaticResource line}"
+                StrokeThickness="1" />
         </StackPanel>
 
         <StackPanel
@@ -92,14 +96,17 @@
                 <syscontrols:SelectNumeric
                     x:Name="bb"
                     Height="32"
-                    IncrementText="2"
+                    Margin="2,0,0,0"
+                    IncrementText="{Binding Config.S2, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
                     MinValue="1" />
-                <TextBlock Text="秒(20~18000)后判断" />
+                <TextBlock Margin="2,0,0,0" Text="秒(20~18000)后判断" />
 
                 <CheckBox
+                    Margin="15,0,0,0"
                     VerticalAlignment="Center"
                     Content="产品不良警示"
+                    IsChecked="{Binding Config.IsBLJS}"
                     Style="{StaticResource CheckBox.MapToolBar.Style}" />
             </StackPanel>
 
@@ -108,14 +115,17 @@
                 <syscontrols:SelectNumeric
                     x:Name="cc"
                     Height="32"
-                    IncrementText="2"
+                    Margin="2,0,0,0"
+                    IncrementText="{Binding Config.S3, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
                     MinValue="1" />
-                <TextBlock Text="次(1~20)不良确定为不良产品" />
+                <TextBlock Margin="2,0,0,0" Text="次(1~20)不良确定为不良产品" />
 
                 <CheckBox
+                    Margin="7,0,0,0"
                     VerticalAlignment="Center"
                     Content="保持不良品状态"
+                    IsChecked="{Binding Config.IsBLPZT}"
                     Style="{StaticResource CheckBox.MapToolBar.Style}" />
             </StackPanel>
 
@@ -128,12 +138,8 @@
             <TextBlock Text="老化完成提示" />
             <Path
                 VerticalAlignment="Center"
-                Stroke="Red"
-                StrokeThickness="1">
-                <Path.Data>
-                    <LineGeometry StartPoint="0,0" EndPoint="200,0" />
-                </Path.Data>
-            </Path>
+                Data="{StaticResource line}"
+                StrokeThickness="1" />
         </StackPanel>
 
         <StackPanel
@@ -141,7 +147,10 @@
             Grid.Column="1"
             VerticalAlignment="Center"
             Orientation="Vertical">
-            <CheckBox Content="烧机完成提示" Style="{StaticResource CheckBox.MapToolBar.Style}" />
+            <CheckBox
+                Content="烧机完成提示"
+                IsChecked="{Binding Config.IsSJWCTS}"
+                Style="{StaticResource CheckBox.MapToolBar.Style}" />
         </StackPanel>
 
     </Grid>

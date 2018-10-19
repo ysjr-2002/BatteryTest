@@ -8,7 +8,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ButtonEx">
-                    <Border BorderBrush="#cccccc" BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="#cccccc"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
@@ -29,7 +32,7 @@
                                 Name="cp"
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Center" />
                         </Grid>
                     </Border>

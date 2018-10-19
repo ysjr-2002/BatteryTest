@@ -63,8 +63,7 @@ namespace BITools.ViewModel
         public ICommand CreateCommand { get { return new DelegateCommand(CreateUser); } }
         public ICommand DeleteCommand { get { return new DelegateCommand(DeleteUser); } }
         public ICommand DetailCommand { get { return new DelegateCommand<UserInfo>(DetailUser); } }
-
-        public ICommand PasswordResetCommand { get { return new DelegateCommand(PasswordReset); } }
+        public ICommand PassWordResetCommand { get { return new DelegateCommand(PassWordReset); } }
 
         private void CreateUser()
         {
@@ -90,9 +89,9 @@ namespace BITools.ViewModel
             Name = user.UserName;
 
             IsUser = ((((int)SystemModule.User) & user.Permission) == (int)SystemModule.User);
-            IsUser = ((((int)SystemModule.Config) & user.Permission) == (int)SystemModule.Config);
-            IsUser = ((((int)SystemModule.Device) & user.Permission) == (int)SystemModule.Device);
-            IsUser = ((((int)SystemModule.History) & user.Permission) == (int)SystemModule.History);
+            IsConfig = ((((int)SystemModule.Config) & user.Permission) == (int)SystemModule.Config);
+            IsDevice = ((((int)SystemModule.Device) & user.Permission) == (int)SystemModule.Device);
+            IsHistory = ((((int)SystemModule.History) & user.Permission) == (int)SystemModule.History);
         }
 
         private void DeleteUser()
@@ -104,22 +103,33 @@ namespace BITools.ViewModel
             selectedUser = null;
 
             Loaded();
+            ResetValue();
         }
 
-        private void PasswordReset()
+        private void PassWordReset()
         {
             if (selectedUser == null)
                 return;
 
             selectedUser.Password = PASSWORD_DEFAULT;
-            userImpl.DeleteUser(selectedUser);
-            selectedUser = null;
+            userImpl.UpdateUser(selectedUser);
+            ResetValue();
         }
 
         protected override void Loaded()
         {
             var list = userImpl.getUser();
             UserCollection = new ObservableCollection<UserInfo>(list);
+        }
+
+        private void ResetValue()
+        {
+            selectedUser = null;
+            Name = string.Empty;
+            IsUser = false;
+            IsConfig = false;
+            IsDevice = false;
+            IsHistory = false;
         }
     }
 }

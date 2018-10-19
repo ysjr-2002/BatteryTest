@@ -7,7 +7,7 @@
     <!--  FFD6DBE9  -->
     <SolidColorBrush x:Key="MainTitleBackground" Color="#FF2E69C5" />
 
-    <SolidColorBrush x:Key="sepeatorLineBrush" Color="#FF0000"></SolidColorBrush>
+    <SolidColorBrush x:Key="sepeatorLineBrush" Color="#cccccc" />
 
     <SolidColorBrush x:Key="MainWindow.Nav.DefaultBackground" Color="#FF2e69c5" />
     <SolidColorBrush x:Key="MainWindow.Nav.Button.DefaultBackground" Color="#FF2e69c5" />
@@ -33,6 +33,7 @@
     <SolidColorBrush x:Key="VideoBigData.MainPage.Background" Color="#FFF3F6FB" />
     <SolidColorBrush x:Key="VideoBigData.MainPage.TitleRec.Background" Color="#FF3990F1" />
 
+    <SolidColorBrush x:Key="TextBox.Alarm.Border.Brush" Color="#FF9999" />
 
     <SolidColorBrush x:Key="Side.Tool.TabControl.Item.Background" Color="#FFF2F2F2" />
     <SolidColorBrush x:Key="Side.Tool.TabControl.ItemSelected.Background" Color="White" />

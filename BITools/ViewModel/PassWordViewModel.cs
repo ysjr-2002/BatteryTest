@@ -77,7 +77,7 @@ namespace BITools.ViewModel
 
         protected override void Loaded()
         {
-            this.Name = AppContext.UserName;
+            this.Name = AppContext.UserName = "test";
         }
     }
 }
