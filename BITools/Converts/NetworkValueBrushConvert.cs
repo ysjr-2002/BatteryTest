@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace BITools.Core
+namespace BITools.Converts
 {
     public class NetworkValueBrushConvert : IValueConverter
     {

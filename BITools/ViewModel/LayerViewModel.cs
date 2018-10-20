@@ -19,7 +19,7 @@ namespace BITools.ViewModel
             this.TestDataCollection = new ObservableCollection<ViewModel.DeveInfo>();
             this.TestDataCollection.Add(new DeveInfo
             {
-                sbbh= "L1",
+                sbbh= name,
                 sm = 1,
                 lhcsdy = "ss",
                 acsr = "0V",

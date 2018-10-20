@@ -161,6 +161,9 @@
     <Compile Include="UIControls\BlockView.xaml.cs">
       <DependentUpon>BlockView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIControls\BottomView.xaml.cs">
+      <DependentUpon>BottomView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIControls\ButtonEx.cs" />
     <Compile Include="UIControls\DateTimePicker.xaml.cs">
       <DependentUpon>DateTimePicker.xaml</DependentUpon>
@@ -181,6 +184,7 @@
     <Compile Include="UIControls\SnappingPixelsBitmap.cs" />
     <Compile Include="UIControls\WatermarkComboBox.cs" />
     <Compile Include="ViewModel\AgingParamViewModel.cs" />
+    <Compile Include="ViewModel\BaseMainViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChannelInfo.cs" />
     <Compile Include="ViewModel\DeveInfo.cs" />
@@ -320,6 +324,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIControls\BlockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIControls\BottomView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

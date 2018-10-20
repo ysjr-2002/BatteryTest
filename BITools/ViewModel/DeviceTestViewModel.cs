@@ -11,9 +11,9 @@ namespace BITools.ViewModel
     {
         public DeviceTestViewModel()
         {
-            Layer1ViewModel = new LayerViewModel("");
-            Layer2ViewModel = new LayerViewModel("");
-            Layer3ViewModel = new LayerViewModel("");
+            Layer1ViewModel = new LayerViewModel("L1");
+            Layer2ViewModel = new LayerViewModel("L2");
+            Layer3ViewModel = new LayerViewModel("L3");
         }
 
         public LayerViewModel Layer1ViewModel

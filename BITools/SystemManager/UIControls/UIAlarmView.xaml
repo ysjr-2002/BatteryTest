@@ -66,7 +66,7 @@
                 Style="{StaticResource CheckBox.MapToolBar.Style}" />
             <syscontrols:SelectNumeric
                 x:Name="aa"
-                Height="32"
+                Height="28"
                 Margin="5,0,0,0"
                 IncrementText="{Binding Config.S1, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                 MaxValue="100"
@@ -95,7 +95,7 @@
                 <TextBlock Text="产品无输出开始测试" />
                 <syscontrols:SelectNumeric
                     x:Name="bb"
-                    Height="32"
+                    Height="28"
                     Margin="2,0,0,0"
                     IncrementText="{Binding Config.S2, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
@@ -114,7 +114,7 @@
                 <TextBlock Text="数据连续采集" />
                 <syscontrols:SelectNumeric
                     x:Name="cc"
-                    Height="32"
+                    Height="28"
                     Margin="2,0,0,0"
                     IncrementText="{Binding Config.S3, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"

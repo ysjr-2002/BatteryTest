@@ -10,58 +10,37 @@ using System.Windows.Input;
 
 namespace BITools.ViewModel
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : BaseMainViewModel
     {
+        public int TabSelectedIndex
+        {
+            get { return this.GetValue(c => c.TabSelectedIndex); }
+            set { this.SetValue(c => c.TabSelectedIndex, value); }
+        }
+
+        public ICommand TabSelectedCommand { get { return new DelegateCommand<string>(SwitchTab); } }
+
         public MainViewModel()
         {
             DeviceTestViewModel = new DeviceTestViewModel();
+            TabSelectedIndex = 0;
         }
-        public ICommand LoginUserCommand { get { return new DelegateCommand(LoginUser); } }
-        public ICommand UserManagerCommand { get { return new DelegateCommand(UserManager); } }
-        public ICommand SystemSettingCommand { get { return new DelegateCommand(SystemSetting); } }
-        public ICommand SystemParamCommand { get { return new DelegateCommand(SystemParam); } }
-        public ICommand ReportCommand { get { return new DelegateCommand(Report); } }
-        public ICommand AboutCommand { get { return new DelegateCommand(About); } }
+        
 
-        public DeviceTestViewModel DeviceTestViewModel
+        private void SwitchTab(string tab)
         {
-            get { return this.GetValue(c => c.DeviceTestViewModel); }
-            set { this.SetValue(c => c.DeviceTestViewModel, value); }
-        }
-
-        private void LoginUser()
-        {
-            var window = new PassWordWindow();
-            window.ShowDialog();
-        }
-
-        private void UserManager()
-        {
-            var window = new UserWindow();
-            window.ShowDialog();
-        }
-
-        private void SystemSetting()
-        {
-            var window = new SettingWindow();
-            window.ShowDialog();
-        }
-
-        private void SystemParam()
-        {
-            var window = new DeviceParamWindow();
-            window.ShowDialog();
-        }
-
-        private void Report()
-        {
-
-        }
-
-        private void About()
-        {
-            var window = new AboutWindow();
-            window.ShowDialog();
+            if (tab == "A")
+                TabSelectedIndex = 0;
+            if (tab == "B")
+                TabSelectedIndex = 1;
+            if (tab == "C")
+                TabSelectedIndex = 2;
+            if (tab == "D")
+                TabSelectedIndex = 3;
+            if (tab == "E")
+                TabSelectedIndex = 4;
+            if (tab == "F")
+                TabSelectedIndex = 5;
         }
     }
 }
