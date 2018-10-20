@@ -37,7 +37,7 @@ namespace BIDataAccess
                     return db.UserInfoes.ToList();
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return new List<UserInfo>();
             }

@@ -1,17 +1,16 @@
-﻿<base:BaseWindow
-    x:Class="BITools.SystemManager.UserWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:base="clr-namespace:BITools"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:local="clr-namespace:BITools.SystemManager"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="登录用户管理"
-    Width="700"
-    Height="450"
-    Style="{StaticResource WindowStyleWithCloseBtn}"
-    mc:Ignorable="d">
+﻿<base:BaseWindow x:Class="BITools.SystemManager.UserWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:base="clr-namespace:BITools"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                 xmlns:local="clr-namespace:BITools.SystemManager"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 Title="登录用户管理"
+                 Width="700"
+                 Height="450"
+                 Style="{StaticResource WindowStyleWithCloseBtn}"
+                 mc:Ignorable="d">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
@@ -38,24 +37,25 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <DataGrid
-            Name="dgUser"
-            Grid.Column="1"
-            CellStyle="{StaticResource DataGridCell.WithGridLine}"
-            ColumnHeaderStyle="{StaticResource DataGridColumnHeader.WithLine.Style}"
-            ItemsSource="{Binding UserCollection}"
-            Style="{StaticResource DataGrid.WithFullGapLine.Style}">
+        <DataGrid Name="dgUser"
+                  Grid.Column="1"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CellStyle="{StaticResource DataGridCell.WithGridLine}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeader.WithLine.Style}"
+                  ItemsSource="{Binding UserCollection}"
+                  Style="{StaticResource DataGrid.WithFullGapLine.Style}">
             <DataGrid.InputBindings>
-                <MouseBinding
-                    Command="{Binding DetailCommand}"
-                    CommandParameter="{Binding ElementName=dgUser, Path=SelectedItem}"
-                    Gesture="LeftDoubleClick" />
+                <MouseBinding Command="{Binding DetailCommand}"
+                              CommandParameter="{Binding ElementName=dgUser,
+                                                         Path=SelectedItem}"
+                              Gesture="LeftDoubleClick" />
             </DataGrid.InputBindings>
             <DataGrid.Columns>
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding UserName}"
-                    Header="登录用户名" />
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding UserName}"
+                                    Header="登录用户名" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -66,7 +66,7 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
@@ -75,60 +75,51 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Content="登录用户名:" />
-                <TextBox
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Height="24"
-                    Text="{Binding Name}" />
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Content="登录用户名:" />
+                <TextBox Grid.Row="0"
+                         Grid.Column="1"
+                         Height="24"
+                         Text="{Binding Name}" />
 
-                <CheckBox
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Content="登录用户管理"
-                    IsChecked="{Binding IsUser}" />
-                <CheckBox
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Content="系统配置"
-                    IsChecked="{Binding IsConfig}" />
-                <CheckBox
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Content="机型设置"
-                    IsChecked="{Binding IsDevice}" />
-                <CheckBox
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Content="历史数据查询"
-                    IsChecked="{Binding IsHistory}" />
+                <CheckBox Grid.Row="1"
+                          Grid.Column="1"
+                          Content="登录用户管理"
+                          IsChecked="{Binding IsUser}" />
+                <CheckBox Grid.Row="2"
+                          Grid.Column="1"
+                          Content="系统配置"
+                          IsChecked="{Binding IsConfig}" />
+                <CheckBox Grid.Row="3"
+                          Grid.Column="1"
+                          Content="机型设置"
+                          IsChecked="{Binding IsDevice}" />
+                <CheckBox Grid.Row="4"
+                          Grid.Column="1"
+                          Content="历史数据查询"
+                          IsChecked="{Binding IsHistory}" />
 
-                <StackPanel
-                    Grid.Row="5"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    HorizontalAlignment="Center"
-                    Orientation="Horizontal">
+                <StackPanel Grid.Row="5"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
 
                     <Button Command="{Binding CreateCommand}" Content="新增" />
-                    <Button
-                        Margin="5,0"
-                        Command="{Binding DeleteCommand}"
-                        Content="删除" />
+                    <Button Margin="5,0"
+                            Command="{Binding DeleteCommand}"
+                            Content="删除" />
                     <Button Command="{Binding PassWordResetCommand}" Content="密码重置" />
                 </StackPanel>
 
-                <TextBlock
-                    Grid.Row="6"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Foreground="Blue"
-                    Text="系统重置为初始密码:123456" />
+                <TextBlock Grid.Row="6"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="Blue"
+                           Text="系统重置为初始密码:123456" />
             </Grid>
 
 

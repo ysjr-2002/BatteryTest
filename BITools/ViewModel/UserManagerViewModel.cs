@@ -80,6 +80,7 @@ namespace BITools.ViewModel
             user.Permission = (IsUser ? 1 : 0) | (IsConfig ? 2 : 0) | (IsDevice ? 4 : 0) | (IsHistory ? 8 : 0);
 
             bool flag = userImpl.CreateUser(user);
+            ResetValue();
             Loaded();
         }
 

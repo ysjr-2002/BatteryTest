@@ -15,7 +15,11 @@ namespace BITools.ViewModel
         public ICommand SaveCommand { get { return new DelegateCommand(Save); } }
         public ICommand CancelCommand { get { return new DelegateCommand(Cancel); } }
 
-        protected abstract void Loaded();
+        protected virtual void Loaded()
+        {
+
+        }
+
         protected virtual void Save()
         {
         }

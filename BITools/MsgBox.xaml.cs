@@ -126,7 +126,7 @@ namespace BITools
         /// <param name="Title">标题</param>
         /// <param name="message">消息内容</param>
         /// <returns>MsgBoxResult对象</returns>
-        public static MsgBoxResult QuestionShow(string Title, string message)
+        public static MsgBoxResult QuestionShow(string message, string Title = "询问")
         {
             return (MsgBoxResult)Application.Current.Dispatcher.Invoke(new Func<MsgBoxResult>(() =>
             {
@@ -137,7 +137,7 @@ namespace BITools
                     new Typeface(msgbox.txtbMessage.FontFamily, msgbox.txtbMessage.FontStyle, msgbox.txtbMessage.FontWeight, msgbox.txtbMessage.FontStretch, msgbox.txtbMessage.FontFamily),
                     msgbox.txtbMessage.FontSize,
                     Brushes.Black);
-                msgbox.myTitle.Text = "确认";
+                msgbox.myTitle.Text = Title;
                 msgbox.txtbMessage.Text = message;
                 msgbox.btnOK.Visibility = Visibility.Visible;
                 msgbox.btnCancel.Visibility = Visibility.Visible;

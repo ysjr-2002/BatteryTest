@@ -182,8 +182,13 @@
     <Compile Include="UIControls\WatermarkComboBox.cs" />
     <Compile Include="ViewModel\AgingParamViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\ChannelInfo.cs" />
+    <Compile Include="ViewModel\DeveInfo.cs" />
     <Compile Include="ViewModel\DeviceParamViewModel.cs" />
+    <Compile Include="ViewModel\DeviceTestViewModel.cs" />
+    <Compile Include="ViewModel\LayerViewModel.cs" />
     <Compile Include="ViewModel\LiveDataViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PassWordViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\UserManagerViewModel.cs" />
@@ -409,6 +414,13 @@
     <Resource Include="Images\update.png" />
     <Resource Include="Images\add1.png" />
     <Resource Include="Images\removeall.png" />
+    <Resource Include="Images\user.png" />
+    <Resource Include="Images\about.png" />
+    <Resource Include="Images\login.png" />
+    <Resource Include="Images\param.png" />
+    <Resource Include="Images\report.png" />
+    <Resource Include="Images\xtsz.png" />
+    <Resource Include="Images\stop_pull.png" />
     <Content Include="Libs\Common.dll" />
     <Resource Include="Resources\startloading.gif" />
     <Resource Include="Images\close.png" />

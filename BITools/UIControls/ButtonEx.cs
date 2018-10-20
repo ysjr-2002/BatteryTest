@@ -21,11 +21,19 @@ namespace BITools.UIControls
             NormalImagePlacementProperty = DependencyProperty.Register("NormalImagePlacement", typeof(ImagePlacement), typeof(ButtonEx), new PropertyMetadata(ImagePlacement.Left));
 
             DisableImageProperty = DependencyProperty.Register("DisableImage", typeof(ImageSource), typeof(ButtonEx));
+
         }
 
-        public ButtonEx()
+
+        public double ImageHeight
         {
+            get { return (double)GetValue(ImageHeightProperty); }
+            set { SetValue(ImageHeightProperty, value); }
         }
+
+        // Using a DependencyProperty as the backing store for ImageHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ImageHeightProperty =
+            DependencyProperty.Register("ImageHeight", typeof(double), typeof(ButtonEx), new PropertyMetadata(16d));
 
         public ImageSource DisableImage
         {

@@ -12,18 +12,15 @@
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
     <Window.Resources>
-
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-
         <SolidColorBrush x:Key="borderBrush" Color="#CCCCCC" />
     </Window.Resources>
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition />
+            <RowDefinition Height="55" />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -41,17 +38,58 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <RadioButton Grid.Column="0" Content="登录用户" />
-            <RadioButton Grid.Column="1" Content="用户管理" />
-            <RadioButton Grid.Column="2" Content="系统设置" />
-            <RadioButton Grid.Column="3" Content="参数编辑" />
-            <RadioButton Grid.Column="4" Content="报表查询" />
-            <RadioButton Grid.Column="5" Content="软件关于" />
+            <syscontrols:ButtonEx Grid.Column="0"
+                                  Width="110"
+                                  BorderThickness="0"
+                                  Command="{Binding LoginUserCommand}"
+                                  Content="登录用户"
+                                  ImageHeight="24"
+                                  NormalImage="/BITools;component/Images/login.png"
+                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx Grid.Column="1"
+                                  Width="110"
+                                  BorderThickness="0"
+                                  Command="{Binding UserManagerCommand}"
+                                  Content="用户管理"
+                                  ImageHeight="24"
+                                  NormalImage="/BITools;component/Images/user.png"
+                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx Grid.Column="2"
+                                  Width="110"
+                                  BorderThickness="0"
+                                  Command="{Binding SystemSettingCommand}"
+                                  Content="系统设置"
+                                  ImageHeight="24"
+                                  NormalImage="/BITools;component/Images/xtsz.png"
+                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx Grid.Column="3"
+                                  Width="110"
+                                  BorderThickness="0"
+                                  Command="{Binding SystemParamCommand}"
+                                  Content="参数编辑"
+                                  ImageHeight="24"
+                                  NormalImage="/BITools;component/Images/param.png"
+                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx Grid.Column="4"
+                                  Width="110"
+                                  BorderThickness="0"
+                                  Command="{Binding ReportCommand}"
+                                  Content="报表查询"
+                                  ImageHeight="24"
+                                  NormalImage="/BITools;component/Images/report.png"
+                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx Grid.Column="5"
+                                  Width="110"
+                                  BorderThickness="0"
+                                  Command="{Binding AboutCommand}"
+                                  Content="软件关于"
+                                  ImageHeight="24"
+                                  NormalImage="/BITools;component/Images/about.png"
+                                  NormalImagePlacement="Top" />
         </Grid>
 
-        <syscontrols:LayerView Grid.Row="1" />
-        <syscontrols:LayerView Grid.Row="2" />
-        <syscontrols:LayerView Grid.Row="3" />
-        <syscontrols:LayerView Grid.Row="4" />
+        <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModel.Layer1ViewModel}" />
+        <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModel.Layer2ViewModel}" />
+        <syscontrols:LayerView Grid.Row="3" DataContext="{Binding DeviceTestViewModel.Layer3ViewModel}" />
     </Grid>
 </Window>

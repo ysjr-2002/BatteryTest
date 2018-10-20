@@ -6,23 +6,60 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:syscontrols="clr-namespace:BITools.UIControls"
              d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignWidth="800"
              mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="borderBrush" Color="#CCCCCC" />
+
+        <Style x:Key="cellStyle" TargetType="DataGridCell">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
     </UserControl.Resources>
     <Grid Grid.Row="1">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Row="0"
+                  Grid.Column="0"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CellStyle="{StaticResource cellStyle}"
+                  ColumnHeaderHeight="30"
+                  ItemsSource="{Binding TestDataCollection}"
+                  Style="{x:Null}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding sbbh}" Header="设备编号">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="FontSize" Value="16" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding sm}" Header="扫描" />
+                <DataGridHyperlinkColumn Binding="{Binding lhcsdy}" Header="老化参数调用" />
+                <DataGridTextColumn Binding="{Binding acsr}" Header="AC 输入" />
+                <DataGridTextColumn Binding="{Binding aczt}" Header="AC 状态" />
+                <DataGridTextColumn Binding="{Binding zs}" Header="总数" />
+                <DataGridTextColumn Binding="{Binding hg}" Header="合格" />
+                <DataGridTextColumn Binding="{Binding bl}" Header="不良" />
+                <DataGridTextColumn Binding="{Binding bll}" Header="不良率" />
+                <DataGridTextColumn Binding="{Binding cpxh}" Header="产品型号" />
+                <DataGridTextColumn Binding="{Binding cpddh}" Header="产品订单号" />
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -33,20 +70,24 @@
             </Grid.ColumnDefinitions>
 
             <syscontrols:ButtonEx Grid.Column="0"
+                                  Command="{Binding SDJCCommand}"
                                   Content="上电检测"
                                   NormalImage="/BITools;component/Images/detail.png"
                                   NormalImagePlacement="Top" />
             <syscontrols:ButtonEx Grid.Column="1"
+                                  Command="{Binding KSCSCommand}"
                                   Content="开始测试"
                                   DisableImage="/BITools;component/Images/begin_disable.png"
                                   NormalImage="/BITools;component/Images/begin.png"
                                   NormalImagePlacement="Top" />
             <syscontrols:ButtonEx Grid.Column="2"
+                                  Command="{Binding ZTCSCommand}"
                                   Content="暂停测试"
                                   DisableImage="/BITools;component/Images/pause_disable.png"
                                   NormalImage="/BITools;component/Images/pause.png"
                                   NormalImagePlacement="Top" />
             <syscontrols:ButtonEx Grid.Column="3"
+                                  Command="{Binding TZCSCommand}"
                                   Content="停止测试"
                                   DisableImage="/BITools;component/Images/stop_disable.png"
                                   IsEnabled="False"
@@ -89,12 +130,15 @@
             </Grid.ColumnDefinitions>
 
             <syscontrols:ButtonEx Grid.Column="0"
+                                  Command="{Binding CKSJCommand}"
                                   Content="查看数据"
                                   NormalImage="/BITools;component/Images/detail.png" />
             <syscontrols:ButtonEx Grid.Column="1"
+                                  Command="{Binding CKTXMCommand}"
                                   Content="产品条形码"
                                   NormalImage="/BITools;component/Images/bar_code.png" />
             <syscontrols:ButtonEx Grid.Column="2"
+                                  Command="{Binding BJFWCommand}"
                                   Content="报警复位"
                                   NormalImage="/BITools;component/Images/light.png" />
         </Grid>
@@ -110,18 +154,54 @@
             <TextBlock Grid.Column="0" Text="测试状态说明" />
 
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <syscontrols:ButtonEx Content="脱机" />
-                <syscontrols:ButtonEx Content="下载参数中" />
-                <syscontrols:ButtonEx Content="停止拉载" />
-                <syscontrols:ButtonEx Content="拉载异常" />
-                <syscontrols:ButtonEx Content="无产品" />
-                <syscontrols:ButtonEx Content="欠压" />
-                <syscontrols:ButtonEx Content="欠流" />
-                <syscontrols:ButtonEx Content="过压" />
-                <syscontrols:ButtonEx Content="过流" />
-                <syscontrols:ButtonEx Content="无输出" />
-                <syscontrols:ButtonEx Content="合格" />
-                <syscontrols:ButtonEx Content="负载保护" />
+                <Button Width="80"
+                        BorderThickness="0"
+                        Content="脱机"
+                        Style="{StaticResource btntj}" />
+                <Button Width="100"
+                        BorderThickness="0"
+                        Content="下载参数中"
+                        Style="{StaticResource btndownparam}" />
+                <Button Width="100"
+                        BorderThickness="0"
+                        Content="停止拉载"
+                        Style="{StaticResource btntzlz}" />
+                <Button Width="100"
+                        BorderThickness="0"
+                        Content="拉载异常"
+                        Style="{StaticResource btnlzyc}" />
+                <Button Width="80"
+                        BorderThickness="0"
+                        Content="无产品"
+                        Style="{StaticResource btnwcp}" />
+                <Button Width="80"
+                        BorderThickness="0"
+                        Content="欠压"
+                        Style="{StaticResource btnqy}" />
+                <Button Width="80"
+                        BorderThickness="0"
+                        Content="欠流"
+                        Style="{StaticResource btnql}" />
+                <Button Width="80"
+                        BorderThickness="0"
+                        Content="过压"
+                        Style="{StaticResource btngy}" />
+                <Button Width="80"
+                        BorderThickness="0"
+                        Content="过流"
+                        Style="{StaticResource btngl}" />
+                <Button Width="80"
+                        BorderThickness="0"
+                        Content="无输出"
+                        Style="{StaticResource btnwsc}" />
+                <Button Width="80"
+                        BorderThickness="0"
+                        Content="合格"
+                        Style="{StaticResource btnhg}" />
+                <Button Width="100"
+                        BorderThickness="0"
+                        Content="负载保护"
+                        Style="{StaticResource btnfzbh}" />
             </StackPanel>
         </Grid>
 
