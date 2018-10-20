@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BITools.ViewModel
 {
+    /// <summary>
+    /// 老化设备信息
+    /// </summary>
     public class DeveInfo : PropertyNotifyObject
     {
         public string sbbh
