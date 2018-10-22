@@ -26,7 +26,6 @@ namespace BITools.ViewModel
             TabSelectedIndex = 0;
         }
         
-
         private void SwitchTab(string tab)
         {
             if (tab == "A")

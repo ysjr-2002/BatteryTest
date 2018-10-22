@@ -68,8 +68,9 @@ namespace BITools
             btnLogin.IsEnabled = true;
             if (flag)
             {
+                saveFile(name, password, ckbRemember.IsChecked.GetValueOrDefault());
                 this.Hide();
-                var window = new LiveDataWindow();
+                var window = new MainWindow();
                 window.ShowDialog();
             }
             else

@@ -75,13 +75,13 @@ namespace BITools.ViewModel
         public ChannelInfo()
         {
             csms = "1-CC模式";
-            sdcs1 = "0.00";
-            sdcs2 = "0.00";
-            sdcs3 = "0.00";
+            sdcs1 = "1.000A";
+            sdcs2 = "3.000A";
+            sdcs3 = "5.000A";
             qddy = "0.00";
 
-            csxx1 = "0.00";
-            cssx1 = "0.00";
+            csxx1 = "11.500A";
+            cssx1 = "13.500A";
             csxx2 = "0.00";
             cssx2 = "0.00";
             xlkz = "0.00";

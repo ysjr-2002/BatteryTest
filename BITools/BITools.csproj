@@ -165,8 +165,11 @@
       <DependentUpon>BottomView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIControls\ButtonEx.cs" />
-    <Compile Include="UIControls\DateTimePicker.xaml.cs">
-      <DependentUpon>DateTimePicker.xaml</DependentUpon>
+    <Compile Include="UIControls\HZDateTimePicker.xaml.cs">
+      <DependentUpon>HZDateTimePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIControls\HZTimePicker.xaml.cs">
+      <DependentUpon>HZTimePicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIControls\LayerView.xaml.cs">
       <DependentUpon>LayerView.xaml</DependentUpon>
@@ -183,6 +186,7 @@
     </Compile>
     <Compile Include="UIControls\SnappingPixelsBitmap.cs" />
     <Compile Include="UIControls\WatermarkComboBox.cs" />
+    <Compile Include="UIControls\WatermarkTextBox.cs" />
     <Compile Include="ViewModel\AgingParamViewModel.cs" />
     <Compile Include="ViewModel\BaseMainViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -275,6 +279,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\WatermarkTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\WindowStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -331,7 +339,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UIControls\DateTimePicker.xaml">
+    <Page Include="UIControls\HZDateTimePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UIControls\HZTimePicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

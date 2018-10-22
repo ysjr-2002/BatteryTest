@@ -1,4 +1,5 @@
-﻿using BITools.SystemManager;
+﻿using BITools.DataManager;
+using BITools.SystemManager;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
 using System;
@@ -51,7 +52,8 @@ namespace BITools.ViewModel
 
         private void Report()
         {
-
+            var window = new LiveDataWindow();
+            window.ShowDialog();
         }
 
         private void About()

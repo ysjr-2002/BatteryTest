@@ -21,6 +21,16 @@ namespace BITools
             return i;
         }
 
+        public static DateTime ToDateTime(this string str)
+        {
+            return Convert.ToDateTime(str);
+        }
+
+        public static string ToStandard(this DateTime date)
+        {
+            return date.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
         public static List<string> GetSerialPorts()
         {
             var items = SerialPort.GetPortNames().ToList();

@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
     Title="LiveDataWindow"
-    Width="1000"
+    Width="1200"
     Height="700"
     Style="{StaticResource WindowStyleWithCloseBtn}"
     mc:Ignorable="d">
@@ -21,11 +21,95 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="40" />
-            <RowDefinition />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <GroupBox Header="查询条件">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <CheckBox Content="精确" Style="{StaticResource CheckBox.MapToolBar.Style}" />
+
+                <syscontrols:WatermarkTextBox
+                    Width="120"
+                    Margin="10,0,0,0"
+                    Style="{StaticResource ComprehensiveTextBox.WatermarkTextBox.Style}"
+                    Watermark="产品订单号" />
+
+                <syscontrols:WatermarkTextBox
+                    Width="120"
+                    Margin="10,0,0,0"
+                    Style="{StaticResource ComprehensiveTextBox.WatermarkTextBox.Style}"
+                    Watermark="机型名" />
+
+                <TextBlock Margin="10,0,0,0" Text="日期:" />
+
+                <syscontrols:HZDateTimePicker
+                    Width="180"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    CustomFormat="yyyy-MM-dd HH:mm:ss"
+                    Format="Custom"
+                    ShowCheckBox="False"
+                    Text="{Binding StartDateTime}" />
+
+                <TextBlock Margin="2,0" Text="至" />
+                <syscontrols:HZDateTimePicker
+                    Width="180"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    CustomFormat="yyyy-MM-dd HH:mm:ss"
+                    Format="Custom"
+                    ShowCheckBox="False"
+                    Text="{Binding EndDateTime}" />
+
+                <TextBlock Margin="10,0,0,0" Text="操作员:" />
+                <ComboBox Width="100" Height="28" />
+
+                <syscontrols:ButtonEx
+                    Width="80"
+                    Margin="10,0,0,0"
+                    Command="{Binding QueryCommand}"
+                    Content="查询" />
+            </StackPanel>
+        </GroupBox>
+
+        <DataGrid
+            Grid.Row="1"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding csms}"
+                    Header="产品订单号" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding sdcs1}"
+                    Header="机型名" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding sdcs2}"
+                    Header="区间" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding sdcs3}"
+                    Header="老化总时间" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding qddy}"
+                    Header="操作员" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding csxx1}"
+                    Header="数据文件路径(双击可打开Excel报表)" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120" />
                 <ColumnDefinition />
@@ -36,6 +120,7 @@
             <TextBox
                 Grid.Column="1"
                 Height="24"
+                Margin="2,0,0,0"
                 VerticalContentAlignment="Center" />
             <syscontrols:ButtonEx
                 Grid.Column="2"
@@ -46,7 +131,7 @@
                 NormalImage="/BITools;component/Images/excel.png" />
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
@@ -68,28 +153,31 @@
                 <TextBlock
                     Grid.Row="2"
                     HorizontalAlignment="Center"
-                    Text="电压曲线图" />
+                    Text="电流曲线图" />
 
                 <lvc:CartesianChart
                     x:Name="chartV"
                     Grid.Row="1"
-                    Series="{Binding Modes}">
+                    Series="{Binding Series}">
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Labels="{Binding Lables}" LabelsRotation="15">
+                        <lvc:Axis
+                            Title="分钟"
+                            Labels="{Binding Lables}"
+                            LabelsRotation="15">
                             <lvc:Axis.Separator>
                                 <lvc:Separator Step="1" />
                             </lvc:Axis.Separator>
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis LabelFormatter="{Binding Formatter}" />
+                        <lvc:Axis Title="V" LabelFormatter="{Binding Formatter}" />
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
                 <lvc:CartesianChart
                     x:Name="chartA"
                     Grid.Row="3"
-                    Series="{Binding Modes}">
+                    Series="{Binding Series}">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Labels="{Binding Lables}" LabelsRotation="15">
                             <lvc:Axis.Separator>
@@ -105,10 +193,10 @@
 
             <Grid Grid.Column="1">
                 <DataGrid
-                    CellStyle="{StaticResource DataGridCell.WithGridLine}"
-                    ColumnHeaderStyle="{StaticResource DataGridColumnHeader.WithLine.Style}"
-                    ItemsSource="{Binding Records}"
-                    Style="{StaticResource DataGrid.WithFullGapLine.Style}">
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    ItemsSource="{Binding Records}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="100"
@@ -136,10 +224,10 @@
 
             <Grid Grid.Column="2">
                 <DataGrid
-                    CellStyle="{StaticResource DataGridCell.WithGridLine}"
-                    ColumnHeaderStyle="{StaticResource DataGridColumnHeader.WithLine.Style}"
-                    ItemsSource="{Binding Unknowns}"
-                    Style="{StaticResource DataGrid.WithFullGapLine.Style}">
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    ItemsSource="{Binding Unknowns}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="80"

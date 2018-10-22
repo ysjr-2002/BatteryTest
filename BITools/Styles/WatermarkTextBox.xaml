@@ -1,0 +1,65 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:BITools.UIControls"
+    xmlns:local="clr-namespace:BITools.Styles">
+
+    <Style x:Key="ComprehensiveTextBox.WatermarkTextBox.Style" TargetType="{x:Type controls:WatermarkTextBox}">
+        <Setter Property="ContextMenu" Value="{StaticResource ContextMenu.TextBox.Default}" />
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="AllowDrop" Value="true" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="WatermarkVerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:WatermarkTextBox}">
+                    <Grid>
+                        <Border x:Name="Bd" Background="White" />
+                        <Grid x:Name="GD">
+                            <TextBlock
+                                Name="Watermark"
+                                Margin="{TemplateBinding Padding}"
+                                Padding="9,0,0,0"
+                                VerticalAlignment="{TemplateBinding WatermarkVerticalAlignment}"
+                                Foreground="{StaticResource ComprehensiveTextBox.HistoryRecordItem.FontColor}"
+                                IsHitTestVisible="False"
+                                Style="{TemplateBinding WatermarkStyle}"
+                                Text="{TemplateBinding Watermark}"
+                                Visibility="Collapsed" />
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Grid>
+                        <Border
+                            x:Name="Bd2"
+                            BorderBrush="{StaticResource ComprehensiveTextBox.TextBox.DefBorder}"
+                            BorderThickness="1"
+                            SnapsToDevicePixels="True" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TextBlock.TextWrapping" Value="NoWrap">
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Bd2" Property="BorderBrush" Value="{StaticResource TextBox.Border.MouseOver.Brush}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value="" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="Watermark" Property="Visibility" Value="Visible" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

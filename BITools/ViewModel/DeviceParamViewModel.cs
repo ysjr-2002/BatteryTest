@@ -32,6 +32,9 @@ namespace BITools.ViewModel
 
             list = dictImpl.QueryDictionary("SRDY");
             SRDYCollection = new ObservableCollection<Dictonary>(list);
+
+            list = dictImpl.QueryDictionary("FZCS");
+            FZCSCollection = new ObservableCollection<Dictonary>(list);
         }
 
         public ObservableCollection<Dictonary> TDBLCollection
