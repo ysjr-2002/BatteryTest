@@ -5,7 +5,7 @@
     xmlns:local="clr-namespace:BITools.Styles">
 
     <Style x:Key="ComprehensiveTextBox.WatermarkTextBox.Style" TargetType="{x:Type controls:WatermarkTextBox}">
-        <Setter Property="ContextMenu" Value="{StaticResource ContextMenu.TextBox.Default}" />
+        <!--<Setter Property="ContextMenu" Value="{StaticResource ContextMenu.TextBox.Default}" />-->
         <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
         <Setter Property="BorderThickness" Value="1" />

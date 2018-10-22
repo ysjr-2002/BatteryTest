@@ -280,8 +280,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\WatermarkTextBox.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\WindowStyle.xaml">
       <SubType>Designer</SubType>
@@ -441,6 +441,7 @@
     <Resource Include="Images\report.png" />
     <Resource Include="Images\xtsz.png" />
     <Resource Include="Images\stop_pull.png" />
+    <Resource Include="Images\clock.png" />
     <Content Include="Libs\Common.dll" />
     <Resource Include="Resources\startloading.gif" />
     <Resource Include="Images\close.png" />

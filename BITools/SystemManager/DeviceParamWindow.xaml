@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
-    Title="机型设置"
+    Title="机型参数设定"
     Width="1000"
     Height="700"
     Style="{StaticResource WindowStyleWithCloseBtn}"
