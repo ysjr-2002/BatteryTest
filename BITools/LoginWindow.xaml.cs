@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +28,7 @@ namespace BITools
         private const string temp_file = "battery.txt";
 
         private UserImpl userImpl;
+
         public LoginWindow()
         {
             InitializeComponent();
