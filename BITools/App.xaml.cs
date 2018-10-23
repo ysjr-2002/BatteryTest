@@ -18,7 +18,7 @@ namespace BITools
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var window = new LoginWindow();
+            var window = new MainWindow();
             Application.Current.MainWindow = window;
             window.Show();
         }

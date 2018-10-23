@@ -1,4 +1,6 @@
-﻿using BIModel;
+﻿using BIDataAccess.entities;
+using BILogic;
+using BIModel;
 using Common.NotifyBase;
 using LiveCharts;
 using LiveCharts.Wpf;
@@ -16,7 +18,7 @@ namespace BITools.ViewModel
     /// <summary>
     /// 历史数据查询
     /// </summary>
-    public class LiveDataViewModel : PropertyNotifyObject
+    public class LiveDataViewModel : BaseViewModel
     {
         public LiveDataViewModel()
         {
@@ -53,6 +55,18 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.Records, value); }
         }
 
+        public ObservableCollection<UserInfo> UserCollection
+        {
+            get { return this.GetValue(c => c.UserCollection); }
+            set { this.SetValue(c => c.UserCollection, value); }
+        }
+
+        public UserInfo SelectedUser
+        {
+            get { return this.GetValue(c => c.SelectedUser); }
+            set { this.SetValue(c => c.SelectedUser, value); }
+        }
+
         public string StartDateTime
         {
             get { return this.GetValue(c => c.StartDateTime); }
@@ -74,6 +88,15 @@ namespace BITools.ViewModel
         public Func<double, string> Formatter { get; set; }
 
         public ICommand QueryCommand { get { return new DelegateCommand(QueryData); } }
+
+        protected override void Loaded()
+        {
+            base.Loaded();
+            var temp = new UserImpl().getUser();
+            temp.Insert(0, new UserInfo { UserID = 0, UserName = "全部" });
+            UserCollection = new ObservableCollection<UserInfo>(temp);
+            SelectedUser = UserCollection.First();
+        }
 
         private void QueryData()
         {

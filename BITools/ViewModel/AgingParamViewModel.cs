@@ -40,20 +40,5 @@ namespace BITools.ViewModel
             get { return this.GetValue(c => c.BaoJing); }
             set { this.SetValue(c => c.BaoJing, value); }
         }
-
-        protected override void Loaded()
-        {
-
-        }
-
-        protected override void Save()
-        {
-
-        }
-
-        protected override void Cancel()
-        {
-            
-        }
     }
 }

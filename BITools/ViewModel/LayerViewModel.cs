@@ -1,4 +1,5 @@
-﻿using BITools.DataManager;
+﻿using BIModel;
+using BITools.DataManager;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
 using System;
@@ -19,7 +20,7 @@ namespace BITools.ViewModel
             this.TestDataCollection = new ObservableCollection<ViewModel.DeveInfo>();
             this.TestDataCollection.Add(new DeveInfo
             {
-                sbbh= name,
+                sbbh = name,
                 sm = 1,
                 lhcsdy = "ss",
                 acsr = "0V",
@@ -29,6 +30,8 @@ namespace BITools.ViewModel
                 bl = 1,
                 bll = "99%"
             });
+            lhsjEnum = LHSJEnum.LHZSJ;
+            LHSJName = FunExt.GetDescription(lhsjEnum);
         }
 
         public LayerViewModel()
@@ -39,6 +42,12 @@ namespace BITools.ViewModel
         {
             get { return this.GetValue(c => c.TDBLCollection); }
             set { this.SetValue(c => c.TDBLCollection, value); }
+        }
+
+        public string LHSJName
+        {
+            get { return this.GetValue(c => c.LHSJName); }
+            set { this.SetValue(c => c.LHSJName, value); }
         }
 
         public string TDBLCollection
@@ -53,6 +62,9 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.TestDataCollection, value); }
         }
 
+        private LHSJEnum lhsjEnum;
+        public ICommand LHSJCommand { get { return new DelegateCommand(LHSJ); } }
+
         public ICommand SDJCCommand { get { return new DelegateCommand(SDJC); } }
         public ICommand KSCSCommand { get { return new DelegateCommand(KSCS); } }
         public ICommand ZTCSCommand { get { return new DelegateCommand(ZTCS); } }
@@ -62,6 +74,23 @@ namespace BITools.ViewModel
         public ICommand CKTXMCommand { get { return new DelegateCommand(CKTXM); } }
         public ICommand BJFWCommand { get { return new DelegateCommand(BJFW); } }
 
+        private void LHSJ()
+        {
+            if (lhsjEnum == LHSJEnum.LHZSJ)
+            {
+                lhsjEnum = LHSJEnum.KSSJ;
+            }
+            else if (lhsjEnum == LHSJEnum.KSSJ)
+            {
+                lhsjEnum = LHSJEnum.JSSJ;
+            }
+            else if (lhsjEnum == LHSJEnum.JSSJ)
+            {
+                lhsjEnum = LHSJEnum.LHZSJ;
+            }
+            LHSJName = FunExt.GetDescription(lhsjEnum);
+        }
+
         /// <summary>
         /// 上电检测
         /// </summary>
@@ -70,35 +99,60 @@ namespace BITools.ViewModel
 
         }
 
+        /// <summary>
+        /// 开始测试
+        /// </summary>
         private void KSCS()
         {
 
         }
 
+        /// <summary>
+        /// 暂停测试
+        /// </summary>
         private void ZTCS()
         {
 
         }
 
+        /// <summary>
+        /// 停止测试
+        /// </summary>
         private void TZCS()
         {
 
         }
 
+        /// <summary>
+        /// 查看数据
+        /// </summary>
         private void CKSJ()
         {
 
         }
 
+        /// <summary>
+        /// 产品条形码
+        /// </summary>
         private void CKTXM()
         {
             var window = new ProductBarcodeWindow();
             window.ShowDialog();
         }
 
+        /// <summary>
+        /// 报警复位
+        /// </summary>
         private void BJFW()
         {
 
+        }
+
+        private void SwitchTime()
+        {
+            //老化时间
+            //开始时间
+            //结束时间
         }
     }
 }

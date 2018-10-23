@@ -78,25 +78,25 @@
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="加热(℃)" />
                 <syscontrols:SelectNumeric
-                    IncrementText="35"
+                    IncrementText="{Binding JiaRe, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
                     MinValue="1" />
 
-                <TextBlock Text="设定(℃)" />
+                <TextBlock Text="烧机(℃)" />
                 <syscontrols:SelectNumeric
-                    IncrementText="35"
+                    IncrementText="{Binding ShaoJi, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
                     MinValue="1" />
 
                 <TextBlock Text="排风(℃)" />
                 <syscontrols:SelectNumeric
-                    IncrementText="35"
+                    IncrementText="{Binding PaiFeng, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
                     MinValue="1" />
 
                 <TextBlock Text="报警(℃)" />
                 <syscontrols:SelectNumeric
-                    IncrementText="35"
+                    IncrementText="{Binding BaoJing, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
                     MinValue="1" />
 
@@ -447,16 +447,19 @@
                 Grid.Row="0"
                 Width="130"
                 Height="{StaticResource buttonH}"
+                Command="{Binding LoadParamCommand}"
                 Content="载入机型参数" />
             <syscontrols:ButtonEx
                 Grid.Row="1"
                 Width="130"
                 Height="{StaticResource buttonH}"
+                Command="{Binding SaveParamCommand}"
                 Content="保存机型参数" />
             <syscontrols:ButtonEx
                 Grid.Row="2"
                 Width="130"
                 Height="{StaticResource buttonH}"
+                Command="{Binding SaveAsParamCommand}"
                 Content="机型参数另存为" />
             <Grid Grid.Row="3">
                 <StackPanel Orientation="Horizontal">
@@ -483,6 +486,7 @@
                 Grid.Row="5"
                 Width="130"
                 Height="{StaticResource buttonH}"
+                Command="{Binding UseParamCommand}"
                 Content="参数应用至台车" />
         </Grid>
     </Grid>
