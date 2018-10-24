@@ -15,6 +15,9 @@ using System.Windows.Input;
 
 namespace BITools.ViewModel
 {
+    /// <summary>
+    /// 设备参数ViewModel
+    /// </summary>
     public class DeviceParamViewModel : BaseViewModel
     {
         public DeviceParamViewModel()

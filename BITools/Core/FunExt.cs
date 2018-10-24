@@ -47,6 +47,16 @@ namespace BITools
             return items;
         }
 
+        public static List<string> GetSaveRoot()
+        {
+            var items = new List<string>();
+            items.Insert(0, "");
+            items.Insert(1, "日期");
+            items.Insert(2, "机型名");
+            items.Insert(3, "区域");
+            return items;
+        }
+
         public static string GetDescription(Enum en)
         {
             Type type = en.GetType();   //获取类型

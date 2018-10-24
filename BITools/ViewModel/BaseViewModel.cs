@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BITools.ViewModel
@@ -15,9 +16,10 @@ namespace BITools.ViewModel
         public ICommand SaveCommand { get { return new DelegateCommand(Save); } }
         public ICommand CancelCommand { get { return new DelegateCommand(Cancel); } }
 
+        protected Window window;
+
         protected virtual void Loaded()
         {
-
         }
 
         protected virtual void Save()
@@ -26,7 +28,7 @@ namespace BITools.ViewModel
 
         protected virtual void Cancel()
         {
-
+            window?.Close();
         }
     }
 }

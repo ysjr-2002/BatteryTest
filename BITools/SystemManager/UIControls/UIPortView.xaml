@@ -22,7 +22,7 @@
             <Setter Property="Margin" Value="0,0,5,0" />
         </Style>
 
-        <sys:Double x:Key="comboBoxHeight">30</sys:Double>
+        <sys:Double x:Key="comboBoxHeight">28</sys:Double>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -34,10 +34,10 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="110" />
             <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="130" />
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="130" />
+            <ColumnDefinition Width="110" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 

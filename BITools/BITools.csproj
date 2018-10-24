@@ -142,6 +142,9 @@
     <Compile Include="SystemManager\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemManager\UIControls\DataSaveView.xaml.cs">
+      <DependentUpon>DataSaveView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemManager\UIControls\UIAlarmView.xaml.cs">
       <DependentUpon>UIAlarmView.xaml</DependentUpon>
     </Compile>
@@ -191,6 +194,7 @@
     <Compile Include="ViewModel\BaseMainViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChannelInfo.cs" />
+    <Compile Include="ViewModel\DataSaveViewModel.cs" />
     <Compile Include="ViewModel\DeveInfo.cs" />
     <Compile Include="ViewModel\DeviceParamViewModel.cs" />
     <Compile Include="ViewModel\DeviceTestViewModel.cs" />
@@ -304,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SystemManager\SettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\UIControls\DataSaveView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

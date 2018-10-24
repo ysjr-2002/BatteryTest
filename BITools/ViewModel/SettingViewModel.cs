@@ -9,6 +9,8 @@ using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
 using System.Windows.Input;
 using BITools.Core;
+using System.IO;
+using System.Windows;
 
 namespace BITools.ViewModel
 {
@@ -18,16 +20,29 @@ namespace BITools.ViewModel
     public class SettingViewModel : BaseViewModel
     {
         private Config config;
-        public SettingViewModel()
+        public SettingViewModel(Window window)
         {
             config = new Config();
             Config = config;
+            this.window = window;
         }
 
-        public ObservableCollection<string> ComPortCollection
+        public List<string> ComPortCollection
         {
             get { return this.GetValue(c => c.ComPortCollection); }
             set { this.SetValue(c => c.ComPortCollection, value); }
+        }
+
+        public List<string> SaveRootCollection
+        {
+            get { return this.GetValue(c => c.SaveRootCollection); }
+            set { this.SetValue(c => c.SaveRootCollection, value); }
+        }
+
+        public List<string> DiskCollection
+        {
+            get { return this.GetValue(c => c.DiskCollection); }
+            set { this.SetValue(c => c.DiskCollection, value); }
         }
 
         public Config Config
@@ -171,8 +186,9 @@ namespace BITools.ViewModel
 
         protected override void Loaded()
         {
-            ComPortCollection = new ObservableCollection<string>(FunExt.GetSerialPorts());
-
+            ComPortCollection = FunExt.GetSerialPorts();
+            SaveRootCollection = FunExt.GetSaveRoot();
+            DiskCollection = Directory.GetLogicalDrives().ToList();
             Config.Read();
 
             //this.AComName = config.ACom;

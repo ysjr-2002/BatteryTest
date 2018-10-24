@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BITools.ViewModel
 {
+    /// <summary>
+    /// 设备测试
+    /// </summary>
     public class DeviceTestViewModel : PropertyNotifyObject
     {
         public DeviceTestViewModel()

@@ -1,23 +1,27 @@
-﻿<base:BaseWindow x:Class="BITools.SystemManager.SettingWindow"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:base="clr-namespace:BITools"
-                 xmlns:contorls="clr-namespace:BITools.SystemManager.UIControls"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                 xmlns:local="clr-namespace:BITools.SystemManager"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 xmlns:syscontrols="clr-namespace:BITools.UIControls"
-                 Title="系统设置"
-                 Width="600"
-                 Height="450"
-                 Style="{StaticResource WindowStyleWithCloseBtn}"
-                 mc:Ignorable="d">
+﻿<base:BaseWindow
+    x:Class="BITools.SystemManager.SettingWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="clr-namespace:BITools"
+    xmlns:contorls="clr-namespace:BITools.SystemManager.UIControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:BITools.SystemManager"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syscontrols="clr-namespace:BITools.UIControls"
+    Title="系统设置"
+    Width="600"
+    Height="450"
+    Style="{StaticResource WindowStyleWithCloseBtn}"
+    mc:Ignorable="d">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Window.Resources>
+        <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#FFFFFF" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
@@ -26,35 +30,55 @@
         </Grid.RowDefinitions>
 
         <TabControl Grid.Row="1">
-            <TabItem Header="通讯端口">
+            <TabItem
+                Width="100"
+                Height="24"
+                Header="通讯端口">
                 <contorls:UIPortView />
             </TabItem>
-            <TabItem Header="台车编码">
+            <TabItem
+                Width="100"
+                Height="24"
+                Header="台车编码">
                 <contorls:UICodeView />
             </TabItem>
-            <TabItem Header="数据保存" />
-            <TabItem Header="警示设置">
+            <TabItem
+                Width="100"
+                Height="24"
+                Header="数据保存">
+                <contorls:DataSaveView />
+            </TabItem>
+            <TabItem
+                Width="100"
+                Height="24"
+                Header="警示设置">
                 <contorls:UIAlarmView />
             </TabItem>
-            <TabItem Header="其它设定">
+            <TabItem
+                Width="100"
+                Height="24"
+                Header="其它设定">
                 <contorls:UIOtherView />
             </TabItem>
         </TabControl>
 
-        <StackPanel Grid.Row="2"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal">
-            <Button Width="80"
-                    Height="30"
-                    Command="{Binding SaveCommand}"
-                    Content="保存"
-                    Style="{StaticResource OKStyle}" />
-            <Button Width="80"
-                    Height="30"
-                    Margin="5,0"
-                    Command="{Binding CancelCommand}"
-                    Content="取消"
-                    Style="{StaticResource CancelStyle}" />
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Width="80"
+                Height="30"
+                Command="{Binding SaveCommand}"
+                Content="保存"
+                Style="{StaticResource OKStyle}" />
+            <Button
+                Width="80"
+                Height="30"
+                Margin="5,0"
+                Command="{Binding CancelCommand}"
+                Content="取消"
+                Style="{StaticResource CancelStyle}" />
         </StackPanel>
     </Grid>
 </base:BaseWindow>

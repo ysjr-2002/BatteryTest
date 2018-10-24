@@ -72,6 +72,45 @@ namespace BITools.Core
             set { this.SetValue(c => c.FName, value); }
         }
 
+        #region 数据保存设置
+        public string RootLevel1
+        {
+            get { return this.GetValue(c => c.RootLevel1); }
+            set { this.SetValue(c => c.RootLevel1, value); }
+        }
+
+        public string RootLevel2
+        {
+            get { return this.GetValue(c => c.RootLevel2); }
+            set { this.SetValue(c => c.RootLevel2, value); }
+        }
+
+        public string RootLevel3
+        {
+            get { return this.GetValue(c => c.RootLevel3); }
+            set { this.SetValue(c => c.RootLevel3, value); }
+        }
+
+        public string RootLevel4
+        {
+            get { return this.GetValue(c => c.RootLevel4); }
+            set { this.SetValue(c => c.RootLevel4, value); }
+        }
+
+        public string RootLevel5
+        {
+            get { return this.GetValue(c => c.RootLevel5); }
+            set { this.SetValue(c => c.RootLevel5, value); }
+        }
+
+        public string DataSaveSpan
+        {
+            get { return this.GetValue(c => c.DataSaveSpan); }
+            set { this.SetValue(c => c.DataSaveSpan, value); }
+        }
+        #endregion
+
+        #region tab4
         public bool IsAlarm
         {
             get { return this.GetValue(c => c.IsAlarm); }
@@ -107,6 +146,7 @@ namespace BITools.Core
             get { return this.GetValue(c => c.IsSJWCTS); }
             set { this.SetValue(c => c.IsSJWCTS, value); }
         }
+        #endregion
 
         public bool IsSDJCYS
         {
@@ -134,6 +174,13 @@ namespace BITools.Core
             DName = GetKey("DName");
             EName = GetKey("EName");
             FName = GetKey("FName");
+
+            RootLevel1 = GetKey("RootLevel1");
+            RootLevel2 = GetKey("RootLevel2");
+            RootLevel3 = GetKey("RootLevel3");
+            RootLevel4 = GetKey("RootLevel4");
+            RootLevel5 = GetKey("RootLevel5");
+            DataSaveSpan = GetKey("DataSaveSpan");
 
             IsAlarm = GetKey("IsAlarm").ToInt32() == 1;
             S1 = GetKey("S1");
@@ -163,6 +210,13 @@ namespace BITools.Core
             cfg.AppSettings.Settings["DName"].Value = DName;
             cfg.AppSettings.Settings["EName"].Value = EName;
             cfg.AppSettings.Settings["FName"].Value = FName;
+
+            cfg.AppSettings.Settings["RootLevel1"].Value = RootLevel1;
+            cfg.AppSettings.Settings["RootLevel2"].Value = RootLevel2;
+            cfg.AppSettings.Settings["RootLevel3"].Value = RootLevel3;
+            cfg.AppSettings.Settings["RootLevel4"].Value = RootLevel4;
+            cfg.AppSettings.Settings["RootLevel5"].Value = RootLevel5;
+            cfg.AppSettings.Settings["DataSaveSpan"].Value = DataSaveSpan.ToString();
 
             cfg.AppSettings.Settings["IsAlarm"].Value = IsAlarm.ToString();
             cfg.AppSettings.Settings["S1"].Value = S1;
