@@ -1,5 +1,6 @@
 ﻿using BITools.DataManager;
 using BITools.SystemManager;
+using LL.SenicSpot.Gate.Kernal;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,7 +19,8 @@ namespace BITools
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var window = new SettingWindow();
+            NinjectKernal.Instance.Load();
+            var window = new MainWindow();
             Application.Current.MainWindow = window;
             window.Show();
         }

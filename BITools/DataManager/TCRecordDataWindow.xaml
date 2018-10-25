@@ -1,5 +1,5 @@
 ﻿<base:BaseWindow
-    x:Class="BITools.DataManager.LiveDataWindow"
+    x:Class="BITools.DataManager.TCRecordDataWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:base="clr-namespace:BITools"
@@ -9,14 +9,14 @@
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
-    Title="查看实时数据"
+    Title="查看历史数据"
     Width="1200"
     Height="700"
     Style="{StaticResource WindowStyleWithCloseBtn}"
     mc:Ignorable="d">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding QueryCommand}" />
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
@@ -27,11 +27,114 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="40" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <GroupBox Header="查询条件">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <CheckBox Content="精确" Style="{StaticResource CheckBox.MapToolBar.Style}" />
+
+                <syscontrols:WatermarkTextBox
+                    Width="120"
+                    Margin="10,0,0,0"
+                    Style="{StaticResource ComprehensiveTextBox.WatermarkTextBox.Style}"
+                    Watermark="产品订单号" />
+
+                <syscontrols:WatermarkTextBox
+                    Width="120"
+                    Margin="10,0,0,0"
+                    Style="{StaticResource ComprehensiveTextBox.WatermarkTextBox.Style}"
+                    Watermark="机型名" />
+
+                <TextBlock Margin="10,0,0,0" Text="日期:" />
+
+                <syscontrols:HZDateTimePicker
+                    Width="180"
+                    Height="30"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    CustomFormat="yyyy-MM-dd HH:mm:ss"
+                    Format="Custom"
+                    ShowCheckBox="False"
+                    Text="{Binding StartDateTime}" />
+
+                <TextBlock Margin="2,0" Text="至" />
+                <syscontrols:HZDateTimePicker
+                    Width="180"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    CustomFormat="yyyy-MM-dd HH:mm:ss"
+                    Format="Custom"
+                    ShowCheckBox="False"
+                    Text="{Binding EndDateTime}" />
+
+                <TextBlock Margin="10,0,0,0" Text="操作员:" />
+                <ComboBox
+                    Width="100"
+                    Height="28"
+                    Margin="5,0,0,0"
+                    DisplayMemberPath="UserName"
+                    ItemsSource="{Binding UserCollection}"
+                    SelectedItem="{Binding SelectedUser}"
+                    SelectedValuePath="UserID" />
+
+                <TextBlock Margin="10,0,0,0" Text="区间:" />
+                <ComboBox
+                    Width="100"
+                    Height="28"
+                    Margin="5,0,0,0"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding QujianCollection}"
+                    SelectedItem="{Binding SelectedQujian}"
+                    SelectedValuePath="Value" />
+
+                <syscontrols:ButtonEx
+                    Width="80"
+                    Margin="10,0,0,0"
+                    Command="{Binding QueryCommand}"
+                    Content="查询" />
+            </StackPanel>
+        </GroupBox>
+
+        <DataGrid
+            Grid.Row="1"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding TCDataHistoryCollection}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding cpdhh}"
+                    Header="产品订单号" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding jx}"
+                    Header="机型名" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding qj}"
+                    Header="区间" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding lhzsj}"
+                    Header="老化总时间" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding czy}"
+                    Header="操作员" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding path}"
+                    Header="数据文件路径(双击可打开Excel报表)" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120" />
                 <ColumnDefinition />
@@ -53,7 +156,7 @@
                 NormalImage="/BITools;component/Images/excel.png" />
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
@@ -162,3 +265,4 @@
         </Grid>
     </Grid>
 </base:BaseWindow>
+

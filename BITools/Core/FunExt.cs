@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIDataAccess.entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.Ports;
@@ -54,6 +55,13 @@ namespace BITools
             items.Insert(1, "日期");
             items.Insert(2, "机型名");
             items.Insert(3, "区域");
+            return items;
+        }
+
+        public static List<Dictonary> GetQuJian()
+        {
+            var items = new List<Dictonary>();
+            items.Insert(0, new Dictonary { Name = "全部", Value = "0" });
             return items;
         }
 

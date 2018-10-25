@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace BITools.ViewModel
 {
     /// <summary>
-    /// 设备测试
+    /// 台车ViewModel
     /// </summary>
-    public class DeviceTestViewModel : PropertyNotifyObject
+    public class TCViewModel : PropertyNotifyObject
     {
-        public DeviceTestViewModel()
+        public TCViewModel()
         {
             Layer1ViewModel = new LayerViewModel("L1");
             Layer2ViewModel = new LayerViewModel("L2");
@@ -36,6 +36,5 @@ namespace BITools.ViewModel
             get { return this.GetValue(c => c.Layer3ViewModel); }
             set { this.SetValue(c => c.Layer3ViewModel, value); }
         }
-
     }
 }

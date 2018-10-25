@@ -20,10 +20,40 @@ namespace BITools.ViewModel
         public ICommand ReportCommand { get { return new DelegateCommand(Report); } }
         public ICommand AboutCommand { get { return new DelegateCommand(About); } }
 
-        public DeviceTestViewModel DeviceTestViewModel
+        public TCViewModel DeviceTestViewModelA
         {
-            get { return this.GetValue(c => c.DeviceTestViewModel); }
-            set { this.SetValue(c => c.DeviceTestViewModel, value); }
+            get { return this.GetValue(c => c.DeviceTestViewModelA); }
+            set { this.SetValue(c => c.DeviceTestViewModelA, value); }
+        }
+
+        public TCViewModel DeviceTestViewModelB
+        {
+            get { return this.GetValue(c => c.DeviceTestViewModelB); }
+            set { this.SetValue(c => c.DeviceTestViewModelB, value); }
+        }
+
+        public TCViewModel DeviceTestViewModelC
+        {
+            get { return this.GetValue(c => c.DeviceTestViewModelC); }
+            set { this.SetValue(c => c.DeviceTestViewModelC, value); }
+        }
+
+        public TCViewModel DeviceTestViewModelD
+        {
+            get { return this.GetValue(c => c.DeviceTestViewModelD); }
+            set { this.SetValue(c => c.DeviceTestViewModelD, value); }
+        }
+
+        public TCViewModel DeviceTestViewModelE
+        {
+            get { return this.GetValue(c => c.DeviceTestViewModelE); }
+            set { this.SetValue(c => c.DeviceTestViewModelE, value); }
+        }
+
+        public TCViewModel DeviceTestViewModelF
+        {
+            get { return this.GetValue(c => c.DeviceTestViewModelF); }
+            set { this.SetValue(c => c.DeviceTestViewModelF, value); }
         }
 
         private void LoginUser()
@@ -52,7 +82,7 @@ namespace BITools.ViewModel
 
         private void Report()
         {
-            var window = new LiveDataWindow();
+            var window = new TCRecordDataWindow();
             window.ShowDialog();
         }
 

@@ -160,9 +160,9 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModel.Layer1ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModel.Layer2ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModel.Layer3ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModelA.Layer1ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModelA.Layer2ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModelA.Layer3ViewModel}" />
                 </Grid>
             </TabItem>
             <TabItem Header="B" Visibility="Collapsed">
@@ -172,9 +172,9 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModel.Layer1ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModel.Layer2ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModel.Layer3ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModelB.Layer1ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModelB.Layer2ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModelB.Layer3ViewModel}" />
                 </Grid>
             </TabItem>
             <TabItem Header="C" Visibility="Collapsed">
@@ -184,9 +184,9 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModel.Layer1ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModel.Layer2ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModel.Layer3ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModelC.Layer1ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModelC.Layer2ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModelC.Layer3ViewModel}" />
                 </Grid>
             </TabItem>
             <TabItem Header="D" Visibility="Collapsed">
@@ -196,9 +196,9 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModel.Layer1ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModel.Layer2ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModel.Layer3ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModelD.Layer1ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModelD.Layer2ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModelD.Layer3ViewModel}" />
                 </Grid>
             </TabItem>
             <TabItem Header="E" Visibility="Collapsed">
@@ -208,9 +208,9 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModel.Layer1ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModel.Layer2ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModel.Layer3ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModelE.Layer1ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModelE.Layer2ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModelE.Layer3ViewModel}" />
                 </Grid>
             </TabItem>
             <TabItem Header="F" Visibility="Collapsed">
@@ -220,9 +220,9 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModel.Layer1ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModel.Layer2ViewModel}" />
-                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModel.Layer3ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="0" DataContext="{Binding DeviceTestViewModelF.Layer1ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="1" DataContext="{Binding DeviceTestViewModelF.Layer2ViewModel}" />
+                    <syscontrols:LayerView Grid.Row="2" DataContext="{Binding DeviceTestViewModelF.Layer3ViewModel}" />
                 </Grid>
             </TabItem>
         </TabControl>

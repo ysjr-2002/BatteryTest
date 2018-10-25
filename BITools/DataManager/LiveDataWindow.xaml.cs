@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace BITools.DataManager
 {
     /// <summary>
-    /// 区间数据查询
+    /// TCRecordDataWindow.xaml 的交互逻辑
     /// </summary>
     public partial class LiveDataWindow : BaseWindow
     {
@@ -24,6 +24,12 @@ namespace BITools.DataManager
         {
             InitializeComponent();
             this.DataContext = new LiveDataViewModel();
+        }
+
+        public static void OpenLiveData()
+        {
+            var window = new LiveDataWindow();
+            window.ShowDialog();
         }
     }
 }

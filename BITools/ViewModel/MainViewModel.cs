@@ -1,6 +1,8 @@
-﻿using BITools.SystemManager;
+﻿using BITools.Core;
+using BITools.SystemManager;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,9 @@ using System.Windows.Input;
 
 namespace BITools.ViewModel
 {
+    /// <summary>
+    /// 主
+    /// </summary>
     public class MainViewModel : BaseMainViewModel
     {
         public int TabSelectedIndex
@@ -22,10 +27,18 @@ namespace BITools.ViewModel
 
         public MainViewModel()
         {
-            DeviceTestViewModel = new DeviceTestViewModel();
+            DeviceTestViewModelA = new TCViewModel();
+            DeviceTestViewModelB = new TCViewModel();
+            DeviceTestViewModelC = new TCViewModel();
+            DeviceTestViewModelD = new TCViewModel();
+            DeviceTestViewModelE = new TCViewModel();
+            DeviceTestViewModelF = new TCViewModel();
             TabSelectedIndex = 0;
         }
-        
+
+        [Inject]
+        public Config config { get; set; }
+
         private void SwitchTab(string tab)
         {
             if (tab == "A")

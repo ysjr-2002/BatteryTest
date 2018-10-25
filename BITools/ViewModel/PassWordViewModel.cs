@@ -47,9 +47,7 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.NewPassWordConfirm, value); }
         }
 
-        public ICommand SaveCommand { get { return new DelegateCommand(Save); } }
-
-        private void Save()
+        protected override void Save()
         {
             if (OldPassWord.IsEmpty())
             {

@@ -7,10 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
     d:DesignHeight="300"
-    d:DesignWidth="800"
+    d:DesignWidth="1000"
     mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="borderBrush" Color="#CCCCCC" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
 
         <Style x:Key="cellStyle" TargetType="DataGridCell">
             <Setter Property="FontSize" Value="14" />
@@ -223,7 +227,7 @@
                 Width="120"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Text="00:00:00" />
+                Text="{Binding Lhzsj, Converter={StaticResource intToTimeSpan}}" />
 
             <syscontrols:ButtonEx
                 Grid.Column="2"
@@ -237,7 +241,7 @@
                 Width="120"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Text="00:00:00" />
+                Text="{Binding Lhsj, Converter={StaticResource intToTimeSpan}}" />
 
             <TextBlock
                 Grid.Column="4"
@@ -284,67 +288,228 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="测试状态说明" />
 
-            <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <Button
-                    Width="80"
-                    BorderThickness="0"
-                    Content="脱机"
-                    Style="{StaticResource btntj}" />
-                <Button
-                    Width="100"
-                    BorderThickness="0"
-                    Content="下载参数中"
-                    Style="{StaticResource btndownparam}" />
-                <Button
-                    Width="100"
-                    BorderThickness="0"
-                    Content="停止拉载"
-                    Style="{StaticResource btntzlz}" />
-                <Button
-                    Width="100"
-                    BorderThickness="0"
-                    Content="拉载异常"
-                    Style="{StaticResource btnlzyc}" />
-                <Button
-                    Width="80"
-                    BorderThickness="0"
-                    Content="无产品"
-                    Style="{StaticResource btnwcp}" />
-                <Button
-                    Width="80"
-                    BorderThickness="0"
-                    Content="欠压"
-                    Style="{StaticResource btnqy}" />
-                <Button
-                    Width="80"
-                    BorderThickness="0"
-                    Content="欠流"
-                    Style="{StaticResource btnql}" />
-                <Button
-                    Width="80"
-                    BorderThickness="0"
-                    Content="过压"
-                    Style="{StaticResource btngy}" />
-                <Button
-                    Width="80"
-                    BorderThickness="0"
-                    Content="过流"
-                    Style="{StaticResource btngl}" />
-                <Button
-                    Width="80"
-                    BorderThickness="0"
-                    Content="无输出"
-                    Style="{StaticResource btnwsc}" />
-                <Button
-                    Width="80"
-                    BorderThickness="0"
-                    Content="合格"
-                    Style="{StaticResource btnhg}" />
-                <Button
-                    Width="100"
-                    BorderThickness="0"
-                    Content="负载保护"
-                    Style="{StaticResource btnfzbh}" />
+            <StackPanel
+                Grid.Column="2"
+                Background="#d4e4f3"
+                Orientation="Horizontal">
+
+                <!--  脱机  -->
+                <Grid Margin="5,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Fill="{StaticResource dotColorBrush}"
+                        Visibility="{Binding Istj, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="脱机" />
+                </Grid>
+
+                <!--  下载参数中  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Source="/BITools;component/Images/refresh.png"
+                        Visibility="{Binding Isxzczz, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="下载参数中" />
+                </Grid>
+
+                <!--  停止拉载  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Source="/BITools;component/Images/stop_pull.png"
+                        Visibility="{Binding Istzlz, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="停止拉载" />
+                </Grid>
+
+                <!--  拉载异常  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Fill="#f780ec"
+                        Visibility="{Binding Islzyc, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="拉载异常" />
+                </Grid>
+
+                <!--  无产品  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Stroke="Black"
+                        StrokeThickness="1"
+                        Visibility="{Binding Iswcp, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="无产品" />
+                </Grid>
+
+                <!--  欠压  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Fill="#2dfbd9"
+                        Visibility="{Binding Isqy, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="欠压" />
+                </Grid>
+
+                <!--  欠流  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Fill="Yellow"
+                        Visibility="{Binding Isql, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="欠流" />
+                </Grid>
+
+                <!--  过压  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Fill="Blue"
+                        Visibility="{Binding Isgy, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="过压" />
+                </Grid>
+
+                <!--  过流  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Fill="Purple"
+                        Visibility="{Binding Isgl, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="过流" />
+                </Grid>
+
+                <!--  无输出  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Fill="Red"
+                        Visibility="{Binding Iswsc, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="无输出" />
+                </Grid>
+
+                <!--  合格  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Fill="Green"
+                        Visibility="{Binding Ishg, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="合格" />
+                </Grid>
+
+                <!--  负载保护  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        Fill="Blue"
+                        Visibility="{Binding Isfzbh, Converter={StaticResource boolToVisibility}}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Text="负载保护" />
+                </Grid>
+
             </StackPanel>
         </Grid>
 
