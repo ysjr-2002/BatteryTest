@@ -117,7 +117,7 @@ namespace BITools.ViewModel
             ResetValue();
         }
 
-        protected override void Loaded()
+        public override void Loaded()
         {
             var list = userImpl.getUser();
             UserCollection = new ObservableCollection<UserInfo>(list);

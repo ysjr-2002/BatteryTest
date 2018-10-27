@@ -1,7 +1,110 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:common="clr-namespace:BITools.UIControls"
-                    xmlns:local="clr-namespace:BITools.Styles">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="clr-namespace:BITools.UIControls"
+    xmlns:local="clr-namespace:BITools.Styles">
+
+    <Style x:Key="Button.MoreSearchBar.Close.Style" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid RenderOptions.BitmapScalingMode="NearestNeighbor">
+                        <Image
+                            x:Name="img"
+                            Width="16"
+                            Height="16"
+                            Source="../Images/main/close_normal.png" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="img" Property="Source" Value="../Images/main/close_hover.png" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Comprehensive.ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Background" Value="Transparent" />
+        <!--<EventSetter Event="RequestBringIntoView" Handler="OnRequestBringIntoView" />-->
+        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="Padding" Value="2,0,0,0" />
+        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border
+                        x:Name="Bd"
+                        Padding="{TemplateBinding Padding}"
+                        VerticalAlignment="Stretch"
+                        Background="Transparent"
+                        SnapsToDevicePixels="true">
+                        <ContentPresenter
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="Bd" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource Comprehensive.TreeViewItem.MouseOverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource Comprehensive.TreeViewItem.IsSelectedBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ToggleButton.TabCollapse.Style" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border
+                        x:Name="bd"
+                        Width="37"
+                        Height="38"
+                        Background="White"
+                        BorderBrush="#FFDCE3E9"
+                        BorderThickness="1,1,1,0"
+                        CornerRadius="5,5,0,0"
+                        SnapsToDevicePixels="True">
+                        <Image
+                            x:Name="Arrow"
+                            Width="16"
+                            Height="16"
+                            Source="../Images/main/arr_down.png"
+                            UseLayoutRounding="True" />
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Arrow" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform Angle="180" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="Arrow" Property="RenderTransformOrigin" Value="0.5,0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style x:Key="Button.ArrowUp.Style" TargetType="{x:Type Button}">
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -9,18 +112,21 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid x:Name="gd"
-                          Background="#FFF1F4F7"
-                          SnapsToDevicePixels="True">
-                        <Grid x:Name="img1"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center">
+                    <Grid
+                        x:Name="gd"
+                        Background="#FFF1F4F7"
+                        SnapsToDevicePixels="True">
+                        <Grid
+                            x:Name="img1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
                             <common:SnappingPixelsBitmap Source="Pack://application:,,,/BITools;Component/Images/Arr_up_1.png" />
                         </Grid>
-                        <Grid x:Name="img2"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              Visibility="Collapsed">
+                        <Grid
+                            x:Name="img2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Visibility="Collapsed">
                             <common:SnappingPixelsBitmap Source="Pack://application:,,,/BITools;Component/Images/Arr_up_2.png" />
                         </Grid>
                     </Grid>
@@ -44,18 +150,21 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid x:Name="gd"
-                          Background="#FFF1F4F7"
-                          SnapsToDevicePixels="True">
-                        <Grid x:Name="img1"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center">
+                    <Grid
+                        x:Name="gd"
+                        Background="#FFF1F4F7"
+                        SnapsToDevicePixels="True">
+                        <Grid
+                            x:Name="img1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
                             <common:SnappingPixelsBitmap Source="Pack://application:,,,/BITools;Component/Images/Arr_down_1.png" />
                         </Grid>
-                        <Grid x:Name="img2"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              Visibility="Collapsed">
+                        <Grid
+                            x:Name="img2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Visibility="Collapsed">
                             <common:SnappingPixelsBitmap Source="Pack://application:,,,/BITools;Component/Images/Arr_down_2.png" />
                         </Grid>
                     </Grid>
@@ -81,11 +190,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="border" SnapsToDevicePixels="True">
-                        <Image Width="16"
-                               Height="16"
-                               VerticalAlignment="Center"
-                               Source="../Images/main/img_calender.png"
-                               UseLayoutRounding="True" />
+                        <Image
+                            Width="16"
+                            Height="16"
+                            VerticalAlignment="Center"
+                            Source="../Images/main/img_calender.png"
+                            UseLayoutRounding="True" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -101,15 +211,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid x:Name="border"
-                          Background="{StaticResource Button.Default.Brush}"
-                          SnapsToDevicePixels="True">
-                        <ContentPresenter x:Name="contentPresenter"
-                                          Margin="{TemplateBinding Padding}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          RecognizesAccessKey="True"
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <Grid
+                        x:Name="border"
+                        Background="{StaticResource Button.Default.Brush}"
+                        SnapsToDevicePixels="True">
+                        <ContentPresenter
+                            x:Name="contentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -136,18 +248,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="NeiLine"
-                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                            Background="White"
-                            BorderBrush="{StaticResource Button.Cancel.Border.Brush}"
-                            BorderThickness="1"
-                            SnapsToDevicePixels="true">
-                        <ContentPresenter x:Name="contentPresenter"
-                                          Margin="{TemplateBinding Padding}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          RecognizesAccessKey="True"
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <Border
+                        x:Name="NeiLine"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        Background="White"
+                        BorderBrush="{StaticResource Button.Cancel.Border.Brush}"
+                        BorderThickness="1"
+                        SnapsToDevicePixels="true">
+                        <ContentPresenter
+                            x:Name="contentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -172,23 +286,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0"
-                                     Width="16"
-                                     Height="16"
-                                     Fill="{StaticResource dotColorBrush}" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Ellipse
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Fill="{StaticResource dotColorBrush}" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -201,23 +318,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0"
-                                   Width="16"
-                                   Height="16"
-                                   Source="/BITools;component/Images/refresh.png" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Image
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Source="/BITools;component/Images/refresh.png" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -230,23 +350,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0"
-                                   Width="16"
-                                   Height="16"
-                                   Source="/BITools;component/Images/stop_pull.png" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Image
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Source="/BITools;component/Images/stop_pull.png" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -259,23 +382,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0"
-                                     Width="16"
-                                     Height="16"
-                                     Fill="#f780ec" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Ellipse
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Fill="#f780ec" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -289,24 +415,27 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Rectangle Grid.Column="0"
-                                       Width="16"
-                                       Height="16"
-                                       Stroke="Black"
-                                       StrokeThickness="1" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Rectangle
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Stroke="Black"
+                                StrokeThickness="1" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -319,23 +448,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0"
-                                     Width="16"
-                                     Height="16"
-                                     Fill="#2dfbd9" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Ellipse
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Fill="#2dfbd9" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -348,23 +480,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0"
-                                     Width="16"
-                                     Height="16"
-                                     Fill="Yellow" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Ellipse
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Fill="Yellow" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -377,23 +512,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0"
-                                     Width="16"
-                                     Height="16"
-                                     Fill="Blue" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Ellipse
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Fill="Blue" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -406,23 +544,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0"
-                                     Width="16"
-                                     Height="16"
-                                     Fill="Purple" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Ellipse
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Fill="Purple" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -435,23 +576,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0"
-                                     Width="16"
-                                     Height="16"
-                                     Fill="Red" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Ellipse
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Fill="Red" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -464,23 +608,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0"
-                                     Width="16"
-                                     Height="16"
-                                     Fill="Green" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Ellipse
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Fill="Green" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -493,23 +640,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#d4e4f3"
-                            BorderBrush="{StaticResource sepeatorLineBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        Background="#d4e4f3"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid x:Name="templateRoot">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Name="ColumnDefinition0" Width="24" />
                                 <ColumnDefinition Name="ColumnDefinition1" />
                             </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0"
-                                     Width="16"
-                                     Height="16"
-                                     Fill="Blue" />
-                            <ContentPresenter Name="cp"
-                                              Grid.Row="0"
-                                              Grid.Column="1"
-                                              HorizontalAlignment="Left"
-                                              VerticalAlignment="Center" />
+                            <Ellipse
+                                Grid.Column="0"
+                                Width="16"
+                                Height="16"
+                                Fill="Blue" />
+                            <ContentPresenter
+                                Name="cp"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -525,9 +675,10 @@
                 <ControlTemplate TargetType="RadioButton">
 
                     <Border Name="bg" Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          SnapsToDevicePixels="True" />
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            SnapsToDevicePixels="True" />
                     </Border>
 
 

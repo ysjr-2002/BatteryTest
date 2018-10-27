@@ -1,6 +1,10 @@
 ﻿using BIDataAccess.entities;
 using BILogic;
 using BIModel;
+using BITools.Core;
+using BITools.Helpers;
+using BITools.Model;
+using BITools.ViewModel.LHSX;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Win32;
@@ -12,7 +16,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-
 namespace BITools.ViewModel
 {
     /// <summary>
@@ -22,27 +25,26 @@ namespace BITools.ViewModel
     {
         public DeviceParamViewModel()
         {
-            ChannelCollection = new ObservableCollection<ChannelInfo>();
             JiaRe = "10";
             ShaoJi = "20";
             PaiFeng = "30";
             BaoJing = "40";
+            LHSXViewModel = new LHSXViewModel();
         }
 
-        protected override void Loaded()
+        public override void Loaded()
         {
             base.Loaded();
+
+            LHSXViewModel.Loaded();
 
             var dictImpl = new DictonaryImpl();
 
             var list = dictImpl.QueryDictionary("TDBL");
             TDBLCollection = new ObservableCollection<Dictonary>(list);
-
-            list = dictImpl.QueryDictionary("SRDY");
-            SRDYCollection = new ObservableCollection<Dictonary>(list);
-
-            list = dictImpl.QueryDictionary("FZCS");
-            FZCSCollection = new ObservableCollection<Dictonary>(list);
+            list = dictImpl.QueryDictionary("CSMS");
+            CSMSCollection = new ObservableCollection<Dictonary>(list);
+            ChannelCollection = new ObservableCollection<ChannelInfo>();
         }
 
         public string JiaRe
@@ -69,43 +71,47 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.BaoJing, value); }
         }
 
+        /// <summary>
+        /// 通道并联
+        /// </summary>
         public ObservableCollection<Dictonary> TDBLCollection
         {
             get { return this.GetValue(c => c.TDBLCollection); }
             set { this.SetValue(c => c.TDBLCollection, value); }
         }
 
+        /// <summary>
+        /// 测试模式
+        /// </summary>
+        public ObservableCollection<Dictonary> CSMSCollection
+        {
+            get { return this.GetValue(c => c.CSMSCollection); }
+            set { this.SetValue(c => c.CSMSCollection, value); }
+        }
+
+        //public Dictonary CSMSSelectedItem
+        //{
+        //    get { return this.GetValue(c => c.CSMSSelectedItem); }
+        //    set { this.SetValue(c => c.CSMSSelectedItem, value); }
+        //}
+
+        /// <summary>
+        /// 通道集合
+        /// </summary>
         public ObservableCollection<ChannelInfo> ChannelCollection
         {
             get { return this.GetValue(c => c.ChannelCollection); }
             set { this.SetValue(c => c.ChannelCollection, value); }
         }
 
-        public ObservableCollection<Dictonary> SRDYCollection
+        public LHSXViewModel LHSXViewModel
         {
-            get { return this.GetValue(c => c.SRDYCollection); }
-            set { this.SetValue(c => c.SRDYCollection, value); }
-        }
-
-        public ObservableCollection<Dictonary> FZCSCollection
-        {
-            get { return this.GetValue(c => c.FZCSCollection); }
-            set { this.SetValue(c => c.FZCSCollection, value); }
-        }
-
-        public ObservableCollection<Dictonary> PDFWCollection
-        {
-            get { return this.GetValue(c => c.PDFWCollection); }
-            set { this.SetValue(c => c.PDFWCollection, value); }
+            get { return this.GetValue(c => c.LHSXViewModel); }
+            set { this.SetValue(c => c.LHSXViewModel, value); }
         }
 
         public ICommand AddChannelCommand { get { return new DelegateCommand(AddChannel); } }
         public ICommand RemoveAllChannelCommand { get { return new DelegateCommand(RemoveAllChannel); } }
-
-        public ICommand AddLHSXCommand { get { return new DelegateCommand(AddLHSX); } }
-        public ICommand ModifyLHSXCommand { get { return new DelegateCommand(ModifyLHSX); } }
-        public ICommand DeleteLHSXCommand { get { return new DelegateCommand(DeleteLHSX); } }
-        public ICommand ResetLHSXCommand { get { return new DelegateCommand(ResetLHSX); } }
 
 
         public ICommand LoadParamCommand { get { return new DelegateCommand(LoadParam); } }
@@ -124,41 +130,15 @@ namespace BITools.ViewModel
         private void AddChannel()
         {
             var channel = new ChannelInfo();
+            channel.CSMSSelectedItem = CSMSCollection.First();
             ChannelCollection.Add(channel);
         }
 
-        private void AddLHSX()
-        {
-
-        }
-
-        private void ModifyLHSX()
-        {
-
-        }
-
-        private void DeleteLHSX()
-        {
-
-        }
-
-        private void ResetLHSX()
-        {
-
-        }
 
         string paramFilePath = "";
         private void LoadParam()
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "选择参数";
-            ofd.Filter = "测试参数(*.yhk)|*.yhk";
-            ofd.Multiselect = false;
-            var dialog = ofd.ShowDialog().GetValueOrDefault();
-            if (dialog)
-            {
-                paramFilePath = ofd.FileName;
-            }
+            paramFilePath = FileDialogHelper.OpenFileDialog();
         }
 
         private void SaveParam()

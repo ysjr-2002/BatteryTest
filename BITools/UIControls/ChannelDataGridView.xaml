@@ -1,0 +1,95 @@
+﻿<UserControl
+    x:Class="BITools.UIControls.ChannelDataGridView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BITools.UIControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <DataGrid
+        Grid.Row="3"
+        Grid.Column="0"
+        AutoGenerateColumns="False"
+        CanUserAddRows="False"
+        CanUserDeleteRows="False"
+        ItemsSource="{Binding ChannelCollection}"
+        RowHeaderWidth="30"
+        Visibility="Collapsed">
+        <DataGrid.RowHeaderTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Width="30"
+                    Margin="2"
+                    Background="Red"
+                    Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource rowToIndex}}" />
+            </DataTemplate>
+        </DataGrid.RowHeaderTemplate>
+        <DataGrid.Columns>
+            <DataGridComboBoxColumn
+                Width="100"
+                DisplayMemberPath="Name"
+                Header="测试模式"
+                SelectedItemBinding="{Binding CSMSSelectedItem}">
+                <DataGridComboBoxColumn.ElementStyle>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.CSMSCollection}" />
+                    </Style>
+                </DataGridComboBoxColumn.ElementStyle>
+                <DataGridComboBoxColumn.EditingElementStyle>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.CSMSCollection}" />
+                    </Style>
+                </DataGridComboBoxColumn.EditingElementStyle>
+            </DataGridComboBoxColumn>
+            <!--<DataGridTemplateColumn Width="100" Header="测试模式">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.CSMSCollection}"
+                                        SelectedItem="{Binding CSMSSelectedItem}"
+                                        SelectedValuePath="Value" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>-->
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding sdcs1}"
+                Header="设定参数1" />
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding sdcs2}"
+                Header="设定参数2" />
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding sdcs3}"
+                Header="设定参数3" />
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding qddy}"
+                Header="启动电压" />
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding csxx1}"
+                Header="测试下限1" />
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding cssx2}"
+                Header="测试上限1" />
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding csxx2}"
+                Header="测试下限2" />
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding cssx2}"
+                Header="测试上限2" />
+            <DataGridTextColumn
+                Width="80"
+                Binding="{Binding xlkz}"
+                Header="线路抗阻" />
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

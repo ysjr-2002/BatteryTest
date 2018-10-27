@@ -8,6 +8,9 @@
 
     <cvt:BoolToVisibilityConverter x:Key="boolToVisibility" />
     <cvt:IntToTimeSpanConverter x:Key="intToTimeSpan" />
+    <cvt:RowToIndexConverter x:Key="rowToIndex" />
+    
+
 
     <!--  FFD6DBE9  -->
     <SolidColorBrush x:Key="MainTitleBackground" Color="#FF2E69C5" />

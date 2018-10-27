@@ -1,4 +1,5 @@
-﻿using BITools.ViewModel;
+﻿using BITools.UIControls;
+using BITools.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,21 @@ namespace BITools.SystemManager
         {
             InitializeComponent();
             this.DataContext = new DeviceParamViewModel();
+            this.Loaded += DeviceParamWindow_Loaded;
+        }
+
+        private void DeviceParamWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            AddItem("cao", "整体设置");
+        }
+
+        void AddItem(string name, string header)
+        {
+            TabItem item = new TabItem { Name = name, Header = header, IsSelected = true };
+            item.Style = Application.Current.Resources["TabItem.BigData.Sub.Style"] as System.Windows.Style;
+
+            item.Content = new ChannelDataGridView(); 
+            RightContainer.Items.Add(item);
         }
     }
 }

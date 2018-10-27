@@ -184,7 +184,7 @@ namespace BITools.ViewModel
         //} 
         //#endregion
 
-        protected override void Loaded()
+        public override void Loaded()
         {
             ComPortCollection = FunExt.GetSerialPorts();
             SaveRootCollection = FunExt.GetSaveRoot();

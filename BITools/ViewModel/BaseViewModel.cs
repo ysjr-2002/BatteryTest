@@ -18,7 +18,7 @@ namespace BITools.ViewModel
 
         protected Window window;
 
-        protected virtual void Loaded()
+        public virtual void Loaded()
         {
         }
 

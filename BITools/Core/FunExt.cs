@@ -1,4 +1,5 @@
 ﻿using BIDataAccess.entities;
+using BITools.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,11 +59,45 @@ namespace BITools
             return items;
         }
 
+        /// <summary>
+        /// 测试上下限
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetCSSXX()
+        {
+            var items = new List<string>();
+            items.Insert(0, "测试上下限1");
+            items.Insert(1, "测试上下限2");
+            return items;
+        }
+
         public static List<Dictonary> GetQuJian()
         {
             var items = new List<Dictonary>();
             items.Insert(0, new Dictonary { Name = "全部", Value = "0" });
             return items;
+        }
+
+        public static string GetRepeatUnitName(int index)
+        {
+            var unit = (RepeatUnitEnum)index;
+            if (unit == RepeatUnitEnum.Fen)
+                return "分";
+            else
+                return "次";
+        }
+
+        public static string GetTimeUnitName(int index)
+        {
+            var unit = (TimeUnitEnum)index;
+            if (unit == TimeUnitEnum.Hour)
+                return "时";
+            else if (unit == TimeUnitEnum.Minute)
+            {
+                return "分";
+            }
+            else
+                return "秒";
         }
 
         public static string GetDescription(Enum en)

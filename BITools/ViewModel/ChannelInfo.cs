@@ -1,4 +1,5 @@
-﻿using Common.NotifyBase;
+﻿using BIDataAccess.entities;
+using Common.NotifyBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,12 @@ namespace BITools.ViewModel
     /// </summary>
     public class ChannelInfo : PropertyNotifyObject
     {
-        public string csms
+        public Dictonary CSMSSelectedItem
         {
-            get { return this.GetValue(c => c.csms); }
-            set { this.SetValue(c => c.csms, value); }
+            get { return this.GetValue(c => c.CSMSSelectedItem); }
+            set { this.SetValue(c => c.CSMSSelectedItem, value); }
         }
+
 
         public string sdcs1
         {
@@ -74,7 +76,6 @@ namespace BITools.ViewModel
 
         public ChannelInfo()
         {
-            csms = "1-CC模式";
             sdcs1 = "1.000A";
             sdcs2 = "3.000A";
             sdcs3 = "5.000A";

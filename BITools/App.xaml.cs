@@ -20,7 +20,7 @@ namespace BITools
         protected override void OnStartup(StartupEventArgs e)
         {
             NinjectKernal.Instance.Load();
-            var window = new MainWindow();
+            var window = new DeviceParamWindow();
             Application.Current.MainWindow = window;
             window.Show();
         }

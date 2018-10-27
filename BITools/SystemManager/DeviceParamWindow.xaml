@@ -82,20 +82,23 @@
                     MaxValue="100"
                     MinValue="1" />
 
-                <TextBlock Text="烧机(℃)" />
+                <TextBlock Margin="20,0,0,0" Text="烧机(℃)" />
                 <syscontrols:SelectNumeric
+                    Margin="2,0,0,0"
                     IncrementText="{Binding ShaoJi, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
                     MinValue="1" />
 
-                <TextBlock Text="排风(℃)" />
+                <TextBlock Margin="20,0,0,0" Text="排风(℃)" />
                 <syscontrols:SelectNumeric
+                    Margin="2,0,0,0"
                     IncrementText="{Binding PaiFeng, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
                     MinValue="1" />
 
-                <TextBlock Text="报警(℃)" />
+                <TextBlock Margin="20,0,0,0" Text="报警(℃)" />
                 <syscontrols:SelectNumeric
+                    Margin="2,0,0,0"
                     IncrementText="{Binding BaoJing, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                     MaxValue="100"
                     MinValue="1" />
@@ -128,7 +131,7 @@
                         MaxValue="100"
                         MinValue="1" />
 
-                    <TextBlock Margin="10,0,5,0" Text="通道并联" />
+                    <TextBlock Margin="20,0,5,0" Text="通道并联" />
                     <syscontrols:WatermarkComboBox
                         Width="{StaticResource comboBoxWidth}"
                         Height="{StaticResource comboBoxHeight}"
@@ -138,9 +141,44 @@
                         SelectedValuePath="Value" />
 
                     <CheckBox
+                        Name="ckLayer"
                         Margin="10,0,0,0"
                         VerticalAlignment="Center"
                         Content="分层设置" />
+
+                    <StackPanel
+                        Margin="10,0,0,0"
+                        Orientation="Horizontal"
+                        Visibility="{Binding IsChecked, ElementName=ckLayer, Converter={StaticResource boolToVisibility}}">
+                        <syscontrols:ButtonEx
+                            Width="90"
+                            Height="{StaticResource buttonH}"
+                            Content="添加一层"
+                            NormalImage="/BITools;component/Images/Add1.png" />
+
+                        <syscontrols:ButtonEx
+                            Width="100"
+                            Height="{StaticResource buttonH}"
+                            Margin="10,0,0,0"
+                            Content="删除最后一层"
+                            NormalImage="/BITools;component/Images/Add1.png" />
+
+                        <syscontrols:ButtonEx
+                            Width="90"
+                            Height="{StaticResource buttonH}"
+                            Margin="10,0,0,0"
+                            Content="复制当前层"
+                            NormalImage="/BITools;component/Images/Add1.png" />
+
+                        <syscontrols:ButtonEx
+                            Width="90"
+                            Height="{StaticResource buttonH}"
+                            Margin="10,0,0,0"
+                            Content="粘贴当前层"
+                            NormalImage="/BITools;component/Images/Add1.png" />
+
+
+                    </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
@@ -160,40 +198,121 @@
                     <TextBlock Margin="5,0,0,0" Text="注:选中当前通道【右键】可操作 复制 粘贴 删除 动作 " />
                 </StackPanel>
 
-                <Border
-                    Grid.Row="2"
-                    Width="80"
-                    Height="30"
-                    Margin="0,2,0,0"
-                    HorizontalAlignment="Left"
-                    BorderBrush="{StaticResource sepeatorLineBrush}"
-                    BorderThickness="1"
-                    CornerRadius="5,5,0,0">
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Text="整体设置" />
-                </Border>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <Border
+                        Width="80"
+                        Height="30"
+                        Margin="2,2,0,0"
+                        HorizontalAlignment="Left"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="1"
+                        CornerRadius="5,5,0,0">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="整体设置" />
+                    </Border>
+                    <Border
+                        Width="80"
+                        Height="30"
+                        Margin="2,2,0,0"
+                        HorizontalAlignment="Left"
+                        BorderBrush="{StaticResource sepeatorLineBrush}"
+                        BorderThickness="1"
+                        CornerRadius="5,5,0,0">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="整体设置" />
+                    </Border>
+                </StackPanel>
+
                 <DataGrid
                     Grid.Row="3"
                     Grid.Column="0"
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     CanUserDeleteRows="False"
-                    ItemsSource="{Binding ChannelCollection}">
+                    ItemsSource="{Binding ChannelCollection}"
+                    RowHeaderWidth="30"
+                    Visibility="Collapsed">
+                    <DataGrid.RowHeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Width="30"
+                                Margin="2"
+                                Background="Red"
+                                Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource rowToIndex}}" />
+                        </DataTemplate>
+                    </DataGrid.RowHeaderTemplate>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding csms}" Header="测试模式" />
-                        <DataGridTextColumn Binding="{Binding sdcs1}" Header="设定参数1" />
-                        <DataGridTextColumn Binding="{Binding sdcs2}" Header="设定参数2" />
-                        <DataGridTextColumn Binding="{Binding sdcs3}" Header="设定参数3" />
-                        <DataGridTextColumn Binding="{Binding qddy}" Header="启动电压" />
-                        <DataGridTextColumn Binding="{Binding csxx1}" Header="测试下限1" />
-                        <DataGridTextColumn Binding="{Binding cssx2}" Header="测试上限1" />
-                        <DataGridTextColumn Binding="{Binding csxx2}" Header="测试下限2" />
-                        <DataGridTextColumn Binding="{Binding cssx2}" Header="测试上限2" />
-                        <DataGridTextColumn Binding="{Binding xlkz}" Header="线路抗阻" />
+                        <DataGridComboBoxColumn
+                            Width="100"
+                            DisplayMemberPath="Name"
+                            Header="测试模式"
+                            SelectedItemBinding="{Binding CSMSSelectedItem}">
+                            <DataGridComboBoxColumn.ElementStyle>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.CSMSCollection}" />
+                                </Style>
+                            </DataGridComboBoxColumn.ElementStyle>
+                            <DataGridComboBoxColumn.EditingElementStyle>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.CSMSCollection}" />
+                                </Style>
+                            </DataGridComboBoxColumn.EditingElementStyle>
+                        </DataGridComboBoxColumn>
+                        <!--<DataGridTemplateColumn Width="100" Header="测试模式">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.CSMSCollection}"
+                                        SelectedItem="{Binding CSMSSelectedItem}"
+                                        SelectedValuePath="Value" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>-->
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding sdcs1}"
+                            Header="设定参数1" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding sdcs2}"
+                            Header="设定参数2" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding sdcs3}"
+                            Header="设定参数3" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding qddy}"
+                            Header="启动电压" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding csxx1}"
+                            Header="测试下限1" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding cssx2}"
+                            Header="测试上限1" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding csxx2}"
+                            Header="测试下限2" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding cssx2}"
+                            Header="测试上限2" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding xlkz}"
+                            Header="线路抗阻" />
                     </DataGrid.Columns>
                 </DataGrid>
+
+                <syscontrols:HZTabControlWithCollapse x:Name="RightContainer" Grid.Row="3" />
 
             </Grid>
 
@@ -210,7 +329,7 @@
             </Grid>
 
             <!--  产品老化时序  -->
-            <Grid Grid.Row="6">
+            <Grid Grid.Row="6" DataContext="{Binding LHSXViewModel}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="auto" />
@@ -227,11 +346,15 @@
                     Orientation="Horizontal">
 
                     <TextBlock Text="当前时序列表:" />
-                    <TextBlock Text="00时00分00秒" />
+                    <TextBlock
+                        Margin="2,0,0,0"
+                        HorizontalAlignment="Center"
+                        Text="00时00分00秒" />
 
                     <TextBlock Margin="10,0,0,0" Text="循环:" />
                     <syscontrols:SelectNumeric
-                        IncrementText="35"
+                        Margin="2,0,0,0"
+                        IncrementText="{Binding XHCS, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}"
                         MaxValue="100"
                         MinValue="1" />
                     <TextBlock Margin="2,0,0,0" Text="次" />
@@ -294,7 +417,7 @@
                         Height="{StaticResource comboBoxHeight}"
                         DisplayMemberPath="Name"
                         ItemsSource="{Binding SRDYCollection}"
-                        SelectedIndex="0"
+                        SelectedItem="{Binding SRDYSelectedItem}"
                         SelectedValuePath="Value" />
 
                     <TextBlock
@@ -308,7 +431,7 @@
                         Height="{StaticResource comboBoxHeight}"
                         DisplayMemberPath="Name"
                         ItemsSource="{Binding FZCSCollection}"
-                        SelectedIndex="0"
+                        SelectedItem="{Binding FZCSSelectedItem}"
                         SelectedValuePath="Value" />
 
                     <TextBlock
@@ -320,14 +443,18 @@
                         Grid.Column="1"
                         Width="{StaticResource comboBoxWidth}"
                         Height="{StaticResource comboBoxHeight}"
-                        ItemsSource="{Binding PDFWCollection}" />
+                        SelectedIndex="{Binding PDFWSelectedIndex}">
+                        <ComboBoxItem Content="测试上下限1" />
+                        <ComboBoxItem Content="测试上下限2" />
+                    </syscontrols:WatermarkComboBox>
                     <CheckBox
                         Name="ckbCJ"
                         Grid.Row="3"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         Margin="50,0,0,0"
-                        Content="是否冲击" />
+                        Content="是否冲击"
+                        IsChecked="{Binding Iscj}" />
 
                     <TextBlock
                         Grid.Row="4"
@@ -337,14 +464,13 @@
                         Grid.Row="4"
                         Grid.Column="1"
                         Orientation="Horizontal">
-                        <TextBox />
+                        <TextBox Text="{Binding DZZX}" />
                         <syscontrols:WatermarkComboBox
                             Width="50"
                             Height="{StaticResource comboBoxHeight}"
-                            SelectedIndex="0">
-                            <ComboBoxItem Content="秒" />
+                            SelectedIndex="{Binding DZZXUnitSelectedIndex}">
                             <ComboBoxItem Content="分" />
-                            <ComboBoxItem Content="时" />
+                            <ComboBoxItem Content="次" />
                         </syscontrols:WatermarkComboBox>
                     </StackPanel>
 
@@ -357,11 +483,11 @@
                         Grid.Column="1"
                         IsEnabled="{Binding ElementName=ckbCJ, Path=IsChecked}"
                         Orientation="Horizontal">
-                        <TextBox IsEnabled="{Binding ElementName=ckbCJ, Path=IsChecked}" />
+                        <TextBox IsEnabled="{Binding ElementName=ckbCJ, Path=IsChecked}" Text="{Binding GSC}" />
                         <syscontrols:WatermarkComboBox
                             Width="50"
                             Height="{StaticResource comboBoxHeight}"
-                            SelectedIndex="0">
+                            SelectedIndex="{Binding GSCUnitSelectedIndex}">
                             <ComboBoxItem Content="秒" />
                             <ComboBoxItem Content="分" />
                             <ComboBoxItem Content="时" />
@@ -377,11 +503,11 @@
                         Grid.Column="1"
                         IsEnabled="{Binding ElementName=ckbCJ, Path=IsChecked}"
                         Orientation="Horizontal">
-                        <TextBox IsEnabled="{Binding ElementName=ckbCJ, Path=IsChecked}" />
+                        <TextBox IsEnabled="{Binding ElementName=ckbCJ, Path=IsChecked}" Text="{Binding KSC}" />
                         <syscontrols:WatermarkComboBox
                             Width="50"
                             Height="{StaticResource comboBoxHeight}"
-                            SelectedIndex="0">
+                            SelectedIndex="{Binding KSCUnitSelectedIndex}">
                             <ComboBoxItem Content="秒" />
                             <ComboBoxItem Content="分" />
                             <ComboBoxItem Content="时" />
@@ -407,15 +533,58 @@
                         Content="修改"
                         NormalImage="/BITools;component/Images/update.png" />
                 </Grid>
-                <DataGrid Grid.Row="1" Grid.Column="0">
+                <!--  CommandParameter="{Binding ElementName=WIFIInfoList, Path=SelectedItem}"  -->
+                <DataGrid
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding LHSXCollection}"
+                    RowHeaderWidth="30"
+                    SelectedItem="{Binding LHSXSelectedItem}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding Command="{Binding EditLHSXCommand}" Gesture="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.RowHeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Width="30"
+                                Margin="2"
+                                Background="Red"
+                                Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource rowToIndex}}" />
+                        </DataTemplate>
+                    </DataGrid.RowHeaderTemplate>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="输入电压" />
-                        <DataGridTextColumn Header="负载参数" />
-                        <DataGridTextColumn Header="判断范围" />
-                        <DataGridTextColumn Header="冲击开关" />
-                        <DataGridTextColumn Header="动作执行" />
-                        <DataGridTextColumn Header="关时长" />
-                        <DataGridTextColumn Header="开时长" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding srdy}"
+                            Header="输入电压" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding fzcy}"
+                            Header="负载参数" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding pdfw}"
+                            Header="判断范围" />
+                        <DataGridCheckBoxColumn
+                            Width="80"
+                            Binding="{Binding cjkt}"
+                            Header="冲击开关" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding dzzx}"
+                            Header="动作执行" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding gsc}"
+                            Header="关时长" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding ksc}"
+                            Header="开时长" />
                     </DataGrid.Columns>
                 </DataGrid>
 

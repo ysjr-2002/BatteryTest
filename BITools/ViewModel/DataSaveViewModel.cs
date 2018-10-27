@@ -20,7 +20,7 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.DateSaveTimeSpan, value); }
         }
 
-        protected override void Loaded()
+        public override void Loaded()
         {
             base.Loaded();
         }

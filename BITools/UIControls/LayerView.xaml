@@ -53,6 +53,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
     </UserControl.Resources>
     <Grid Grid.Row="1">
         <Grid.RowDefinitions>
@@ -112,19 +113,31 @@
                     Binding="{Binding aczt}"
                     Header="AC 状态" />
                 <DataGridTextColumn
-                    Width="80"
+                    Width="60"
                     Binding="{Binding zs}"
                     Header="总数" />
                 <DataGridTextColumn
-                    Width="80"
+                    Width="60"
                     Binding="{Binding hg}"
-                    Header="合格" />
+                    Header="合格">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="#00ff00" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn
-                    Width="80"
+                    Width="60"
                     Binding="{Binding bl}"
-                    Header="不良" />
+                    Header="不良">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="#ff0000" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn
-                    Width="80"
+                    Width="60"
                     Binding="{Binding bll}"
                     Header="不良率" />
                 <DataGridTemplateColumn Width="*">
@@ -140,11 +153,13 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBox />
+                                <TextBox IsReadOnly="True" Text="{Binding cpxh}" />
                                 <Button
                                     Grid.Column="1"
-                                    Width="60"
-                                    Content="..." />
+                                    Width="40"
+                                    Command="{Binding SelectCPXHCommand}"
+                                    Content="..."
+                                    DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -544,14 +559,14 @@
                 BorderThickness="1">
                 <TextBlock Text="L1" />
             </Border>
-            <syscontrols:BlockView Grid.Column="1" />
-            <syscontrols:BlockView Grid.Column="2" />
-            <syscontrols:BlockView Grid.Column="3" />
-            <syscontrols:BlockView Grid.Column="4" />
-            <syscontrols:BlockView Grid.Column="5" />
-            <syscontrols:BlockView Grid.Column="6" />
-            <syscontrols:BlockView Grid.Column="7" />
-            <syscontrols:BlockView Grid.Column="8" />
+            <syscontrols:BlockView Grid.Column="1" DataContext="{Binding GHGroup1}" />
+            <syscontrols:BlockView Grid.Column="2" DataContext="{Binding GHGroup2}" />
+            <syscontrols:BlockView Grid.Column="3" DataContext="{Binding GHGroup3}" />
+            <syscontrols:BlockView Grid.Column="4" DataContext="{Binding GHGroup4}" />
+            <syscontrols:BlockView Grid.Column="5" DataContext="{Binding GHGroup5}" />
+            <syscontrols:BlockView Grid.Column="6" DataContext="{Binding GHGroup6}" />
+            <syscontrols:BlockView Grid.Column="7" DataContext="{Binding GHGroup7}" />
+            <syscontrols:BlockView Grid.Column="8" DataContext="{Binding GHGroup8}" />
         </Grid>
     </Grid>
 </UserControl>

@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="/BITools;component/Styles/WatermarkTextBox.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/CheckBoxStyle.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/WindowStyle.xaml" />
+                <ResourceDictionary Source="/BITools;component/Styles/TabControlStyle.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/TextBoxStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

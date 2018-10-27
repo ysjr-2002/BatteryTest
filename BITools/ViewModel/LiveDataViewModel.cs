@@ -126,7 +126,7 @@ namespace BITools.ViewModel
         public ICommand QueryCommand { get { return new DelegateCommand(QueryData); } }
         public ICommand ExportCommand { get { return new DelegateCommand(Export); } }
 
-        protected override void Loaded()
+        public override void Loaded()
         {
             base.Loaded();
             var temp = new UserImpl().getUser();
