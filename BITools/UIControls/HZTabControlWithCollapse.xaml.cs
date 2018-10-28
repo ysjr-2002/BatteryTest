@@ -318,6 +318,18 @@ namespace BITools.UIControls
             }
         }
 
+        public void Remove(TabItem tab)
+        {
+            RightContainer.Items.Remove(tab);
+            for (int i = Items.Count - 1; i >= 0; i--)
+            {
+                if (Items[i].Name == tab.Name)
+                {
+                    Items.RemoveAt(i);
+                }
+            }
+        }
+
         private void Btn_Click(object sender, RoutedEventArgs e)
         {
             scrHead.ScrollChanged -= Xxx_ScrollChanged;

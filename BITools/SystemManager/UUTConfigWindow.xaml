@@ -1,0 +1,76 @@
+﻿<base:BaseWindow x:Class="BITools.SystemManager.UUTConfigWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:base="clr-namespace:BITools"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                 xmlns:local="clr-namespace:BITools.SystemManager"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 Title="UUT"
+                 Width="400"
+                 Height="300"
+                 Style="{StaticResource WindowStyleWithCloseBtn}"
+                 mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="0,0,5,0" />
+        </Style>
+
+        <Style BasedOn="{StaticResource TBBaseStyle}" TargetType="TextBox">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   Text="编号:" />
+        <TextBox Name="txtCode"
+                 Grid.Row="1"
+                 Grid.Column="2" />
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="1"
+                   Text="最大编号:" />
+        <TextBox Name="txtMaxCode"
+                 Grid.Row="2"
+                 Grid.Column="2" />
+
+
+        <Button Name="btnSave"
+                Grid.Row="5"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Width="100"
+                Height="26"
+                Click="btnSave_Click"
+                Content="确定"
+                Style="{StaticResource OKStyle}" />
+    </Grid>
+</base:BaseWindow>

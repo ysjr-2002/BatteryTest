@@ -8,6 +8,7 @@ using BITools.ViewModel.LHSX;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,6 @@ namespace BITools.ViewModel
             LHSXViewModel.Loaded();
 
             var dictImpl = new DictonaryImpl();
-
             var list = dictImpl.QueryDictionary("TDBL");
             TDBLCollection = new ObservableCollection<Dictonary>(list);
             list = dictImpl.QueryDictionary("CSMS");
@@ -139,6 +139,18 @@ namespace BITools.ViewModel
         private void LoadParam()
         {
             paramFilePath = FileDialogHelper.OpenFileDialog();
+            if (paramFilePath.IsEmpty())
+                return;
+
+            var content = System.IO.File.ReadAllText(paramFilePath);
+            var deviceParam = JsonConvert.DeserializeObject<DeviceParamJson>(content);
+            this.JiaRe = deviceParam.JiaRe;
+            this.ShaoJi = deviceParam.ShaoJi;
+            this.PaiFeng = deviceParam.PaiFeng;
+            this.BaoJing = deviceParam.BaoJing;
+            this.LHSXViewModel.XHCS = deviceParam.XHCS;
+            this.LHSXViewModel.LHSXCollection = deviceParam.LHSXCollection;
+            MsgBox.SuccessShow("参数加载成功！");
         }
 
         private void SaveParam()
@@ -151,6 +163,22 @@ namespace BITools.ViewModel
             {
                 paramFilePath = ofd.FileName;
             }
+
+            if (paramFilePath.IsEmpty())
+                return;
+
+            DeviceParamJson deviceParam = new DeviceParamJson();
+            deviceParam.JiaRe = this.JiaRe;
+            deviceParam.ShaoJi = this.ShaoJi;
+            deviceParam.PaiFeng = this.PaiFeng;
+            deviceParam.BaoJing = this.BaoJing;
+
+            deviceParam.XHCS = this.LHSXViewModel.XHCS;
+            deviceParam.LHSXCollection = this.LHSXViewModel.LHSXCollection;
+
+            var content = JsonConvert.SerializeObject(deviceParam);
+            System.IO.File.WriteAllText(paramFilePath, content);
+            MsgBox.SuccessShow("参数保存成功！");
         }
 
         private void SaveAsParam()

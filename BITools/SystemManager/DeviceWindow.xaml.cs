@@ -1,6 +1,4 @@
-﻿using BITools.UIControls;
-using BITools.ViewModel;
-using LL.SenicSpot.Gate.Kernal;
+﻿using BITools.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,40 +13,40 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BITools
+namespace BITools.SystemManager
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// DeviceWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DeviceWindow : BaseWindow
     {
-        public MainWindow()
+        DeviceConfigViewModel vm = null;
+        public DeviceWindow()
         {
             InitializeComponent();
-            this.DataContext = NinjectKernal.Instance.Get<MainViewModel>();
-            this.Loaded += MainWindow_Loaded;
+            vm = new DeviceConfigViewModel();
+            this.DataContext = vm;
+            this.Loaded += DeviceConfigWindow_Loaded;
+            this.Closing += DeviceConfigWindow_Closing;
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void DeviceConfigWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var filename = "temp.json";
             if (System.IO.File.Exists(filename))
             {
                 var content = System.IO.File.ReadAllText(filename);
                 var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
-
-                var A = list.First();
-                foreach (var item in A.LayerList)
-                {
-                    LayerView temp = new LayerView();
-                    LayerViewModel datacontext = new LayerViewModel(item.Name);
-                    temp.DataContext = datacontext;
-                    sp.Children.Add(temp);
-                }
+                vm.TCList = list;
             }
+        }
+
+        private void DeviceConfigWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var content = JsonConvert.SerializeObject(vm.TCList);
+            System.IO.File.WriteAllText("temp.json", content);
         }
     }
 }

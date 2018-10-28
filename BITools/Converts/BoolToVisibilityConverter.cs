@@ -14,8 +14,9 @@ namespace BITools.Converts
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool? bFlag = (bool?)value;
-            return bFlag.GetValueOrDefault() ? Visibility.Visible : Visibility.Hidden;
+            //bool? bFlag = (bool?)value;
+            //return bFlag.GetValueOrDefault() ? Visibility.Visible : Visibility.Hidden;
+            return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

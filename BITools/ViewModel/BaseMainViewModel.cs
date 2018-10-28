@@ -19,7 +19,9 @@ namespace BITools.ViewModel
         public ICommand SystemParamCommand { get { return new DelegateCommand(SystemParam); } }
         public ICommand ReportCommand { get { return new DelegateCommand(Report); } }
         public ICommand AboutCommand { get { return new DelegateCommand(About); } }
+        public ICommand DeviceConfigCommand { get { return new DelegateCommand(DeviceConfig); } }
 
+        
         public TCViewModel DeviceTestViewModelA
         {
             get { return this.GetValue(c => c.DeviceTestViewModelA); }
@@ -89,6 +91,12 @@ namespace BITools.ViewModel
         private void About()
         {
             var window = new AboutWindow();
+            window.ShowDialog();
+        }
+
+        private void DeviceConfig()
+        {
+            var window = new DeviceWindow();
             window.ShowDialog();
         }
     }

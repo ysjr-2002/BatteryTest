@@ -74,6 +74,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -171,8 +175,17 @@
     <Compile Include="SystemManager\AgingParamWindow.xaml.cs">
       <DependentUpon>AgingParamWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemManager\ChannelConfigWindow.xaml.cs">
+      <DependentUpon>ChannelConfigWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemManager\DeviceParamWindow.xaml.cs">
       <DependentUpon>DeviceParamWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\DeviceWindow.xaml.cs">
+      <DependentUpon>DeviceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\LayerConfigWindow.xaml.cs">
+      <DependentUpon>LayerConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemManager\PassWordWindow.xaml.cs">
       <DependentUpon>PassWordWindow.xaml</DependentUpon>
@@ -180,8 +193,14 @@
     <Compile Include="SystemManager\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemManager\TCConfigWindow.xaml.cs">
+      <DependentUpon>TCConfigWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemManager\UIControls\DataSaveView.xaml.cs">
       <DependentUpon>DataSaveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\UIControls\MachineConfigWindow.xaml.cs">
+      <DependentUpon>MachineConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemManager\UIControls\UIAlarmView.xaml.cs">
       <DependentUpon>UIAlarmView.xaml</DependentUpon>
@@ -197,6 +216,9 @@
     </Compile>
     <Compile Include="SystemManager\UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\UUTConfigWindow.xaml.cs">
+      <DependentUpon>UUTConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\UIHelper.cs" />
     <Compile Include="UIControls\BlockView.xaml.cs">
@@ -238,8 +260,13 @@
     <Compile Include="ViewModel\BaseMainViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChannelInfo.cs" />
+    <Compile Include="ViewModel\Configs\ChannelViewModel.cs" />
+    <Compile Include="ViewModel\Configs\LayerViewModel.cs" />
+    <Compile Include="ViewModel\Configs\TCViewModel.cs" />
+    <Compile Include="ViewModel\Configs\UUTViewModel.cs" />
     <Compile Include="ViewModel\DataSaveViewModel.cs" />
     <Compile Include="ViewModel\DeveInfo.cs" />
+    <Compile Include="ViewModel\DeviceConfigViewModel.cs" />
     <Compile Include="ViewModel\DeviceParamViewModel.cs" />
     <Compile Include="ViewModel\GH\GHGroup.cs" />
     <Compile Include="ViewModel\LHSX\LHSXViewModel.cs" />
@@ -353,7 +380,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SystemManager\ChannelConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SystemManager\DeviceParamWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\DeviceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\LayerConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -365,7 +404,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SystemManager\TCConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SystemManager\UIControls\DataSaveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\UIControls\MachineConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -390,6 +437,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ButtonEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\UUTConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
