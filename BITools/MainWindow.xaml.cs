@@ -38,16 +38,32 @@ namespace BITools
             if (System.IO.File.Exists(filename))
             {
                 var content = System.IO.File.ReadAllText(filename);
-                var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
+                var tcList = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
 
-                var A = list.First();
-                foreach (var item in A.LayerList)
+
+                string first = "";
+                foreach (var tc in tcList)
                 {
-                    LayerView temp = new LayerView();
-                    LayerViewModel datacontext = new LayerViewModel(item.Name);
-                    temp.DataContext = datacontext;
-                    sp.Children.Add(temp);
+                    if (first.IsEmpty())
+                        first = tc.Name;
+
+                    TabItem item = new TabItem { Name = tc.Name, Header = tc.Name, IsSelected = true };
+                    item.Style = Application.Current.Resources["TabItem.TC"] as System.Windows.Style;
+
+                    var list = new ListBox();
+                    list.ItemContainerStyle = this.FindResource("kk") as Style;
+                    foreach (var layer in tc.LayerList)
+                    {
+                        LayerView temp = new LayerView();
+                        LayerViewModel datacontext = new LayerViewModel(layer.Name);
+                        datacontext.UUTList = layer.UUTList;
+                        temp.DataContext = datacontext;
+                        list.Items.Add(temp);
+                    }
+                    item.Content = list;
+                    tabs.Items.Add(item);
                 }
+                tabs.SetSelectedItem(first);
             }
         }
     }

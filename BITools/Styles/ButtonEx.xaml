@@ -9,6 +9,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ButtonEx">
                     <Border
+                        Name="bg"
                         Background="#d4e4f3"
                         BorderBrush="#cccccc"
                         BorderThickness="{TemplateBinding BorderThickness}">
@@ -62,6 +63,10 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="img" Property="Source" Value="{Binding DisableImage, RelativeSource={RelativeSource TemplatedParent}}" />
                             <Setter Property="Foreground" Value="#dbdbdb" />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="bg" Property="Background" Value="#30a3ed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

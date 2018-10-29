@@ -246,6 +246,9 @@
     <Compile Include="UIControls\SelectNumeric.xaml.cs">
       <DependentUpon>SelectNumeric.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIControls\TCTabControl.xaml.cs">
+      <DependentUpon>TCTabControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIControls\WaitLoading.xaml.cs">
       <DependentUpon>WaitLoading.xaml</DependentUpon>
     </Compile>
@@ -473,6 +476,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIControls\SelectNumeric.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIControls\TCTabControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

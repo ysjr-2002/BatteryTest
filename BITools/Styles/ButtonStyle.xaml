@@ -673,15 +673,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-
                     <Border Name="bg" Background="{TemplateBinding Background}">
                         <ContentPresenter
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             SnapsToDevicePixels="True" />
                     </Border>
-
-
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">

@@ -2,9 +2,11 @@
 using BITools.SystemManager;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
+using Newtonsoft.Json;
 using Ninject;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,6 +55,21 @@ namespace BITools.ViewModel
                 TabSelectedIndex = 4;
             if (tab == "F")
                 TabSelectedIndex = 5;
+        }
+
+        public override void Loaded()
+        {
+            base.Loaded();
+            var filename = "temp.json";
+            if (System.IO.File.Exists(filename))
+            {
+                var content = System.IO.File.ReadAllText(filename);
+                var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
+
+                //var A = list.FirstOrDefault();
+                //if (A == null)
+                //    return;
+            }
         }
     }
 }

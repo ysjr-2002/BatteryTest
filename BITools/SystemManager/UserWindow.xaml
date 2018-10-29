@@ -44,6 +44,7 @@
             AutoGenerateColumns="False"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
+            ColumnHeaderStyle="{StaticResource DataGridColumnHeader.WithLine.Style}"
             IsReadOnly="True"
             ItemsSource="{Binding UserCollection}">
             <DataGrid.InputBindings>
@@ -54,7 +55,7 @@
             </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="*"
+                    Width="200"
                     Binding="{Binding UserName}"
                     Header="登录用户名" />
             </DataGrid.Columns>

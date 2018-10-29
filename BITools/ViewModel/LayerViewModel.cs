@@ -2,6 +2,7 @@
 using BITools.Core;
 using BITools.DataManager;
 using BITools.Helpers;
+using BITools.ViewModel.Configs;
 using BITools.ViewModel.GH;
 using Common.NotifyBase;
 using LL.SenicSpot.Gate.Kernal;
@@ -46,6 +47,12 @@ namespace BITools.ViewModel
             GHCollection = new ObservableCollection<GHGroup>();
 
             InitGHGroup();
+        }
+
+        public ObservableCollection<UUTViewModel> UUTList
+        {
+            get { return this.GetValue(c => c.UUTList); }
+            set { this.SetValue(c => c.UUTList, value); }
         }
 
         private void InitGHGroup()

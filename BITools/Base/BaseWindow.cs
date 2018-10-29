@@ -11,7 +11,7 @@ namespace BITools
     {
         public BaseWindow()
         {
-            this.Owner = Application.Current.MainWindow;
+            //this.Owner = Application.Current.MainWindow;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
     }
