@@ -139,6 +139,7 @@
     <Compile Include="Converts\RowToIndexConverter.cs" />
     <Compile Include="Core\Config.cs" />
     <Compile Include="Core\DeviceParamJson.cs" />
+    <Compile Include="Core\StateBrushConstrant.cs" />
     <Compile Include="Helpers\FileDialogHelper.cs" />
     <Compile Include="Core\FileManager.cs" />
     <Compile Include="Core\FunExt.cs" />
@@ -342,6 +343,10 @@
     <Page Include="Styles\ImageButtonEx.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ListBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\RepeatButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>

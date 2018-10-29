@@ -43,28 +43,12 @@ namespace BITools.ViewModel
             });
             lhsjEnum = LHSJEnum.LHZSJ;
             LHSJName = FunExt.GetDescription(lhsjEnum);
-
-            GHCollection = new ObservableCollection<GHGroup>();
-
-            InitGHGroup();
         }
 
         public ObservableCollection<UUTViewModel> UUTList
         {
             get { return this.GetValue(c => c.UUTList); }
             set { this.SetValue(c => c.UUTList, value); }
-        }
-
-        private void InitGHGroup()
-        {
-            GHGroup1 = new GHGroup("1", "2");
-            GHGroup2 = new GHGroup("3", "4");
-            GHGroup3 = new GHGroup("5", "6");
-            GHGroup4 = new GHGroup("7", "8");
-            GHGroup5 = new GHGroup("9", "10");
-            GHGroup6 = new GHGroup("11", "12");
-            GHGroup7 = new GHGroup("13", "14");
-            GHGroup8 = new GHGroup("15", "16");
         }
 
         public Config config
@@ -93,64 +77,10 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.TDBLCollection, value); }
         }
 
-        public GHGroup GHGroup1
-        {
-            get { return this.GetValue(c => c.GHGroup1); }
-            set { this.SetValue(c => c.GHGroup1, value); }
-        }
-
-        public GHGroup GHGroup2
-        {
-            get { return this.GetValue(c => c.GHGroup2); }
-            set { this.SetValue(c => c.GHGroup2, value); }
-        }
-
-        public GHGroup GHGroup3
-        {
-            get { return this.GetValue(c => c.GHGroup3); }
-            set { this.SetValue(c => c.GHGroup3, value); }
-        }
-
-        public GHGroup GHGroup4
-        {
-            get { return this.GetValue(c => c.GHGroup4); }
-            set { this.SetValue(c => c.GHGroup4, value); }
-        }
-
-        public GHGroup GHGroup5
-        {
-            get { return this.GetValue(c => c.GHGroup5); }
-            set { this.SetValue(c => c.GHGroup5, value); }
-        }
-
-        public GHGroup GHGroup6
-        {
-            get { return this.GetValue(c => c.GHGroup6); }
-            set { this.SetValue(c => c.GHGroup6, value); }
-        }
-
-        public GHGroup GHGroup7
-        {
-            get { return this.GetValue(c => c.GHGroup7); }
-            set { this.SetValue(c => c.GHGroup7, value); }
-        }
-
-        public GHGroup GHGroup8
-        {
-            get { return this.GetValue(c => c.GHGroup8); }
-            set { this.SetValue(c => c.GHGroup8, value); }
-        }
-
         public ObservableCollection<DeveInfo> TestDataCollection
         {
             get { return this.GetValue(c => c.TestDataCollection); }
             set { this.SetValue(c => c.TestDataCollection, value); }
-        }
-
-        public ObservableCollection<GHGroup> GHCollection
-        {
-            get { return this.GetValue(c => c.GHCollection); }
-            set { this.SetValue(c => c.GHCollection, value); }
         }
 
         /// <summary>

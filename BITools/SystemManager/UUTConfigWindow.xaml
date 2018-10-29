@@ -9,6 +9,7 @@
                  Title="UUT"
                  Width="400"
                  Height="300"
+                 FocusManager.FocusedElement="{Binding ElementName=txtCode}"
                  Style="{StaticResource WindowStyleWithCloseBtn}"
                  mc:Ignorable="d">
     <i:Interaction.Triggers>
@@ -43,7 +44,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="150" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>

@@ -1,15 +1,14 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:System="clr-namespace:System;assembly=mscorlib"
-    xmlns:cvt="clr-namespace:BITools.Converts"
-    xmlns:local="clr-namespace:BITools">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:cvt="clr-namespace:BITools.Converts"
+                    xmlns:local="clr-namespace:BITools">
 
 
     <cvt:BoolToVisibilityConverter x:Key="boolToVisibility" />
     <cvt:IntToTimeSpanConverter x:Key="intToTimeSpan" />
     <cvt:RowToIndexConverter x:Key="rowToIndex" />
-    
+
 
 
     <!--  FFD6DBE9  -->
@@ -149,24 +148,21 @@
     <SolidColorBrush x:Key="Separator.Blue.Background" Color="#FFC1D7E5" />
 
 
-    <DropShadowEffect
-        x:Key="DropShadowEffect.Setting"
-        Direction="365"
-        Opacity="0.545"
-        ShadowDepth="0"
-        Color="#FFc9c9c9" />
+    <DropShadowEffect x:Key="DropShadowEffect.Setting"
+                      Direction="365"
+                      Opacity="0.545"
+                      ShadowDepth="0"
+                      Color="#FFc9c9c9" />
     <DropShadowEffect x:Key="DropShadowEffect.Bar" Color="#FFc9c9c9" />
 
-    <DropShadowEffect
-        x:Key="DropShadowEffect.Advance"
-        Direction="269"
-        Opacity="0.635" />
+    <DropShadowEffect x:Key="DropShadowEffect.Advance"
+                      Direction="269"
+                      Opacity="0.635" />
 
-    <DropShadowEffect
-        x:Key="Effect.ListItem.Image"
-        BlurRadius="21"
-        Direction="309"
-        Color="#FFCACACA" />
+    <DropShadowEffect x:Key="Effect.ListItem.Image"
+                      BlurRadius="21"
+                      Direction="309"
+                      Color="#FFCACACA" />
 
     <!--  侧边工具栏标题背景色  -->
     <SolidColorBrush x:Key="Side.Tool.Title.Background" Color="#FF2E69C5" />
@@ -188,10 +184,9 @@
     <SolidColorBrush x:Key="WindowBackGround" Color="White" />
     <SolidColorBrush x:Key="WindowButtonGapLineBrush" Color="#FFCCCCCC" />
 
-    <SolidColorBrush
-        x:Key="Window.BackLayer.Brush"
-        Opacity="0.6"
-        Color="#FF333333" />
+    <SolidColorBrush x:Key="Window.BackLayer.Brush"
+                     Opacity="0.6"
+                     Color="#FF333333" />
 
 
     <!--  RadioButton  外层方框默认的边框颜色  -->
@@ -237,20 +232,18 @@
                             <Setter Property="Foreground" Value="#cccccc" />
                         </Style>
                     </ControlTemplate.Resources>
-                    <Border
-                        Name="Border"
-                        Width="{TemplateBinding Width}"
-                        Height="{TemplateBinding Height}"
-                        Background="White"
-                        BorderBrush="#000000"
-                        CornerRadius="3">
+                    <Border Name="Border"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="White"
+                            BorderBrush="#000000"
+                            CornerRadius="3">
                         <Grid>
-                            <Image
-                                Grid.Row="0"
-                                Source="{Binding Snap}"
-                                Stretch="Fill"
-                                Style="{x:Null}"
-                                ToolTip="{Binding Date}">
+                            <Image Grid.Row="0"
+                                   Source="{Binding Snap}"
+                                   Stretch="Fill"
+                                   Style="{x:Null}"
+                                   ToolTip="{Binding Date}">
                                 <Image.InputBindings>
                                     <MouseBinding Command="{Binding DataContext.ViewDetailCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" MouseAction="LeftDoubleClick" />
                                 </Image.InputBindings>
@@ -306,5 +299,23 @@
     </Style>
 
     <SolidColorBrush x:Key="dotColorBrush" Color="#7d7d7d" />
+    <!--  拉载异常  -->
+    <SolidColorBrush x:Key="lzycColorBrush" Color="#f780ec" />
+    <!--无产品-->
+    <SolidColorBrush x:Key="wcpColorBrush" Color="White" />
+    <!--  欠压  -->
+    <SolidColorBrush x:Key="qyColorBrush" Color="#2dfbd9" />
+    <!--  欠流  -->
+    <SolidColorBrush x:Key="qlColorBrush" Color="Yellow" />
+    <!--  过压  -->
+    <SolidColorBrush x:Key="gyColorBrush" Color="Blue" />
+    <!--  过流  -->
+    <SolidColorBrush x:Key="glColorBrush" Color="Purple" />
+    <!--  无输出  -->
+    <SolidColorBrush x:Key="wscColorBrush" Color="Red" />
+    <!--  合格  -->
+    <SolidColorBrush x:Key="hgColorBrush" Color="Green" />
+    <!--  负载保护  -->
+    <SolidColorBrush x:Key="fzbhColorBrush" Color="Black" />
 
 </ResourceDictionary>
