@@ -29,12 +29,6 @@ namespace BITools.ViewModel
 
         public MainViewModel()
         {
-            DeviceTestViewModelA = new TCViewModel();
-            DeviceTestViewModelB = new TCViewModel();
-            DeviceTestViewModelC = new TCViewModel();
-            DeviceTestViewModelD = new TCViewModel();
-            DeviceTestViewModelE = new TCViewModel();
-            DeviceTestViewModelF = new TCViewModel();
             TabSelectedIndex = 0;
         }
 
@@ -60,16 +54,6 @@ namespace BITools.ViewModel
         public override void Loaded()
         {
             base.Loaded();
-            var filename = "temp.json";
-            if (System.IO.File.Exists(filename))
-            {
-                var content = System.IO.File.ReadAllText(filename);
-                var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
-
-                //var A = list.FirstOrDefault();
-                //if (A == null)
-                //    return;
-            }
         }
     }
 }

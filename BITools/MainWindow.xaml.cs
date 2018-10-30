@@ -40,10 +40,10 @@ namespace BITools
                 var content = System.IO.File.ReadAllText(filename);
                 var tcList = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
 
-
                 string first = "";
                 foreach (var tc in tcList)
                 {
+                    //台车
                     if (first.IsEmpty())
                         first = tc.Name;
 
@@ -54,6 +54,7 @@ namespace BITools
                     list.ItemContainerStyle = this.FindResource("kk") as Style;
                     foreach (var layer in tc.LayerList)
                     {
+                        //层
                         LayerView temp = new LayerView();
                         LayerViewModel datacontext = new LayerViewModel(layer.Name);
                         datacontext.UUTList = layer.UUTList;

@@ -20,7 +20,7 @@ namespace BITools
         protected override void OnStartup(StartupEventArgs e)
         {
             NinjectKernal.Instance.Load();
-            var window = new LoginWindow();
+            var window = new MainWindow();
             Application.Current.MainWindow = window;
             window.Show();
         }

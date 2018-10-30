@@ -15,7 +15,7 @@ namespace BITools.ViewModel.Configs
         public UUTViewModel()
         {
             ChannelList = new ObservableCollection<ChannelViewModel>();
-            StateBrush = Application.Current.FindResource("lzycColorBrush") as SolidColorBrush;
+            StateBrush = Application.Current.FindResource("tjColorBrush") as SolidColorBrush;
         }
 
         public string Code
@@ -34,6 +34,32 @@ namespace BITools.ViewModel.Configs
         {
             get { return this.GetValue(c => c.ChannelList); }
             set { this.SetValue(c => c.ChannelList, value); }
+        }
+
+        public void ChangeState()
+        {
+            var s = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
+            var index = new Random(s).Next(0, 10);
+            if( index == 0)
+                StateBrush = Application.Current.FindResource("tjColorBrush") as SolidColorBrush;
+            else if( index == 1)
+                StateBrush = Application.Current.FindResource("lzycColorBrush") as SolidColorBrush;
+            else if (index == 2)
+                StateBrush = Application.Current.FindResource("wcpColorBrush") as SolidColorBrush;
+            else if (index == 3)
+                StateBrush = Application.Current.FindResource("qyColorBrush") as SolidColorBrush;
+            else if (index == 4)
+                StateBrush = Application.Current.FindResource("qlColorBrush") as SolidColorBrush;
+            else if (index == 5)
+                StateBrush = Application.Current.FindResource("gyColorBrush") as SolidColorBrush;
+            else if (index == 6)
+                StateBrush = Application.Current.FindResource("glColorBrush") as SolidColorBrush;
+            else if (index == 7)
+                StateBrush = Application.Current.FindResource("wscColorBrush") as SolidColorBrush;
+            else if (index == 8)
+                StateBrush = Application.Current.FindResource("hgColorBrush") as SolidColorBrush;
+            else if (index == 9)
+                StateBrush = Application.Current.FindResource("fzbhColorBrush") as SolidColorBrush;
         }
     }
 }

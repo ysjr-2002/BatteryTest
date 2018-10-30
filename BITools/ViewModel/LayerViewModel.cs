@@ -241,7 +241,7 @@ namespace BITools.ViewModel
                 {
                     CompareData();
                     int sleep = config.DataSaveSpan.ToInt32() * 1000;
-                    sleep = 5000;
+                    sleep = 500;
                     Thread.Sleep(sleep);
                 }
             });
@@ -324,21 +324,27 @@ namespace BITools.ViewModel
 
         private void CompareData()
         {
-            Istj = !Istj;
-            Isxzczz = !Isxzczz;
-            Istzlz = !Istzlz;
-            Islzyc = !Islzyc;
+            //Istj = !Istj;
+            //Isxzczz = !Isxzczz;
+            //Istzlz = !Istzlz;
+            //Islzyc = !Islzyc;
 
-            Iswcp = !Iswcp;
-            Isqy = !Isqy;
-            Isql = !Isql;
+            //Iswcp = !Iswcp;
+            //Isqy = !Isqy;
+            //Isql = !Isql;
 
-            Isgy = !Isgy;
-            Isgl = !Isgl;
+            //Isgy = !Isgy;
+            //Isgl = !Isgl;
 
-            Iswsc = !Iswsc;
-            Ishg = !Ishg;
-            Isfzbh = !Isfzbh;
+            //Iswsc = !Iswsc;
+            //Ishg = !Ishg;
+            //Isfzbh = !Isfzbh;
+
+            var c = UUTList.Count;
+            var s = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
+            var index = new Random(s).Next(0, c);
+            UUTList[index].ChangeState();
+            Console.WriteLine(index);
         }
     }
 }

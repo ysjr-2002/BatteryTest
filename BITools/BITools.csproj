@@ -274,7 +274,6 @@
     <Compile Include="ViewModel\DeviceParamViewModel.cs" />
     <Compile Include="ViewModel\GH\GHGroup.cs" />
     <Compile Include="ViewModel\LHSX\LHSXViewModel.cs" />
-    <Compile Include="ViewModel\TCViewModel.cs" />
     <Compile Include="ViewModel\LayerViewModel.cs" />
     <Compile Include="ViewModel\LiveDataViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
