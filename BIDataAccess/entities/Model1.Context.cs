@@ -19,13 +19,18 @@ namespace BIDataAccess.entities
             : base("name=batteryEntities")
         {
         }
-    
+
+        public batteryEntities(string connectionstring)
+          : base(connectionstring)
+        {
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Dictonary> Dictonaries { get; set; }
-        public virtual DbSet<UserInfo> UserInfoes { get; set; }
+        public virtual DbSet<Dictonary> Dictonary { get; set; }
+        public virtual DbSet<UserInfo> UserInfo { get; set; }
     }
 }

@@ -13,9 +13,9 @@ namespace BIDataAccess
         {
             try
             {
-                using (var db = new batteryEntities())
+                using (var db = BatteryDBContext.GetConnect())
                 {
-                    return db.Dictonaries.Where(s => s.Type == type).ToList();
+                    return db.Dictonary.Where(s => s.Type == type).ToList();
                 }
             }
             catch (Exception ex)

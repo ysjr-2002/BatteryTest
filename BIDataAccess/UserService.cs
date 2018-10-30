@@ -13,16 +13,16 @@ namespace BIDataAccess
         {
             try
             {
-                using (var db = new batteryEntities())
+                using (var db = BatteryDBContext.GetConnect())
                 {
-                    var item = db.UserInfoes.FirstOrDefault(s => s.UserName == name && s.Password == password);
+                    var item = db.UserInfo.FirstOrDefault(s => s.UserName == name && s.Password == password);
                     if (item != null)
                         return true;
                     else
                         return false;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
@@ -32,9 +32,9 @@ namespace BIDataAccess
         {
             try
             {
-                using (var db = new batteryEntities())
+                using (var db = BatteryDBContext.GetConnect())
                 {
-                    return db.UserInfoes.ToList();
+                    return db.UserInfo.ToList();
                 }
             }
             catch (Exception ex)
@@ -47,9 +47,9 @@ namespace BIDataAccess
         {
             try
             {
-                using (var db = new batteryEntities())
+                using (var db = BatteryDBContext.GetConnect())
                 {
-                    db.UserInfoes.Add(user);
+                    db.UserInfo.Add(user);
                     int ret = db.SaveChanges();
                     return ret >= 1;
                 }
@@ -64,7 +64,7 @@ namespace BIDataAccess
         {
             try
             {
-                using (var db = new batteryEntities())
+                using (var db = BatteryDBContext.GetConnect())
                 {
                     var entry = db.Entry<UserInfo>(user);
                     entry.State = System.Data.Entity.EntityState.Modified;
@@ -82,7 +82,7 @@ namespace BIDataAccess
         {
             try
             {
-                using (var db = new batteryEntities())
+                using (var db = BatteryDBContext.GetConnect())
                 {
                     var entry = db.Entry<UserInfo>(user);
                     entry.State = System.Data.Entity.EntityState.Deleted;
@@ -100,9 +100,9 @@ namespace BIDataAccess
         {
             try
             {
-                using (var db = new batteryEntities())
+                using (var db = BatteryDBContext.GetConnect())
                 {
-                    var user = db.UserInfoes.First((s) => s.UserID == userId);
+                    var user = db.UserInfo.First((s) => s.UserID == userId);
                     user.Password = password;
                     var ret = db.SaveChanges();
                     return ret >= 0;
