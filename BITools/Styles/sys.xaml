@@ -9,7 +9,7 @@
     <cvt:BoolToVisibilityConverter x:Key="boolToVisibility" />
     <cvt:IntToTimeSpanConverter x:Key="intToTimeSpan" />
     <cvt:RowToIndexConverter x:Key="rowToIndex" />
-
+    <cvt:OutputConverter x:Key="ouputConverter" />
 
 
     <!--  FFD6DBE9  -->

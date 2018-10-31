@@ -30,7 +30,8 @@ namespace BITools.SystemManager
         {
             ChannelViewModel = new ViewModel.Configs.ChannelViewModel();
             ChannelViewModel.Code = txtCode.Text;
-            ChannelViewModel.Name = txtName.Text;
+            ChannelViewModel.OutputType = cmbType.SelectedIndex;
+            ChannelViewModel.Value = txtZ.Text;
             ChannelViewModel.SX = txtSX.Text;
             ChannelViewModel.XX = txtXX.Text;
             ChannelViewModel.Temperature = txtTemperature.Text;

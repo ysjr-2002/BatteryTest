@@ -58,6 +58,7 @@ namespace BITools
                         LayerView temp = new LayerView();
                         LayerViewModel datacontext = new LayerViewModel(layer.Name);
                         datacontext.UUTList = layer.UUTList;
+                        datacontext.Refresh();
                         temp.DataContext = datacontext;
                         list.Items.Add(temp);
                     }

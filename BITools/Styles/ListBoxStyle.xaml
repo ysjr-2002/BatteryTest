@@ -10,8 +10,8 @@
                     <Border
                         Name="bg"
                         Margin="2"
-                        BorderBrush="Blue"
-                        BorderThickness="0">
+                        BorderBrush="#cccccc"
+                        BorderThickness="1">
                         <ContentPresenter />
                     </Border>
                     <ControlTemplate.Triggers>

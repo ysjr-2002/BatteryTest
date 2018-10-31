@@ -16,10 +16,19 @@ namespace BITools.ViewModel.Configs
             set { this.SetValue(c => c.Code, value); }
         }
 
-        public string Name
+        /// <summary>
+        /// 输出类型 0:电压 1:电流
+        /// </summary>
+        public int OutputType
         {
-            get { return this.GetValue(c => c.Name); }
-            set { this.SetValue(c => c.Name, value); }
+            get { return this.GetValue(c => c.OutputType); }
+            set { this.SetValue(c => c.OutputType, value); }
+        }
+
+        public string Value
+        {
+            get { return this.GetValue(c => c.Value); }
+            set { this.SetValue(c => c.Value, value); }
         }
 
         public string SX

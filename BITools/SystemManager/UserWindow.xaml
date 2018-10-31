@@ -44,9 +44,9 @@
             AutoGenerateColumns="False"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
-            ColumnHeaderStyle="{StaticResource DataGridColumnHeader.WithLine.Style}"
             IsReadOnly="True"
-            ItemsSource="{Binding UserCollection}">
+            ItemsSource="{Binding UserCollection}"
+            Style="{StaticResource dgConfig}">
             <DataGrid.InputBindings>
                 <MouseBinding
                     Command="{Binding DetailCommand}"

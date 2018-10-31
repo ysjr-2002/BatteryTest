@@ -29,17 +29,19 @@
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="1">
+        <TabControl Grid.Row="1" SelectedIndex="2">
             <TabItem
                 Width="100"
                 Height="24"
-                Header="通讯端口">
+                Header="通讯端口"
+                Visibility="Collapsed">
                 <contorls:UIPortView />
             </TabItem>
             <TabItem
                 Width="100"
                 Height="24"
-                Header="台车编码">
+                Header="台车编码"
+                Visibility="Collapsed">
                 <contorls:UICodeView />
             </TabItem>
             <TabItem

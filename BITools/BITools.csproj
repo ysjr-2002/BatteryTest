@@ -136,6 +136,7 @@
     <Compile Include="Base\BaseWindow.cs" />
     <Compile Include="Converts\BoolToVisibilityConverter.cs" />
     <Compile Include="Converts\IntToTimeSpanConverter.cs" />
+    <Compile Include="Converts\OutputConverter.cs" />
     <Compile Include="Converts\RowToIndexConverter.cs" />
     <Compile Include="Core\Config.cs" />
     <Compile Include="Core\DeviceParamJson.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Helpers\UIHelper.cs" />
     <Compile Include="Kernal\NinjectKernal.cs" />
     <Compile Include="Model\LHSXInfo.cs" />
+    <Compile Include="Model\OutputEnum.cs" />
     <Compile Include="Model\RepeatUnitEnum.cs" />
     <Compile Include="Model\TabControlCollapseMenuModel.cs" />
     <Compile Include="Model\TimeUnitEnum.cs" />
@@ -272,11 +274,11 @@
     <Compile Include="ViewModel\DeveInfo.cs" />
     <Compile Include="ViewModel\DeviceConfigViewModel.cs" />
     <Compile Include="ViewModel\DeviceParamViewModel.cs" />
-    <Compile Include="ViewModel\GH\GHGroup.cs" />
     <Compile Include="ViewModel\LHSX\LHSXViewModel.cs" />
     <Compile Include="ViewModel\LayerViewModel.cs" />
     <Compile Include="ViewModel\LiveDataViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MyState.cs" />
     <Compile Include="ViewModel\PassWordViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\UserManagerViewModel.cs" />
@@ -957,9 +959,7 @@
     <Content Include="Libs\WpfAnimatedGif.dll" />
     <Content Include="Libs\Xceed.Wpf.Toolkit.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Test\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

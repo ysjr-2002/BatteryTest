@@ -3,7 +3,6 @@ using BITools.Core;
 using BITools.DataManager;
 using BITools.Helpers;
 using BITools.ViewModel.Configs;
-using BITools.ViewModel.GH;
 using Common.NotifyBase;
 using LL.SenicSpot.Gate.Kernal;
 using Microsoft.Practices.Prism.Commands;
@@ -101,88 +100,9 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.Lhsj, value); }
         }
 
-        //脱机
-        public bool Istj
+        public void Refresh()
         {
-            get { return this.GetValue(c => c.Istj); }
-            set { this.SetValue(c => c.Istj, value); }
-        }
-
-        //下载参数中
-        public bool Isxzczz
-        {
-            get { return this.GetValue(c => c.Isxzczz); }
-            set { this.SetValue(c => c.Isxzczz, value); }
-        }
-
-        //停止拉载
-        public bool Istzlz
-        {
-            get { return this.GetValue(c => c.Istzlz); }
-            set { this.SetValue(c => c.Istzlz, value); }
-        }
-
-        //拉载异常
-        public bool Islzyc
-        {
-            get { return this.GetValue(c => c.Islzyc); }
-            set { this.SetValue(c => c.Islzyc, value); }
-        }
-
-        //无产品
-        public bool Iswcp
-        {
-            get { return this.GetValue(c => c.Iswcp); }
-            set { this.SetValue(c => c.Iswcp, value); }
-        }
-
-        //欠压
-        public bool Isqy
-        {
-            get { return this.GetValue(c => c.Isqy); }
-            set { this.SetValue(c => c.Isqy, value); }
-        }
-
-        //欠流
-        public bool Isql
-        {
-            get { return this.GetValue(c => c.Isql); }
-            set { this.SetValue(c => c.Isql, value); }
-        }
-
-        //过压
-        public bool Isgy
-        {
-            get { return this.GetValue(c => c.Isgy); }
-            set { this.SetValue(c => c.Isgy, value); }
-        }
-
-        //过流
-        public bool Isgl
-        {
-            get { return this.GetValue(c => c.Isgl); }
-            set { this.SetValue(c => c.Isgl, value); }
-        }
-
-        //无输出
-        public bool Iswsc
-        {
-            get { return this.GetValue(c => c.Iswsc); }
-            set { this.SetValue(c => c.Iswsc, value); }
-        }
-
-        //合格
-        public bool Ishg
-        {
-            get { return this.GetValue(c => c.Ishg); }
-            set { this.SetValue(c => c.Ishg, value); }
-        }
-
-        //负载保护
-        public bool Isfzbh
-        {
-            get { return this.GetValue(c => c.Isfzbh); }
-            set { this.SetValue(c => c.Isfzbh, value); }
+            this.TestDataCollection.First().zs = UUTList.Count;
         }
 
         public ICommand SelectCPXHCommand { get { return new DelegateCommand(SelectCPXH); } }
@@ -239,7 +159,7 @@ namespace BITools.ViewModel
             {
                 while (IsRuning)
                 {
-                    CompareData();
+                    ReadData();
                     int sleep = config.DataSaveSpan.ToInt32() * 1000;
                     sleep = 500;
                     Thread.Sleep(sleep);
@@ -252,8 +172,6 @@ namespace BITools.ViewModel
         /// </summary>
         private void KSCS()
         {
-            //if (IsRuning)
-            //    return;
             Task.Factory.StartNew(() =>
             {
                 while (IsRuning && mre.WaitOne())
@@ -322,29 +240,16 @@ namespace BITools.ViewModel
             //结束时间
         }
 
-        private void CompareData()
+        private void ReadData()
         {
-            //Istj = !Istj;
-            //Isxzczz = !Isxzczz;
-            //Istzlz = !Istzlz;
-            //Islzyc = !Islzyc;
-
-            //Iswcp = !Iswcp;
-            //Isqy = !Isqy;
-            //Isql = !Isql;
-
-            //Isgy = !Isgy;
-            //Isgl = !Isgl;
-
-            //Iswsc = !Iswsc;
-            //Ishg = !Ishg;
-            //Isfzbh = !Isfzbh;
-
             var c = UUTList.Count;
             var s = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
             var index = new Random(s).Next(0, c);
-            UUTList[index].ChangeState();
+
+            var uut = UUTList[index];
+            uut.ChangeState();
             Console.WriteLine(index);
+            //uut.ChannelList.FirstOrDefault(s=>s)
         }
     }
 }
