@@ -38,7 +38,6 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -63,9 +62,8 @@
                  Grid.Row="2"
                  Grid.Column="2" />
 
-
         <Button Name="btnSave"
-                Grid.Row="5"
+                Grid.Row="4"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Width="100"

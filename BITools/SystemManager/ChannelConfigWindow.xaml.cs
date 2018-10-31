@@ -22,6 +22,23 @@ namespace BITools.SystemManager
         public ChannelConfigWindow()
         {
             InitializeComponent();
+            cmbInterface.SelectionChanged += CmbInterface_SelectionChanged;
+            CmbInterface_SelectionChanged(null, null);
+            cmbCom.ItemsSource = FunExt.GetSerialPorts();
+        }
+
+        private void CmbInterface_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbInterface.SelectedIndex == 0)
+            {
+                cmbCom.Visibility = Visibility.Collapsed;
+                txtNo.Visibility = Visibility.Visible;
+            }
+            else if (cmbInterface.SelectedIndex == 1)
+            {
+                cmbCom.Visibility = Visibility.Visible;
+                txtNo.Visibility = Visibility.Collapsed;
+            }
         }
 
         public ViewModel.Configs.ChannelViewModel ChannelViewModel { get; set; }
@@ -31,11 +48,16 @@ namespace BITools.SystemManager
             ChannelViewModel = new ViewModel.Configs.ChannelViewModel();
             ChannelViewModel.Code = txtCode.Text;
             ChannelViewModel.OutputType = cmbType.SelectedIndex;
-            ChannelViewModel.Value = txtZ.Text;
-            ChannelViewModel.SX = txtSX.Text;
-            ChannelViewModel.XX = txtXX.Text;
-            ChannelViewModel.Temperature = txtTemperature.Text;
+            //ChannelViewModel.Value = txtZ.Text;
+            //ChannelViewModel.SX = txtSX.Text;
+            //ChannelViewModel.XX = txtXX.Text;
+            //ChannelViewModel.Temperature = txtTemperature.Text;
             this.DialogResult = true;
+        }
+
+        private void cmbInterface_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -27,12 +27,6 @@ namespace BITools.ViewModel.Configs
             set { this.SetValue(c => c.Name, value); }
         }
 
-        public string Com
-        {
-            get { return this.GetValue(c => c.Com); }
-            set { this.SetValue(c => c.Com, value); }
-        }
-
         public ObservableCollection<LayerViewModel> LayerList
         {
             get { return this.GetValue(c => c.LayerList); }

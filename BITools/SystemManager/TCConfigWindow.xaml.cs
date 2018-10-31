@@ -32,7 +32,6 @@ namespace BITools.SystemManager
             TCViewModel = new TCViewModel();
             TCViewModel.Code = txtCode.Text;
             TCViewModel.Name = txtName.Text;
-            TCViewModel.Com = txtCom.Text;
             this.DialogResult = true;
         }
     }

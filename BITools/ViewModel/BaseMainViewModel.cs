@@ -41,7 +41,7 @@ namespace BITools.ViewModel
 
         private void SystemParam()
         {
-            var window = new DeviceParamWindow();
+            var window = new DeviceRunTimeSetting();
             window.ShowDialog();
         }
 

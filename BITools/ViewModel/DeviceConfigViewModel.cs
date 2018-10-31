@@ -94,7 +94,9 @@ namespace BITools.ViewModel
                 {
                     for (int i = 1; i <= max; i++)
                     {
-                        layer.UUTList.Add(new Configs.UUTViewModel { Code = i.ToString() });
+                        var uut = new Configs.UUTViewModel { Code = i.ToString() };
+                        uut.Init();
+                        layer.UUTList.Add(uut);
                     }
                 }
                 else

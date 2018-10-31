@@ -7,6 +7,7 @@ using Common.NotifyBase;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
 using System.Windows;
+using BITools.Model;
 
 namespace BITools.ViewModel.Configs
 {
@@ -60,6 +61,20 @@ namespace BITools.ViewModel.Configs
                 StateBrush = Application.Current.FindResource("hgColorBrush") as SolidColorBrush;
             else if (index == 9)
                 StateBrush = Application.Current.FindResource("fzbhColorBrush") as SolidColorBrush;
+        }
+
+        public void Init()
+        {
+            ChannelList.Add(new ChannelViewModel { Code = "1", OutputType = (int)(OutputEnum.V) });
+            ChannelList.Add(new ChannelViewModel { Code = "1", OutputType = (int)(OutputEnum.A) });
+
+            ChannelList.Add(new ChannelViewModel { Code = "2", OutputType = (int)(OutputEnum.V) });
+            ChannelList.Add(new ChannelViewModel { Code = "2", OutputType = (int)(OutputEnum.A) });
+
+            ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.V) });
+            ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.A) });
+
+            ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.T) });
         }
     }
 }

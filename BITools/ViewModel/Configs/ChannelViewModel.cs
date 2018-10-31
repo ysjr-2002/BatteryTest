@@ -16,6 +16,12 @@ namespace BITools.ViewModel.Configs
             set { this.SetValue(c => c.Code, value); }
         }
 
+        public int InterfaceType
+        {
+            get { return this.GetValue(c => c.InterfaceType); }
+            set { this.SetValue(c => c.InterfaceType, value); }
+        }
+
         /// <summary>
         /// 输出类型 0:电压 1:电流
         /// </summary>
@@ -23,30 +29,6 @@ namespace BITools.ViewModel.Configs
         {
             get { return this.GetValue(c => c.OutputType); }
             set { this.SetValue(c => c.OutputType, value); }
-        }
-
-        public string Value
-        {
-            get { return this.GetValue(c => c.Value); }
-            set { this.SetValue(c => c.Value, value); }
-        }
-
-        public string SX
-        {
-            get { return this.GetValue(c => c.SX); }
-            set { this.SetValue(c => c.SX, value); }
-        }
-
-        public string XX
-        {
-            get { return this.GetValue(c => c.XX); }
-            set { this.SetValue(c => c.XX, value); }
-        }
-
-        public string Temperature
-        {
-            get { return this.GetValue(c => c.Temperature); }
-            set { this.SetValue(c => c.Temperature, value); }
         }
     }
 }
