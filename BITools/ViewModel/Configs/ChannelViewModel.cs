@@ -36,5 +36,12 @@ namespace BITools.ViewModel.Configs
             get { return this.GetValue(c => c.Address); }
             set { this.SetValue(c => c.Address, value); }
         }
+
+        //负载通道
+        //负载通道
+        //机台通道
+        //温度设置
+
+        //负载通道下，需要配置电压和电流通讯参数
     }
 }

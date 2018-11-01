@@ -1,19 +1,18 @@
-﻿<base:BaseWindow
-    x:Class="BITools.SystemManager.DeviceWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:base="clr-namespace:BITools"
-    xmlns:contorls="clr-namespace:BITools.SystemManager.UIControls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:local="clr-namespace:BITools.SystemManager"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:syscontrols="clr-namespace:BITools.UIControls"
-    Title="设备设置"
-    Width="1200"
-    Height="700"
-    Style="{StaticResource WindowStyleWithCloseBtn}"
-    mc:Ignorable="d">
+﻿<base:BaseWindow x:Class="BITools.SystemManager.DeviceWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:base="clr-namespace:BITools"
+                 xmlns:contorls="clr-namespace:BITools.SystemManager.UIControls"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                 xmlns:local="clr-namespace:BITools.SystemManager"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:syscontrols="clr-namespace:BITools.UIControls"
+                 Title="设备设置"
+                 Width="1200"
+                 Height="700"
+                 Style="{StaticResource WindowStyleWithCloseBtn}"
+                 mc:Ignorable="d">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
@@ -26,28 +25,25 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <syscontrols:ButtonEx
-                Grid.Column="0"
-                Width="100"
-                Height="24"
-                Command="{Binding LoadConfigCommand}"
-                Content="加载设备表" />
+            <syscontrols:ButtonEx Grid.Column="0"
+                                  Width="100"
+                                  Height="24"
+                                  Command="{Binding LoadConfigCommand}"
+                                  Content="加载设备表" />
 
-            <syscontrols:ButtonEx
-                Grid.Column="0"
-                Width="100"
-                Height="24"
-                Margin="5,0"
-                Command="{Binding SaveConfigCommand}"
-                Content="保存设备表" />
+            <syscontrols:ButtonEx Grid.Column="0"
+                                  Width="100"
+                                  Height="24"
+                                  Margin="5,0"
+                                  Command="{Binding SaveConfigCommand}"
+                                  Content="保存设备表" />
 
-            <syscontrols:ButtonEx
-                Grid.Column="0"
-                Width="100"
-                Height="24"
-                Margin="5,0"
-                Command="{Binding ClearConfigCommand}"
-                Content="清空配置" />
+            <syscontrols:ButtonEx Grid.Column="0"
+                                  Width="100"
+                                  Height="24"
+                                  Margin="5,0"
+                                  Command="{Binding ClearConfigCommand}"
+                                  Content="清空配置" />
         </StackPanel>
 
         <Grid Grid.Row="1">
@@ -55,6 +51,7 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="150" />
+                <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
@@ -68,32 +65,28 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <syscontrols:ButtonEx
-                        Grid.Column="0"
-                        Width="100"
-                        Height="24"
-                        Command="{Binding AddTCCommand}"
-                        Content="台车" />
+                    <syscontrols:ButtonEx Grid.Column="0"
+                                          Width="100"
+                                          Height="24"
+                                          Command="{Binding AddTCCommand}"
+                                          Content="台车" />
                 </Grid>
 
-                <DataGrid
-                    Name="dgTC"
-                    Grid.Row="1"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding TCList}"
-                    Style="{StaticResource dgConfig}">
+                <DataGrid Name="dgTC"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding TCList}"
+                          Style="{StaticResource dgConfig}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Code}"
-                            Header="编号" />
-                        <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Name}"
-                            Header="名称" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding Code}"
+                                            Header="编号" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding Name}"
+                                            Header="名称" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -108,36 +101,33 @@
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <syscontrols:ButtonEx
-                        Grid.Column="0"
-                        Width="80"
-                        Height="24"
-                        Command="{Binding AddLayerCommand}"
-                        CommandParameter="{Binding SelectedItem, ElementName=dgTC}"
-                        Content="加层" />
+                    <syscontrols:ButtonEx Grid.Column="0"
+                                          Width="80"
+                                          Height="24"
+                                          Command="{Binding AddLayerCommand}"
+                                          CommandParameter="{Binding SelectedItem,
+                                                                     ElementName=dgTC}"
+                                          Content="加层" />
                 </Grid>
-                <DataGrid
-                    Name="dgLayer"
-                    Grid.Row="1"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding SelectedItem.LayerList, ElementName=dgTC}"
-                    Style="{StaticResource dgConfig}">
+                <DataGrid Name="dgLayer"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding SelectedItem.LayerList,
+                                                ElementName=dgTC}"
+                          Style="{StaticResource dgConfig}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Code}"
-                            Header="编号" />
-                        <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Name}"
-                            Header="层名称" />
-                        <DataGridTextColumn
-                            Width="120"
-                            Binding="{Binding LHSJ}"
-                            Header="老化时间(小时)" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding Code}"
+                                            Header="编号" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding Name}"
+                                            Header="层名称" />
+                        <DataGridTextColumn Width="120"
+                                            Binding="{Binding LHSJ}"
+                                            Header="老化时间(小时)" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -153,29 +143,28 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <syscontrols:ButtonEx
-                        Grid.Column="0"
-                        Width="100"
-                        Height="24"
-                        Command="{Binding AddUUTCommand}"
-                        CommandParameter="{Binding SelectedItem, ElementName=dgLayer}"
-                        Content="待测机台" />
+                    <syscontrols:ButtonEx Grid.Column="0"
+                                          Width="100"
+                                          Height="24"
+                                          Command="{Binding AddUUTCommand}"
+                                          CommandParameter="{Binding SelectedItem,
+                                                                     ElementName=dgLayer}"
+                                          Content="待测机台" />
                 </Grid>
 
-                <DataGrid
-                    Name="dgUUT"
-                    Grid.Row="1"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding SelectedItem.UUTList, ElementName=dgLayer}"
-                    Style="{StaticResource dgConfig}">
+                <DataGrid Name="dgUUT"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding SelectedItem.UUTList,
+                                                ElementName=dgLayer}"
+                          Style="{StaticResource dgConfig}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding Code}"
-                            Header="编号" />
+                        <DataGridTextColumn Width="*"
+                                            Binding="{Binding Code}"
+                                            Header="编号" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -191,48 +180,103 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <syscontrols:ButtonEx
-                        Grid.Column="0"
-                        Width="100"
-                        Height="24"
-                        Command="{Binding AddChannelCommand}"
-                        CommandParameter="{Binding SelectedItem, ElementName=dgUUT}"
-                        Content="监控参数" />
+                    <syscontrols:ButtonEx Grid.Column="0"
+                                          Width="100"
+                                          Height="24"
+                                          Command="{Binding AddChannelCommand}"
+                                          CommandParameter="{Binding SelectedItem,
+                                                                     ElementName=dgUUT}"
+                                          Content="监控参数" />
 
                 </Grid>
 
-                <DataGrid
-                    Name="dgChannel"
-                    Grid.Row="1"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding SelectedItem.ChannelList, ElementName=dgUUT}"
-                    MouseDoubleClick="dgChannel_MouseDoubleClick"
-                    Style="{StaticResource dgConfig}">
+                <DataGrid Name="dgChannel"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding SelectedItem.ChannelList,
+                                                ElementName=dgUUT}"
+                          MouseDoubleClick="dgChannel_MouseDoubleClick"
+                          Style="{StaticResource dgConfig}">
                     <!--<i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding ChannelSelectItemCommand}" CommandParameter="{Binding ElementName=dgChannel, Path=SelectedItem}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>-->
                     <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Code}"
-                            Header="编号" />
-                        <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding OutputType, Converter={StaticResource ouputConverter}}"
-                            Header="类型" />
-                        <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding InterfaceType, Converter={StaticResource interfaceConverter}}"
-                            Header="接口" />
-                        <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Address}"
-                            Header="地址或串口" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding Code}"
+                                            Header="编号" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding OutputType,
+                                                              Converter={StaticResource ouputConverter}}"
+                                            Header="监控" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding InterfaceType,
+                                                              Converter={StaticResource interfaceConverter}}"
+                                            Header="接口"
+                                            Visibility="Collapsed" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding Address}"
+                                            Header="地址或串口"
+                                            Visibility="Collapsed" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Grid Grid.Column="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <syscontrols:ButtonEx Grid.Column="0"
+                                          Width="100"
+                                          Height="24"
+                                          Command="{Binding AddChannelCommand}"
+                                          CommandParameter="{Binding SelectedItem,
+                                                                     ElementName=dgUUT}"
+                                          Content="通讯接口" />
+
+                </Grid>
+
+                <DataGrid Name="dgChannel1"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding SelectedItem.ChannelList,
+                                                ElementName=dgUUT}"
+                          MouseDoubleClick="dgChannel_MouseDoubleClick"
+                          Style="{StaticResource dgConfig}">
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding ChannelSelectItemCommand}" CommandParameter="{Binding ElementName=dgChannel, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding Code}"
+                                            Header="编号" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding OutputType,
+                                                              Converter={StaticResource ouputConverter}}"
+                                            Header="类型" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding InterfaceType,
+                                                              Converter={StaticResource interfaceConverter}}"
+                                            Header="接口" />
+                        <DataGridTextColumn Width="80"
+                                            Binding="{Binding Address}"
+                                            Header="地址或串口" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

@@ -72,13 +72,13 @@ namespace BITools.ViewModel.Configs
             ChannelList.Add(new ChannelViewModel { Code = "2", OutputType = (int)(OutputEnum.V) });
             ChannelList.Add(new ChannelViewModel { Code = "2", OutputType = (int)(OutputEnum.A) });
 
-            ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.V) });
-            ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.A) });
+            //ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.V) });
+            //ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.A) });
 
-            ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.V) });
-            ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.A) });
+            //ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.V) });
+            //ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.A) });
 
-            ChannelList.Add(new ChannelViewModel { Code = "5", OutputType = (int)(OutputEnum.T) });
+            ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.T) });
         }
     }
 }
