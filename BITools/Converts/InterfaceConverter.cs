@@ -1,5 +1,4 @@
 ﻿using BITools.Enums;
-using BITools.Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,7 +9,7 @@ using System.Windows.Data;
 
 namespace BITools.Converts
 {
-    class OutputConverter : IValueConverter
+    class InterfaceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -18,12 +17,12 @@ namespace BITools.Converts
                 return "未知";
 
             var val = System.Convert.ToInt32(value);
-            if (val == (int)OutputEnum.V)
-                return "电压";
-            else if (val == (int)OutputEnum.A)
-                return "电流";
+            if (val == (int)InterfaceEnum.AAA)
+                return "485";
+            else if (val == (int)InterfaceEnum.Com)
+                return "串口";
             else
-                return "温度";
+                return "";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

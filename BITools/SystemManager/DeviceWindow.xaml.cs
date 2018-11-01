@@ -1,4 +1,5 @@
 ﻿using BITools.ViewModel;
+using BITools.ViewModel.Configs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -35,13 +36,13 @@ namespace BITools.SystemManager
 
         private void DeviceConfigWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var filename = "temp.json";
-            if (System.IO.File.Exists(filename))
-            {
-                var content = System.IO.File.ReadAllText(filename);
-                var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
-                vm.TCList = list;
-            }
+            //var filename = "temp.json";
+            //if (System.IO.File.Exists(filename))
+            //{
+            //    var content = System.IO.File.ReadAllText(filename);
+            //    var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
+            //    vm.TCList = list;
+            //}
         }
 
         private void DeviceConfigWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -74,6 +75,18 @@ namespace BITools.SystemManager
             {
                 return str;
             }
+        }
+
+        private void dgChannel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if( dgChannel.SelectedItem == null)
+            {
+                return;
+            }
+
+            var channel = (ChannelViewModel)dgChannel.SelectedItem;
+            var window = new ChannelConfigWindow(channel);
+            window.ShowDialog();
         }
     }
 }

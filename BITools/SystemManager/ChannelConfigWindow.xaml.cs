@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BITools.Enums;
+using BITools.ViewModel.Configs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +21,31 @@ namespace BITools.SystemManager
     /// </summary>
     public partial class ChannelConfigWindow : BaseWindow
     {
-        public ChannelConfigWindow()
+        private ChannelViewModel channel;
+
+        public ChannelConfigWindow(ChannelViewModel channel)
         {
             InitializeComponent();
+            this.channel = channel;
             cmbInterface.SelectionChanged += CmbInterface_SelectionChanged;
             CmbInterface_SelectionChanged(null, null);
             cmbCom.ItemsSource = FunExt.GetSerialPorts();
+            this.Loaded += ChannelConfigWindow_Loaded;
+        }
+
+        private void ChannelConfigWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (channel != null)
+            {
+                txtCode.Text = channel.Code;
+                cmbType.SelectedIndex = channel.OutputType;
+                cmbInterface.SelectedIndex = channel.InterfaceType;
+
+                if ((InterfaceEnum)channel.InterfaceType == InterfaceEnum.AAA)
+                    txtNo.IncrementText = channel.Address;
+                if ((InterfaceEnum)channel.InterfaceType == InterfaceEnum.Com)
+                    cmbCom.Text = channel.Address;
+            }
         }
 
         private void CmbInterface_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -48,16 +69,12 @@ namespace BITools.SystemManager
             ChannelViewModel = new ViewModel.Configs.ChannelViewModel();
             ChannelViewModel.Code = txtCode.Text;
             ChannelViewModel.OutputType = cmbType.SelectedIndex;
-            //ChannelViewModel.Value = txtZ.Text;
-            //ChannelViewModel.SX = txtSX.Text;
-            //ChannelViewModel.XX = txtXX.Text;
-            //ChannelViewModel.Temperature = txtTemperature.Text;
+            ChannelViewModel.InterfaceType = cmbInterface.SelectedIndex;
+            if (cmbInterface.SelectedIndex == 0)
+                ChannelViewModel.Address = txtNo.IncrementText;
+            if (cmbInterface.SelectedIndex == 1)
+                ChannelViewModel.Address = cmbCom.Text;
             this.DialogResult = true;
-        }
-
-        private void cmbInterface_Selected(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

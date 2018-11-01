@@ -21,13 +21,13 @@ namespace BITools.SystemManager
     /// <summary>
     /// DeviceWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class DeviceRunTimeSetting : BaseWindow
+    public partial class DeviceRunTimeSettingWindow : BaseWindow
     {
-        DeviceConfigViewModel vm = null;
-        public DeviceRunTimeSetting()
+        DeviceRunTimeSettingViewModel vm = null;
+        public DeviceRunTimeSettingWindow()
         {
             InitializeComponent();
-            vm = new DeviceConfigViewModel();
+            vm = new DeviceRunTimeSettingViewModel();
             this.DataContext = vm;
             this.Loaded += DeviceConfigWindow_Loaded;
             this.Closing += DeviceConfigWindow_Closing;
@@ -35,14 +35,13 @@ namespace BITools.SystemManager
 
         private void DeviceConfigWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void DeviceConfigWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var content = JsonConvert.SerializeObject(vm.TCList);
-            content = ConvertJsonString(content);
-            File.WriteAllText("temp.json", content);
+            //var content = JsonConvert.SerializeObject(vm.TCList);
+            //content = ConvertJsonString(content);
+            //File.WriteAllText("temp.json", content);
         }
 
         private string ConvertJsonString(string str)

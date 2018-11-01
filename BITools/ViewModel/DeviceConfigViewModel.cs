@@ -8,15 +8,27 @@ using Microsoft.Practices.Prism.Commands;
 using System.Windows.Input;
 using BITools.SystemManager;
 using System.Collections.ObjectModel;
+using BIDataAccess.entities;
+using Newtonsoft.Json;
+using BIModel;
+using BILogic;
+using BITools.ViewModel.Configs;
 
 namespace BITools.ViewModel
 {
     class DeviceConfigViewModel : BaseViewModel
     {
+        private DeviceConfigService service;
         public DeviceConfigViewModel()
         {
             TCList = new ObservableCollection<Configs.TCViewModel>();
+            service = new DeviceConfigService();
         }
+
+        public ICommand LoadConfigCommand { get { return new DelegateCommand(LoadConfig); } }
+        public ICommand SaveConfigCommand { get { return new DelegateCommand(SaveConfig); } }
+        public ICommand ClearConfigCommand { get { return new DelegateCommand(ClarConfig); } }
+
 
         public ICommand AddTCCommand { get { return new DelegateCommand(AddTC); } }
         public ICommand ModifyTCCommand { get { return new DelegateCommand(ModifyTC); } }
@@ -29,6 +41,7 @@ namespace BITools.ViewModel
 
         public ICommand AddChannelCommand { get { return new DelegateCommand<Configs.UUTViewModel>(AddChannel); } }
         public ICommand ModifyChannelCommand { get { return new DelegateCommand(ModifyChannel); } }
+        //public ICommand ChannelSelectItemCommand { get { return new DelegateCommand<ChannelViewModel>(ModifyChannel); } }
 
         public ObservableCollection<Configs.TCViewModel> TCList
         {
@@ -36,11 +49,46 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.TCList, value); }
         }
 
-        //public Configs.TCViewModel TCSelectedItem
-        //{
-        //    get { return this.GetValue(c => c.TCSelectedItem); }
-        //    set { this.SetValue(c => c.TCSelectedItem, value); }
-        //}
+        private void LoadConfig()
+        {
+            var window = new DeviceListWindow();
+            var dialog = window.ShowDialog().GetValueOrDefault();
+            if (dialog)
+            {
+                var content = window.ConfigContent;
+                TCList = JsonConvert.DeserializeObject<ObservableCollection<Configs.TCViewModel>>(content);
+            }
+        }
+
+        private void SaveConfig()
+        {
+            if (this.TCList.Count == 0)
+                return;
+
+            var window = new ConfigNameWindow();
+            var dialog = window.ShowDialog().GetValueOrDefault();
+            if (dialog)
+            {
+                var content = JsonConvert.SerializeObject(this.TCList);
+                DeviceConfig entity = new DeviceConfig();
+                entity.Name = window.ConfigName;
+                entity.IsDefault = window.IsDefault;
+                entity.DeviceContent = content;
+                entity.User = AppContext.UserName;
+                entity.CreateTime = DateTime.Now;
+                service.CreateUser(entity);
+                MsgBox.SuccessShow("保存成功！");
+            }
+        }
+
+        private void ClarConfig()
+        {
+            var dialog = MsgBox.QuestionShow("确认清空当前配置吗？");
+            if (dialog == MsgBoxResult.OK)
+            {
+                this.TCList.Clear();
+            }
+        }
 
         private void AddTC()
         {
@@ -113,7 +161,7 @@ namespace BITools.ViewModel
 
         private void AddChannel(Configs.UUTViewModel uut)
         {
-            var window = new ChannelConfigWindow();
+            var window = new ChannelConfigWindow(null);
             var dialog = window.ShowDialog();
             if (dialog.GetValueOrDefault())
             {

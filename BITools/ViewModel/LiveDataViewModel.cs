@@ -129,7 +129,7 @@ namespace BITools.ViewModel
         public override void Loaded()
         {
             base.Loaded();
-            var temp = new UserImpl().getUser();
+            var temp = new UserService().getUser();
             temp.Insert(0, new UserInfo { UserID = 0, UserName = "全部" });
             UserCollection = new ObservableCollection<UserInfo>(temp);
             SelectedUser = UserCollection.First();

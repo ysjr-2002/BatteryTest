@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BITools.Model
+namespace BITools.Enums
 {
     /// <summary>
     /// 负载通道输出类型

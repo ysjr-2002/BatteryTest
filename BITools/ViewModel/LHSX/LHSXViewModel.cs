@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Common.NotifyBase;
 using BIDataAccess.entities;
 using BILogic;
+using BITools.Enums;
 
 namespace BITools.ViewModel.LHSX
 {
@@ -149,7 +150,7 @@ namespace BITools.ViewModel.LHSX
 
         public override void Loaded()
         {
-            var dictImpl = new DictonaryImpl();
+            var dictImpl = new DictonaryService();
 
             var list = dictImpl.QueryDictionary("SRDY");
             SRDYCollection = new ObservableCollection<Dictonary>(list);

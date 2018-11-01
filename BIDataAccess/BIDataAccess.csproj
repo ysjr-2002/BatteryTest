@@ -55,7 +55,11 @@
   <ItemGroup>
     <Compile Include="BatteryDBContext.cs" />
     <Compile Include="DBConfig.cs" />
-    <Compile Include="DictionaryService.cs" />
+    <Compile Include="DeviceConfigDal.cs" />
+    <Compile Include="DictionaryDal.cs" />
+    <Compile Include="entities\DeviceConfig.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="entities\Dictonary.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -77,7 +81,7 @@
     <Compile Include="entities\UserInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserService.cs" />
+    <Compile Include="UserDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

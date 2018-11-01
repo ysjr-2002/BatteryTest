@@ -20,11 +20,11 @@ namespace BIDataAccess.entities
         {
         }
 
-        public batteryEntities(string connectionstring)
-          : base(connectionstring)
+        public batteryEntities(string test) : base(test)
         {
-        }
 
+        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -32,5 +32,6 @@ namespace BIDataAccess.entities
     
         public virtual DbSet<Dictonary> Dictonary { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
+        public virtual DbSet<DeviceConfig> DeviceConfig { get; set; }
     }
 }

@@ -39,7 +39,7 @@ namespace BITools.ViewModel
 
             LHSXViewModel.Loaded();
 
-            var dictImpl = new DictonaryImpl();
+            var dictImpl = new DictonaryService();
             var list = dictImpl.QueryDictionary("TDBL");
             TDBLCollection = new ObservableCollection<Dictonary>(list);
             list = dictImpl.QueryDictionary("CSMS");

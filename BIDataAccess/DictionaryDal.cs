@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BIDataAccess
 {
-    public class DictionaryService
+    public class DictionaryDal
     {
         public List<Dictonary> QueryDictionary(string type)
         {

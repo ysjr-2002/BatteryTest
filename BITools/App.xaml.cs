@@ -1,4 +1,5 @@
-﻿using BITools.DataManager;
+﻿using BIModel;
+using BITools.DataManager;
 using BITools.SystemManager;
 using LL.SenicSpot.Gate.Kernal;
 using System;
@@ -19,8 +20,9 @@ namespace BITools
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            AppContext.UserName = "admin";
             NinjectKernal.Instance.Load();
-            var window = new DeviceRunTimeSetting();
+            var window = new DeviceRunTimeSettingWindow();
             Application.Current.MainWindow = window;
             window.Show();
         }

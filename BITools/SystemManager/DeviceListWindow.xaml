@@ -1,41 +1,65 @@
-﻿<base:BaseWindow x:Class="BITools.SystemManager.DeviceListWindow"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:base="clr-namespace:BITools"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:local="clr-namespace:BITools.SystemManager"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 Title="DeviceListWindow"
-                 Width="800"
-                 Height="600"
-                 Style="{StaticResource WindowStyleWithCloseBtn}"
-                 mc:Ignorable="d">
+﻿<base:BaseWindow
+    x:Class="BITools.SystemManager.DeviceListWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="clr-namespace:BITools"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:BITools.SystemManager"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="DeviceListWindow"
+    Width="600"
+    Height="400"
+    Style="{StaticResource WindowStyleWithCloseBtn}"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
 
-        <DataGrid Name="dgTC"
-                  Grid.Row="1"
-                  AutoGenerateColumns="False"
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  IsReadOnly="True"
-                  Style="{StaticResource dgConfig}">
+        <DataGrid
+            Name="dgList"
+            Grid.Row="1"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding DeviceConfigList}"
+            Style="{StaticResource dgConfig}">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="180"
-                                    Binding="{Binding Name}"
-                                    Header="名称" />
+                <DataGridTextColumn
+                    Width="180"
+                    Binding="{Binding Name}"
+                    Header="名称" />
 
-                <DataGridTextColumn Width="100"
-                                    Binding="{Binding User}"
-                                    Header="创建人" />
+                <DataGridTextColumn
+                    Width="100"
+                    Binding="{Binding User}"
+                    Header="创建人" />
 
-                <DataGridTextColumn Width="150"
-                                    Binding="{Binding Name}"
-                                    Header="创建时间" />
+                <DataGridTextColumn
+                    Width="150"
+                    Binding="{Binding CreateTime}"
+                    Header="创建时间" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button
+            Name="btnSave"
+            Grid.Row="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Width="100"
+            Height="26"
+            Click="btnSave_Click"
+            Content="确定"
+            Style="{StaticResource OKStyle}" />
     </Grid>
 </base:BaseWindow>

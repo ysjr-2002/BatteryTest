@@ -1,4 +1,5 @@
-﻿using Common.NotifyBase;
+﻿using BITools.Enums;
+using Common.NotifyBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;

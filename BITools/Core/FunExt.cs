@@ -1,4 +1,5 @@
 ﻿using BIDataAccess.entities;
+using BITools.Enums;
 using BITools.Model;
 using System;
 using System.Collections.Generic;
@@ -39,13 +40,17 @@ namespace BITools
         {
             var items = SerialPort.GetPortNames().ToList();
             items.Clear();
-            items.Insert(0, "无");
-            items.Insert(1, "COM1");
-            items.Insert(2, "COM2");
-            items.Insert(3, "COM3");
-            items.Insert(4, "COM4");
-            items.Insert(5, "COM5");
-            items.Insert(6, "COM6");
+            //items.Insert(0, "无");
+            items.Add("COM1");
+            items.Add("COM2");
+            items.Add("COM3");
+            items.Add("COM4");
+            items.Add("COM5");
+            items.Add("COM6");
+            items.Add("COM7");
+            items.Add("COM8");
+            items.Add("COM9");
+            items.Add("COM10");
             return items;
         }
 

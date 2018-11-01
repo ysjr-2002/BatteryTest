@@ -10,7 +10,5 @@ namespace BIModel
     {
         public static int UserId;
         public static string UserName;
-
-
     }
 }

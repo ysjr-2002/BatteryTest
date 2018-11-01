@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BILogic
 {
-    public class DictonaryImpl
+    public class DictonaryService
     {
         public List<Dictonary> QueryDictionary(string type)
         {
-            return new DictionaryService().QueryDictionary(type);
+            return new DictionaryDal().QueryDictionary(type);
         }
     }
 }

@@ -7,39 +7,39 @@ using System.Threading.Tasks;
 
 namespace BILogic
 {
-    public class UserImpl
+    public class UserService
     {
         public Task<bool> Login(string name, string password)
         {
             return Task.Factory.StartNew(() =>
             {
-                return new BIDataAccess.UserService().Login(name, password);
+                return new BIDataAccess.UserDal().Login(name, password);
             });
         }
 
         public List<UserInfo> getUser()
         {
-            return new BIDataAccess.UserService().GetUsers();
+            return new BIDataAccess.UserDal().GetUsers();
         }
 
         public bool CreateUser(UserInfo user)
         {
-            return new BIDataAccess.UserService().CreateUser(user);
+            return new BIDataAccess.UserDal().CreateUser(user);
         }
 
         public bool UpdateUser(UserInfo user)
         {
-            return new BIDataAccess.UserService().UpdateUser(user);
+            return new BIDataAccess.UserDal().UpdateUser(user);
         }
 
         public bool DeleteUser(UserInfo user)
         {
-            return new BIDataAccess.UserService().DeleteUser(user);
+            return new BIDataAccess.UserDal().DeleteUser(user);
         }
 
         public bool UpdatePassWord(int userId, string password)
         {
-            return new BIDataAccess.UserService().UpdatePassWord(userId, password);
+            return new BIDataAccess.UserDal().UpdatePassWord(userId, password);
         }
     }
 }

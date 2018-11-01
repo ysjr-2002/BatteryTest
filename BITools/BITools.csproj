@@ -136,6 +136,7 @@
     <Compile Include="Base\BaseWindow.cs" />
     <Compile Include="Converts\BoolToVisibilityConverter.cs" />
     <Compile Include="Converts\ComVisibilityConverter.cs" />
+    <Compile Include="Converts\InterfaceConverter.cs" />
     <Compile Include="Converts\IntToTimeSpanConverter.cs" />
     <Compile Include="Converts\OutputConverter.cs" />
     <Compile Include="Converts\RowToIndexConverter.cs" />
@@ -189,11 +190,14 @@
     <Compile Include="SystemManager\DeviceParamWindow.xaml.cs">
       <DependentUpon>DeviceParamWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SystemManager\DeviceRunTimeSetting.xaml.cs">
-      <DependentUpon>DeviceRunTimeSetting.xaml</DependentUpon>
+    <Compile Include="SystemManager\DeviceRunTimeSettingWindow.xaml.cs">
+      <DependentUpon>DeviceRunTimeSettingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemManager\DeviceWindow.xaml.cs">
       <DependentUpon>DeviceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\LayerParamWindow.xaml.cs">
+      <DependentUpon>LayerParamWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemManager\LayerConfigWindow.xaml.cs">
       <DependentUpon>LayerConfigWindow.xaml</DependentUpon>
@@ -228,6 +232,9 @@
     <Compile Include="SystemManager\UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemManager\ConfigNameWindow.xaml.cs">
+      <DependentUpon>ConfigNameWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemManager\UUTConfigWindow.xaml.cs">
       <DependentUpon>UUTConfigWindow.xaml</DependentUpon>
     </Compile>
@@ -254,6 +261,9 @@
     <Compile Include="UIControls\LayerView.xaml.cs">
       <DependentUpon>LayerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIControls\SelectFloat.xaml.cs">
+      <DependentUpon>SelectFloat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIControls\SelectNumeric.xaml.cs">
       <DependentUpon>SelectNumeric.xaml</DependentUpon>
     </Compile>
@@ -275,6 +285,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChannelInfo.cs" />
     <Compile Include="ViewModel\Configs\ChannelViewModel.cs" />
+    <Compile Include="ViewModel\Configs\DeviceListViewModel.cs" />
     <Compile Include="ViewModel\Configs\LayerViewModel.cs" />
     <Compile Include="ViewModel\Configs\TCViewModel.cs" />
     <Compile Include="ViewModel\Configs\UUTViewModel.cs" />
@@ -282,6 +293,7 @@
     <Compile Include="ViewModel\DeveInfo.cs" />
     <Compile Include="ViewModel\DeviceConfigViewModel.cs" />
     <Compile Include="ViewModel\DeviceParamViewModel.cs" />
+    <Compile Include="ViewModel\DeviceRunTimeSettingViewModel.cs" />
     <Compile Include="ViewModel\LHSX\LHSXViewModel.cs" />
     <Compile Include="ViewModel\LayerViewModel.cs" />
     <Compile Include="ViewModel\LiveDataViewModel.cs" />
@@ -409,13 +421,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SystemManager\DeviceRunTimeSetting.xaml">
+    <Page Include="SystemManager\DeviceRunTimeSettingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SystemManager\DeviceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\LayerParamWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SystemManager\LayerConfigWindow.xaml">
       <SubType>Designer</SubType>
@@ -465,6 +481,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SystemManager\ConfigNameWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SystemManager\UUTConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -496,6 +516,10 @@
     <Page Include="UIControls\LayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIControls\SelectFloat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UIControls\SelectNumeric.xaml">
       <SubType>Designer</SubType>

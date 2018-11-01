@@ -15,13 +15,13 @@ namespace BITools.ViewModel
 {
     public class UserManagerViewModel : BaseViewModel
     {
-        private UserImpl userImpl;
+        private UserService userImpl;
         private UserInfo selectedUser = null;
         private const string PASSWORD_DEFAULT = "123456";
 
         public UserManagerViewModel()
         {
-            userImpl = new UserImpl();
+            userImpl = new UserService();
         }
 
         public ObservableCollection<UserInfo> UserCollection

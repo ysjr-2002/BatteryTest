@@ -5,12 +5,11 @@
     xmlns:cvt="clr-namespace:BITools.Converts"
     xmlns:local="clr-namespace:BITools">
 
-
     <cvt:BoolToVisibilityConverter x:Key="boolToVisibility" />
     <cvt:IntToTimeSpanConverter x:Key="intToTimeSpan" />
     <cvt:RowToIndexConverter x:Key="rowToIndex" />
     <cvt:OutputConverter x:Key="ouputConverter" />
-
+    <cvt:InterfaceConverter x:Key="interfaceConverter" />
 
     <!--  FFD6DBE9  -->
     <SolidColorBrush x:Key="MainTitleBackground" Color="#FF2E69C5" />
@@ -326,5 +325,7 @@
     <SolidColorBrush x:Key="hgColorBrush" Color="Green" />
     <!--  负载保护  -->
     <SolidColorBrush x:Key="fzbhColorBrush" Color="Black" />
+
+    <SolidColorBrush x:Key="hoverColorBrush" Color="#30a3ed" />
 
 </ResourceDictionary>

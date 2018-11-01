@@ -16,7 +16,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="bg" Property="Background" Value="Red" />
+                            <Setter TargetName="bg" Property="Background" Value="{StaticResource hoverColorBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

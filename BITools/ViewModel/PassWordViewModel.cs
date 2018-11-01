@@ -16,11 +16,11 @@ namespace BITools.ViewModel
     /// </summary>
     public class PassWordViewModel : BaseViewModel
     {
-        private UserImpl userImpl;
+        private UserService userImpl;
 
         public PassWordViewModel()
         {
-            userImpl = new UserImpl();
+            userImpl = new UserService();
         }
 
         public string Name

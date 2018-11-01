@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Media;
 using System.Windows;
 using BITools.Model;
+using BITools.Enums;
 
 namespace BITools.ViewModel.Configs
 {
@@ -41,9 +42,9 @@ namespace BITools.ViewModel.Configs
         {
             var s = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
             var index = new Random(s).Next(0, 10);
-            if( index == 0)
+            if (index == 0)
                 StateBrush = Application.Current.FindResource("tjColorBrush") as SolidColorBrush;
-            else if( index == 1)
+            else if (index == 1)
                 StateBrush = Application.Current.FindResource("lzycColorBrush") as SolidColorBrush;
             else if (index == 2)
                 StateBrush = Application.Current.FindResource("wcpColorBrush") as SolidColorBrush;
@@ -74,7 +75,10 @@ namespace BITools.ViewModel.Configs
             ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.V) });
             ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.A) });
 
-            ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.T) });
+            ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.V) });
+            ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.A) });
+
+            ChannelList.Add(new ChannelViewModel { Code = "5", OutputType = (int)(OutputEnum.T) });
         }
     }
 }

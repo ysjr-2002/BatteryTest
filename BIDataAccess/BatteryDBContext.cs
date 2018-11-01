@@ -15,6 +15,10 @@ namespace BIDataAccess
             connectionstring = DBConfig.DataBaseConnectionString();
         }
 
+        //public batteryEntities(string test) : base(test)
+        //{
+        //}
+
         public static batteryEntities GetConnect()
         {
             return new batteryEntities(connectionstring);

@@ -7,49 +7,30 @@ using System.Threading.Tasks;
 
 namespace BIDataAccess
 {
-    public class UserService
+    public class DeviceConfigDal
     {
-        public bool Login(string name, string password)
+        public List<DeviceConfig> GetDeviceConfigs()
         {
             try
             {
                 using (var db = BatteryDBContext.GetConnect())
                 {
-                    var item = db.UserInfo.FirstOrDefault(s => s.UserName == name && s.Password == password);
-                    if (item != null)
-                        return true;
-                    else
-                        return false;
+                    return db.DeviceConfig.ToList();
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                return new List<DeviceConfig>();
             }
         }
 
-        public List<UserInfo> GetUsers()
+        public bool Create(DeviceConfig entity)
         {
             try
             {
                 using (var db = BatteryDBContext.GetConnect())
                 {
-                    return db.UserInfo.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<UserInfo>();
-            }
-        }
-
-        public bool CreateUser(UserInfo user)
-        {
-            try
-            {
-                using (var db = BatteryDBContext.GetConnect())
-                {
-                    db.UserInfo.Add(user);
+                    db.DeviceConfig.Add(entity);
                     int ret = db.SaveChanges();
                     return ret >= 1;
                 }
@@ -60,13 +41,13 @@ namespace BIDataAccess
             }
         }
 
-        public bool UpdateUser(UserInfo user)
+        public bool Update(DeviceConfig entity)
         {
             try
             {
                 using (var db = BatteryDBContext.GetConnect())
                 {
-                    var entry = db.Entry<UserInfo>(user);
+                    var entry = db.Entry<DeviceConfig>(entity);
                     entry.State = System.Data.Entity.EntityState.Modified;
                     var ret = db.SaveChanges();
                     return ret >= 1;
@@ -78,37 +59,19 @@ namespace BIDataAccess
             }
         }
 
-        public bool DeleteUser(UserInfo user)
+        public bool Delete(DeviceConfig entity)
         {
             try
             {
                 using (var db = BatteryDBContext.GetConnect())
                 {
-                    var entry = db.Entry<UserInfo>(user);
+                    var entry = db.Entry<DeviceConfig>(entity);
                     entry.State = System.Data.Entity.EntityState.Deleted;
                     var ret = db.SaveChanges();
                     return ret >= 1;
                 }
             }
             catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public bool UpdatePassWord(int userId, string password)
-        {
-            try
-            {
-                using (var db = BatteryDBContext.GetConnect())
-                {
-                    var user = db.UserInfo.First((s) => s.UserID == userId);
-                    user.Password = password;
-                    var ret = db.SaveChanges();
-                    return ret >= 0;
-                }
-            }
-            catch
             {
                 return false;
             }

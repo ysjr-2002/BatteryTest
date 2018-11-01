@@ -27,12 +27,12 @@ namespace BITools
     {
         private const string temp_file = "battery.txt";
 
-        private UserImpl userImpl;
+        private UserService userImpl;
 
         public LoginWindow()
         {
             InitializeComponent();
-            userImpl = new UserImpl();
+            userImpl = new UserService();
             this.Loaded += LoginWindow_Loaded;
         }
 

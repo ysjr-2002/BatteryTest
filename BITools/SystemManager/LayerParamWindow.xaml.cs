@@ -1,5 +1,4 @@
-﻿using BIDataAccess.entities;
-using BITools.ViewModel.Configs;
+﻿using BITools.ViewModel.Configs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,26 +16,26 @@ using System.Windows.Shapes;
 namespace BITools.SystemManager
 {
     /// <summary>
-    /// DeviceListWindow.xaml 的交互逻辑
+    /// LayerParamWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class DeviceListWindow : BaseWindow
+    public partial class LayerParamWindow : BaseWindow
     {
-        public DeviceListWindow()
+        public LayerParamWindow()
         {
             InitializeComponent();
-            this.DataContext = new DeviceListViewModel();
         }
 
-        public string ConfigContent { get; set; }
+        public LayerViewModel LayerViewModel { get; set; }
+
+        public string MaxLayer { get; set; }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (dgList.SelectedItem == null)
-            {
-                return;
-            }
-            var model = (DeviceConfig)dgList.SelectedItem;
-            ConfigContent = model.DeviceContent;
+            LayerViewModel = new LayerViewModel();
+            LayerViewModel.Code = txtCode.Text;
+            LayerViewModel.Name = txtName.Text;
+            //LayerViewModel.LHSJ = txtTime.Text;
+            MaxLayer = txtMaxLayer.Text;
             this.DialogResult = true;
         }
     }
