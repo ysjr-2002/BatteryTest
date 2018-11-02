@@ -42,7 +42,8 @@ FrameworkPropertyMetadata(IncrementChanged));
                 SelectFloat item = sender as SelectFloat;
                 TextBox tb = (TextBox)LogicalTreeHelper.FindLogicalNode(item, "txt");
                 //TextBox tb = UIHelper.FindChild<TextBox>(item, "txt");
-                tb.Text = newValue.ToString("f2");
+                string val = newValue.ToString("f2");
+                tb.Text = val;
             }
             catch { }
         }
@@ -68,7 +69,7 @@ FrameworkPropertyMetadata(IncrementTextChanged));
                 if (e.NewValue == null) return;
                 SelectFloat item = sender as SelectFloat;
                 item.Increment = Convert.ToSingle(e.NewValue);
-                item.txt.Text = item.Increment.ToString();
+                item.txt.Text = item.Increment.ToString("f2");
             }
             catch { }
         }

@@ -66,19 +66,15 @@ namespace BITools.ViewModel.Configs
 
         public void Init()
         {
-            ChannelList.Add(new ChannelViewModel { Code = "1", OutputType = (int)(OutputEnum.V) });
-            ChannelList.Add(new ChannelViewModel { Code = "1", OutputType = (int)(OutputEnum.A) });
+            var c1 = new ChannelViewModel { Code = "1", Name = "负载通道1", ChannelType = (int)ChannelTypeEnum.FZ };
+            var c2 = new ChannelViewModel { Code = "2", Name = "负载通道2", ChannelType = (int)ChannelTypeEnum.FZ };
+            c1.Init();
+            c2.Init();
+            ChannelList.Add(c1);
+            ChannelList.Add(c2);
 
-            ChannelList.Add(new ChannelViewModel { Code = "2", OutputType = (int)(OutputEnum.V) });
-            ChannelList.Add(new ChannelViewModel { Code = "2", OutputType = (int)(OutputEnum.A) });
-
-            //ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.V) });
-            //ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.A) });
-
-            //ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.V) });
-            //ChannelList.Add(new ChannelViewModel { Code = "4", OutputType = (int)(OutputEnum.A) });
-
-            ChannelList.Add(new ChannelViewModel { Code = "3", OutputType = (int)(OutputEnum.T) });
+            ChannelList.Add(new ChannelViewModel { Code = "3", Name = "机台通道", ChannelType = (int)ChannelTypeEnum.JT });
+            ChannelList.Add(new ChannelViewModel { Code = "4", Name = "温度通道", ChannelType = (int)ChannelTypeEnum.Temperature });
         }
     }
 }

@@ -35,17 +35,17 @@ namespace BITools.SystemManager
 
         private void ChannelConfigWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (channel != null)
-            {
-                txtCode.Text = channel.Code;
-                cmbType.SelectedIndex = channel.OutputType;
-                cmbInterface.SelectedIndex = channel.InterfaceType;
+            //if (channel != null)
+            //{
+            //    txtCode.Text = channel.Code;
+            //    cmbType.SelectedIndex = channel.OutputType;
+            //    cmbInterface.SelectedIndex = channel.InterfaceType;
 
-                if ((InterfaceEnum)channel.InterfaceType == InterfaceEnum.AAA)
-                    txtNo.IncrementText = channel.Address;
-                if ((InterfaceEnum)channel.InterfaceType == InterfaceEnum.Com)
-                    cmbCom.Text = channel.Address;
-            }
+            //    if ((InterfaceEnum)channel.InterfaceType == InterfaceEnum.AAA)
+            //        txtNo.IncrementText = channel.Name;
+            //    if ((InterfaceEnum)channel.InterfaceType == InterfaceEnum.Com)
+            //        cmbCom.Text = channel.Name;
+            //}
         }
 
         private void CmbInterface_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,15 +66,15 @@ namespace BITools.SystemManager
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            ChannelViewModel = new ViewModel.Configs.ChannelViewModel();
-            ChannelViewModel.Code = txtCode.Text;
-            ChannelViewModel.OutputType = cmbType.SelectedIndex;
-            ChannelViewModel.InterfaceType = cmbInterface.SelectedIndex;
-            if (cmbInterface.SelectedIndex == 0)
-                ChannelViewModel.Address = txtNo.IncrementText;
-            if (cmbInterface.SelectedIndex == 1)
-                ChannelViewModel.Address = cmbCom.Text;
-            this.DialogResult = true;
+            //ChannelViewModel = new ViewModel.Configs.ChannelViewModel();
+            //ChannelViewModel.Code = txtCode.Text;
+            //ChannelViewModel.OutputType = cmbType.SelectedIndex;
+            //ChannelViewModel.InterfaceType = cmbInterface.SelectedIndex;
+            //if (cmbInterface.SelectedIndex == 0)
+            //    ChannelViewModel.Name = txtNo.IncrementText;
+            //if (cmbInterface.SelectedIndex == 1)
+            //    ChannelViewModel.Name = cmbCom.Text;
+            //this.DialogResult = true;
         }
     }
 }

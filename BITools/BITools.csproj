@@ -143,7 +143,9 @@
     <Compile Include="Core\Config.cs" />
     <Compile Include="Core\DeviceParamJson.cs" />
     <Compile Include="Core\StateBrushConstrant.cs" />
+    <Compile Include="Enums\ChannelTypeEnum.cs" />
     <Compile Include="Enums\InterfaceEnum.cs" />
+    <Compile Include="Enums\ValTypeEnum.cs" />
     <Compile Include="Helpers\FileDialogHelper.cs" />
     <Compile Include="Core\FileManager.cs" />
     <Compile Include="Core\FunExt.cs" />
@@ -238,6 +240,7 @@
     <Compile Include="SystemManager\UUTConfigWindow.xaml.cs">
       <DependentUpon>UUTConfigWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TemplateSelector\ParamValueSelector.cs" />
     <Compile Include="Tools\UIHelper.cs" />
     <Compile Include="UIControls\BlockView.xaml.cs">
       <DependentUpon>BlockView.xaml</DependentUpon>
@@ -284,9 +287,11 @@
     <Compile Include="ViewModel\BaseMainViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChannelInfo.cs" />
+    <Compile Include="ViewModel\Configs\ChannelSubViewModel.cs" />
     <Compile Include="ViewModel\Configs\ChannelViewModel.cs" />
     <Compile Include="ViewModel\Configs\DeviceListViewModel.cs" />
     <Compile Include="ViewModel\Configs\LayerViewModel.cs" />
+    <Compile Include="ViewModel\Configs\MonitorParamViewModel.cs" />
     <Compile Include="ViewModel\Configs\TCViewModel.cs" />
     <Compile Include="ViewModel\Configs\UUTViewModel.cs" />
     <Compile Include="ViewModel\DataSaveViewModel.cs" />

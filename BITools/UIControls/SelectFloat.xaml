@@ -33,7 +33,7 @@
             <TextBox
                 x:Name="txt"
                 Grid.Column="1"
-                Width="30"
+                Width="50"
                 Margin="0,0,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"

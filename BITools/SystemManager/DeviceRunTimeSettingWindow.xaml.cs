@@ -1,4 +1,5 @@
 ﻿using BITools.ViewModel;
+using BITools.ViewModel.Configs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -68,5 +69,38 @@ namespace BITools.SystemManager
                 return str;
             }
         }
+
+        private void ButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            var list = dgMonitorParam.ItemsSource as ObservableCollection<MonitorParamViewModel>;
+
+            foreach (object o in dgMonitorParam.Items)
+            {
+                DataGridRow lbi = dgMonitorParam.ItemContainerGenerator.ContainerFromItem(o) as DataGridRow;
+                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(lbi);
+                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                var aa = myDataTemplate.FindName("abc", myContentPresenter) ;
+                //tbhaha.IsChecked = false;
+            }
+            //tb.IsChecked = true;
+        }
+
+        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is childItem)
+                    return (childItem)child;
+                else
+                {
+                    childItem childOfChild = FindVisualChild<childItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }
+
     }
 }

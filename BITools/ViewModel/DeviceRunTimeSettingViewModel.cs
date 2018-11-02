@@ -24,6 +24,9 @@ namespace BITools.ViewModel
         public ICommand ClearConfigCommand { get { return new DelegateCommand(ClarConfig); } }
 
         public ICommand AddLayerCommand { get { return new DelegateCommand(AddTC); } }
+        public ICommand SaveChannelCommand { get { return new DelegateCommand(Saveabc); } }
+
+        
 
         public ObservableCollection<Configs.TCViewModel> TCList
         {
@@ -76,6 +79,11 @@ namespace BITools.ViewModel
         {
             var window = new LayerParamWindow();
             window.ShowDialog();
+        }
+
+        private void Saveabc()
+        {
+
         }
     }
 }
