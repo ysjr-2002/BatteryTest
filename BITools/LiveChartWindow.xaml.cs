@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace BITools
+{
+    /// <summary>
+    /// LiveChartWindow.xaml 的交互逻辑
+    /// </summary>
+    public partial class LiveChartWindow : Window
+    {
+        public LiveChartWindow()
+        {
+            InitializeComponent();
+            this.DataContext = new ChartTestViewModel();
+            this.Loaded += LiveChartWindow_Loaded;
+        }
+
+        private void LiveChartWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //List<string> labels = new List<string>();
+            //for (int i = 1; i < 20; i++)
+            //{
+            //    labels.Add(i.ToString("d2"));
+            //}
+            //chartV.AxisX.Add(new LiveCharts.Wpf.Axis { Labels = labels });
+        }
+    }
+}

@@ -10,6 +10,7 @@
     <cvt:RowToIndexConverter x:Key="rowToIndex" />
     <cvt:OutputConverter x:Key="ouputConverter" />
     <cvt:InterfaceConverter x:Key="interfaceConverter" />
+    <cvt:StringToIntConverter x:Key="stringToIntConverter" />
 
     <!--  FFD6DBE9  -->
     <SolidColorBrush x:Key="MainTitleBackground" Color="#FF2E69C5" />

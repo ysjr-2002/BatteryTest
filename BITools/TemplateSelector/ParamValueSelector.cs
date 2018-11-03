@@ -40,14 +40,21 @@ namespace BITools.TemplateSelector
             {
                 var dictImpl = new DictonaryService();
                 var list = dictImpl.QueryDictionary("CSMS");
-
-                var datatemplate = element.FindResource("aa") as DataTemplate;
-                //var tt = datatemplate.FindName("abc", parent);
+                var datatemplate = element.FindResource("dtSelector") as DataTemplate;
+                FrameworkElement fe = datatemplate.LoadContent() as FrameworkElement;
+                var combobox = UIHelper.FindChild<ComboBox>(fe, "cmbCSMS");
+                if (combobox != null)
+                {
+                    foreach (Dictonary dict in list)
+                    {
+                        combobox.Items.Add(new ComboBoxItem { Content = dict.Name });
+                    }
+                }
                 return datatemplate;
             }
             else if (dc.ValType == (int)ValTypeEnum.Input)
             {
-                return element.FindResource("bb") as DataTemplate;
+                return element.FindResource("dtInput") as DataTemplate;
             }
             return base.SelectTemplate(item, container);
         }

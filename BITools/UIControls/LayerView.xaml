@@ -175,6 +175,7 @@
                 BorderThickness="0"
                 Command="{Binding SDJCCommand}"
                 Content="上电检测"
+                IsEnabled="{Binding IsSDEnable}"
                 NormalImage="/BITools;component/Images/detail.png"
                 NormalImagePlacement="Top" />
             <syscontrols:ButtonEx

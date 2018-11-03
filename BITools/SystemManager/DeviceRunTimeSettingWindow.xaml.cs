@@ -1,4 +1,6 @@
-﻿using BITools.ViewModel;
+﻿using BITools.Enums;
+using BITools.Helpers;
+using BITools.ViewModel;
 using BITools.ViewModel.Configs;
 using Newtonsoft.Json;
 using System;
@@ -30,44 +32,26 @@ namespace BITools.SystemManager
             InitializeComponent();
             vm = new DeviceRunTimeSettingViewModel();
             this.DataContext = vm;
-            this.Loaded += DeviceConfigWindow_Loaded;
-            this.Closing += DeviceConfigWindow_Closing;
+            this.Loaded += DeviceRunTimeSettingWindow_Loaded;
+            this.Closing += DeviceRunTimeSettingWindow_Closing;
         }
 
-        private void DeviceConfigWindow_Loaded(object sender, RoutedEventArgs e)
+        private void DeviceRunTimeSettingWindow_Loaded(object sender, RoutedEventArgs e)
         {
-        }
-
-        private void DeviceConfigWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //var content = JsonConvert.SerializeObject(vm.TCList);
-            //content = ConvertJsonString(content);
-            //File.WriteAllText("temp.json", content);
-        }
-
-        private string ConvertJsonString(string str)
-        {
-            //格式化json字符串
-            JsonSerializer serializer = new JsonSerializer();
-            TextReader tr = new StringReader(str);
-            JsonTextReader jtr = new JsonTextReader(tr);
-            object obj = serializer.Deserialize(jtr);
-            if (obj != null)
+            var filename = "temp.json";
+            if (System.IO.File.Exists(filename))
             {
-                StringWriter textWriter = new StringWriter();
-                JsonTextWriter jsonWriter = new JsonTextWriter(textWriter)
-                {
-                    Formatting = Formatting.Indented,
-                    Indentation = 4,
-                    IndentChar = ' '
-                };
-                serializer.Serialize(jsonWriter, obj);
-                return textWriter.ToString();
+                var content = System.IO.File.ReadAllText(filename);
+                var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
+                vm.TCList = list;
             }
-            else
-            {
-                return str;
-            }
+        }
+
+        private void DeviceRunTimeSettingWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var content = JsonConvert.SerializeObject(vm.TCList);
+            content = FunExt.JsonFormatter(content);
+            System.IO.File.WriteAllText("temp.json", content);
         }
 
         private void ButtonEx_Click(object sender, RoutedEventArgs e)
@@ -76,31 +60,19 @@ namespace BITools.SystemManager
 
             foreach (object o in dgMonitorParam.Items)
             {
-                DataGridRow lbi = dgMonitorParam.ItemContainerGenerator.ContainerFromItem(o) as DataGridRow;
-                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(lbi);
-                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                var aa = myDataTemplate.FindName("abc", myContentPresenter) ;
-                //tbhaha.IsChecked = false;
-            }
-            //tb.IsChecked = true;
-        }
-
-        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is childItem)
-                    return (childItem)child;
+                DataGridRow rowItem = dgMonitorParam.ItemContainerGenerator.ContainerFromItem(o) as DataGridRow;
+                var model = rowItem.DataContext as MonitorParamViewModel;
+                if (model.ValType == (int)ValTypeEnum.Selector)
+                {
+                    var cmbCSMS = UIHelper.FindChild<ComboBox>(rowItem, "cmbCSMS");
+                    model.Val = cmbCSMS.SelectedIndex.ToString();
+                }
                 else
                 {
-                    childItem childOfChild = FindVisualChild<childItem>(child);
-                    if (childOfChild != null)
-                        return childOfChild;
+                    var txtVal = UIHelper.FindChild<TextBox>(rowItem, "txtVal");
+                    model.Val = txtVal.Text;
                 }
             }
-            return null;
         }
-
     }
 }

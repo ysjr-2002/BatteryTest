@@ -1,9 +1,11 @@
 ﻿using BIDataAccess.entities;
 using BITools.Enums;
 using BITools.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Reflection;
@@ -23,6 +25,13 @@ namespace BITools
         {
             var i = 0;
             Int32.TryParse(str, out i);
+            return i;
+        }
+
+        public static float ToFloat(this string str)
+        {
+            var i = 0f;
+            float.TryParse(str, out i);
             return i;
         }
 
@@ -103,6 +112,31 @@ namespace BITools
             }
             else
                 return "秒";
+        }
+
+        public static string JsonFormatter(string str)
+        {
+            //格式化json字符串
+            JsonSerializer serializer = new JsonSerializer();
+            TextReader tr = new StringReader(str);
+            JsonTextReader jtr = new JsonTextReader(tr);
+            object obj = serializer.Deserialize(jtr);
+            if (obj != null)
+            {
+                StringWriter textWriter = new StringWriter();
+                JsonTextWriter jsonWriter = new JsonTextWriter(textWriter)
+                {
+                    Formatting = Formatting.Indented,
+                    Indentation = 4,
+                    IndentChar = ' '
+                };
+                serializer.Serialize(jsonWriter, obj);
+                return textWriter.ToString();
+            }
+            else
+            {
+                return str;
+            }
         }
 
         public static string GetDescription(Enum en)

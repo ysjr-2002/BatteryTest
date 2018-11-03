@@ -1,6 +1,7 @@
 ﻿using BIModel;
 using BITools.Core;
 using BITools.DataManager;
+using BITools.Enums;
 using BITools.Helpers;
 using BITools.ViewModel.Configs;
 using Common.NotifyBase;
@@ -35,13 +36,15 @@ namespace BITools.ViewModel
                 lhcsdy = "ss",
                 acsr = "0V",
                 aczt = "OFF",
-                zs = 100,
-                hg = 99,
+                zs = 0,
+                hg = 0,
                 bl = 1,
                 bll = "99%"
             });
             lhsjEnum = LHSJEnum.LHZSJ;
             LHSJName = FunExt.GetDescription(lhsjEnum);
+
+            IsSDEnable = true;
         }
 
         public ObservableCollection<UUTViewModel> UUTList
@@ -121,6 +124,12 @@ namespace BITools.ViewModel
         public ICommand CKTXMCommand { get { return new DelegateCommand(CKTXM); } }
         public ICommand BJFWCommand { get { return new DelegateCommand(BJFW); } }
 
+        public bool IsSDEnable
+        {
+            get { return this.GetValue(c => c.IsSDEnable); }
+            set { this.SetValue(c => c.IsSDEnable, value); }
+        }
+
         private void SelectCPXH()
         {
             var path = FileDialogHelper.OpenFileDialog();
@@ -154,6 +163,7 @@ namespace BITools.ViewModel
             if (IsRuning)
                 return;
 
+            IsSDEnable = false;
             IsRuning = true;
             Task.Factory.StartNew(() =>
             {
@@ -230,7 +240,6 @@ namespace BITools.ViewModel
         /// </summary>
         private void BJFW()
         {
-
         }
 
         private void SwitchTime()
@@ -242,14 +251,47 @@ namespace BITools.ViewModel
 
         private void ReadData()
         {
-            var c = UUTList.Count;
-            var s = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
-            var index = new Random(s).Next(0, c);
+            if (UUTList.Count == 0)
+                return;
 
-            var uut = UUTList[index];
-            uut.ChangeState();
-            Console.WriteLine(index);
-            //uut.ChannelList.FirstOrDefault(s=>s)
+            var fzcount = UUTList[0].ChannelList.Count(c => c.ChannelType == (int)ChannelTypeEnum.FZ);
+            for (int i = 0; i < UUTList.Count; i++)
+            {
+                var uut = UUTList[i];
+                var message = "";
+                GetMeasValueByUUTIndex(i, out message);
+
+                uut.ChangeState();
+
+                var items = message.Split(';');
+                if (items.Length != fzcount)
+                    break;
+
+                //负载电压开始
+                var s = 3;
+                for (int j = 0; j < items.Length; j++)
+                {
+                    var fz = message[j];
+                    var fzval = uut.ChannelList[j].MontiorParamList[1].Val;
+                    var v = uut.ChannelList[j].MontiorParamList[s].Val.ToFloat();
+                    var a = uut.ChannelList[j].MontiorParamList[s + 1].Val.ToFloat();
+                    s += 2;
+                }
+                Console.WriteLine(i);
+
+                Thread.Sleep(1);
+            }
+        }
+
+        private void GetMeasValueByUUTIndex(int uutIndex, out string message)
+        {
+            var seed = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
+            //负载1 电压,电流
+            var fz1 = new Random(seed).Next(10, 15) + "," + new Random(seed).Next(1, 5);
+            //负载2 电压,电流
+            var fz2 = new Random(seed).Next(10, 15) + "," + new Random(seed).Next(1, 5);
+
+            message = string.Concat(fz1, ";", fz2);
         }
     }
 }

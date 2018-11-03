@@ -22,21 +22,27 @@
     </i:Interaction.Triggers>
 
     <Window.Resources>
-        <DataTemplate x:Key="aa">
+        <DataTemplate x:Key="dtSelector">
             <StackPanel>
                 <ComboBox
-                    Name="abc"
+                    Name="cmbCSMS"
                     Width="120"
-                    SelectedValue="{Binding Val, Mode=TwoWay}">
-                    <ComboBoxItem Content="恒压" />
-                    <ComboBoxItem Content="恒流" />
+                    SelectedIndex="{Binding Val, Converter={StaticResource stringToIntConverter}}">
+                    <ComboBoxItem Content="1-CC模式" />
+                    <ComboBoxItem Content="2-CV模式" />
+                    <ComboBoxItem Content="3-LED模式1" />
+                    <ComboBoxItem Content="4-LED模式1" />
+                    <ComboBoxItem Content="5-LED模式1" />
                 </ComboBox>
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="bb">
+        <DataTemplate x:Key="dtInput">
             <StackPanel>
-                <TextBox Width="120" Text="{Binding Val}" />
+                <TextBox
+                    Name="txtVal"
+                    Width="120"
+                    Text="{Binding Val}" />
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
@@ -284,13 +290,9 @@
                             Width="100"
                             Binding="{Binding Name}"
                             Header="监控参数" />
-                        <!--<DataGridTextColumn
-                            Width="100"
-                            Binding="{Binding Val}"
-                            Header="值" />-->
                         <DataGridTemplateColumn Header="值">
                             <DataGridTemplateColumn.CellTemplateSelector>
-                                <selector:ParamValueSelector FirstTemplate="{StaticResource aa}" SecondTemplate="{StaticResource bb}" />
+                                <selector:ParamValueSelector FirstTemplate="{StaticResource dtSelector}" SecondTemplate="{StaticResource dtInput}" />
                             </DataGridTemplateColumn.CellTemplateSelector>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>

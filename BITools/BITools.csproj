@@ -134,12 +134,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Base\BaseWindow.cs" />
+    <Compile Include="ChartTestViewModel.cs" />
     <Compile Include="Converts\BoolToVisibilityConverter.cs" />
     <Compile Include="Converts\ComVisibilityConverter.cs" />
     <Compile Include="Converts\InterfaceConverter.cs" />
     <Compile Include="Converts\IntToTimeSpanConverter.cs" />
     <Compile Include="Converts\OutputConverter.cs" />
     <Compile Include="Converts\RowToIndexConverter.cs" />
+    <Compile Include="Converts\StringToIntConverter.cs" />
     <Compile Include="Core\Config.cs" />
     <Compile Include="Core\DeviceParamJson.cs" />
     <Compile Include="Core\StateBrushConstrant.cs" />
@@ -165,6 +167,9 @@
     <Compile Include="Excel\ExcelHelper.cs" />
     <Compile Include="Helpers\UIHelper.cs" />
     <Compile Include="Kernal\NinjectKernal.cs" />
+    <Compile Include="LiveChartWindow.xaml.cs">
+      <DependentUpon>LiveChartWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\LHSXInfo.cs" />
     <Compile Include="Enums\OutputEnum.cs" />
     <Compile Include="Enums\RepeatUnitEnum.cs" />
@@ -316,6 +321,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataManager\LiveDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LiveChartWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
