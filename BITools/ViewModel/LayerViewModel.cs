@@ -34,7 +34,7 @@ namespace BITools.ViewModel
                 sbbh = name,
                 sm = 1,
                 lhcsdy = "ss",
-                acsr = "0V",
+                acsr = "380V",
                 aczt = "OFF",
                 zs = 0,
                 hg = 0,
@@ -184,6 +184,7 @@ namespace BITools.ViewModel
         {
             Task.Factory.StartNew(() =>
             {
+                this.TestDataCollection.First().aczt = "On";
                 while (IsRuning && mre.WaitOne())
                 {
                     Lhzsj++;

@@ -11,7 +11,13 @@ namespace BITools.Enums
     /// </summary>
     public enum RepeatUnitEnum
     {
+        /// <summary>
+        /// 分钟
+        /// </summary>
         Fen,
+        /// <summary>
+        /// 次数
+        /// </summary>
         Ci
     }
 }

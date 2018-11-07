@@ -22,7 +22,7 @@ namespace BITools
         {
             AppContext.UserName = "admin";
             NinjectKernal.Instance.Load();
-            var window = new DeviceWindow();
+            var window = new MainWindow();
             Application.Current.MainWindow = window;
             window.Show();
         }

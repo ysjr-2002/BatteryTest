@@ -12,6 +12,9 @@ using BITools.Enums;
 
 namespace BITools.ViewModel.Configs
 {
+    /// <summary>
+    /// 台车
+    /// </summary>
     public class UUTViewModel : PropertyNotifyObject
     {
         public UUTViewModel()
@@ -32,6 +35,9 @@ namespace BITools.ViewModel.Configs
             set { this.SetValue(c => c.StateBrush, value); }
         }
 
+        /// <summary>
+        /// 通道集合
+        /// </summary>
         public ObservableCollection<ChannelViewModel> ChannelList
         {
             get { return this.GetValue(c => c.ChannelList); }

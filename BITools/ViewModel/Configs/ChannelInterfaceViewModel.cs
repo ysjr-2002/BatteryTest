@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace BITools.ViewModel.Configs
 {
+    /// <summary>
+    /// 通道通讯接口
+    /// </summary>
     public class ChannelInterfaceViewModel : PropertyNotifyObject
     {
         public ChannelInterfaceViewModel()
