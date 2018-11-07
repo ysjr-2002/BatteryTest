@@ -161,12 +161,12 @@ namespace BITools.ViewModel
 
         private void AddChannel(Configs.UUTViewModel uut)
         {
-            var window = new ChannelConfigWindow(null);
-            var dialog = window.ShowDialog();
-            if (dialog.GetValueOrDefault())
-            {
-                uut.ChannelList.Add(window.ChannelViewModel);
-            }
+            //var window = new ChannelConfigWindow(null);
+            //var dialog = window.ShowDialog();
+            //if (dialog.GetValueOrDefault())
+            //{
+            //    uut.ChannelList.Add(window.ChannelInterfaceViewModel);
+            //}
         }
 
         private void ModifyChannel()

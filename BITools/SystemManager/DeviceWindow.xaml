@@ -281,14 +281,14 @@
                 </Grid>
 
                 <DataGrid
-                    Name="dgChannelSub"
+                    Name="dgChannelInterface"
                     Grid.Row="1"
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     CanUserDeleteRows="False"
                     IsReadOnly="True"
-                    ItemsSource="{Binding SelectedItem.ChannelSubList, ElementName=dgChannel}"
-                    MouseDoubleClick="dgChannel_MouseDoubleClick"
+                    ItemsSource="{Binding SelectedItem.ChannelInterfaceList, ElementName=dgChannel}"
+                    MouseDoubleClick="dgChannelInterface_MouseDoubleClick"
                     Style="{StaticResource dgConfig}">
                     <!--<i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">

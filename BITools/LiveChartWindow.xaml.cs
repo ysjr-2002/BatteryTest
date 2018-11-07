@@ -28,12 +28,6 @@ namespace BITools
 
         private void LiveChartWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //List<string> labels = new List<string>();
-            //for (int i = 1; i < 20; i++)
-            //{
-            //    labels.Add(i.ToString("d2"));
-            //}
-            //chartV.AxisX.Add(new LiveCharts.Wpf.Axis { Labels = labels });
         }
     }
 }

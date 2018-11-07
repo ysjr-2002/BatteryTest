@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BITools
@@ -43,7 +44,7 @@ namespace BITools
         {
             base.Loaded();
 
-            for (int i = 1; i <= 20; i++)
+            for (int i = 1; i <= 24; i++)
             {
                 Lables.Add(string.Format("{0:D2}", i));
             }
@@ -54,23 +55,39 @@ namespace BITools
             line1.Values.Add(23.0);
             line1.Values.Add(23.0);
             line1.Values.Add(23.0);
-            line1.Values.Add(23.2);
-            line1.Values.Add(23.0);
-            line1.Values.Add(23.0);
-            line1.Values.Add(23.4);
             line1.Values.Add(23.0);
             line1.Values.Add(23.0);
             line1.Values.Add(23.0);
-            line1.Values.Add(23.6);
             line1.Values.Add(23.0);
             line1.Values.Add(23.0);
             line1.Values.Add(23.0);
-            line1.Values.Add(23.7);
             line1.Values.Add(23.0);
-            line1.Values.Add(23.2);
             line1.Values.Add(23.0);
-            line1.Values.Add(23.1);
+            line1.Values.Add(23.0);
+            line1.Values.Add(23.0);
+            line1.Values.Add(23.0);
+            line1.Values.Add(23.0);
+            line1.Values.Add(23.0);
+            line1.Values.Add(23.0);
+            line1.Values.Add(23.0);
+            line1.Values.Add(23.0);
             Series.Add(line1);
+
+
+            Task.Factory.StartNew(() =>
+            {
+                var i = 25;
+                while (true)
+                {
+                    //Lables.Add(i.ToString());
+                    line1.Values.Add((double)(new Random().Next(22, 25)));
+                    Lables.Add(i.ToString());
+
+                    line1.Values.RemoveAt(0);
+                    Lables.RemoveAt(0);
+                    Thread.Sleep(1000);
+                }
+            });
         }
 
         private string ConvertValueY(double value)

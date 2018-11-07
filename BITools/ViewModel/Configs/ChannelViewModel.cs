@@ -13,7 +13,7 @@ namespace BITools.ViewModel.Configs
     {
         public ChannelViewModel()
         {
-            ChannelSubList = new ObservableCollection<Configs.ChannelSubViewModel>();
+            ChannelInterfaceList = new ObservableCollection<Configs.ChannelInterfaceViewModel>();
             MontiorParamList = new ObservableCollection<Configs.MonitorParamViewModel>();
         }
 
@@ -35,10 +35,10 @@ namespace BITools.ViewModel.Configs
             set { this.SetValue(c => c.ChannelType, value); }
         }
 
-        public ObservableCollection<ChannelSubViewModel> ChannelSubList
+        public ObservableCollection<ChannelInterfaceViewModel> ChannelInterfaceList
         {
-            get { return this.GetValue(c => c.ChannelSubList); }
-            set { this.SetValue(c => c.ChannelSubList, value); }
+            get { return this.GetValue(c => c.ChannelInterfaceList); }
+            set { this.SetValue(c => c.ChannelInterfaceList, value); }
         }
 
         public ObservableCollection<MonitorParamViewModel> MontiorParamList
@@ -51,11 +51,11 @@ namespace BITools.ViewModel.Configs
         {
             if (ChannelType == (int)ChannelTypeEnum.FZ)
             {
-                ChannelSubList.Add(ChannelSubViewModel.GetV("1"));
-                ChannelSubList.Add(ChannelSubViewModel.GetA("1"));
+                ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetV("1"));
+                ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetA("1"));
 
-                ChannelSubList.Add(ChannelSubViewModel.GetV("2"));
-                ChannelSubList.Add(ChannelSubViewModel.GetA("2"));
+                ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetV("2"));
+                ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetA("2"));
 
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "1", ValType = (int)ValTypeEnum.Selector, Name = "负载模式", Val = "" });
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "2", ValType = (int)ValTypeEnum.Input, Name = "负载值", Val = "" });

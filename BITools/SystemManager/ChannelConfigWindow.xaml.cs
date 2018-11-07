@@ -21,12 +21,12 @@ namespace BITools.SystemManager
     /// </summary>
     public partial class ChannelConfigWindow : BaseWindow
     {
-        private ChannelViewModel channel;
+        private ChannelInterfaceViewModel channelInterface;
 
-        public ChannelConfigWindow(ChannelViewModel channel)
+        public ChannelConfigWindow(ChannelInterfaceViewModel channelInterface)
         {
             InitializeComponent();
-            this.channel = channel;
+            this.channelInterface = channelInterface;
             cmbInterface.SelectionChanged += CmbInterface_SelectionChanged;
             CmbInterface_SelectionChanged(null, null);
             cmbCom.ItemsSource = FunExt.GetSerialPorts();
@@ -35,17 +35,17 @@ namespace BITools.SystemManager
 
         private void ChannelConfigWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //if (channel != null)
-            //{
-            //    txtCode.Text = channel.Code;
-            //    cmbType.SelectedIndex = channel.OutputType;
-            //    cmbInterface.SelectedIndex = channel.InterfaceType;
+            if (channelInterface != null)
+            {
+                txtCode.Text = channelInterface.Code;
+                cmbType.SelectedIndex = channelInterface.OutputType;
+                cmbInterface.SelectedIndex = channelInterface.InterfaceType;
 
-            //    if ((InterfaceEnum)channel.InterfaceType == InterfaceEnum.AAA)
-            //        txtNo.IncrementText = channel.Name;
-            //    if ((InterfaceEnum)channel.InterfaceType == InterfaceEnum.Com)
-            //        cmbCom.Text = channel.Name;
-            //}
+                if ((InterfaceEnum)channelInterface.InterfaceType == InterfaceEnum.AAA)
+                    txtNo.IncrementText = channelInterface.Address;
+                if ((InterfaceEnum)channelInterface.InterfaceType == InterfaceEnum.Com)
+                    cmbCom.Text = channelInterface.Address;
+            }
         }
 
         private void CmbInterface_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -62,19 +62,23 @@ namespace BITools.SystemManager
             }
         }
 
-        public ViewModel.Configs.ChannelViewModel ChannelViewModel { get; set; }
+        public ViewModel.Configs.ChannelInterfaceViewModel ChannelInterfaceViewModel { get; set; }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            //ChannelViewModel = new ViewModel.Configs.ChannelViewModel();
-            //ChannelViewModel.Code = txtCode.Text;
-            //ChannelViewModel.OutputType = cmbType.SelectedIndex;
-            //ChannelViewModel.InterfaceType = cmbInterface.SelectedIndex;
-            //if (cmbInterface.SelectedIndex == 0)
-            //    ChannelViewModel.Name = txtNo.IncrementText;
-            //if (cmbInterface.SelectedIndex == 1)
-            //    ChannelViewModel.Name = cmbCom.Text;
-            //this.DialogResult = true;
+            if (channelInterface == null)
+                ChannelInterfaceViewModel = new ChannelInterfaceViewModel();
+            else
+                ChannelInterfaceViewModel = channelInterface;
+
+            ChannelInterfaceViewModel.Code = txtCode.Text;
+            ChannelInterfaceViewModel.OutputType = cmbType.SelectedIndex;
+            ChannelInterfaceViewModel.InterfaceType = cmbInterface.SelectedIndex;
+            if (cmbInterface.SelectedIndex == 0)
+                ChannelInterfaceViewModel.Address = txtNo.IncrementText;
+            if (cmbInterface.SelectedIndex == 1)
+                ChannelInterfaceViewModel.Address = cmbCom.Text;
+            this.DialogResult = true;
         }
     }
 }

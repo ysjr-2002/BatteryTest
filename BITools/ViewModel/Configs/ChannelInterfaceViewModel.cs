@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BITools.ViewModel.Configs
 {
-    public class ChannelSubViewModel : PropertyNotifyObject
+    public class ChannelInterfaceViewModel : PropertyNotifyObject
     {
-        public ChannelSubViewModel()
+        public ChannelInterfaceViewModel()
         {
         }
 
@@ -47,18 +47,18 @@ namespace BITools.ViewModel.Configs
             set { this.SetValue(c => c.Address, value); }
         }
 
-        public static ChannelSubViewModel GetV(string code)
+        public static ChannelInterfaceViewModel GetV(string code)
         {
-            var temp = new ChannelSubViewModel();
+            var temp = new ChannelInterfaceViewModel();
             temp.Code = code;
             temp.Name = "电压";
             temp.OutputType = (int)OutputEnum.V;
             return temp;
         }
 
-        public static ChannelSubViewModel GetA(string code)
+        public static ChannelInterfaceViewModel GetA(string code)
         {
-            var temp = new ChannelSubViewModel();
+            var temp = new ChannelInterfaceViewModel();
             temp.Code = code;
             temp.Name = "电流";
             temp.OutputType = (int)OutputEnum.A;

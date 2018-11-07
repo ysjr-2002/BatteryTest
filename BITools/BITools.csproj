@@ -292,7 +292,7 @@
     <Compile Include="ViewModel\BaseMainViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChannelInfo.cs" />
-    <Compile Include="ViewModel\Configs\ChannelSubViewModel.cs" />
+    <Compile Include="ViewModel\Configs\ChannelInterfaceViewModel.cs" />
     <Compile Include="ViewModel\Configs\ChannelViewModel.cs" />
     <Compile Include="ViewModel\Configs\DeviceListViewModel.cs" />
     <Compile Include="ViewModel\Configs\LayerViewModel.cs" />

@@ -54,12 +54,24 @@ namespace BITools.SystemManager
 
         private void dgChannel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if( dgChannel.SelectedItem == null)
+            //if( dgChannel.SelectedItem == null)
+            //{
+            //    return;
+            //}
+
+            //var channel = (ChannelViewModel)dgChannel.SelectedItem;
+            //var window = new ChannelConfigWindow(channel);
+            //window.ShowDialog();
+        }
+
+        private void dgChannelInterface_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (dgChannelInterface.SelectedItem == null)
             {
                 return;
             }
 
-            var channel = (ChannelViewModel)dgChannel.SelectedItem;
+            var channel = (ChannelInterfaceViewModel)dgChannelInterface.SelectedItem;
             var window = new ChannelConfigWindow(channel);
             window.ShowDialog();
         }
