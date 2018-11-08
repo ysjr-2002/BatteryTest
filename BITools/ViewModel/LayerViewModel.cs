@@ -25,13 +25,15 @@ namespace BITools.ViewModel
     /// </summary>
     public class LayerViewModel : PropertyNotifyObject
     {
-        public LayerViewModel(string name)
+        private Configs.LayerViewModel layerConfig;
+        public LayerViewModel(Configs.LayerViewModel layerConfig)
         {
-            this.Name = name;
-            this.TestDataCollection = new ObservableCollection<DeveInfo>();
-            this.TestDataCollection.Add(new DeveInfo
+            this.layerConfig = layerConfig;
+            this.Name = layerConfig.Name;
+            this.RunDataCollection = new ObservableCollection<DeveInfo>();
+            this.RunDataCollection.Add(new DeveInfo
             {
-                sbbh = name,
+                sbbh = layerConfig.Name,
                 sm = 1,
                 lhcsdy = "ss",
                 acsr = "380V",
@@ -44,7 +46,13 @@ namespace BITools.ViewModel
             lhsjEnum = LHSJEnum.LHZSJ;
             LHSJName = FunExt.GetDescription(lhsjEnum);
 
-            IsSDEnable = true;
+            IsSDJCEnable = true;
+            IsKSCSEnable = true;
+            IsZTCSEnable = false;
+            IsTZCSEnable = false;
+
+            Lhzsj = 1;
+            Lhbfb = "等待测试 0%";
         }
 
         public ObservableCollection<UUTViewModel> UUTList
@@ -53,7 +61,7 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.UUTList, value); }
         }
 
-        public Config config
+        public Config Config
         {
             get
             {
@@ -79,10 +87,10 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.TDBLCollection, value); }
         }
 
-        public ObservableCollection<DeveInfo> TestDataCollection
+        public ObservableCollection<DeveInfo> RunDataCollection
         {
-            get { return this.GetValue(c => c.TestDataCollection); }
-            set { this.SetValue(c => c.TestDataCollection, value); }
+            get { return this.GetValue(c => c.RunDataCollection); }
+            set { this.SetValue(c => c.RunDataCollection, value); }
         }
 
         /// <summary>
@@ -103,9 +111,24 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.Lhsj, value); }
         }
 
+        /// <summary>
+        /// 老化百分比
+        /// </summary>
+        public string Lhbfb
+        {
+            get { return this.GetValue(c => c.Lhbfb); }
+            set { this.SetValue(c => c.Lhbfb, value); }
+        }
+
+        public int LhbfbValue
+        {
+            get { return this.GetValue(c => c.LhbfbValue); }
+            set { this.SetValue(c => c.LhbfbValue, value); }
+        }
+
         public void Refresh()
         {
-            this.TestDataCollection.First().zs = UUTList.Count;
+            this.RunDataCollection.First().zs = UUTList.Count;
         }
 
         public ICommand SelectCPXHCommand { get { return new DelegateCommand(SelectCPXH); } }
@@ -124,16 +147,34 @@ namespace BITools.ViewModel
         public ICommand CKTXMCommand { get { return new DelegateCommand(CKTXM); } }
         public ICommand BJFWCommand { get { return new DelegateCommand(BJFW); } }
 
-        public bool IsSDEnable
+        public bool IsSDJCEnable
         {
-            get { return this.GetValue(c => c.IsSDEnable); }
-            set { this.SetValue(c => c.IsSDEnable, value); }
+            get { return this.GetValue(c => c.IsSDJCEnable); }
+            set { this.SetValue(c => c.IsSDJCEnable, value); }
+        }
+
+        public bool IsKSCSEnable
+        {
+            get { return this.GetValue(c => c.IsKSCSEnable); }
+            set { this.SetValue(c => c.IsKSCSEnable, value); }
+        }
+
+        public bool IsZTCSEnable
+        {
+            get { return this.GetValue(c => c.IsZTCSEnable); }
+            set { this.SetValue(c => c.IsZTCSEnable, value); }
+        }
+
+        public bool IsTZCSEnable
+        {
+            get { return this.GetValue(c => c.IsTZCSEnable); }
+            set { this.SetValue(c => c.IsTZCSEnable, value); }
         }
 
         private void SelectCPXH()
         {
             var path = FileDialogHelper.OpenFileDialog();
-            TestDataCollection.First().cpxh = path;
+            RunDataCollection.First().cpxh = path;
         }
 
         private void LHSJ()
@@ -163,14 +204,14 @@ namespace BITools.ViewModel
             if (IsRuning)
                 return;
 
-            IsSDEnable = false;
+            IsSDJCEnable = false;
             IsRuning = true;
             Task.Factory.StartNew(() =>
             {
                 while (IsRuning)
                 {
                     ReadData();
-                    int sleep = config.DataSaveSpan.ToInt32() * 1000;
+                    int sleep = Config.DataSaveSpan.ToInt32() * 1000;
                     sleep = 500;
                     Thread.Sleep(sleep);
                 }
@@ -182,13 +223,19 @@ namespace BITools.ViewModel
         /// </summary>
         private void KSCS()
         {
+            IsKSCSEnable = false;
+            IsZTCSEnable = true;
+            IsTZCSEnable = true;
             Task.Factory.StartNew(() =>
             {
-                this.TestDataCollection.First().aczt = "On";
+                //老化时间配置的小时
+                this.Lhzsj = ((int)this.layerConfig.LHSJ.ToFloat()) * 60 * 60;
+                this.RunDataCollection.First().aczt = "On";
                 while (IsRuning && mre.WaitOne())
                 {
-                    Lhzsj++;
                     Lhsj++;
+                    LhbfbValue = (int)(((float)Lhsj / Lhzsj) * 100);
+                    Lhbfb = "老化中 " + LhbfbValue + "%";
                     Thread.Sleep(1000);
                 }
             });
@@ -202,6 +249,9 @@ namespace BITools.ViewModel
         {
             if (a)
             {
+                IsKSCSEnable = true;
+                IsZTCSEnable = false;
+                Lhbfb = "暂停 " + LhbfbValue + "%";
                 mre.Reset();
             }
             else

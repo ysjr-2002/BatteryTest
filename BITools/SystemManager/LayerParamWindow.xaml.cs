@@ -16,26 +16,33 @@ using System.Windows.Shapes;
 namespace BITools.SystemManager
 {
     /// <summary>
-    /// LayerParamWindow.xaml 的交互逻辑
+    /// 层参数编辑
     /// </summary>
     public partial class LayerParamWindow : BaseWindow
     {
-        public LayerParamWindow()
+        private LayerViewModel layer = null;
+
+        public LayerParamWindow(LayerViewModel layer)
         {
             InitializeComponent();
+            this.layer = layer;
+            this.Loaded += LayerParamWindow_Loaded;
+        }
+
+        private void LayerParamWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            numericLHSJ.IncrementText = layer.LHSJ;
         }
 
         public LayerViewModel LayerViewModel { get; set; }
 
-        public string MaxLayer { get; set; }
+        public bool IsAllLayer { get; set; }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            LayerViewModel = new LayerViewModel();
-            LayerViewModel.Code = txtCode.Text;
-            LayerViewModel.Name = txtName.Text;
-            //LayerViewModel.LHSJ = txtTime.Text;
-            MaxLayer = txtMaxLayer.Text;
+            this.layer.LHSJ = numericLHSJ.IncrementText;
+            this.IsAllLayer = ckbAllLayer.IsChecked.GetValueOrDefault();
+            LayerViewModel = layer;
             this.DialogResult = true;
         }
     }

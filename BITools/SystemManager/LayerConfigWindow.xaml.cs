@@ -29,14 +29,22 @@ namespace BITools.SystemManager
 
         public string MaxLayer { get; set; }
 
+        public bool IsAllTC { get; set; }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            MaxLayer = numericFloors.IncrementText;
+            if (MaxLayer.ToInt32() > numericFloors.MaxValue)
+            {
+                MsgBox.WarningShow("超出最大层配置", "");
+                return;
+            }
+
             LayerViewModel = new LayerViewModel();
             LayerViewModel.Code = txtCode.Text;
             LayerViewModel.Name = txtName.Text;
-            LayerViewModel.LHSJ = txtTime.Text;
 
-            MaxLayer = txtMaxLayer.Text;
+            IsAllTC = ckbAll.IsChecked.GetValueOrDefault();
             this.DialogResult = true;
         }
     }

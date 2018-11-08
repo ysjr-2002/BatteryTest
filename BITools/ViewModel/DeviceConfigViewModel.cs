@@ -43,11 +43,13 @@ namespace BITools.ViewModel
         public ICommand ModifyChannelCommand { get { return new DelegateCommand(ModifyChannel); } }
         //public ICommand ChannelSelectItemCommand { get { return new DelegateCommand<ChannelViewModel>(ModifyChannel); } }
 
-        public ObservableCollection<Configs.TCViewModel> TCList
+        public ObservableCollection<TCViewModel> TCList
         {
             get { return this.GetValue(c => c.TCList); }
             set { this.SetValue(c => c.TCList, value); }
         }
+
+        private DeviceConfig currentConfig;
 
         private void LoadConfig()
         {
@@ -55,8 +57,8 @@ namespace BITools.ViewModel
             var dialog = window.ShowDialog().GetValueOrDefault();
             if (dialog)
             {
-                var content = window.ConfigContent;
-                TCList = JsonConvert.DeserializeObject<ObservableCollection<Configs.TCViewModel>>(content);
+                currentConfig = window.DeviceConfig;
+                TCList = JsonConvert.DeserializeObject<ObservableCollection<TCViewModel>>(currentConfig.DeviceContent);
             }
         }
 
@@ -65,18 +67,28 @@ namespace BITools.ViewModel
             if (this.TCList.Count == 0)
                 return;
 
-            var window = new ConfigNameWindow();
-            var dialog = window.ShowDialog().GetValueOrDefault();
-            if (dialog)
+            if (currentConfig == null)
+            {
+                var window = new ConfigNameWindow();
+                var dialog = window.ShowDialog().GetValueOrDefault();
+                if (dialog)
+                {
+                    var content = JsonConvert.SerializeObject(this.TCList);
+                    DeviceConfig entity = new DeviceConfig();
+                    entity.Name = window.ConfigName;
+                    entity.IsDefault = window.IsDefault;
+                    entity.DeviceContent = content;
+                    entity.User = AppContext.UserName;
+                    entity.CreateTime = DateTime.Now;
+                    service.CreateConfig(entity);
+                    MsgBox.SuccessShow("保存成功！");
+                }
+            }
+            else
             {
                 var content = JsonConvert.SerializeObject(this.TCList);
-                DeviceConfig entity = new DeviceConfig();
-                entity.Name = window.ConfigName;
-                entity.IsDefault = window.IsDefault;
-                entity.DeviceContent = content;
-                entity.User = AppContext.UserName;
-                entity.CreateTime = DateTime.Now;
-                service.CreateUser(entity);
+                currentConfig.DeviceContent = content;
+                service.UpdateConfig(currentConfig);
                 MsgBox.SuccessShow("保存成功！");
             }
         }
@@ -105,7 +117,7 @@ namespace BITools.ViewModel
 
         }
 
-        private void AddLayer(Configs.TCViewModel tc)
+        private void AddLayer(TCViewModel tc)
         {
             var window = new LayerConfigWindow();
             var dialog = window.ShowDialog();
@@ -114,9 +126,23 @@ namespace BITools.ViewModel
                 var max = window.MaxLayer.ToInt32();
                 if (max > 0)
                 {
-                    for (int i = 1; i <= max; i++)
+                    if (window.IsAllTC)
                     {
-                        tc.LayerList.Add(new Configs.LayerViewModel { Code = "" + i, Name = "L" + i, LHSJ = "1" });
+                        foreach (var item in TCList)
+                        {
+                            item.LayerList.Clear();
+                            for (int i = 1; i <= max; i++)
+                            {
+                                item.LayerList.Add(new Configs.LayerViewModel { Code = "" + i, Name = "L" + i });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 1; i <= max; i++)
+                        {
+                            tc.LayerList.Add(new Configs.LayerViewModel { Code = "" + i, Name = "L" + i });
+                        }
                     }
                 }
                 else
@@ -142,7 +168,7 @@ namespace BITools.ViewModel
                 {
                     for (int i = 1; i <= max; i++)
                     {
-                        var uut = new Configs.UUTViewModel { Code = i.ToString() };
+                        var uut = new UUTViewModel { Code = i.ToString() };
                         uut.Init();
                         layer.UUTList.Add(uut);
                     }

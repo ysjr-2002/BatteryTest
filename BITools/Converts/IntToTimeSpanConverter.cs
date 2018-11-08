@@ -17,7 +17,7 @@ namespace BITools.Converts
         {
             var val = System.Convert.ToInt32(value);
             var ts = TimeSpan.FromSeconds(val);
-            var str = string.Format("{0}:{1}:{2}", ((int)ts.TotalHours).ToString("d2"), ((int)ts.TotalMinutes).ToString("d2"), ((int)ts.TotalSeconds).ToString("d2"));
+            var str = string.Format("{0}:{1}:{2}", ((int)ts.Hours).ToString("d2"), ((int)ts.Minutes).ToString("d2"), ((int)ts.Seconds).ToString("d2"));
             return str;
         }
 

@@ -582,9 +582,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BIDataAccess\BIDataAccess.csproj">
-      <Project>{B9B2D268-AC97-4605-A185-8C83748A7BF6}</Project>
-      <Name>BIDataAccess</Name>
+    <ProjectReference Include="..\BIDataAccessSqlite\BIDataAccessSqlite.csproj">
+      <Project>{bcffaa59-93b3-4fb3-b06e-7c1269287af4}</Project>
+      <Name>BIDataAccessSqlite</Name>
     </ProjectReference>
     <ProjectReference Include="..\BILogic\BILogic.csproj">
       <Project>{3c4ffa3a-2433-4986-a83b-60fe69fcbf43}</Project>
@@ -632,6 +632,16 @@
     <Resource Include="Images\clock.png" />
     <Resource Include="Images\main\close_hover.png" />
     <Resource Include="Images\main\close_normal.png" />
+    <Resource Include="Images\Status\dj.png" />
+    <Resource Include="Images\Status\lzyc.png" />
+    <Resource Include="Images\Status\qy.png" />
+    <Resource Include="Images\Status\ql.png" />
+    <Resource Include="Images\Status\fzbh.png" />
+    <Resource Include="Images\Status\gl.png" />
+    <Resource Include="Images\Status\gy.png" />
+    <Resource Include="Images\Status\hg.png" />
+    <Resource Include="Images\Status\wsc.png" />
+    <Resource Include="Images\Status\wcp.png" />
     <Content Include="Libs\Common.dll" />
     <Resource Include="Resources\startloading.gif" />
     <Resource Include="Images\close.png" />

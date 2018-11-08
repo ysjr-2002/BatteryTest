@@ -27,16 +27,16 @@ namespace BITools.SystemManager
             this.DataContext = new DeviceListViewModel();
         }
 
-        public string ConfigContent { get; set; }
-
+        public DeviceConfig DeviceConfig { get; set; }
+        
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (dgList.SelectedItem == null)
             {
                 return;
             }
-            var model = (DeviceConfig)dgList.SelectedItem;
-            ConfigContent = model.DeviceContent;
+            var modle = (DeviceConfig)dgList.SelectedItem;
+            this.DeviceConfig = modle;
             this.DialogResult = true;
         }
     }

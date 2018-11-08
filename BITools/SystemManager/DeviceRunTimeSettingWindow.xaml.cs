@@ -38,26 +38,25 @@ namespace BITools.SystemManager
 
         private void DeviceRunTimeSettingWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var filename = "temp.json";
-            if (System.IO.File.Exists(filename))
-            {
-                var content = System.IO.File.ReadAllText(filename);
-                var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
-                vm.TCList = list;
-            }
+            //var filename = "temp.json";
+            //if (System.IO.File.Exists(filename))
+            //{
+            //    var content = System.IO.File.ReadAllText(filename);
+            //    var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
+            //    vm.TCList = list;
+            //}
         }
 
         private void DeviceRunTimeSettingWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var content = JsonConvert.SerializeObject(vm.TCList);
-            content = FunExt.JsonFormatter(content);
-            System.IO.File.WriteAllText("temp.json", content);
+            //var content = JsonConvert.SerializeObject(vm.TCList);
+            //content = FunExt.JsonFormatter(content);
+            //System.IO.File.WriteAllText("temp.json", content);
         }
 
         private void ButtonEx_Click(object sender, RoutedEventArgs e)
         {
             var list = dgMonitorParam.ItemsSource as ObservableCollection<MonitorParamViewModel>;
-
             foreach (object o in dgMonitorParam.Items)
             {
                 DataGridRow rowItem = dgMonitorParam.ItemContainerGenerator.ContainerFromItem(o) as DataGridRow;

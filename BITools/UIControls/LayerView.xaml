@@ -79,7 +79,7 @@
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             ColumnHeaderHeight="30"
-            ItemsSource="{Binding TestDataCollection}"
+            ItemsSource="{Binding RunDataCollection}"
             Style="{StaticResource dgConfig}">
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="DataGridRowHeader">
@@ -175,7 +175,7 @@
                 BorderThickness="0"
                 Command="{Binding SDJCCommand}"
                 Content="上电检测"
-                IsEnabled="{Binding IsSDEnable}"
+                IsEnabled="{Binding IsSDJCEnable}"
                 NormalImage="/BITools;component/Images/detail.png"
                 NormalImagePlacement="Top" />
             <syscontrols:ButtonEx
@@ -185,6 +185,7 @@
                 Command="{Binding KSCSCommand}"
                 Content="开始测试"
                 DisableImage="/BITools;component/Images/begin_disable.png"
+                IsEnabled="{Binding IsKSCSEnable}"
                 NormalImage="/BITools;component/Images/begin.png"
                 NormalImagePlacement="Top" />
             <syscontrols:ButtonEx
@@ -194,6 +195,7 @@
                 Command="{Binding ZTCSCommand}"
                 Content="暂停测试"
                 DisableImage="/BITools;component/Images/pause_disable.png"
+                IsEnabled="{Binding IsZTCSEnable}"
                 NormalImage="/BITools;component/Images/pause.png"
                 NormalImagePlacement="Top" />
             <syscontrols:ButtonEx
@@ -203,7 +205,7 @@
                 Command="{Binding TZCSCommand}"
                 Content="停止测试"
                 DisableImage="/BITools;component/Images/stop_disable.png"
-                IsEnabled="True"
+                IsEnabled="{Binding IsTZCSEnable}"
                 NormalImage="/BITools;component/Images/stop.png"
                 NormalImagePlacement="Top" />
         </Grid>
@@ -217,7 +219,7 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="80" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <syscontrols:ButtonEx
@@ -257,7 +259,19 @@
                 Grid.Column="4"
                 Margin="5,0,0,0"
                 Text="老化进度" />
-            <TextBlock Grid.Column="5" Text="测试等待 ...0%" />
+
+            <Grid Grid.Column="5">
+                <ProgressBar
+                    Margin="0,5,2,5"
+                    BorderThickness="0"
+                    Maximum="{Binding Lhzsj}"
+                    Value="{Binding Lhsj}" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Block.TextAlignment="Center"
+                    Text="{Binding Lhbfb}" />
+            </Grid>
+
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1">
@@ -292,11 +306,18 @@
             Grid.Row="2"
             Grid.Column="0"
             Grid.ColumnSpan="2">
+            <Grid.Resources>
+                <Style TargetType="Image">
+                    <Setter Property="Width" Value="26" />
+                </Style>
+            </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="测试状态说明" />
+
+
 
             <StackPanel
                 Grid.Column="2"
@@ -309,11 +330,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource dotColorBrush}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/dj.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -360,12 +377,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource lzycColorBrush}"
-                        Visibility="{Binding Islzyc, Converter={StaticResource boolToVisibility}}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/lzyc.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -378,11 +390,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource wcpColorBrush}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/wcp.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -395,11 +403,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource qyColorBrush}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/qy.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -412,11 +416,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource qlColorBrush}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/ql.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -429,11 +429,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource gyColorBrush}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/gy.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -446,11 +442,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource glColorBrush}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/gl.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -463,11 +455,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource wscColorBrush}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/wsc.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -480,11 +468,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource hgColorBrush}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/hg.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -497,11 +481,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="60" />
                     </Grid.ColumnDefinitions>
-                    <Ellipse
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Fill="{StaticResource fzbhColorBrush}" />
+                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/fzbh.png" />
                     <TextBlock
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -545,10 +525,10 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="160" Height="26">
-                            <Ellipse
+                            <Image
                                 Width="26"
                                 Height="26"
-                                Fill="{Binding StateBrush}" />
+                                Source="{Binding StateBrush}" />
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Text="{Binding Code}"

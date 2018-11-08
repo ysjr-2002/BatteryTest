@@ -46,9 +46,9 @@
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BIDataAccess\BIDataAccess.csproj">
-      <Project>{b9b2d268-ac97-4605-a185-8c83748a7bf6}</Project>
-      <Name>BIDataAccess</Name>
+    <ProjectReference Include="..\BIDataAccessSqlite\BIDataAccessSqlite.csproj">
+      <Project>{bcffaa59-93b3-4fb3-b06e-7c1269287af4}</Project>
+      <Name>BIDataAccessSqlite</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,17 +1,18 @@
-﻿<base:BaseWindow x:Class="BITools.SystemManager.TCConfigWindow"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:base="clr-namespace:BITools"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                 xmlns:local="clr-namespace:BITools.SystemManager"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 Title="台车"
-                 Width="400"
-                 Height="300"
-                 FocusManager.FocusedElement="{Binding ElementName=txtCode}"
-                 Style="{StaticResource WindowStyleWithCloseBtn}"
-                 mc:Ignorable="d">
+﻿<base:BaseWindow
+    x:Class="BITools.SystemManager.TCConfigWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="clr-namespace:BITools"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:BITools.SystemManager"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="台车配置"
+    Width="400"
+    Height="300"
+    FocusManager.FocusedElement="{Binding ElementName=txtCode}"
+    Style="{StaticResource WindowStyleWithCloseBtn}"
+    mc:Ignorable="d">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
@@ -27,6 +28,7 @@
         <Style BasedOn="{StaticResource TBBaseStyle}" TargetType="TextBox">
             <Setter Property="Width" Value="120" />
             <Setter Property="Height" Value="24" />
+            <Setter Property="Margin" Value="5,0" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
 
@@ -36,8 +38,6 @@
             <RowDefinition />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="0" />
-            <RowDefinition Height="40" />
             <RowDefinition Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -45,32 +45,37 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="1"
-                   Grid.Column="1"
-                   Text="台车编号:" />
-        <TextBox Name="txtCode"
-                 Grid.Row="1"
-                 Grid.Column="2" />
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="编号:" />
+        <TextBox
+            Name="txtCode"
+            Grid.Row="1"
+            Grid.Column="2" />
 
-        <TextBlock Grid.Row="2"
-                   Grid.Column="1"
-                   Text="台车名称:" />
-        <TextBox Name="txtName"
-                 Grid.Row="2"
-                 Grid.Column="2" />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="名称:" />
+        <TextBox
+            Name="txtName"
+            Grid.Row="2"
+            Grid.Column="2" />
 
-        <Button Name="btnSave"
-                Grid.Row="5"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Width="100"
-                Height="26"
-                Click="btnSave_Click"
-                Content="确定"
-                Style="{StaticResource OKStyle}" />
+        <Button
+            Name="btnSave"
+            Grid.Row="3"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Width="100"
+            Height="26"
+            Click="btnSave_Click"
+            Content="确定"
+            Style="{StaticResource OKStyle}" />
     </Grid>
 </base:BaseWindow>

@@ -9,6 +9,8 @@ using System.Windows.Media;
 using System.Windows;
 using BITools.Model;
 using BITools.Enums;
+using System.Windows.Media.Imaging;
+using Newtonsoft.Json;
 
 namespace BITools.ViewModel.Configs
 {
@@ -17,10 +19,11 @@ namespace BITools.ViewModel.Configs
     /// </summary>
     public class UUTViewModel : PropertyNotifyObject
     {
+
         public UUTViewModel()
         {
             ChannelList = new ObservableCollection<ChannelViewModel>();
-            StateBrush = Application.Current.FindResource("tjColorBrush") as SolidColorBrush;
+            StateBrush = "/BITools;component/Images/Status/dj.png";
         }
 
         public string Code
@@ -29,7 +32,8 @@ namespace BITools.ViewModel.Configs
             set { this.SetValue(c => c.Code, value); }
         }
 
-        public Brush StateBrush
+        [JsonIgnore]
+        public string StateBrush
         {
             get { return this.GetValue(c => c.StateBrush); }
             set { this.SetValue(c => c.StateBrush, value); }
@@ -49,25 +53,25 @@ namespace BITools.ViewModel.Configs
             var s = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
             var index = new Random(s).Next(0, 10);
             if (index == 0)
-                StateBrush = Application.Current.FindResource("tjColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/dj.png";
             else if (index == 1)
-                StateBrush = Application.Current.FindResource("lzycColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/lzyc.png";
             else if (index == 2)
-                StateBrush = Application.Current.FindResource("wcpColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/wcp.png";
             else if (index == 3)
-                StateBrush = Application.Current.FindResource("qyColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/qy.png";
             else if (index == 4)
-                StateBrush = Application.Current.FindResource("qlColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/ql.png";
             else if (index == 5)
-                StateBrush = Application.Current.FindResource("gyColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/gy.png";
             else if (index == 6)
-                StateBrush = Application.Current.FindResource("glColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/gl.png";
             else if (index == 7)
-                StateBrush = Application.Current.FindResource("wscColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/wsc.png";
             else if (index == 8)
-                StateBrush = Application.Current.FindResource("hgColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/hg.png";
             else if (index == 9)
-                StateBrush = Application.Current.FindResource("fzbhColorBrush") as SolidColorBrush;
+                StateBrush = "/BITools;component/Images/Status/fzbh.png";
         }
 
         public void Init()

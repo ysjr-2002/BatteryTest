@@ -7,8 +7,8 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:BITools.SystemManager"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="DeviceListWindow"
-    Width="600"
+    Title="设备配置表"
+    Width="500"
     Height="400"
     Style="{StaticResource WindowStyleWithCloseBtn}"
     mc:Ignorable="d">
@@ -46,7 +46,7 @@
 
                 <DataGridTextColumn
                     Width="150"
-                    Binding="{Binding CreateTime}"
+                    Binding="{Binding CreateTime, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"
                     Header="创建时间" />
             </DataGrid.Columns>
         </DataGrid>

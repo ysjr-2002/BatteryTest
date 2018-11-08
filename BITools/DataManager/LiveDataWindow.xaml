@@ -115,7 +115,9 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     CanUserDeleteRows="False"
-                    ItemsSource="{Binding Records}">
+                    IsReadOnly="True"
+                    ItemsSource="{Binding Records}"
+                    Style="{StaticResource dgConfig}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="100"
@@ -146,7 +148,9 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     CanUserDeleteRows="False"
-                    ItemsSource="{Binding Unknowns}">
+                    IsReadOnly="True"
+                    ItemsSource="{Binding Unknowns}"
+                    Style="{StaticResource dgConfig}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="80"

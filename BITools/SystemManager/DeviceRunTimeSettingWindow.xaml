@@ -154,6 +154,20 @@
                     IsReadOnly="True"
                     ItemsSource="{Binding SelectedItem.LayerList, ElementName=dgTC}"
                     Style="{StaticResource dgConfig}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding
+                            Command="{Binding EditLayerCommand}"
+                            CommandParameter="{Binding ElementName=dgLayer, Path=SelectedItem}"
+                            Gesture="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem
+                                Command="{Binding DeleteLayerCommad}"
+                                CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                Header="删除" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="60"
@@ -290,7 +304,7 @@
                             Width="100"
                             Binding="{Binding Name}"
                             Header="监控参数" />
-                        <DataGridTemplateColumn Header="值">
+                        <DataGridTemplateColumn Width="120" Header="值">
                             <DataGridTemplateColumn.CellTemplateSelector>
                                 <selector:ParamValueSelector FirstTemplate="{StaticResource dtSelector}" SecondTemplate="{StaticResource dtInput}" />
                             </DataGridTemplateColumn.CellTemplateSelector>

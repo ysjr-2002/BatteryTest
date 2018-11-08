@@ -14,17 +14,17 @@ namespace BILogic
             return new BIDataAccess.DeviceConfigDal().GetDeviceConfigs();
         }
 
-        public bool CreateUser(DeviceConfig entity)
+        public bool CreateConfig(DeviceConfig entity)
         {
             return new BIDataAccess.DeviceConfigDal().Create(entity);
         }
 
-        public bool UpdateUser(DeviceConfig entity)
+        public bool UpdateConfig(DeviceConfig entity)
         {
             return new BIDataAccess.DeviceConfigDal().Update(entity);
         }
 
-        public bool DeleteUser(DeviceConfig entity)
+        public bool DeleteConfig(DeviceConfig entity)
         {
             return new BIDataAccess.DeviceConfigDal().Delete(entity);
         }

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIModel", "BIModel\BIModel.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIDAInterface", "BIInterface\BIDAInterface.csproj", "{AE136E33-1B5C-4A3C-B421-E182DA81A80F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIDataAccessSqlite", "BIDataAccessSqlite\BIDataAccessSqlite.csproj", "{BCFFAA59-93B3-4FB3-B06E-7C1269287AF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AE136E33-1B5C-4A3C-B421-E182DA81A80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE136E33-1B5C-4A3C-B421-E182DA81A80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE136E33-1B5C-4A3C-B421-E182DA81A80F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCFFAA59-93B3-4FB3-B06E-7C1269287AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCFFAA59-93B3-4FB3-B06E-7C1269287AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCFFAA59-93B3-4FB3-B06E-7C1269287AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCFFAA59-93B3-4FB3-B06E-7C1269287AF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,5 +14,12 @@
             ItemContainerStyle="{StaticResource TabItem.TC}"
             SelectionChanged="RightContainer_SelectionChanged"
             Style="{StaticResource TabControl.TC}" />
+
+        <Label
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Height="50"
+            VerticalContentAlignment="Center"
+            Content="总数:12" />
     </Grid>
 </UserControl>

@@ -9,14 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Common.NotifyBase;
+using BIDataAccess.entities;
+using BILogic;
 
 namespace BITools.ViewModel
 {
+    /// <summary>
+    /// 设备运行参数
+    /// </summary>
     class DeviceRunTimeSettingViewModel : BaseViewModel
     {
+        private DeviceConfigService service;
         public DeviceRunTimeSettingViewModel()
         {
-
+            service = new DeviceConfigService();
         }
 
         public ICommand LoadConfigCommand { get { return new DelegateCommand(LoadConfig); } }
@@ -26,7 +32,8 @@ namespace BITools.ViewModel
         public ICommand AddLayerCommand { get { return new DelegateCommand(AddTC); } }
         public ICommand SaveChannelCommand { get { return new DelegateCommand(Saveabc); } }
 
-        
+        public ICommand EditLayerCommand { get { return new DelegateCommand<Configs.LayerViewModel>(ModifyLayer); } }
+        public ICommand DeleteLayerCommad { get { return new DelegateCommand<Configs.LayerViewModel>(DeleteLayer); } }
 
         public ObservableCollection<Configs.TCViewModel> TCList
         {
@@ -34,14 +41,16 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.TCList, value); }
         }
 
+        private DeviceConfig currentConfig;
+
         private void LoadConfig()
         {
             var window = new DeviceListWindow();
             var dialog = window.ShowDialog().GetValueOrDefault();
             if (dialog)
             {
-                var content = window.ConfigContent;
-                TCList = JsonConvert.DeserializeObject<ObservableCollection<Configs.TCViewModel>>(content);
+                currentConfig = window.DeviceConfig;
+                TCList = JsonConvert.DeserializeObject<ObservableCollection<Configs.TCViewModel>>(currentConfig.DeviceContent);
             }
         }
 
@@ -50,20 +59,13 @@ namespace BITools.ViewModel
             if (this.TCList.Count == 0)
                 return;
 
-            //var window = new ConfigNameWindow();
-            //var dialog = window.ShowDialog().GetValueOrDefault();
-            //if (dialog)
-            //{
-            //    var content = JsonConvert.SerializeObject(this.TCList);
-            //    DeviceConfig entity = new DeviceConfig();
-            //    entity.Name = window.ConfigName;
-            //    entity.IsDefault = window.IsDefault;
-            //    entity.DeviceContent = content;
-            //    entity.User = AppContext.UserName;
-            //    entity.CreateTime = DateTime.Now;
-            //    service.CreateUser(entity);
-            //    MsgBox.SuccessShow("保存成功！");
-            //}
+            if (currentConfig != null)
+            {
+                var content = JsonConvert.SerializeObject(this.TCList);
+                currentConfig.DeviceContent = content;
+                service.UpdateConfig(currentConfig);
+                MsgBox.SuccessShow("保存成功！");
+            }
         }
 
         private void ClarConfig()
@@ -77,8 +79,30 @@ namespace BITools.ViewModel
 
         private void AddTC()
         {
-            var window = new LayerParamWindow();
+            return;
+            var window = new LayerParamWindow(null);
             window.ShowDialog();
+        }
+
+        private void ModifyLayer(Configs.LayerViewModel layer)
+        {
+            var window = new LayerParamWindow(layer);
+            var dialog = window.ShowDialog().GetValueOrDefault();
+            if (dialog)
+            {
+                if (window.IsAllLayer)
+                {
+                    foreach (var item in TCList.First().LayerList)
+                    {
+                        item.LHSJ = layer.LHSJ;
+                    }
+                }
+            }
+        }
+
+        private void DeleteLayer(Configs.LayerViewModel layer)
+        {
+
         }
 
         private void Saveabc()

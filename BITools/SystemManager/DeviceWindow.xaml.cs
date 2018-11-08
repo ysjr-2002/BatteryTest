@@ -24,7 +24,7 @@ namespace BITools.SystemManager
     /// </summary>
     public partial class DeviceWindow : BaseWindow
     {
-        DeviceConfigViewModel vm = null;
+        private DeviceConfigViewModel vm = null;
         public DeviceWindow()
         {
             InitializeComponent();
@@ -47,9 +47,9 @@ namespace BITools.SystemManager
 
         private void DeviceConfigWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var content = JsonConvert.SerializeObject(vm.TCList);
-            content = FunExt.JsonFormatter(content);
-            System.IO.File.WriteAllText("temp.json", content);
+            //var content = JsonConvert.SerializeObject(vm.TCList);
+            //content = FunExt.JsonFormatter(content);
+            //System.IO.File.WriteAllText("temp.json", content);
         }
 
         private void dgChannel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -58,7 +58,6 @@ namespace BITools.SystemManager
             //{
             //    return;
             //}
-
             //var channel = (ChannelViewModel)dgChannel.SelectedItem;
             //var window = new ChannelConfigWindow(channel);
             //window.ShowDialog();

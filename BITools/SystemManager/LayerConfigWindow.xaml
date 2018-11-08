@@ -7,7 +7,8 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:BITools.SystemManager"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="层"
+    xmlns:syscontrols="clr-namespace:BITools.UIControls"
+    Title="分层设置"
     Width="400"
     Height="300"
     FocusManager.FocusedElement="{Binding ElementName=txtCode}"
@@ -28,6 +29,7 @@
         <Style BasedOn="{StaticResource TBBaseStyle}" TargetType="TextBox">
             <Setter Property="Width" Value="120" />
             <Setter Property="Height" Value="24" />
+            <Setter Property="Margin" Value="5,0" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
 
@@ -37,7 +39,7 @@
             <RowDefinition />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="0" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
             <RowDefinition />
@@ -46,14 +48,14 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
         <TextBlock
             Grid.Row="1"
             Grid.Column="1"
-            Text="层编号:" />
+            Text="编号:" />
         <TextBox
             Name="txtCode"
             Grid.Row="1"
@@ -62,7 +64,7 @@
         <TextBlock
             Grid.Row="2"
             Grid.Column="1"
-            Text="层名称:" />
+            Text="名称:" />
         <TextBox
             Name="txtName"
             Grid.Row="2"
@@ -71,26 +73,45 @@
         <TextBlock
             Grid.Row="3"
             Grid.Column="1"
-            Text="老化时间:" />
-        <TextBox
-            Name="txtTime"
+            Text="最大层:" />
+
+        <StackPanel
             Grid.Row="3"
-            Grid.Column="2" />
+            Grid.Column="2"
+            Orientation="Horizontal">
+            <syscontrols:SelectNumeric
+                x:Name="numericFloors"
+                Width="60"
+                Height="30"
+                Margin="5,0,0,0"
+                HorizontalAlignment="Left"
+                IncrementText="1"
+                MaxValue="4"
+                MinValue="1" />
+
+            <TextBlock
+                Margin="2,0"
+                Foreground="Red"
+                Text="{Binding ElementName=numericFloors, Path=MaxValue}" />
+        </StackPanel>
+
 
         <TextBlock
             Grid.Row="4"
             Grid.Column="1"
-            Text="最大层:" />
-        <TextBox
-            Name="txtMaxLayer"
+            Text="应用至所有台车:" />
+        <CheckBox
+            Name="ckbAll"
             Grid.Row="4"
-            Grid.Column="2" />
+            Grid.Column="2"
+            Margin="5,0"
+            Style="{StaticResource CheckBox.MapToolBar.Style}" />
 
         <Button
             Name="btnSave"
             Grid.Row="5"
             Grid.Column="1"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="4"
             Width="100"
             Height="26"
             Click="btnSave_Click"

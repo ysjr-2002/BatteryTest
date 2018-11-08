@@ -29,12 +29,24 @@ namespace BITools.SystemManager
 
         public string MaxCode { get; set; }
 
+        public bool IsAllLayer { get; set; }
+
+        public bool IsAllTC { get; set; }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            MaxCode = numericCount.IncrementText;
+            if(MaxCode.ToInt32() > numericCount.MaxWidth)
+            {
+                MsgBox.WarningShow("超出最大数配置", "");
+                return;
+            }
+
             UUTViewModel = new UUTViewModel();
             UUTViewModel.Code = txtCode.Text;
 
-            MaxCode = txtMaxCode.Text;
+            IsAllLayer = ckbAllLayer.IsChecked.GetValueOrDefault();
+            IsAllTC = ckbAllTC.IsChecked.GetValueOrDefault();
             this.DialogResult = true;
         }
     }

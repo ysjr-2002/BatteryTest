@@ -1,4 +1,5 @@
-﻿using BITools.UIControls;
+﻿using BILogic;
+using BITools.UIControls;
 using BITools.ViewModel;
 using LL.SenicSpot.Gate.Kernal;
 using Newtonsoft.Json;
@@ -34,39 +35,38 @@ namespace BITools
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var filename = "temp.json";
-            if (System.IO.File.Exists(filename))
+            var defautConfig = new DeviceConfigService().getConfigs().FirstOrDefault(s => s.IsDefault == true);
+            if (defautConfig == null)
+                return;
+
+            var tcList = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(defautConfig.DeviceContent);
+
+            string first = "";
+            foreach (var tc in tcList)
             {
-                var content = System.IO.File.ReadAllText(filename);
-                var tcList = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
+                //台车
+                if (first.IsEmpty())
+                    first = tc.Name;
 
-                string first = "";
-                foreach (var tc in tcList)
+                TabItem item = new TabItem { Name = tc.Name, Header = tc.Name, IsSelected = true };
+                item.Style = Application.Current.Resources["TabItem.TC"] as System.Windows.Style;
+
+                var list = new ListBox();
+                list.ItemContainerStyle = this.FindResource("kk") as Style;
+                foreach (var layer in tc.LayerList)
                 {
-                    //台车
-                    if (first.IsEmpty())
-                        first = tc.Name;
-
-                    TabItem item = new TabItem { Name = tc.Name, Header = tc.Name, IsSelected = true };
-                    item.Style = Application.Current.Resources["TabItem.TC"] as System.Windows.Style;
-
-                    var list = new ListBox();
-                    list.ItemContainerStyle = this.FindResource("kk") as Style;
-                    foreach (var layer in tc.LayerList)
-                    {
-                        //层
-                        LayerView temp = new LayerView();
-                        LayerViewModel datacontext = new LayerViewModel(layer.Name);
-                        datacontext.UUTList = layer.UUTList;
-                        datacontext.Refresh();
-                        temp.DataContext = datacontext;
-                        list.Items.Add(temp);
-                    }
-                    item.Content = list;
-                    tabs.Items.Add(item);
+                    //层
+                    LayerView temp = new LayerView();
+                    LayerViewModel datacontext = new LayerViewModel(layer);
+                    datacontext.UUTList = layer.UUTList;
+                    datacontext.Refresh();
+                    temp.DataContext = datacontext;
+                    list.Items.Add(temp);
                 }
-                tabs.SetSelectedItem(first);
+                item.Content = list;
+                tabs.Items.Add(item);
             }
+            tabs.SetSelectedItem(first);
         }
     }
 }
