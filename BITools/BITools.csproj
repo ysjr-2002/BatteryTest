@@ -570,6 +570,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="db\data.bin" />
     <None Include="Document\斯康达BTS100软件操作说明书.pdf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
