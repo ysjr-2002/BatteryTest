@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -20,11 +21,22 @@ namespace BITools
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            AppContext.UserName = "admin";
-            NinjectKernal.Instance.Load();
-            var window = new MainWindow();
-            Application.Current.MainWindow = window;
-            window.Show();
+            var bnew = false;
+            var appname = System.Windows.Forms.Application.ProductName;
+            var mutex = new Mutex(true, appname, out bnew);
+            if (bnew)
+            {
+                AppContext.UserName = "admin";
+                NinjectKernal.Instance.Load();
+                var window = new LoginWindow();
+                Application.Current.MainWindow = window;
+                window.Show();
+            }
+            else
+            {
+                MessageBox.Show("系统已运行！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                Environment.Exit(Environment.ExitCode);
+            }
         }
     }
 }

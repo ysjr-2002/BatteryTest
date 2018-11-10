@@ -20,7 +20,7 @@ namespace BIDataAccess
 
         public static string ConnectionString(string DataSource, string DataBase, string UserId, string PassWord)
         {
-            return string.Concat("metadata=res://*/entities.Model1.csdl|res://*/entities.Model1.ssdl|res://*/entities.Model1.msl;provider=System.Data.SQLite.EF6;provider connection string=\"data source=E:\\person\\zdm\\2018\\code\\BITools\\BITools\\bin\\Debug\\data.bin\"");
+            return string.Concat("metadata=res://*/entities.Model1.csdl|res://*/entities.Model1.ssdl|res://*/entities.Model1.msl;provider=System.Data.SQLite.EF6;provider connection string=\"data source=data.bin\"");
         }
     }
 }
