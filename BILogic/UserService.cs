@@ -9,7 +9,7 @@ namespace BILogic
 {
     public class UserService
     {
-        public Task<bool> Login(string name, string password)
+        public Task<UserInfo> Login(string name, string password)
         {
             return Task.Factory.StartNew(() =>
             {

@@ -9,22 +9,19 @@ namespace BIDataAccess
 {
     public class UserDal
     {
-        public bool Login(string name, string password)
+        public UserInfo Login(string name, string password)
         {
             try
             {
                 using (var db = BatteryDBContext.GetConnect())
                 {
                     var item = db.UserInfo.FirstOrDefault(s => s.UserName == name && s.Password == password);
-                    if (item != null)
-                        return true;
-                    else
-                        return false;
+                    return item;
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
 
@@ -49,11 +46,8 @@ namespace BIDataAccess
             {
                 using (var db = BatteryDBContext.GetConnect())
                 {
-                    //db.UserInfo.Add(user);
-                    //int ret = db.SaveChanges();
-                    var sql = "insert into userinfo(username, password, createtime, permission) values('{0}','{1}','{2}',{3})";
-                    sql = string.Format(sql, user.UserName, user.Password, user.CreateTime.ToString("yyyy-MM-dd HH:mm:ss"), user.Permission);
-                    var ret = db.Database.ExecuteSqlCommand(sql);
+                    db.UserInfo.Add(user);
+                    int ret = db.SaveChanges();
                     return ret >= 1;
                 }
             }

@@ -12,6 +12,8 @@
     <cvt:InterfaceConverter x:Key="interfaceConverter" />
     <cvt:StringToIntConverter x:Key="stringToIntConverter" />
 
+    <SolidColorBrush x:Key="mytitle" Color="#d4e4f3"></SolidColorBrush>
+
     <!--  FFD6DBE9  -->
     <SolidColorBrush x:Key="MainTitleBackground" Color="#FF2E69C5" />
 

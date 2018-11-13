@@ -66,6 +66,12 @@ namespace BITools.ViewModel
                 return;
             }
 
+            if (AppContext.PassWord != OldPassWord)
+            {
+                MsgBox.SuccessShow("旧密码输入错误！");
+                return;
+            }
+
             var flag = userImpl.UpdatePassWord(AppContext.UserId, NewPassWord);
             if (flag)
             {
@@ -75,7 +81,7 @@ namespace BITools.ViewModel
 
         public override void Loaded()
         {
-            this.Name = AppContext.UserName = "test";
+            this.Name = AppContext.UserName;
         }
     }
 }

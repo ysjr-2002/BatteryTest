@@ -1,5 +1,6 @@
 ﻿using BIDataAccess.entities;
 using BILogic;
+using BIModel;
 using BITools.DataManager;
 using BITools.SystemManager;
 using System;
@@ -65,11 +66,14 @@ namespace BITools
 
             imgWait.Visibility = Visibility.Visible;
             btnLogin.IsEnabled = false;
-            var flag = await userImpl.Login(name, password);
+            var user = await userImpl.Login(name, password);
             imgWait.Visibility = Visibility.Collapsed;
             btnLogin.IsEnabled = true;
-            if (flag)
+            if (user != null)
             {
+                AppContext.UserId = (int)user.UserID;
+                AppContext.UserName = user.UserName;
+                AppContext.PassWord = user.Password;
                 saveFile(name, password, ckbRemember.IsChecked.GetValueOrDefault());
                 this.Hide();
                 var window = new MainWindow();

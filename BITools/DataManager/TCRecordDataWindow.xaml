@@ -105,6 +105,7 @@
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             IsReadOnly="True"
+            Style="{StaticResource dgConfig}"
             ItemsSource="{Binding TCDataHistoryCollection}">
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -218,6 +219,7 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     CanUserDeleteRows="False"
+                    Style="{StaticResource dgConfig}"
                     ItemsSource="{Binding Records}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
@@ -249,6 +251,7 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     CanUserDeleteRows="False"
+                    Style="{StaticResource dgConfig}"
                     ItemsSource="{Binding Unknowns}">
                     <DataGrid.Columns>
                         <DataGridTextColumn

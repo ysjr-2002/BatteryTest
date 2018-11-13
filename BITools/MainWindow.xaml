@@ -43,12 +43,11 @@
     <Grid Margin="0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="55" />
-            <RowDefinition Height="auto" />
             <RowDefinition />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="#d4e4f3">
+        <Grid Grid.Row="0" Background="{StaticResource mytitle}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
@@ -80,8 +79,8 @@
             <syscontrols:ButtonEx Grid.Column="2"
                                   Width="110"
                                   BorderThickness="0"
-                                  Command="{Binding SystemSettingCommand}"
-                                  Content="系统设置"
+                                  Command="{Binding DeviceConfigCommand}"
+                                  Content="设备设置"
                                   ImageHeight="24"
                                   NormalImage="/BITools;component/Images/xtsz.png"
                                   NormalImagePlacement="Top" />
@@ -104,8 +103,8 @@
             <syscontrols:ButtonEx Grid.Column="5"
                                   Width="110"
                                   BorderThickness="0"
-                                  Command="{Binding DeviceConfigCommand}"
-                                  Content="设备设置"
+                                  Command="{Binding SystemSettingCommand}"
+                                  Content="系统设置"
                                   ImageHeight="24"
                                   NormalImage="/BITools;component/Images/xtsz.png"
                                   NormalImagePlacement="Top" />
@@ -119,54 +118,8 @@
                                   NormalImagePlacement="Top" />
         </Grid>
 
-        <Grid Grid.Row="1"
-              Background="#BCC8DB"
-              Visibility="Collapsed">
+        <syscontrols:TCTabControl x:Name="tabs" Grid.Row="1" />
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <RadioButton Name="rbA"
-                         Grid.Column="0"
-                         Command="{Binding TabSelectedCommand}"
-                         CommandParameter="A"
-                         Content="A"
-                         IsChecked="True" />
-            <RadioButton Name="rbB"
-                         Grid.Column="1"
-                         Command="{Binding TabSelectedCommand}"
-                         CommandParameter="B"
-                         Content="B" />
-            <RadioButton Name="rbC"
-                         Grid.Column="2"
-                         Command="{Binding TabSelectedCommand}"
-                         CommandParameter="C"
-                         Content="C" />
-            <RadioButton Name="rbD"
-                         Grid.Column="3"
-                         Command="{Binding TabSelectedCommand}"
-                         CommandParameter="D"
-                         Content="D" />
-            <RadioButton Name="rbE"
-                         Grid.Column="4"
-                         Command="{Binding TabSelectedCommand}"
-                         CommandParameter="E"
-                         Content="D" />
-            <RadioButton Name="rbF"
-                         Grid.Column="5"
-                         Command="{Binding TabSelectedCommand}"
-                         CommandParameter="F"
-                         Content="F" />
-        </Grid>
-
-        <syscontrols:TCTabControl x:Name="tabs" Grid.Row="2" />
-
-        <syscontrols:BottomView Grid.Row="3" />
+        <syscontrols:BottomView Grid.Row="2" />
     </Grid>
 </Window>

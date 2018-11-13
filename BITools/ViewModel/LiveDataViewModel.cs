@@ -140,16 +140,18 @@ namespace BITools.ViewModel
 
         private void QueryData()
         {
-            TCDataHistoryCollection.Add(new TCRecord { cpdhh = "343434343", jx = "L-23232", qj = "L2", lhzsj = "23:32:32", czy = "admin", path = "c:\\data.xls" });
+            this.TCDataHistoryCollection.Clear();
+            this.Records.Clear();
+            this.Unknowns.Clear();
 
-            Records.Add(new DataRecord { Time = "12:22:00", Input = "220", X = "℃", Voltage = "23", Ammeter = "34" });
+            this.TCDataHistoryCollection.Add(new TCRecord { cpdhh = "343434343", jx = "L-23232", qj = "L2", lhzsj = "23:32:32", czy = "admin", path = "c:\\data.xls" });
+            this.Records.Add(new DataRecord { Time = "12:22:00", Input = "220", X = "℃", Voltage = "23", Ammeter = "34" });
 
-            Unknowns.Clear();
-            Unknowns.Add(new RecordStatus { Index = 1, Status = "未连接" });
-            Unknowns.Add(new RecordStatus { Index = 2, Status = "未连接" });
-            Unknowns.Add(new RecordStatus { Index = 3, Status = "未连接" });
-            Unknowns.Add(new RecordStatus { Index = 4, Status = "未连接" });
-            Unknowns.Add(new RecordStatus { Index = 5, Status = "未连接" });
+            this.Unknowns.Add(new RecordStatus { Index = 1, Status = "未连接" });
+            this.Unknowns.Add(new RecordStatus { Index = 2, Status = "未连接" });
+            this.Unknowns.Add(new RecordStatus { Index = 3, Status = "未连接" });
+            this.Unknowns.Add(new RecordStatus { Index = 4, Status = "未连接" });
+            this.Unknowns.Add(new RecordStatus { Index = 5, Status = "未连接" });
 
             var line1 = new LineSeries();
             line1.Values = new ChartValues<double>();

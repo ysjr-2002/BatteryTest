@@ -14,7 +14,7 @@ namespace BIDataAccess.entities
     
     public partial class UserInfo
     {
-        public int UserID { get; set; }
+        public long UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public System.DateTime CreateTime { get; set; }

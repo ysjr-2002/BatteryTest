@@ -14,7 +14,7 @@ namespace BIDataAccess.entities
     
     public partial class DeviceConfig
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public string Name { get; set; }
         public string DeviceContent { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
