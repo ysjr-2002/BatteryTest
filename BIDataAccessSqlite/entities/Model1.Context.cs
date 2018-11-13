@@ -29,8 +29,8 @@ namespace BIDataAccess.entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<UserInfo> UserInfo { get; set; }
         public virtual DbSet<DeviceConfig> DeviceConfig { get; set; }
         public virtual DbSet<Dictonary> Dictonary { get; set; }
+        public virtual DbSet<UserInfo> UserInfo { get; set; }
     }
 }

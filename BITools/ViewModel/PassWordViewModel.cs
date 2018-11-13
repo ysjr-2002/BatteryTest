@@ -68,7 +68,7 @@ namespace BITools.ViewModel
 
             if (AppContext.PassWord != OldPassWord)
             {
-                MsgBox.SuccessShow("旧密码输入错误！");
+                MsgBox.WarningShow("旧密码输入错误！");
                 return;
             }
 
