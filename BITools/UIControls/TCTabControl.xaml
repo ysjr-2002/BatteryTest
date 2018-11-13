@@ -18,8 +18,9 @@
         <Label
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Height="50"
             VerticalContentAlignment="Center"
+            FontSize="14"
+            Height="42"
             Content="总数:12" />
     </Grid>
 </UserControl>

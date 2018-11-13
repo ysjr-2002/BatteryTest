@@ -524,7 +524,7 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="160" Height="26">
+                        <Grid Width="160" Height="31">
                             <Image
                                 Width="26"
                                 Height="26"

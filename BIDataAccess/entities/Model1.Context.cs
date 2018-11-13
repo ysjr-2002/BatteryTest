@@ -19,10 +19,9 @@ namespace BIDataAccess.entities
             : base("name=batteryEntities")
         {
         }
-
-        public batteryEntities(string test) : base(test)
+    
+    	public batteryEntities(string test) : base(test)
         {
-
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

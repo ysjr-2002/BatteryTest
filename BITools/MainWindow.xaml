@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:BITools"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:syscontrols="clr-namespace:BITools.UIControls"
-        Title=""
+        Title="节能回馈老化测试系统"
         Width="1400"
         Height="800"
         Style="{StaticResource WindowStyleWithMinMaxCloseBtn}"

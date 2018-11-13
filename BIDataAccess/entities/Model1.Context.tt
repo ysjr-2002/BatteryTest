@@ -80,6 +80,10 @@ foreach (var entitySet in container.BaseEntitySets.OfType<EntitySet>())
 #>
     }
 
+	public batteryEntities(string test) : base(test)
+    {
+    }
+
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
         throw new UnintentionalCodeFirstException();

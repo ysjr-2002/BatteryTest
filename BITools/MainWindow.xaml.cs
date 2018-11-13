@@ -31,6 +31,20 @@ namespace BITools
             InitializeComponent();
             this.DataContext = NinjectKernal.Instance.Get<MainViewModel>();
             this.Loaded += MainWindow_Loaded;
+            this.Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var dialog = MsgBox.QuestionShow("确认退出软件吗?");
+            if (dialog == MsgBoxResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)

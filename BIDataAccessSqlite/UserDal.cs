@@ -49,12 +49,15 @@ namespace BIDataAccess
             {
                 using (var db = BatteryDBContext.GetConnect())
                 {
-                    db.UserInfo.Add(user);
-                    int ret = db.SaveChanges();
+                    //db.UserInfo.Add(user);
+                    //int ret = db.SaveChanges();
+                    var sql = "insert into userinfo(username, password, createtime, permission) values('{0}','{1}','{2}',{3})";
+                    sql = string.Format(sql, user.UserName, user.Password, user.CreateTime.ToString("yyyy-MM-dd HH:mm:ss"), user.Permission);
+                    var ret = db.Database.ExecuteSqlCommand(sql);
                     return ret >= 1;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }

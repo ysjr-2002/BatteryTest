@@ -81,6 +81,11 @@ namespace BITools.ViewModel
 
             bool flag = userImpl.CreateUser(user);
             ResetValue();
+            if (!flag)
+            {
+                MsgBox.WarningShow("用户添加失败！");
+                return;
+            }
             Loaded();
         }
 
