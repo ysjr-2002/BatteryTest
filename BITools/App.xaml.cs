@@ -19,6 +19,11 @@ namespace BITools
     /// </summary>
     public partial class App : Application
     {
+        /*
+         * 负载通道1 电压电流上下限
+配置和参数加使、能参数
+点击机台，可以查看机台上次采集数据
+*/
         protected override void OnStartup(StartupEventArgs e)
         {
             var bnew = false;
@@ -28,7 +33,7 @@ namespace BITools
             {
                 AppContext.UserName = "admin";
                 NinjectKernal.Instance.Load();
-                var window = new DeviceWindow();
+                var window = new LoginWindow();
                 Application.Current.MainWindow = window;
                 window.Show();
             }
