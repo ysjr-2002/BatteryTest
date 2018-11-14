@@ -157,25 +157,66 @@ namespace BITools.ViewModel
 
         }
 
+        private TCViewModel getTC(Configs.LayerViewModel model)
+        {
+            TCViewModel ok = null;
+            foreach (var tc in TCList)
+            {
+                foreach (var layer in tc.LayerList)
+                {
+                    if (layer.Code == model.Code)
+                    {
+                        ok = tc;
+                    }
+                }
+            }
+            return ok;
+        }
+
         private void AddUUT(Configs.LayerViewModel layer)
         {
             var window = new UUTConfigWindow();
             var dialog = window.ShowDialog();
             if (dialog.GetValueOrDefault())
             {
-                int max = window.MaxCode.ToInt32();
-                if (max > 0)
+                if (window.IsAllTC && window.IsAllLayer)
                 {
-                    for (int i = 1; i <= max; i++)
+
+                }
+                if (window.IsAllTC == false && window.IsAllLayer)
+                {
+                    var tc = getTC(layer);
+                    int max = window.MaxCode.ToInt32();
+                    if (max > 0)
                     {
-                        var uut = new UUTViewModel { Code = i.ToString() };
-                        uut.Init();
-                        layer.UUTList.Add(uut);
+                        foreach (var l in tc.LayerList)
+                        {
+                            l.UUTList.Clear();
+                            for (int i = 1; i <= max; i++)
+                            {
+                                var uut = new UUTViewModel { Code = i.ToString() };
+                                uut.Init();
+                                l.UUTList.Add(uut);
+                            }
+                        }
                     }
                 }
                 else
                 {
-                    layer.UUTList.Add(window.UUTViewModel);
+                    int max = window.MaxCode.ToInt32();
+                    if (max > 0)
+                    {
+                        for (int i = 1; i <= max; i++)
+                        {
+                            var uut = new UUTViewModel { Code = i.ToString() };
+                            uut.Init();
+                            layer.UUTList.Add(uut);
+                        }
+                    }
+                    else
+                    {
+                        layer.UUTList.Add(window.UUTViewModel);
+                    }
                 }
             }
         }

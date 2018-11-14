@@ -34,7 +34,7 @@ namespace BIDataAccess
             {
                 using (var db = BatteryDBContext.GetConnect())
                 {
-                    return db.UserInfo.ToList();
+                    return db.UserInfo.Where(s => s.UserName != "admin").ToList();
                 }
             }
             catch (Exception ex)

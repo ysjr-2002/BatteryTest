@@ -50,23 +50,30 @@ namespace BITools.ViewModel.Configs
             set { this.SetValue(c => c.MontiorParamList, value); }
         }
 
-        public void Init()
+        public void Init(int count)
         {
             if (ChannelType == (int)ChannelTypeEnum.FZ)
             {
                 ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetV("1"));
                 ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetA("1"));
 
-                ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetV("2"));
-                ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetA("2"));
+                if (count == 2)
+                {
+                    ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetV("2"));
+                    ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetA("2"));
+                }
 
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "1", ValType = (int)ValTypeEnum.Selector, Name = "负载模式", Val = "" });
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "2", ValType = (int)ValTypeEnum.Input, Name = "负载值(A/V)", Val = "" });
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "3", ValType = (int)ValTypeEnum.Input, Name = "启动电压(V)", Val = "" });
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "4", ValType = (int)ValTypeEnum.Input, Name = "电压上限(V)", Val = "" });
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "5", ValType = (int)ValTypeEnum.Input, Name = "电压下限(V)", Val = "" });
-                MontiorParamList.Add(new MonitorParamViewModel { Code = "6", ValType = (int)ValTypeEnum.Input, Name = "电流上限(A)", Val = "" });
-                MontiorParamList.Add(new MonitorParamViewModel { Code = "7", ValType = (int)ValTypeEnum.Input, Name = "电流下限(A)", Val = "" });
+
+                if (count == 2)
+                {
+                    MontiorParamList.Add(new MonitorParamViewModel { Code = "6", ValType = (int)ValTypeEnum.Input, Name = "电流上限(A)", Val = "" });
+                    MontiorParamList.Add(new MonitorParamViewModel { Code = "7", ValType = (int)ValTypeEnum.Input, Name = "电流下限(A)", Val = "" });
+                }
             }
             if (ChannelType == (int)ChannelTypeEnum.JT)
             {
