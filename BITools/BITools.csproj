@@ -145,6 +145,9 @@
     <Compile Include="Core\Config.cs" />
     <Compile Include="Core\DeviceParamJson.cs" />
     <Compile Include="Core\StateBrushConstrant.cs" />
+    <Compile Include="DataManager\CollectionDataWindow.xaml.cs">
+      <DependentUpon>CollectionDataWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Enums\ChannelTypeEnum.cs" />
     <Compile Include="Enums\InterfaceEnum.cs" />
     <Compile Include="Enums\ValTypeEnum.cs" />
@@ -312,6 +315,10 @@
     <Compile Include="ViewModel\PassWordViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\UserManagerViewModel.cs" />
+    <Page Include="DataManager\CollectionDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DataManager\TCRecordDataWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

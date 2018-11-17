@@ -176,7 +176,7 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            Foreground="White"
-                           Text="登录" />
+                           Text="登录" FontSize="14" />
                 <Button Name="btnClose"
                         HorizontalAlignment="Right"
                         Click="btnClose_Click"

@@ -19,7 +19,6 @@ namespace BITools.ViewModel.Configs
     /// </summary>
     public class UUTViewModel : PropertyNotifyObject
     {
-
         public UUTViewModel()
         {
             ChannelList = new ObservableCollection<ChannelViewModel>();

@@ -29,12 +29,12 @@
         <UserControl Grid.Column="1" Background="{StaticResource sepeatorLineBrush}" />
         <StackPanel Grid.Column="2" Orientation="Horizontal">
             <Separator Background="Red" />
-            <TextBlock Text="联系电话:13760129591" />
+            <TextBlock Text="联系电话:137" />
         </StackPanel>
 
         <UserControl Grid.Column="3" Background="{StaticResource sepeatorLineBrush}" />
         <StackPanel Grid.Column="4" Orientation="Horizontal">
-            <TextBlock Grid.Column="2" Text="技术服务:792135648" />
+            <TextBlock Grid.Column="2" Text="技术服务:10001" />
         </StackPanel>
 
     </Grid>

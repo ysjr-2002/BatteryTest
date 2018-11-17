@@ -25,13 +25,15 @@ namespace BITools.ViewModel
     /// </summary>
     public class LayerViewModel : PropertyNotifyObject
     {
+        private DeveInfo deveInfo = null;
         private Configs.LayerViewModel layerConfig;
+
         public LayerViewModel(Configs.LayerViewModel layerConfig)
         {
             this.layerConfig = layerConfig;
             this.Name = layerConfig.Name;
             this.RunDataCollection = new ObservableCollection<DeveInfo>();
-            this.RunDataCollection.Add(new DeveInfo
+            deveInfo = new DeveInfo
             {
                 sbbh = layerConfig.Name,
                 sm = 1,
@@ -42,17 +44,18 @@ namespace BITools.ViewModel
                 hg = 0,
                 bl = 1,
                 bll = "99%"
-            });
-            lhsjEnum = LHSJEnum.LHZSJ;
-            LHSJName = FunExt.GetDescription(lhsjEnum);
+            };
+            this.RunDataCollection.Add(deveInfo);
+            this.lhsjEnum = LHSJEnum.LHZSJ;
+            this.LHSJName = FunExt.GetDescription(lhsjEnum);
 
-            IsSDJCEnable = true;
-            IsKSCSEnable = true;
-            IsZTCSEnable = false;
-            IsTZCSEnable = false;
+            this.IsSDJCEnable = true;
+            this.IsKSCSEnable = true;
+            this.IsZTCSEnable = false;
+            this.IsTZCSEnable = false;
 
-            Lhzsj = 1;
-            Lhbfb = "等待测试 0%";
+            this.Lhzsj = 1;
+            this.Lhbfb = "等待测试 0%";
         }
 
         public ObservableCollection<UUTViewModel> UUTList
@@ -223,6 +226,12 @@ namespace BITools.ViewModel
         /// </summary>
         private void KSCS()
         {
+            if (deveInfo.cpxh.IsEmpty())
+            {
+                MsgBox.WarningShow("请选择产品型号！");
+                return;
+            }
+
             IsKSCSEnable = false;
             IsZTCSEnable = true;
             IsTZCSEnable = true;

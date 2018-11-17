@@ -8,6 +8,9 @@ using System.Collections.ObjectModel;
 
 namespace BITools.ViewModel.Configs
 {
+    /// <summary>
+    /// 台车
+    /// </summary>
     public class TCViewModel : PropertyNotifyObject
     {
         public TCViewModel()
@@ -25,6 +28,12 @@ namespace BITools.ViewModel.Configs
         {
             get { return this.GetValue(c => c.Name); }
             set { this.SetValue(c => c.Name, value); }
+        }
+
+        public bool IsEnable
+        {
+            get { return this.GetValue(c => c.IsEnable); }
+            set { this.SetValue(c => c.IsEnable, value); }
         }
 
         public ObservableCollection<LayerViewModel> LayerList

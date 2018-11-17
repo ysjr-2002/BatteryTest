@@ -37,7 +37,6 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -65,7 +64,7 @@
                   VerticalContentAlignment="Center" />
 
         <Button Name="btnSave"
-                Grid.Row="4"
+                Grid.Row="3"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Width="100"

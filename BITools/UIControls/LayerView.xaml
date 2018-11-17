@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
     d:DesignHeight="300"
-    d:DesignWidth="1000"
+    d:DesignWidth="1300"
     mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="borderBrush" Color="#CCCCCC" />
@@ -59,7 +59,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="0" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -87,12 +87,6 @@
                 </Style>
             </DataGrid.RowHeaderStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn
-                    Width="100"
-                    Binding="{Binding sbbh}"
-                    FontSize="16"
-                    FontWeight="Black"
-                    Header="设备编号" />
                 <DataGridTextColumn
                     Width="80"
                     Binding="{Binding sm}"
@@ -140,7 +134,7 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBox IsReadOnly="True" Text="{Binding cpxh}" />
+                                <TextBox Text="{Binding cpxh}" />
                                 <Button
                                     Grid.Column="1"
                                     Width="40"
@@ -311,184 +305,6 @@
                     <Setter Property="Width" Value="26" />
                 </Style>
             </Grid.Resources>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="测试状态说明" />
-
-
-
-            <StackPanel
-                Grid.Column="2"
-                Background="#d4e4f3"
-                Orientation="Horizontal">
-
-                <!--  脱机  -->
-                <Grid Margin="5,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/dj.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="脱机" />
-                </Grid>
-
-                <!--  下载参数中  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="80" />
-                    </Grid.ColumnDefinitions>
-                    <Image
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Source="/BITools;component/Images/refresh.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="下载参数中" />
-                </Grid>
-
-                <!--  停止拉载  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image
-                        Grid.Column="0"
-                        Width="16"
-                        Height="16"
-                        Source="/BITools;component/Images/stop_pull.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="停止拉载" />
-                </Grid>
-
-                <!--  拉载异常  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/lzyc.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="拉载异常" />
-                </Grid>
-
-                <!--  无产品  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/wcp.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="无产品" />
-                </Grid>
-
-                <!--  欠压  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/qy.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="欠压" />
-                </Grid>
-
-                <!--  欠流  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/ql.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="欠流" />
-                </Grid>
-
-                <!--  过压  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/gy.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="过压" />
-                </Grid>
-
-                <!--  过流  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/gl.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="过流" />
-                </Grid>
-
-                <!--  无输出  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/wsc.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="无输出" />
-                </Grid>
-
-                <!--  合格  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/hg.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="合格" />
-                </Grid>
-
-                <!--  负载保护  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="60" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/BITools;component/Images/Status/fzbh.png" />
-                    <TextBlock
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        Text="负载保护" />
-                </Grid>
-
-            </StackPanel>
         </Grid>
 
         <Grid
@@ -503,12 +319,13 @@
                 Grid.Column="0"
                 Margin="0"
                 BorderBrush="{StaticResource borderBrush}"
-                BorderThickness="1">
-                <TextBlock Text="L1" />
+                BorderThickness="0">
+                <TextBlock Text="{Binding Name}" TextAlignment="Center" FontSize="16" FontWeight="Bold" />
             </Border>
             <ListBox
                 Grid.Column="1"
                 Background="#d4e4f3"
+                BorderThickness="0"
                 ItemContainerStyle="{StaticResource uutStyle}"
                 ItemsSource="{Binding UUTList}"
                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
@@ -528,7 +345,8 @@
                             <Image
                                 Width="26"
                                 Height="26"
-                                Source="{Binding StateBrush}" />
+                                Source="{Binding StateBrush}">
+                            </Image>
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Text="{Binding Code}"

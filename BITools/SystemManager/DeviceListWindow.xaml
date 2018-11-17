@@ -19,7 +19,7 @@
     </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="2" />
             <RowDefinition />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>

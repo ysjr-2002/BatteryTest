@@ -67,11 +67,11 @@ namespace BITools.ViewModel.Configs
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "2", ValType = (int)ValTypeEnum.Input, Name = "负载值(A/V)", Val = "" });
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "3", ValType = (int)ValTypeEnum.Input, Name = "启动电压(V)", Val = "" });
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "4", ValType = (int)ValTypeEnum.Input, Name = "电压上限(V)", Val = "" });
-                MontiorParamList.Add(new MonitorParamViewModel { Code = "5", ValType = (int)ValTypeEnum.Input, Name = "电压下限(V)", Val = "" });
+                MontiorParamList.Add(new MonitorParamViewModel { Code = "5", ValType = (int)ValTypeEnum.Input, Name = "电流上限(A)", Val = "" });
 
                 if (count == 2)
                 {
-                    MontiorParamList.Add(new MonitorParamViewModel { Code = "6", ValType = (int)ValTypeEnum.Input, Name = "电流上限(A)", Val = "" });
+                    MontiorParamList.Add(new MonitorParamViewModel { Code = "6", ValType = (int)ValTypeEnum.Input, Name = "电压下限(V)", Val = "" });
                     MontiorParamList.Add(new MonitorParamViewModel { Code = "7", ValType = (int)ValTypeEnum.Input, Name = "电流下限(A)", Val = "" });
                 }
             }
