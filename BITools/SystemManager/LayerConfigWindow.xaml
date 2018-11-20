@@ -113,7 +113,6 @@
             Grid.Column="1"
             Grid.ColumnSpan="4"
             Width="100"
-            Height="26"
             Click="btnSave_Click"
             Content="确定"
             Style="{StaticResource OKStyle}" />

@@ -1,11 +1,13 @@
-﻿<Application x:Class="BITools.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:BITools">
+﻿<Application
+    x:Class="BITools.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:BITools">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/BITools;component/Styles/sys.xaml" />
+                <ResourceDictionary Source="/BITools;component/Styles/myTab.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/ImageButtonEx.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/ButtonEx.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/DataGridStyle.xaml" />
@@ -22,7 +24,7 @@
                 <ResourceDictionary Source="/BITools;component/Styles/TabControlStyle.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/TextBoxStyle.xaml" />
                 <ResourceDictionary Source="/BITools;component/Styles/ListBoxStyle.xaml" />
-                
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

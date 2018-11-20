@@ -1,5 +1,6 @@
 ﻿using BITools.Core;
 using BITools.SystemManager;
+using BITools.UIControls;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
 using Newtonsoft.Json;
@@ -10,6 +11,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace BITools.ViewModel
@@ -19,41 +22,51 @@ namespace BITools.ViewModel
     /// </summary>
     public class MainViewModel : BaseMainViewModel
     {
-        public int TabSelectedIndex
-        {
-            get { return this.GetValue(c => c.TabSelectedIndex); }
-            set { this.SetValue(c => c.TabSelectedIndex, value); }
-        }
-
-        public ICommand TabSelectedCommand { get { return new DelegateCommand<string>(SwitchTab); } }
-
-        public MainViewModel()
-        {
-            TabSelectedIndex = 0;
-        }
+        public ICommand LoadParamCommand { get { return new DelegateCommand(LoadConfig); } }
 
         [Inject]
         public Config config { get; set; }
 
-        private void SwitchTab(string tab)
-        {
-            if (tab == "A")
-                TabSelectedIndex = 0;
-            if (tab == "B")
-                TabSelectedIndex = 1;
-            if (tab == "C")
-                TabSelectedIndex = 2;
-            if (tab == "D")
-                TabSelectedIndex = 3;
-            if (tab == "E")
-                TabSelectedIndex = 4;
-            if (tab == "F")
-                TabSelectedIndex = 5;
-        }
-
         public override void Loaded()
         {
             base.Loaded();
+        }
+
+        private void LoadConfig()
+        {
+            var file = FileManager.OpenParamFile();
+            if (file.IsEmpty())
+                return;
+
+            var content = System.IO.File.ReadAllText(file);
+            var tcList = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
+
+            string first = "";
+            foreach (var tc in tcList)
+            {
+                //台车
+                if (first.IsEmpty())
+                    first = tc.Name;
+
+                TabItem item = new TabItem { Name = tc.Name, Header = tc.Name, IsSelected = true };
+                item.Style = Application.Current.Resources["TabItem.TC"] as System.Windows.Style;
+
+                var list = new ListBox();
+                list.ItemContainerStyle = Application.Current.FindResource("layerListBoxItem") as Style;
+                foreach (var layer in tc.LayerList)
+                {
+                    //层
+                    LayerView temp = new LayerView();
+                    LayerViewModel datacontext = new LayerViewModel(layer, config);
+                    datacontext.UUTList = layer.UUTList;
+                    datacontext.Refresh();
+                    temp.DataContext = datacontext;
+                    list.Items.Add(temp);
+                }
+                item.Content = list;
+                TabControl.Items.Add(item);
+            }
+            TabControl.SetSelectedItem(first);
         }
     }
 }

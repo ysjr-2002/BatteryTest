@@ -15,7 +15,8 @@ namespace BITools.ViewModel.Configs
     {
         public LayerViewModel()
         {
-            UUTList = new ObservableCollection<UUTViewModel>();
+            this.UUTList = new ObservableCollection<UUTViewModel>();
+            this.IsEnable = true;
         }
 
         /// <summary>
@@ -43,6 +44,12 @@ namespace BITools.ViewModel.Configs
         {
             get { return this.GetValue(c => c.LHSJ); }
             set { this.SetValue(c => c.LHSJ, value); }
+        }
+
+        public bool IsEnable
+        {
+            get { return this.GetValue(c => c.IsEnable); }
+            set { this.SetValue(c => c.IsEnable, value); }
         }
 
         /// <summary>

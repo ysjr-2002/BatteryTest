@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using BIModel;
 using BILogic;
 using BITools.ViewModel.Configs;
+using BITools.Core;
 
 namespace BITools.ViewModel
 {
@@ -27,6 +28,11 @@ namespace BITools.ViewModel
 
         public ICommand LoadConfigCommand { get { return new DelegateCommand(LoadConfig); } }
         public ICommand SaveConfigCommand { get { return new DelegateCommand(SaveConfig); } }
+
+
+        public ICommand LoadFileCommand { get { return new DelegateCommand(LoadFile); } }
+        public ICommand SaveFileCommand { get { return new DelegateCommand(SaveFile); } }
+
         public ICommand ClearConfigCommand { get { return new DelegateCommand(ClarConfig); } }
 
 
@@ -91,6 +97,32 @@ namespace BITools.ViewModel
                 service.UpdateConfig(currentConfig);
                 MsgBox.SuccessShow("保存成功！");
             }
+        }
+
+        private void LoadFile()
+        {
+            var filepath = FileManager.OpenParamFile();
+            if (filepath.IsEmpty())
+                return;
+
+            var content = System.IO.File.ReadAllText(filepath);
+            TCList = JsonConvert.DeserializeObject<ObservableCollection<TCViewModel>>(content);
+        }
+
+        private void SaveFile()
+        {
+            if (this.TCList.Count == 0)
+                return;
+
+            var filepath = FileManager.SaveParamFile();
+            if (filepath.IsEmpty())
+                return;
+
+            var content = JsonConvert.SerializeObject(this.TCList);
+            content = FunExt.JsonFormatter(content);
+
+            System.IO.File.WriteAllText(filepath, content);
+            MsgBox.SuccessShow("保存成功！");
         }
 
         private void ClarConfig()
@@ -173,7 +205,7 @@ namespace BITools.ViewModel
             return ok;
         }
 
-        private void AddUUT(Configs.LayerViewModel layer)
+        private void AddUUT(Configs.LayerViewModel layerSource)
         {
             var window = new UUTConfigWindow();
             var dialog = window.ShowDialog();
@@ -181,22 +213,35 @@ namespace BITools.ViewModel
             {
                 if (window.IsAllTC && window.IsAllLayer)
                 {
-
-                }
-                if (window.IsAllTC == false && window.IsAllLayer)
-                {
-                    var tc = getTC(layer);
                     int max = window.MaxCode.ToInt32();
-                    if (max > 0)
+                    foreach (var tc in TCList)
                     {
-                        foreach (var l in tc.LayerList)
+                        foreach (var layer in tc.LayerList)
                         {
-                            l.UUTList.Clear();
+                            layer.UUTList.Clear();
                             for (int i = 1; i <= max; i++)
                             {
                                 var uut = new UUTViewModel { Code = i.ToString() };
                                 uut.Init();
-                                l.UUTList.Add(uut);
+                                layer.UUTList.Add(uut);
+                            }
+                        }
+                    }
+                }
+                else if (window.IsAllTC == false && window.IsAllLayer)
+                {
+                    var tc = getTC(layerSource);
+                    int max = window.MaxCode.ToInt32();
+                    if (max > 0)
+                    {
+                        foreach (var layer in tc.LayerList)
+                        {
+                            layer.UUTList.Clear();
+                            for (int i = 1; i <= max; i++)
+                            {
+                                var uut = new UUTViewModel { Code = i.ToString() };
+                                uut.Init();
+                                layer.UUTList.Add(uut);
                             }
                         }
                     }
@@ -210,12 +255,12 @@ namespace BITools.ViewModel
                         {
                             var uut = new UUTViewModel { Code = i.ToString() };
                             uut.Init();
-                            layer.UUTList.Add(uut);
+                            layerSource.UUTList.Add(uut);
                         }
                     }
                     else
                     {
-                        layer.UUTList.Add(window.UUTViewModel);
+                        layerSource.UUTList.Add(window.UUTViewModel);
                     }
                 }
             }

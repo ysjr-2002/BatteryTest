@@ -134,8 +134,6 @@
                     Foreground="Blue"
                     Text="系统重置为初始密码:123456" />
             </Grid>
-
-
         </GroupBox>
     </Grid>
 </base:BaseWindow>

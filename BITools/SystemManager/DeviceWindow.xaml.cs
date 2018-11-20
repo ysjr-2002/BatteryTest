@@ -30,37 +30,10 @@ namespace BITools.SystemManager
             InitializeComponent();
             vm = new DeviceConfigViewModel();
             this.DataContext = vm;
-            this.Loaded += DeviceConfigWindow_Loaded;
-            this.Closing += DeviceConfigWindow_Closing;
-        }
-
-        private void DeviceConfigWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            //var filename = "temp.json";
-            //if (System.IO.File.Exists(filename))
-            //{
-            //    var content = System.IO.File.ReadAllText(filename);
-            //    var list = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
-            //    vm.TCList = list;
-            //}
-        }
-
-        private void DeviceConfigWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //var content = JsonConvert.SerializeObject(vm.TCList);
-            //content = FunExt.JsonFormatter(content);
-            //System.IO.File.WriteAllText("temp.json", content);
         }
 
         private void dgChannel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //if( dgChannel.SelectedItem == null)
-            //{
-            //    return;
-            //}
-            //var channel = (ChannelViewModel)dgChannel.SelectedItem;
-            //var window = new ChannelConfigWindow(channel);
-            //window.ShowDialog();
         }
 
         private void dgChannelInterface_MouseDoubleClick(object sender, MouseButtonEventArgs e)

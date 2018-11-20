@@ -1,10 +1,12 @@
 ﻿using Common;
+using LL.SenicSpot.Gate.Kernal;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BITools.Core
 {
@@ -19,20 +21,6 @@ namespace BITools.Core
                 Directory.CreateDirectory(root);
         }
 
-        public static string SaveFile(string cardNo, string imagebase64)
-        {
-            if (!imagebase64.IsEmpty())
-            {
-                var folder = GetFolder();
-                var filename = string.Concat(cardNo, "-", DateTime.Now.ToString("HHmmss"), ".jpg");
-                var filepath = Path.Combine(folder, filename);
-                File.WriteAllBytes(filepath, imagebase64.Base64ToByte());
-                return filepath;
-            }
-            else
-                return string.Empty;
-        }
-
         public static string ReadFile(string filepath)
         {
             if (File.Exists(filepath))
@@ -41,7 +29,7 @@ namespace BITools.Core
                 return string.Empty;
         }
 
-        public static string GetFolder()
+        static string GetFolder()
         {
             var day = DateTime.Now.ToString("yyyyMMdd");
             var folder = Path.Combine(root, day);
@@ -49,6 +37,39 @@ namespace BITools.Core
                 Directory.CreateDirectory(folder);
 
             return folder;
+        }
+
+        public static string OpenParamFile()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = false;
+            ofd.Title = "打开参数";
+            ofd.Filter = "*.tk(*.tk)|*.tk";
+            var dialog = ofd.ShowDialog();
+            if (dialog == DialogResult.OK)
+            {
+                return ofd.FileNames.First();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public static string SaveParamFile()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "保存参数";
+            sfd.Filter = "*.tk(*.tk)|*.tk";
+            var dialog = sfd.ShowDialog();
+            if (dialog == DialogResult.OK)
+            {
+                return sfd.FileNames.First();
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
     }
 }

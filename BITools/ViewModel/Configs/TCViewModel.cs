@@ -15,7 +15,8 @@ namespace BITools.ViewModel.Configs
     {
         public TCViewModel()
         {
-            LayerList = new ObservableCollection<LayerViewModel>();
+            this.LayerList = new ObservableCollection<LayerViewModel>();
+            this.IsEnable = true;
         }
 
         public string Code

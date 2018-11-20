@@ -10,8 +10,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
     Title="设备配置"
-    Width="1150"
-    Height="600"
+    Width="1300"
+    Height="700"
     Style="{StaticResource WindowStyleWithCloseBtn}"
     mc:Ignorable="d">
     <i:Interaction.Triggers>
@@ -28,295 +28,321 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <GroupBox Header="操作" Margin="2,2,2,0" Grid.Row="0">
+        <GroupBox
+            Grid.Row="0"
+            Margin="2,2,2,0"
+            Header="操作">
             <StackPanel Orientation="Horizontal">
                 <syscontrols:ButtonEx
-                Grid.Column="0"
-                Width="100"
-                Height="28"
-                Command="{Binding LoadConfigCommand}"
-                Content="加载设备表" />
+                    Grid.Column="0"
+                    Width="100"
+                    Height="28"
+                    Command="{Binding LoadConfigCommand}"
+                    Content="加载设备表" />
 
                 <syscontrols:ButtonEx
-                Grid.Column="0"
-                Width="100"
-                Height="28"
-                Margin="5,0"
-                Command="{Binding SaveConfigCommand}"
-                Content="保存设备表" />
+                    Grid.Column="0"
+                    Width="100"
+                    Height="28"
+                    Margin="5,0"
+                    Command="{Binding SaveConfigCommand}"
+                    Content="保存设备表" />
 
                 <syscontrols:ButtonEx
-                Grid.Column="0"
-                Width="100"
-                Height="28"
-                Margin="5,0"
-                Command="{Binding ClearConfigCommand}"
-                Content="清空配置" />
+                    Grid.Column="0"
+                    Width="100"
+                    Height="28"
+                    Margin="5,0"
+                    Command="{Binding LoadFileCommand}"
+                    Content="选取文件" />
+
+                <syscontrols:ButtonEx
+                    Grid.Column="0"
+                    Width="100"
+                    Height="28"
+                    Margin="5,0"
+                    Command="{Binding SaveFileCommand}"
+                    Content="另存文件" />
+
+                <syscontrols:ButtonEx
+                    Grid.Column="0"
+                    Width="100"
+                    Height="28"
+                    Margin="5,0"
+                    Command="{Binding ClearConfigCommand}"
+                    Content="清空配置" />
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Margin="2,5,2,2" BorderThickness="0" Grid.Row="1">
+        <GroupBox
+            Grid.Row="1"
+            Margin="2,5,2,2"
+            BorderThickness="0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <GroupBox Header="机台" Grid.Column="0">
-                <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                  
-                        <!--<syscontrols:ButtonEx
-                        Grid.Column="0"
-                        Width="100"
-                        Height="24"
-                        Command="{Binding AddTCCommand}"
-                        Content="台车" />-->
-                        <Image Grid.Row="0" HorizontalAlignment="Left" Source="../Images/Add.png" Width="32">
-                            <Image.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding AddTCCommand}"></MouseBinding>
-                            </Image.InputBindings>
-                        </Image>
-                            <DataGrid
-                        Name="dgTC"
-                        Grid.Row="1"
-                        AutoGenerateColumns="False"
-                        CanUserAddRows="False"
-                        CanUserDeleteRows="False"
-                        IsReadOnly="True"
-                        ItemsSource="{Binding TCList}"
-                        Style="{StaticResource dgConfig}">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn
+                <GroupBox Grid.Column="0" Header="台车">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <syscontrols:ButtonEx
+                            Grid.Row="0"
                             Width="60"
-                            Binding="{Binding Code}"
-                            Header="编号" />
-                                    <DataGridTextColumn
-                            Width="100"
-                            Binding="{Binding Name}"
-                            Header="名称" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
+                            Height="24"
+                            HorizontalAlignment="Left"
+                            Command="{Binding AddTCCommand}"
+                            Content="台车"
+                            NormalImage="../Images/Add.png" />
+                        <DataGrid
+                            Name="dgTC"
+                            Grid.Row="1"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            ItemsSource="{Binding TCList}"
+                            Style="{StaticResource dgConfig}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="60"
+                                    Binding="{Binding Code}"
+                                    Header="编号"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Name}"
+                                    Header="名称"
+                                    IsReadOnly="True" />
+                                <DataGridCheckBoxColumn
+                                    Width="60"
+                                    Binding="{Binding IsEnable}"
+                                    Header="{StaticResource enableName}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                 </GroupBox>
                 <Path
-                Grid.Column="1"
-                VerticalAlignment="Center"
-                Data="{StaticResource tt}"
-                Stroke="Blue" />
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Data="{StaticResource tt}"
+                    Stroke="Blue" />
 
-                <Grid Grid.Column="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="489" />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <syscontrols:ButtonEx
-                        Grid.Column="0"
-                        Width="80"
-                        Height="24"
-                        Command="{Binding AddLayerCommand}"
-                        CommandParameter="{Binding SelectedItem, ElementName=dgTC}"
-                        Content="层配置" />
+                <GroupBox Grid.Column="2" Header="层配置">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <syscontrols:ButtonEx
+                                Grid.Column="0"
+                                Width="80"
+                                Height="24"
+                                Command="{Binding AddLayerCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=dgTC}"
+                                Content="层"
+                                NormalImage="../Images/Add.png" />
+                        </Grid>
+                        <DataGrid
+                            Name="dgLayer"
+                            Grid.Row="1"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            ItemsSource="{Binding SelectedItem.LayerList, ElementName=dgTC}"
+                            Style="{StaticResource dgConfig}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="60"
+                                    Binding="{Binding Code}"
+                                    Header="编号"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Name}"
+                                    Header="层名称"
+                                    IsReadOnly="True" />
+                                <DataGridCheckBoxColumn
+                                    Width="60"
+                                    Binding="{Binding IsEnable}"
+                                    Header="{StaticResource enableName}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
-                    <DataGrid
-                    Name="dgLayer"
-                    Grid.Row="1"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding SelectedItem.LayerList, ElementName=dgTC}"
-                    Style="{StaticResource dgConfig}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
-                            Width="60"
-                            Binding="{Binding Code}"
-                            Header="编号" />
-                            <DataGridTextColumn
-                            Width="100"
-                            Binding="{Binding Name}"
-                            Header="层名称" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-
+                </GroupBox>
                 <Path
-                Grid.Column="3"
-                VerticalAlignment="Center"
-                Data="{StaticResource tt}"
-                Stroke="Blue" />
+                    Grid.Column="3"
+                    VerticalAlignment="Center"
+                    Data="{StaticResource tt}"
+                    Stroke="Blue" />
 
-                <Grid Grid.Column="4">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+                <GroupBox Grid.Column="4" Header="机台">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
 
-                        <syscontrols:ButtonEx
-                        Grid.Column="0"
-                        Width="100"
-                        Height="24"
-                        Command="{Binding AddUUTCommand}"
-                        CommandParameter="{Binding SelectedItem, ElementName=dgLayer}"
-                        Content="机台" />
+                            <syscontrols:ButtonEx
+                                Grid.Column="0"
+                                Width="60"
+                                Height="24"
+                                Command="{Binding AddUUTCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=dgLayer}"
+                                Content="机台"
+                                NormalImage="../Images/Add.png" />
+                        </Grid>
+
+                        <DataGrid
+                            Name="dgUUT"
+                            Grid.Row="1"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            ItemsSource="{Binding SelectedItem.UUTList, ElementName=dgLayer}"
+                            Style="{StaticResource dgConfig}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="60"
+                                    Binding="{Binding Code}"
+                                    Header="编号"
+                                    IsReadOnly="True" />
+                                <DataGridCheckBoxColumn
+                                    Width="60"
+                                    Binding="{Binding IsEnable}"
+                                    Header="{StaticResource enableName}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
-
-                    <DataGrid
-                    Name="dgUUT"
-                    Grid.Row="1"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding SelectedItem.UUTList, ElementName=dgLayer}"
-                    Style="{StaticResource dgConfig}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding Code}"
-                            Header="编号" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-
+                </GroupBox>
                 <Path
-                Grid.Column="5"
-                VerticalAlignment="Center"
-                Data="{StaticResource tt}"
-                Stroke="Blue" />
+                    Grid.Column="5"
+                    VerticalAlignment="Center"
+                    Data="{StaticResource tt}"
+                    Stroke="Blue" />
 
-                <Grid Grid.Column="6">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+                <GroupBox Grid.Column="6" Header="监控参数">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <syscontrols:ButtonEx
+                                Grid.Column="0"
+                                Width="100"
+                                Height="24"
+                                Command="{Binding AddChannelCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=dgUUT}"
+                                Content="监控参数" />
+                        </Grid>
 
-                        <syscontrols:ButtonEx
-                        Grid.Column="0"
-                        Width="100"
-                        Height="24"
-                        Command="{Binding AddChannelCommand}"
-                        CommandParameter="{Binding SelectedItem, ElementName=dgUUT}"
-                        Content="监控参数" />
+                        <DataGrid
+                            Name="dgChannel"
+                            Grid.Row="1"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding SelectedItem.ChannelList, ElementName=dgUUT}"
+                            MouseDoubleClick="dgChannel_MouseDoubleClick"
+                            Style="{StaticResource dgConfig}">
 
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="60"
+                                    Binding="{Binding Code}"
+                                    Header="编号" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Name}"
+                                    Header="名称" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
-
-                    <DataGrid
-                    Name="dgChannel"
-                    Grid.Row="1"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding SelectedItem.ChannelList, ElementName=dgUUT}"
-                    MouseDoubleClick="dgChannel_MouseDoubleClick"
-                    Style="{StaticResource dgConfig}">
-                        <!--<i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDoubleClick">
-                            <i:InvokeCommandAction Command="{Binding ChannelSelectItemCommand}" CommandParameter="{Binding ElementName=dgChannel, Path=SelectedItem}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>-->
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
-                            Width="60"
-                            Binding="{Binding Code}"
-                            Header="编号" />
-                            <DataGridTextColumn
-                            Width="100"
-                            Binding="{Binding Name}"
-                            Header="名称" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-
+                </GroupBox>
                 <Path
-                Grid.Column="7"
-                VerticalAlignment="Center"
-                Data="{StaticResource tt}"
-                Stroke="Blue" />
+                    Grid.Column="7"
+                    VerticalAlignment="Center"
+                    Data="{StaticResource tt}"
+                    Stroke="Blue" />
 
-                <Grid Grid.Column="8">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <syscontrols:ButtonEx
-                        Grid.Column="0"
-                        Width="100"
-                        Height="24"
-                        Command="{Binding AddChannelCommand}"
-                        CommandParameter="{Binding SelectedItem, ElementName=dgUUT}"
-                        Content="通讯接口" />
+                <GroupBox Grid.Column="8" Header="通讯接口">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <syscontrols:ButtonEx
+                                Grid.Column="0"
+                                Width="100"
+                                Height="24"
+                                Command="{Binding AddChannelCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=dgUUT}"
+                                Content="通讯接口" />
+                        </Grid>
+
+                        <DataGrid
+                            Name="dgChannelInterface"
+                            Grid.Row="1"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserDeleteRows="False"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding SelectedItem.ChannelInterfaceList, ElementName=dgChannel}"
+                            MouseDoubleClick="dgChannelInterface_MouseDoubleClick"
+                            Style="{StaticResource dgConfig}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="80"
+                                    Binding="{Binding Code}"
+                                    Header="编号" />
+                                <DataGridTextColumn
+                                    Width="80"
+                                    Binding="{Binding OutputType, Converter={StaticResource ouputConverter}}"
+                                    Header="类型" />
+                                <DataGridTextColumn
+                                    Width="80"
+                                    Binding="{Binding InterfaceType, Converter={StaticResource interfaceConverter}}"
+                                    Header="接口" />
+                                <DataGridTextColumn
+                                    Width="80"
+                                    Binding="{Binding Address}"
+                                    Header="地址\串口" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
-
-                    <DataGrid
-                    Name="dgChannelInterface"
-                    Grid.Row="1"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding SelectedItem.ChannelInterfaceList, ElementName=dgChannel}"
-                    MouseDoubleClick="dgChannelInterface_MouseDoubleClick"
-                    Style="{StaticResource dgConfig}">
-                        <!--<i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDoubleClick">
-                            <i:InvokeCommandAction Command="{Binding ChannelSelectItemCommand}" CommandParameter="{Binding ElementName=dgChannel, Path=SelectedItem}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>-->
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Code}"
-                            Header="编号" />
-                            <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding OutputType, Converter={StaticResource ouputConverter}}"
-                            Header="类型" />
-                            <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding InterfaceType, Converter={StaticResource interfaceConverter}}"
-                            Header="接口" />
-                            <DataGridTextColumn
-                            Width="80"
-                            Binding="{Binding Address}"
-                            Header="地址\串口" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
+                </GroupBox>
             </Grid>
         </GroupBox>
-
-     
     </Grid>
-
 </base:BaseWindow>

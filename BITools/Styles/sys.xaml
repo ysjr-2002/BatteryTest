@@ -5,6 +5,18 @@
     xmlns:cvt="clr-namespace:BITools.Converts"
     xmlns:local="clr-namespace:BITools">
 
+    <Style x:Key="layerListBoxItem" TargetType="ListBoxItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border>
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <cvt:BoolToVisibilityConverter x:Key="boolToVisibility" />
     <cvt:IntToTimeSpanConverter x:Key="intToTimeSpan" />
     <cvt:RowToIndexConverter x:Key="rowToIndex" />
@@ -12,7 +24,9 @@
     <cvt:InterfaceConverter x:Key="interfaceConverter" />
     <cvt:StringToIntConverter x:Key="stringToIntConverter" />
 
-    <SolidColorBrush x:Key="mytitle" Color="#d4e4f3"></SolidColorBrush>
+    <System:String x:Key="enableName">可用</System:String>
+
+    <SolidColorBrush x:Key="mytitle" Color="#d4e4f3" />
 
     <!--  FFD6DBE9  -->
     <SolidColorBrush x:Key="MainTitleBackground" Color="#FF2E69C5" />

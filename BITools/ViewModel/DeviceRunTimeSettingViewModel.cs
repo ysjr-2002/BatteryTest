@@ -11,6 +11,8 @@ using System.Windows.Input;
 using Common.NotifyBase;
 using BIDataAccess.entities;
 using BILogic;
+using BITools.Core;
+using BITools.ViewModel.Configs;
 
 namespace BITools.ViewModel
 {
@@ -27,6 +29,10 @@ namespace BITools.ViewModel
 
         public ICommand LoadConfigCommand { get { return new DelegateCommand(LoadConfig); } }
         public ICommand SaveConfigCommand { get { return new DelegateCommand(SaveConfig); } }
+
+        public ICommand LoadFileCommand { get { return new DelegateCommand(LoadFile); } }
+        public ICommand SaveFileCommand { get { return new DelegateCommand(SaveFile); } }
+
         public ICommand ClearConfigCommand { get { return new DelegateCommand(ClarConfig); } }
 
         public ICommand AddLayerCommand { get { return new DelegateCommand(AddTC); } }
@@ -66,6 +72,32 @@ namespace BITools.ViewModel
                 service.UpdateConfig(currentConfig);
                 MsgBox.SuccessShow("保存成功！");
             }
+        }
+
+        private void LoadFile()
+        {
+            var filepath = FileManager.OpenParamFile();
+            if (filepath.IsEmpty())
+                return;
+
+            var content = System.IO.File.ReadAllText(filepath);
+            TCList = JsonConvert.DeserializeObject<ObservableCollection<TCViewModel>>(content);
+        }
+
+        private void SaveFile()
+        {
+            if (this.TCList.Count == 0)
+                return;
+
+            var filepath = FileManager.SaveParamFile();
+            if (filepath.IsEmpty())
+                return;
+
+            var content = JsonConvert.SerializeObject(this.TCList);
+            content = FunExt.JsonFormatter(content);
+
+            System.IO.File.WriteAllText(filepath, content);
+            MsgBox.SuccessShow("保存成功！");
         }
 
         private void ClarConfig()

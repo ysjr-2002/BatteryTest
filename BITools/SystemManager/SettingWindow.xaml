@@ -29,7 +29,10 @@
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="1" SelectedIndex="2">
+        <TabControl
+            Grid.Row="1"
+            SelectedIndex="2"
+            Style="{StaticResource TabControlStyle1}">
             <TabItem
                 Width="100"
                 Height="24"

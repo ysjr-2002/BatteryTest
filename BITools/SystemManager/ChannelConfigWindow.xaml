@@ -10,7 +10,7 @@
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
     Title="监控参数"
     Width="400"
-    Height="300"
+    Height="280"
     FocusManager.FocusedElement="{Binding ElementName=txtCode}"
     Style="{StaticResource WindowStyleWithCloseBtn}"
     mc:Ignorable="d">

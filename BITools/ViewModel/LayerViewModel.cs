@@ -26,11 +26,14 @@ namespace BITools.ViewModel
     public class LayerViewModel : PropertyNotifyObject
     {
         private DeveInfo deveInfo = null;
+        private Config sysConfig;
         private Configs.LayerViewModel layerConfig;
+        private string dataFolder;
 
-        public LayerViewModel(Configs.LayerViewModel layerConfig)
+        public LayerViewModel(Configs.LayerViewModel layerConfig, Config config)
         {
             this.layerConfig = layerConfig;
+            this.sysConfig = config;
             this.Name = layerConfig.Name;
             this.RunDataCollection = new ObservableCollection<DeveInfo>();
             deveInfo = new DeveInfo
@@ -62,14 +65,6 @@ namespace BITools.ViewModel
         {
             get { return this.GetValue(c => c.UUTList); }
             set { this.SetValue(c => c.UUTList, value); }
-        }
-
-        public Config Config
-        {
-            get
-            {
-                return NinjectKernal.Instance.Get<Config>();
-            }
         }
 
         public string Name
@@ -176,7 +171,7 @@ namespace BITools.ViewModel
 
         private void SelectCPXH()
         {
-            var path = FileDialogHelper.OpenFileDialog();
+            var path = FileManager.OpenParamFile();
             RunDataCollection.First().cpxh = path;
         }
 
@@ -214,7 +209,7 @@ namespace BITools.ViewModel
                 while (IsRuning)
                 {
                     ReadData();
-                    int sleep = Config.DataSaveSpan.ToInt32() * 1000;
+                    int sleep = sysConfig.DataSaveSpan.ToInt32() * 1000;
                     sleep = 500;
                     Thread.Sleep(sleep);
                 }
@@ -231,6 +226,8 @@ namespace BITools.ViewModel
                 MsgBox.WarningShow("请选择产品型号！");
                 return;
             }
+
+            BuildDataPath();
 
             IsKSCSEnable = false;
             IsZTCSEnable = true;
@@ -350,8 +347,28 @@ namespace BITools.ViewModel
             var fz1 = new Random(seed).Next(10, 15) + "," + new Random(seed).Next(1, 5);
             //负载2 电压,电流
             var fz2 = new Random(seed).Next(10, 15) + "," + new Random(seed).Next(1, 5);
-
             message = string.Concat(fz1, ";", fz2);
+        }
+
+        void BuildDataPath()
+        {
+            var a = GetFolderName(sysConfig.RootLevel3);
+            var b = GetFolderName(sysConfig.RootLevel4);
+            var c = GetFolderName(sysConfig.RootLevel5);
+            dataFolder = System.IO.Path.Combine(sysConfig.RootLevel1, sysConfig.RootLevel2, a, b, c);
+
+            if (System.IO.Directory.Exists(dataFolder) == false)
+                System.IO.Directory.CreateDirectory(dataFolder);
+        }
+
+        string GetFolderName(string name)
+        {
+            if (name == "日期")
+                return DateTime.Now.ToString("yyyy-MM-dd");
+            else if (name == "机型名")
+                return deveInfo.cpxh;
+            else //区域
+                return "L" + deveInfo.sbbh;
         }
     }
 }

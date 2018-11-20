@@ -21,14 +21,21 @@ namespace BITools.ViewModel.Configs
     {
         public UUTViewModel()
         {
-            ChannelList = new ObservableCollection<ChannelViewModel>();
-            StateBrush = "/BITools;component/Images/Status/dj.png";
+            this.ChannelList = new ObservableCollection<ChannelViewModel>();
+            this.StateBrush = "/BITools;component/Images/Status/dj.png";
+            this.IsEnable = true;
         }
 
         public string Code
         {
             get { return this.GetValue(c => c.Code); }
             set { this.SetValue(c => c.Code, value); }
+        }
+
+        public bool IsEnable
+        {
+            get { return this.GetValue(c => c.IsEnable); }
+            set { this.SetValue(c => c.IsEnable, value); }
         }
 
         [JsonIgnore]

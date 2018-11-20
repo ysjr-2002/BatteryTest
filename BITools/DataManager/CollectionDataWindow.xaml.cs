@@ -17,7 +17,7 @@ namespace BITools.DataManager
     /// <summary>
     /// CollectionDataWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class CollectionDataWindow : Window
+    public partial class CollectionDataWindow : BaseWindow
     {
         public CollectionDataWindow()
         {

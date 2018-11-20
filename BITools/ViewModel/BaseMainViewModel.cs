@@ -1,5 +1,6 @@
 ﻿using BITools.DataManager;
 using BITools.SystemManager;
+using BITools.UIControls;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;
 using System;
@@ -20,6 +21,8 @@ namespace BITools.ViewModel
         public ICommand ReportCommand { get { return new DelegateCommand(Report); } }
         public ICommand AboutCommand { get { return new DelegateCommand(About); } }
         public ICommand DeviceConfigCommand { get { return new DelegateCommand(DeviceConfig); } }
+
+        public TCTabControl TabControl { get; set; }
 
         private void LoginUser()
         {

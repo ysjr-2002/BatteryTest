@@ -138,7 +138,7 @@ namespace BITools.ViewModel
         string paramFilePath = "";
         private void LoadParam()
         {
-            paramFilePath = FileDialogHelper.OpenFileDialog();
+            paramFilePath = FileManager.OpenParamFile();
             if (paramFilePath.IsEmpty())
                 return;
 

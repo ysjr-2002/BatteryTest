@@ -96,6 +96,7 @@
                 Height="{StaticResource comboBoxHeight}"
                 ItemsSource="{Binding DiskCollection}"
                 SelectedValue="{Binding Config.RootLevel1, Mode=TwoWay}" />
+
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="1"
@@ -106,17 +107,20 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Text="{Binding Config.RootLevel2, Mode=TwoWay}" />
+
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="2"
                 Margin="6,0,0,0"
                 Text="二级目录" />
+
             <syscontrols:WatermarkComboBox
                 Grid.Row="1"
                 Grid.Column="2"
                 Height="{StaticResource comboBoxHeight}"
                 ItemsSource="{Binding SaveRootCollection}"
                 SelectedValue="{Binding Config.RootLevel3, Mode=TwoWay}" />
+
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="3"
@@ -128,6 +132,7 @@
                 Height="{StaticResource comboBoxHeight}"
                 ItemsSource="{Binding SaveRootCollection}"
                 SelectedValue="{Binding Config.RootLevel4, Mode=TwoWay}" />
+
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="4"
@@ -144,6 +149,7 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="6"
+                Foreground="Red"
                 Text="注:数据保存于设置路径下的文件夹内" />
 
             <TextBlock
