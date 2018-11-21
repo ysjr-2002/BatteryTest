@@ -49,6 +49,8 @@ namespace BITools.ViewModel
                     first = tc.Name;
 
                 TabItem item = new TabItem { Name = tc.Name, Header = tc.Name, IsSelected = true };
+                item.DataContext = tc;
+
                 item.Style = Application.Current.Resources["TabItem.TC"] as System.Windows.Style;
 
                 var list = new ListBox();

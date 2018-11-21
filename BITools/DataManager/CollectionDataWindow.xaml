@@ -36,9 +36,10 @@
             Grid.Column="0"
             Text="位置:" />
         <TextBlock
+            Name="tbLocation"
             Grid.Row="0"
             Grid.Column="1"
-            Text="L1-2" />
+            Text="" />
 
         <TextBlock
             Grid.Row="1"

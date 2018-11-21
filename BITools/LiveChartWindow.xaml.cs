@@ -29,5 +29,10 @@ namespace BITools
         private void LiveChartWindow_Loaded(object sender, RoutedEventArgs e)
         {
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var v = tt.IncrementText;
+        }
     }
 }

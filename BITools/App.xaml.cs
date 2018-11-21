@@ -33,7 +33,7 @@ namespace BITools
             {
                 AppContext.UserName = "admin";
                 NinjectKernal.Instance.Load();
-                var window = new DeviceRunTimeSettingWindow();
+                var window = new MainWindow();
                 Application.Current.MainWindow = window;
                 window.Show();
             }

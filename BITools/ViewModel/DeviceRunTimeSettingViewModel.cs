@@ -32,6 +32,8 @@ namespace BITools.ViewModel
 
         public ICommand LoadFileCommand { get { return new DelegateCommand(LoadFile); } }
         public ICommand SaveFileCommand { get { return new DelegateCommand(SaveFile); } }
+        public ICommand SaveAsFileCommand { get { return new DelegateCommand(SaveAsFile); } }
+        
 
         public ICommand ClearConfigCommand { get { return new DelegateCommand(ClarConfig); } }
 
@@ -74,19 +76,32 @@ namespace BITools.ViewModel
             }
         }
 
+        string filePath = "";
         private void LoadFile()
         {
-            var filepath = FileManager.OpenParamFile();
-            if (filepath.IsEmpty())
+            filePath = FileManager.OpenParamFile();
+            if (filePath.IsEmpty())
                 return;
 
-            var content = System.IO.File.ReadAllText(filepath);
+            var content = System.IO.File.ReadAllText(filePath);
             TCList = JsonConvert.DeserializeObject<ObservableCollection<TCViewModel>>(content);
         }
 
         private void SaveFile()
         {
-            if (this.TCList.Count == 0)
+            if (this.TCList == null || this.TCList.Count == 0)
+                return;
+
+            var content = JsonConvert.SerializeObject(this.TCList);
+            content = FunExt.JsonFormatter(content);
+
+            System.IO.File.WriteAllText(filePath, content);
+            MsgBox.SuccessShow("保存成功！");
+        }
+
+        private void SaveAsFile()
+        {
+            if (this.TCList == null || this.TCList.Count == 0)
                 return;
 
             var filepath = FileManager.SaveParamFile();

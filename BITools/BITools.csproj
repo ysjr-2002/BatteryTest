@@ -272,6 +272,9 @@
     <Compile Include="UIControls\LayerView.xaml.cs">
       <DependentUpon>LayerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIControls\NumericInput.xaml.cs">
+      <DependentUpon>NumericInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIControls\SelectFloat.xaml.cs">
       <DependentUpon>SelectFloat.xaml</DependentUpon>
     </Compile>
@@ -542,6 +545,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UIControls\NumericInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UIControls\SelectFloat.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -654,6 +661,7 @@
     <Resource Include="Images\Status\hg.png" />
     <Resource Include="Images\Status\wsc.png" />
     <Resource Include="Images\Status\wcp.png" />
+    <Resource Include="Images\save.png" />
     <Content Include="Libs\Common.dll" />
     <Resource Include="Resources\startloading.gif" />
     <Resource Include="Images\close.png" />

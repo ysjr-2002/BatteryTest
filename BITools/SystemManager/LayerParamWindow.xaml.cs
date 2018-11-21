@@ -31,7 +31,7 @@ namespace BITools.SystemManager
 
         private void LayerParamWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            numericLHSJ.IncrementText = layer.LHSJ;
+            txtTime.Text = layer.LHSJ;
         }
 
         public LayerViewModel LayerViewModel { get; set; }
@@ -40,10 +40,22 @@ namespace BITools.SystemManager
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            this.layer.LHSJ = numericLHSJ.IncrementText;
+            this.layer.LHSJ = txtTime.Text;
             this.IsAllLayer = ckbAllLayer.IsChecked.GetValueOrDefault();
             LayerViewModel = layer;
             this.DialogResult = true;
+        }
+
+        private void txtTime_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back || e.Key == Key.Decimal || (e.Key > Key.NumPad0 || e.Key < Key.NumPad8) || e.Key == Key.Back)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

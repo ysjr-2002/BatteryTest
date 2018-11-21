@@ -15,8 +15,9 @@ namespace BITools.ViewModel.Configs
     {
         public LayerViewModel()
         {
-            this.UUTList = new ObservableCollection<UUTViewModel>();
+            this.LHSJ = "1.00";
             this.IsEnable = true;
+            this.UUTList = new ObservableCollection<UUTViewModel>();
         }
 
         /// <summary>

@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:BITools"
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syscontrols="clr-namespace:BITools.UIControls"
     Title="LiveChartWindow"
     Width="1000"
     Height="700"
@@ -16,19 +17,39 @@
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <lvc:CartesianChart
-        x:Name="chartV"
-        Grid.Row="1"
-        Series="{Binding Series}">
-        <lvc:CartesianChart.AxisX>
-            <lvc:Axis LabelFormatter="{Binding XFormatter}" Labels="{Binding Lables}">
-                <lvc:Axis.Separator>
-                    <lvc:Separator Step="1" />
-                </lvc:Axis.Separator>
-            </lvc:Axis>
-        </lvc:CartesianChart.AxisX>
-        <lvc:CartesianChart.AxisY>
-            <lvc:Axis LabelFormatter="{Binding YFormatter}" />
-        </lvc:CartesianChart.AxisY>
-    </lvc:CartesianChart>
+
+    <Grid>
+
+        <syscontrols:NumericInput
+            x:Name="tt"
+            Width="60"
+            Height="28"
+            IncrementText="56.36"
+            FloatFormat="f5"
+            MaxLength="6" />
+
+        <Button
+            HorizontalAlignment="Left"
+            Click="Button_Click"
+            Content="value" />
+
+        <lvc:CartesianChart
+            x:Name="chartV"
+            Grid.Row="1"
+            Series="{Binding Series}"
+            Visibility="Collapsed">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis LabelFormatter="{Binding XFormatter}" Labels="{Binding Lables}">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Step="1" />
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis LabelFormatter="{Binding YFormatter}" />
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+    </Grid>
+
+
 </Window>

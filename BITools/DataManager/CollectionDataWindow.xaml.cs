@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BITools.ViewModel.Configs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,19 @@ namespace BITools.DataManager
     /// </summary>
     public partial class CollectionDataWindow : BaseWindow
     {
-        public CollectionDataWindow()
+        private string layer;
+        private UUTViewModel uut;
+        public CollectionDataWindow(string layer, UUTViewModel uut)
         {
             InitializeComponent();
+            this.layer = layer;
+            this.uut = uut;
+            this.Loaded += CollectionDataWindow_Loaded;
+        }
+
+        private void CollectionDataWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            tbLocation.Text = layer + "-" + uut.Code;
         }
     }
 }

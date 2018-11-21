@@ -36,7 +36,10 @@ namespace BITools.SystemManager
 
         private void ButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var list = dgMonitorParam.ItemsSource as ObservableCollection<MonitorParamViewModel>;
+            var selectedChannel = dgChannel.SelectedItem as ChannelViewModel;
+            if (selectedChannel == null)
+                return;
+
             foreach (object o in dgMonitorParam.Items)
             {
                 DataGridRow rowItem = dgMonitorParam.ItemContainerGenerator.ContainerFromItem(o) as DataGridRow;
@@ -52,6 +55,46 @@ namespace BITools.SystemManager
                     model.Val = txtVal.Text;
                 }
             }
+
+            var list = dgMonitorParam.ItemsSource as ObservableCollection<MonitorParamViewModel>;
+            if (ckbLayer.IsChecked.GetValueOrDefault())
+            {
+                var tc = dgTC.SelectedItem as TCViewModel;
+                foreach (var layer in tc.LayerList)
+                {
+                    foreach (var uut in layer.UUTList)
+                    {
+                        foreach (var channel in uut.ChannelList)
+                        {
+                            if (selectedChannel.Code == channel.Code)
+                            {
+                                channel.MontiorParamList = selectedChannel.MontiorParamList;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (ckbTC.IsChecked.GetValueOrDefault())
+            {
+                foreach (var tc in this.vm.TCList)
+                {
+                    foreach (var layer in tc.LayerList)
+                    {
+                        foreach (var uut in layer.UUTList)
+                        {
+                            foreach (var channel in uut.ChannelList)
+                            {
+                                if (selectedChannel.Code == channel.Code)
+                                {
+                                    channel.MontiorParamList = selectedChannel.MontiorParamList;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            MsgBox.SuccessShow("保存成功！");
         }
     }
 }

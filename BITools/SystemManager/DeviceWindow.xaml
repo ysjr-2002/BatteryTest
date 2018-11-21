@@ -24,7 +24,7 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="65" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -38,7 +38,8 @@
                     Width="100"
                     Height="28"
                     Command="{Binding LoadConfigCommand}"
-                    Content="加载设备表" />
+                    Content="加载设备表"
+                    Visibility="Collapsed" />
 
                 <syscontrols:ButtonEx
                     Grid.Column="0"
@@ -46,7 +47,8 @@
                     Height="28"
                     Margin="5,0"
                     Command="{Binding SaveConfigCommand}"
-                    Content="保存设备表" />
+                    Content="保存设备表"
+                    Visibility="Collapsed" />
 
                 <syscontrols:ButtonEx
                     Grid.Column="0"
@@ -62,6 +64,14 @@
                     Height="28"
                     Margin="5,0"
                     Command="{Binding SaveFileCommand}"
+                    Content="保存文件" />
+
+                <syscontrols:ButtonEx
+                    Grid.Column="0"
+                    Width="100"
+                    Height="28"
+                    Margin="5,0"
+                    Command="{Binding SaveAsFileCommand}"
                     Content="另存文件" />
 
                 <syscontrols:ButtonEx
@@ -241,7 +251,7 @@
                     Data="{StaticResource tt}"
                     Stroke="Blue" />
 
-                <GroupBox Grid.Column="6" Header="监控参数">
+                <GroupBox Grid.Column="6" Header="监控通道">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
@@ -254,11 +264,12 @@
                             </Grid.ColumnDefinitions>
                             <syscontrols:ButtonEx
                                 Grid.Column="0"
-                                Width="100"
+                                Width="90"
                                 Height="24"
                                 Command="{Binding AddChannelCommand}"
                                 CommandParameter="{Binding SelectedItem, ElementName=dgUUT}"
-                                Content="监控参数" />
+                                Content="监控参数"
+                                Visibility="Collapsed" />
                         </Grid>
 
                         <DataGrid
@@ -302,13 +313,23 @@
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <syscontrols:ButtonEx
-                                Grid.Column="0"
-                                Width="100"
-                                Height="24"
-                                Command="{Binding AddChannelCommand}"
-                                CommandParameter="{Binding SelectedItem, ElementName=dgUUT}"
-                                Content="通讯接口" />
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <syscontrols:ButtonEx
+                                    Grid.Column="0"
+                                    Width="100"
+                                    Height="24"
+                                    Command="{Binding AddChannelCommand}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=dgUUT}"
+                                    Content="通讯接口"
+                                    Visibility="Collapsed" />
+
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Foreground="Red"
+                                    Text="双击编辑" />
+                            </StackPanel>
+
                         </Grid>
 
                         <DataGrid

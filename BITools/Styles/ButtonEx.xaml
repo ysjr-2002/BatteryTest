@@ -27,6 +27,7 @@
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Width="{TemplateBinding ImageHeight}"
+                                Margin="5,0,0,0"
                                 VerticalAlignment="Center"
                                 Source="{TemplateBinding NormalImage}" />
                             <ContentPresenter
@@ -58,6 +59,11 @@
 
                             <Setter TargetName="img" Property="Grid.Row" Value="0" />
                             <Setter TargetName="img" Property="Grid.Column" Value="1" />
+                        </Trigger>
+
+                        <Trigger Property="NormalImage" Value="{x:Null}">
+                            <Setter TargetName="ColumnDefinition0" Property="Width" Value="0" />
+                            <Setter TargetName="cp" Property="HorizontalAlignment" Value="Center" />
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">

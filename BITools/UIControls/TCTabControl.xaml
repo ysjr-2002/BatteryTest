@@ -15,12 +15,27 @@
             SelectionChanged="RightContainer_SelectionChanged"
             Style="{StaticResource TabControl.TC}" />
 
-        <Label
+        <Grid
+            Height="40"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            VerticalContentAlignment="Center"
-            FontSize="14"
-            Height="42"
-            Content="总数:12" />
+            VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="总机台:" />
+            <TextBlock
+                Name="tbUUTCount"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Text="0" />
+        </Grid>
+
     </Grid>
 </UserControl>

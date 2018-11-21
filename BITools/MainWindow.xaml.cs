@@ -52,10 +52,6 @@ namespace BITools
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //var defautConfig = new DeviceConfigService().getConfigs().FirstOrDefault(s => s.IsDefault == true);
-            //if (defautConfig == null)
-            //    return;
-
            
         }
     }

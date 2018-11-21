@@ -1,4 +1,5 @@
-﻿using BIModel;
+﻿using BIDataAccess;
+using BIModel;
 using BITools.Core;
 using BITools.DataManager;
 using BITools.Enums;
@@ -57,7 +58,7 @@ namespace BITools.ViewModel
             this.IsZTCSEnable = false;
             this.IsTZCSEnable = false;
 
-            this.Lhzsj = 1;
+            this.Lhzsj = (int)((layerConfig.LHSJ.ToFloat()) * 60 * 60);
             this.Lhbfb = "等待测试 0%";
         }
 
@@ -126,7 +127,7 @@ namespace BITools.ViewModel
 
         public void Refresh()
         {
-            this.RunDataCollection.First().zs = UUTList.Count;
+            //this.RunDataCollection.First().zs = UUTList.Count;
         }
 
         public ICommand SelectCPXHCommand { get { return new DelegateCommand(SelectCPXH); } }
@@ -144,6 +145,14 @@ namespace BITools.ViewModel
         public ICommand CKSJCommand { get { return new DelegateCommand(CKSJ); } }
         public ICommand CKTXMCommand { get { return new DelegateCommand(CKTXM); } }
         public ICommand BJFWCommand { get { return new DelegateCommand(BJFW); } }
+
+        public ICommand ViewUUTDataCommand { get { return new DelegateCommand<UUTViewModel>(ViewUUTData); } }
+
+        private void ViewUUTData(UUTViewModel uut)
+        {
+            var window = new CollectionDataWindow(Name, uut);
+            window.ShowDialog();
+        }
 
         public bool IsSDJCEnable
         {
@@ -210,7 +219,6 @@ namespace BITools.ViewModel
                 {
                     ReadData();
                     int sleep = sysConfig.DataSaveSpan.ToInt32() * 1000;
-                    sleep = 500;
                     Thread.Sleep(sleep);
                 }
             });
@@ -235,8 +243,8 @@ namespace BITools.ViewModel
             Task.Factory.StartNew(() =>
             {
                 //老化时间配置的小时
-                this.Lhzsj = ((int)this.layerConfig.LHSJ.ToFloat()) * 60 * 60;
-                this.RunDataCollection.First().aczt = "On";
+
+                this.deveInfo.aczt = "On";
                 while (IsRuning && mre.WaitOne())
                 {
                     Lhsj++;
@@ -359,6 +367,9 @@ namespace BITools.ViewModel
 
             if (System.IO.Directory.Exists(dataFolder) == false)
                 System.IO.Directory.CreateDirectory(dataFolder);
+
+            var db = System.IO.Path.Combine(dataFolder, "ysj.data");
+            SqliteHelper.Instance.Init(db);
         }
 
         string GetFolderName(string name)
@@ -368,7 +379,7 @@ namespace BITools.ViewModel
             else if (name == "机型名")
                 return deveInfo.cpxh;
             else //区域
-                return "L" + deveInfo.sbbh;
+                return deveInfo.sbbh;
         }
     }
 }

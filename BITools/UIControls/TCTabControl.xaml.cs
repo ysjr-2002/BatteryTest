@@ -1,5 +1,6 @@
 ﻿using BITools.Helpers;
 using BITools.Model;
+using BITools.ViewModel.Configs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -394,10 +395,17 @@ namespace BITools.UIControls
 
         private void RightContainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             this.SelectedItem = (sender as TabControl).SelectedItem as TabItem;
             if (SelectionChangedEvent != null)
                 this.RaiseEvent(new RoutedEventArgs(SelectionChangedEvent, RightContainer.SelectedItem));
+
+            var uutCount = 0;
+            var tc = SelectedItem.DataContext as TCViewModel;
+            foreach (var layer in tc.LayerList)
+            {
+                uutCount += layer.UUTList.Count;
+            }
+            tbUUTCount.Text = uutCount.ToString();
         }
     }
 }

@@ -41,8 +41,7 @@ FrameworkPropertyMetadata(IncrementChanged));
                 float newValue = (float)e.NewValue;
                 SelectFloat item = sender as SelectFloat;
                 TextBox tb = (TextBox)LogicalTreeHelper.FindLogicalNode(item, "txt");
-                //TextBox tb = UIHelper.FindChild<TextBox>(item, "txt");
-                string val = newValue.ToString("f2");
+                string val = newValue.ToString("f3");
                 tb.Text = val;
             }
             catch { }
@@ -69,7 +68,7 @@ FrameworkPropertyMetadata(IncrementTextChanged));
                 if (e.NewValue == null) return;
                 SelectFloat item = sender as SelectFloat;
                 item.Increment = Convert.ToSingle(e.NewValue);
-                item.txt.Text = item.Increment.ToString("f2");
+                item.txt.Text = item.Increment.ToString("f3");
             }
             catch { }
         }
@@ -107,33 +106,6 @@ FrameworkPropertyMetadata(MinValueChanged));
             source.txt_TextChanged(null, null);
         }
 
-        public static readonly DependencyProperty WaterMarkProperty =
-           DependencyProperty.Register("WaterMark", typeof(string),
-           typeof(SelectFloat),
-           new PropertyMetadata("TextBlock", new PropertyChangedCallback(OnWaterMarkChanged)));
-        public string WaterMark
-        {
-            get { return (string)GetValue(WaterMarkProperty); }
-
-            set { SetValue(WaterMarkProperty, value); }
-        }
-
-        static void OnWaterMarkChanged(object sender, DependencyPropertyChangedEventArgs args)
-        {
-            var newValue = (string)args.NewValue;
-            SelectFloat source = (SelectFloat)sender;
-            source.txtWaterMark.Text = newValue;
-            if (!string.IsNullOrEmpty(newValue))
-            {
-                source.txtWaterMark.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                source.txtWaterMark.Visibility = Visibility.Collapsed;
-            }
-        }
-
-
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
             if (Increment < MaxValue)
@@ -164,29 +136,35 @@ FrameworkPropertyMetadata(MinValueChanged));
         private void txt_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             byte b = (byte)e.Key;
-            if (!((b >= 34 && b <= 43)) && !(b >= 74 && b <= 83) && b != 2 && b != 32 && b != 23 && b != 25)
-            {
-                e.Handled = true;
-            }
+            Console.WriteLine(b);
+            //if (b == 88 || b == 2) //88. 2 back
+            //{
+            //    e.Handled = false;
+            //    return;
+            //}
+            //else if (!((b >= 34 && b <= 43)) && !(b >= 74 && b <= 83) && b != 32 && b != 23 && b != 25)
+            //{
+            //    e.Handled = true;
+            //}
         }
 
         private void txt_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IncrementText = txt.Text;
-            float NewValue = 0;
-            var rst = float.TryParse(txt.Text, out NewValue);
-            if (rst && NewValue >= MinValue && NewValue <= MaxValue)
-            {
-                Increment = NewValue;
-                EnableBtn();
-                bd.BorderBrush = lastBdBrush;
-                isError = false;
-            }
-            else
-            {
-                bd.BorderBrush = Application.Current.Resources["TextBox.Alarm.Border.Brush"] as Brush;
-                isError = true;
-            }
+            //IncrementText = txt.Text;
+            //float NewValue = 0;
+            //var rst = float.TryParse(txt.Text, out NewValue);
+            //if (rst && NewValue >= MinValue && NewValue <= MaxValue)
+            //{
+            //    Increment = NewValue;
+            //    EnableBtn();
+            //    bd.BorderBrush = lastBdBrush;
+            //    isError = false;
+            //}
+            //else
+            //{
+            //    bd.BorderBrush = Application.Current.Resources["TextBox.Alarm.Border.Brush"] as Brush;
+            //    isError = true;
+            //}
         }
 
         private void bd_MouseMove(object sender, MouseEventArgs e)
