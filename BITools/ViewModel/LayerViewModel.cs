@@ -350,6 +350,7 @@ namespace BITools.ViewModel
 
         private void GetMeasValueByUUTIndex(int uutIndex, out string message)
         {
+            //电压
             var seed = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
             //负载1 电压,电流
             var fz1 = new Random(seed).Next(10, 15) + "," + new Random(seed).Next(1, 5);

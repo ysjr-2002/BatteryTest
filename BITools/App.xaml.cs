@@ -23,6 +23,12 @@ namespace BITools
           负载通道1 电压电流上下限
           配置和参数加使、能参数
           点击机台，可以查看机台上次采集数据
+11-21
+0.老化参数为调用文件名
+1.AC输入为可输入，增加保存按钮，保存后不可修改
+2.状态对齐，加边框醒目
+3.层次间增加分隔符
+4.开始测试要醒目
         */
         protected override void OnStartup(StartupEventArgs e)
         {

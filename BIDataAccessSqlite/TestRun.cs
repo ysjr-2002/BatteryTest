@@ -19,19 +19,19 @@ namespace BIDataAccess
             tabFileData.Columns.AddRange(new DataColumn[]
             {
                 new DataColumn("ID",typeof(string)),
-                new DataColumn("SvrID",typeof(string)),
-                new DataColumn("SuperID",typeof(string)),
-                new DataColumn("GroupID",typeof(string)),
-                new DataColumn("FullPath",typeof(string)),
-                new DataColumn("Extension",typeof(string)),
-                new DataColumn("Cover",typeof(string)),
-                new DataColumn("Thumbnail",typeof(byte[])),
-                new DataColumn("Timing",typeof(string)),
-                new DataColumn("SourceDesc",typeof(string)),
-                new DataColumn("Lat",typeof(double)),
-                new DataColumn("Lon",typeof(double)),
-                new DataColumn("MapKind",typeof(string)),
-                new DataColumn("Width",typeof(string)),
+                new DataColumn("TC",typeof(string)),
+                new DataColumn("Layer",typeof(string)),
+                new DataColumn("CPXH",typeof(string)),
+                new DataColumn("DHK",typeof(string)),
+                new DataColumn("ACInput",typeof(string)), //老化电压
+                new DataColumn("CSM",typeof(string)), //参数名
+                new DataColumn("YJPZCSM",typeof(byte[])),//硬件配置参数名
+                new DataColumn("User",typeof(string)), //用户
+                new DataColumn("SourceDesc",typeof(string)), //参数值
+                new DataColumn("Lat",typeof(double)), //老化开始时间
+                new DataColumn("Lon",typeof(double)), //老化结束时间
+                new DataColumn("MapKind",typeof(string)), //读取时间
+                new DataColumn("Width",typeof(string)), //
                 new DataColumn("Height",typeof(string)),
                 new DataColumn("SortIndex",typeof(int)),
                 new DataColumn("Factory",typeof(string)),
