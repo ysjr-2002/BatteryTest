@@ -30,9 +30,11 @@ namespace BITools.ViewModel
         private Config sysConfig;
         private Configs.LayerViewModel layerConfig;
         private string dataFolder;
+        private string paramFilePath;
 
-        public LayerViewModel(Configs.LayerViewModel layerConfig, Config config)
+        public LayerViewModel(string paramFilePath, Configs.LayerViewModel layerConfig, Config config)
         {
+            this.paramFilePath = paramFilePath;
             this.layerConfig = layerConfig;
             this.sysConfig = config;
             this.Name = layerConfig.Name;
@@ -41,7 +43,7 @@ namespace BITools.ViewModel
             {
                 sbbh = layerConfig.Name,
                 sm = 1,
-                lhcsdy = "ss",
+                lhcsdy = System.IO.Path.GetFileNameWithoutExtension(paramFilePath),
                 acsr = "380V",
                 aczt = "OFF",
                 zs = 0,

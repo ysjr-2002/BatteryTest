@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace BIDataAccess
 {
-    class TestRun
+    public class TestRun
     {
         private DataTable tabFileData;
         private SqlInfo fileSqlInfo;
 
-        public void Test()
+        public void CreateTable()
         {
             tabFileData = new System.Data.DataTable();
-            tabFileData.TableName = "FileData";
+            tabFileData.TableName = "CollectData";
             tabFileData.Columns.AddRange(new DataColumn[]
             {
                 new DataColumn("ID",typeof(string)),
@@ -31,19 +31,33 @@ namespace BIDataAccess
                 new DataColumn("Lat",typeof(double)), //老化开始时间
                 new DataColumn("Lon",typeof(double)), //老化结束时间
                 new DataColumn("MapKind",typeof(string)), //读取时间
-                new DataColumn("Width",typeof(string)), //
-                new DataColumn("Height",typeof(string)),
-                new DataColumn("SortIndex",typeof(int)),
-                new DataColumn("Factory",typeof(string)),
-                new DataColumn("PlayTime",typeof(string)),
-                new DataColumn("OriPath",typeof(string)),
-                new DataColumn("OdPath",typeof(string)),
-                new DataColumn("OiPath",typeof(string)),
-                new DataColumn("BgPath",typeof(string)),
-                new DataColumn("FrameRate",typeof(string))
+                new DataColumn("Content",typeof(string)), //
             });
             tabFileData.PrimaryKey = new DataColumn[] { tabFileData.Columns["ID"] };
             fileSqlInfo = new SqlInfo(tabFileData, SqliteHelper.Instance);
+
+            SqliteHelper.Instance.CreateTab(tabFileData);
+        }
+
+        public void Query()
+        {
+            var name = "";
+            System.Data.DataTable tab = fileSqlInfo.GetTab(string.Format(" AND Name = '{0}'", name));
+            if (tab != null && tab.Rows.Count > 0)
+            {
+                this.InitGroupByRow(tab.Rows[0]);
+            }
+        }
+
+
+        private void InitGroupByRow(System.Data.DataRow dRow)
+        {
+            //string id = dRow.GetRowDefValue("ID");
+            //string name = dRow.GetRowDefValue("Name");
+            //IFileGroup group = new FileGroup(name, id);
+            //string dtTime = dRow.GetRowDefValue("CreateTime", DateTime.MinValue.ToString());
+            //group.BuilderTime = dtTime.ToDateTime();
+            //return group;
         }
     }
 }

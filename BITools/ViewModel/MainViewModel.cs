@@ -34,11 +34,11 @@ namespace BITools.ViewModel
 
         private void LoadConfig()
         {
-            var file = FileManager.OpenParamFile();
-            if (file.IsEmpty())
+            var filepath = FileManager.OpenParamFile();
+            if (filepath.IsEmpty())
                 return;
 
-            var content = System.IO.File.ReadAllText(file);
+            var content = System.IO.File.ReadAllText(filepath);
             var tcList = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
 
             string first = "";
@@ -59,7 +59,7 @@ namespace BITools.ViewModel
                 {
                     //层
                     LayerView temp = new LayerView();
-                    LayerViewModel datacontext = new LayerViewModel(layer, config);
+                    LayerViewModel datacontext = new LayerViewModel(filepath, layer, config);
                     datacontext.UUTList = layer.UUTList;
                     datacontext.Refresh();
                     temp.DataContext = datacontext;

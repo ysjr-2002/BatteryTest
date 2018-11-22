@@ -9,7 +9,7 @@ namespace BITools.Enums
     /// <summary>
     /// 值输入方式
     /// </summary>
-    public enum ValTypeEnum : int
+    public enum InputModeEnum : int
     {
         /// <summary>
         /// 选择

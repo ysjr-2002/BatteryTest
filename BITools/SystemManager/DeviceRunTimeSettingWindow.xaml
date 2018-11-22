@@ -38,8 +38,8 @@
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="dtInput">
-            <StackPanel>
+        <DataTemplate x:Key="dtInputV">
+            <StackPanel Orientation="Horizontal">
                 <TextBox
                     Name="txtVal"
                     Width="80"
@@ -47,6 +47,48 @@
                     HorizontalAlignment="Left"
                     VerticalContentAlignment="Center"
                     Text="{Binding Val}" />
+                <TextBlock
+                    Name="tbUnit"
+                    Margin="2,0,0,0"
+                    VerticalAlignment="Center"
+                    Foreground="Red"
+                    Text="(V)" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="dtInputA">
+            <StackPanel Orientation="Horizontal">
+                <TextBox
+                    Name="txtVal"
+                    Width="80"
+                    Height="22"
+                    HorizontalAlignment="Left"
+                    VerticalContentAlignment="Center"
+                    Text="{Binding Val}" />
+                <TextBlock
+                    Name="tbUnit"
+                    Margin="2,0,0,0"
+                    VerticalAlignment="Center"
+                    Foreground="Red"
+                    Text="(A)" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="dtInputN">
+            <StackPanel Orientation="Horizontal">
+                <TextBox
+                    Name="txtVal"
+                    Width="80"
+                    Height="22"
+                    HorizontalAlignment="Left"
+                    VerticalContentAlignment="Center"
+                    Text="{Binding Val}" />
+                <TextBlock
+                    Name="tbUnit"
+                    Margin="2,0,0,0"
+                    VerticalAlignment="Center"
+                    Foreground="Red"
+                    Text="" />
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
@@ -215,12 +257,12 @@
                                 Header="编号"
                                 IsReadOnly="True" />
                             <DataGridTextColumn
-                                Width="100"
+                                Width="80"
                                 Binding="{Binding Name}"
                                 Header="层名称"
                                 IsReadOnly="True" />
                             <DataGridTextColumn
-                                Width="100"
+                                Width="80"
                                 Binding="{Binding LHSJ}"
                                 Header="老化时间"
                                 IsReadOnly="True" />
@@ -380,7 +422,7 @@
                                 Header="监控参数" />
                             <DataGridTemplateColumn Width="150" Header="值">
                                 <DataGridTemplateColumn.CellTemplateSelector>
-                                    <selector:ParamValueSelector FirstTemplate="{StaticResource dtSelector}" SecondTemplate="{StaticResource dtInput}" />
+                                    <selector:ParamValueSelector  />
                                 </DataGridTemplateColumn.CellTemplateSelector>
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>

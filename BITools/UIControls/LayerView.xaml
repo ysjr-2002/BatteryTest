@@ -1,13 +1,14 @@
-﻿<UserControl x:Class="BITools.UIControls.LayerView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:BITools.UIControls"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:syscontrols="clr-namespace:BITools.UIControls"
-             d:DesignHeight="300"
-             d:DesignWidth="1300"
-             mc:Ignorable="d">
+﻿<UserControl
+    x:Class="BITools.UIControls.LayerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BITools.UIControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syscontrols="clr-namespace:BITools.UIControls"
+    d:DesignHeight="300"
+    d:DesignWidth="1300"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="borderBrush" Color="#CCCCCC" />
 
@@ -23,18 +24,20 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGridCell}">
-                        <Border Name="bg"
-                                MinHeight="37"
-                                Margin="0,0,1,-1"
-                                Background="Transparent"
-                                BorderBrush="{StaticResource borderBrush}"
-                                BorderThickness="0,0,1,1"
-                                SnapsToDevicePixels="True">
-                            <ContentPresenter x:Name="TheContentPresenter"
-                                              Margin="0,0,5,0"
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Border
+                            Name="bg"
+                            MinHeight="37"
+                            Margin="0,0,1,-1"
+                            Background="Transparent"
+                            BorderBrush="{StaticResource borderBrush}"
+                            BorderThickness="0,0,1,1"
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter
+                                x:Name="TheContentPresenter"
+                                Margin="0,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -56,59 +59,67 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="0" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
 
-        <DataGrid Name="dg"
-                  Grid.Row="0"
-                  Grid.Column="0"
-                  Margin="0"
-                  AutoGenerateColumns="False"
-                  BorderBrush="{StaticResource sepeatorLineBrush}"
-                  BorderThickness="1,1,1,0"
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  ColumnHeaderHeight="30"
-                  ItemsSource="{Binding RunDataCollection}"
-                  Style="{StaticResource dgConfig}">
+        <DataGrid
+            Name="dg"
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0"
+            AutoGenerateColumns="False"
+            BorderBrush="{StaticResource sepeatorLineBrush}"
+            BorderThickness="1,1,1,0"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            ColumnHeaderHeight="30"
+            ItemsSource="{Binding RunDataCollection}"
+            Style="{StaticResource dgConfig}">
             <DataGrid.RowHeaderStyle>
                 <Style TargetType="DataGridRowHeader">
                     <Setter Property="Width" Value="0" />
                 </Style>
             </DataGrid.RowHeaderStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Width="80"
-                                    Binding="{Binding sm}"
-                                    Header="扫描" />
-                <DataGridHyperlinkColumn Width="100"
-                                         Binding="{Binding lhcsdy}"
-                                         Header="老化参数调用" />
-                <DataGridTextColumn Width="80"
-                                    Binding="{Binding acsr}"
-                                    Header="AC 输入" />
-                <DataGridTextColumn Width="80"
-                                    Binding="{Binding aczt}"
-                                    Header="AC 状态" />
-                <DataGridTextColumn Width="60"
-                                    Binding="{Binding zs}"
-                                    Header="总数" />
-                <DataGridTextColumn Width="60"
-                                    Binding="{Binding hg}"
-                                    Foreground="#00ff00"
-                                    Header="合格" />
-                <DataGridTextColumn Width="60"
-                                    Binding="{Binding bl}"
-                                    Foreground="#ff0000"
-                                    Header="不良" />
-                <DataGridTextColumn Width="60"
-                                    Binding="{Binding bll}"
-                                    Header="不良率" />
+                <DataGridTextColumn
+                    Width="80"
+                    Binding="{Binding sm}"
+                    Header="扫描" />
+                <DataGridHyperlinkColumn
+                    Width="100"
+                    Binding="{Binding lhcsdy}"
+                    Header="老化参数调用" />
+                <DataGridTextColumn
+                    Width="80"
+                    Binding="{Binding acsr}"
+                    Header="AC 输入" />
+                <DataGridTextColumn
+                    Width="80"
+                    Binding="{Binding aczt}"
+                    Header="AC 状态" />
+                <DataGridTextColumn
+                    Width="60"
+                    Binding="{Binding zs}"
+                    Header="总数" />
+                <DataGridTextColumn
+                    Width="60"
+                    Binding="{Binding hg}"
+                    Foreground="#00ff00"
+                    Header="合格" />
+                <DataGridTextColumn
+                    Width="60"
+                    Binding="{Binding bl}"
+                    Foreground="#ff0000"
+                    Header="不良" />
+                <DataGridTextColumn
+                    Width="60"
+                    Binding="{Binding bll}"
+                    Header="不良率" />
                 <DataGridTemplateColumn Width="200">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
@@ -118,11 +129,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <TextBox Height="24"
-                                         VerticalContentAlignment="Center"
-                                         Text="{Binding cpxh,
-                                                        Mode=TwoWay,
-                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    Height="24"
+                                    VerticalContentAlignment="Center"
+                                    Text="{Binding cpxh, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -136,11 +146,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <TextBox Height="24"
-                                         VerticalContentAlignment="Center"
-                                         Text="{Binding cpddh,
-                                                        Mode=TwoWay,
-                                                        UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    Height="24"
+                                    VerticalContentAlignment="Center"
+                                    Text="{Binding cpddh, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -154,14 +163,13 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Button Grid.Column="1"
-                                        Width="40"
-                                        Height="24"
-                                        Command="{Binding SelectCPXHCommand}"
-                                        Content="保存"
-                                        DataContext="{Binding DataContext,
-                                                              RelativeSource={RelativeSource Mode=FindAncestor,
-                                                                                             AncestorType=UserControl}}" />
+                                <Button
+                                    Grid.Column="1"
+                                    Width="40"
+                                    Height="24"
+                                    Command="{Binding SelectCPXHCommand}"
+                                    Content="保存"
+                                    DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -169,9 +177,10 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Row="0"
-              Grid.Column="1"
-              Background="#d4e4f3">
+        <Grid
+            Grid.Row="0"
+            Grid.Column="1"
+            Background="#d4e4f3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -179,46 +188,51 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <syscontrols:ButtonEx Grid.Column="0"
-                                  Height="50"
-                                  BorderThickness="0"
-                                  Command="{Binding SDJCCommand}"
-                                  Content="上电检测"
-                                  IsEnabled="{Binding IsSDJCEnable}"
-                                  NormalImage="/BITools;component/Images/detail.png"
-                                  NormalImagePlacement="Top" />
-            <syscontrols:ButtonEx Grid.Column="1"
-                                  Height="50"
-                                  BorderThickness="0"
-                                  Command="{Binding KSCSCommand}"
-                                  Content="开始测试"
-                                  DisableImage="/BITools;component/Images/begin_disable.png"
-                                  IsEnabled="{Binding IsKSCSEnable}"
-                                  NormalImage="/BITools;component/Images/begin.png"
-                                  NormalImagePlacement="Top" />
-            <syscontrols:ButtonEx Grid.Column="2"
-                                  Height="50"
-                                  BorderThickness="0"
-                                  Command="{Binding ZTCSCommand}"
-                                  Content="暂停测试"
-                                  DisableImage="/BITools;component/Images/pause_disable.png"
-                                  IsEnabled="{Binding IsZTCSEnable}"
-                                  NormalImage="/BITools;component/Images/pause.png"
-                                  NormalImagePlacement="Top" />
-            <syscontrols:ButtonEx Grid.Column="3"
-                                  Height="50"
-                                  BorderThickness="0"
-                                  Command="{Binding TZCSCommand}"
-                                  Content="停止测试"
-                                  DisableImage="/BITools;component/Images/stop_disable.png"
-                                  IsEnabled="{Binding IsTZCSEnable}"
-                                  NormalImage="/BITools;component/Images/stop.png"
-                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="0"
+                Height="50"
+                BorderThickness="0"
+                Command="{Binding SDJCCommand}"
+                Content="上电检测"
+                IsEnabled="{Binding IsSDJCEnable}"
+                NormalImage="/BITools;component/Images/detail.png"
+                NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="1"
+                Height="50"
+                BorderThickness="0"
+                Command="{Binding KSCSCommand}"
+                Content="开始测试"
+                DisableImage="/BITools;component/Images/begin_disable.png"
+                IsEnabled="{Binding IsKSCSEnable}"
+                NormalImage="/BITools;component/Images/begin.png"
+                NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="2"
+                Height="50"
+                BorderThickness="0"
+                Command="{Binding ZTCSCommand}"
+                Content="暂停测试"
+                DisableImage="/BITools;component/Images/pause_disable.png"
+                IsEnabled="{Binding IsZTCSEnable}"
+                NormalImage="/BITools;component/Images/pause.png"
+                NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="3"
+                Height="50"
+                BorderThickness="0"
+                Command="{Binding TZCSCommand}"
+                Content="停止测试"
+                DisableImage="/BITools;component/Images/stop_disable.png"
+                IsEnabled="{Binding IsTZCSEnable}"
+                NormalImage="/BITools;component/Images/stop.png"
+                NormalImagePlacement="Top" />
         </Grid>
 
-        <Grid Grid.Row="1"
-              Grid.Column="0"
-              Margin="0">
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
@@ -227,50 +241,55 @@
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <syscontrols:ButtonEx Grid.Column="0"
-                                  Width="100"
-                                  BorderThickness="0"
-                                  Command="{Binding LHSJCommand}"
-                                  Content="{Binding LHSJName}"
-                                  NormalImage="/BITools;component/Images/refresh.png"
-                                  NormalImagePlacement="Right" />
+            <syscontrols:ButtonEx
+                Grid.Column="0"
+                Width="100"
+                BorderThickness="0"
+                Command="{Binding LHSJCommand}"
+                Content="{Binding LHSJName}"
+                NormalImage="/BITools;component/Images/refresh.png"
+                NormalImagePlacement="Right" />
 
-            <TextBox Grid.Column="1"
-                     Width="120"
-                     HorizontalContentAlignment="Center"
-                     VerticalContentAlignment="Center"
-                     BorderThickness="1,0,1,1"
-                     Text="{Binding Lhzsj,
-                                    Converter={StaticResource intToTimeSpan}}" />
+            <TextBox
+                Grid.Column="1"
+                Width="120"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                BorderThickness="1,0,1,1"
+                Text="{Binding Lhzsj, Converter={StaticResource intToTimeSpan}}" />
 
-            <syscontrols:ButtonEx Grid.Column="2"
-                                  Width="100"
-                                  BorderThickness="0"
-                                  Content="老化时间"
-                                  NormalImage="/BITools;component/Images/refresh.png"
-                                  NormalImagePlacement="Right" />
+            <syscontrols:ButtonEx
+                Grid.Column="2"
+                Width="100"
+                BorderThickness="0"
+                Content="老化时间"
+                NormalImage="/BITools;component/Images/refresh.png"
+                NormalImagePlacement="Right" />
 
-            <TextBox Grid.Column="3"
-                     Width="120"
-                     HorizontalContentAlignment="Center"
-                     VerticalContentAlignment="Center"
-                     BorderThickness="1,0,1,1"
-                     Text="{Binding Lhsj,
-                                    Converter={StaticResource intToTimeSpan}}" />
+            <TextBox
+                Grid.Column="3"
+                Width="120"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                BorderThickness="1,0,1,1"
+                Text="{Binding Lhsj, Converter={StaticResource intToTimeSpan}}" />
 
-            <TextBlock Grid.Column="4"
-                       Margin="5,0,0,0"
-                       Text="老化进度" />
+            <TextBlock
+                Grid.Column="4"
+                Margin="5,0,0,0"
+                Text="老化进度" />
 
             <Grid Grid.Column="5">
-                <ProgressBar Height="20"
-                             Margin="0,5,2,5"
-                             BorderThickness="0"
-                             Maximum="{Binding Lhzsj}"
-                             Value="{Binding Lhsj}" />
-                <TextBlock VerticalAlignment="Center"
-                           Block.TextAlignment="Center"
-                           Text="{Binding Lhbfb}" />
+                <ProgressBar
+                    Height="20"
+                    Margin="0,5,2,5"
+                    BorderThickness="0"
+                    Maximum="{Binding Lhzsj}"
+                    Value="{Binding Lhsj}" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Block.TextAlignment="Center"
+                    Text="{Binding Lhbfb}" />
             </Grid>
 
         </Grid>
@@ -282,86 +301,91 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <syscontrols:ButtonEx Grid.Column="0"
-                                  BorderThickness="0,1,0,0"
-                                  Command="{Binding CKSJCommand}"
-                                  Content="查看数据"
-                                  NormalImage="/BITools;component/Images/detail.png" />
-            <syscontrols:ButtonEx Grid.Column="1"
-                                  BorderThickness="0,1,0,0"
-                                  Command="{Binding CKTXMCommand}"
-                                  Content="产品条形码"
-                                  NormalImage="/BITools;component/Images/bar_code.png" />
-            <syscontrols:ButtonEx Grid.Column="2"
-                                  BorderThickness="0,1,0,0"
-                                  Command="{Binding BJFWCommand}"
-                                  Content="报警复位"
-                                  NormalImage="/BITools;component/Images/light.png" />
+            <syscontrols:ButtonEx
+                Grid.Column="0"
+                BorderThickness="0,1,0,0"
+                Command="{Binding CKSJCommand}"
+                Content="查看数据"
+                NormalImage="/BITools;component/Images/detail.png" />
+            <syscontrols:ButtonEx
+                Grid.Column="1"
+                BorderThickness="0,1,0,0"
+                Command="{Binding CKTXMCommand}"
+                Content="产品条形码"
+                NormalImage="/BITools;component/Images/bar_code.png" />
+            <syscontrols:ButtonEx
+                Grid.Column="2"
+                BorderThickness="0,1,0,0"
+                Command="{Binding BJFWCommand}"
+                Content="报警复位"
+                NormalImage="/BITools;component/Images/light.png" />
         </Grid>
 
-        <!--  测试状态说明  -->
-        <Grid Grid.Row="2"
-              Grid.Column="0"
-              Grid.ColumnSpan="2">
-            <Grid.Resources>
-                <Style TargetType="Image">
-                    <Setter Property="Width" Value="26" />
-                </Style>
-            </Grid.Resources>
-        </Grid>
-
-        <Grid Grid.Row="3"
-              Grid.ColumnSpan="2"
-              Background="#CCDFF0">
+        <Grid
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Background="#CCDFF0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0"
-                    Margin="0"
-                    BorderBrush="{StaticResource borderBrush}"
-                    BorderThickness="0">
-                <TextBlock FontSize="16"
-                           FontWeight="Bold"
-                           Text="{Binding Name}"
-                           TextAlignment="Center" />
+            <Border
+                Grid.Column="0"
+                Margin="0"
+                BorderBrush="{StaticResource borderBrush}"
+                BorderThickness="0">
+                <TextBlock
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Text="{Binding Name}"
+                    TextAlignment="Center" />
             </Border>
-            <ListBox Name="uutListBox"
-                     Grid.Column="1"
-                     Background="#d4e4f3"
-                     BorderThickness="0"
-                     ItemContainerStyle="{StaticResource uutStyle}"
-                     ItemsSource="{Binding UUTList}"
-                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox
+                Name="uutListBox"
+                Grid.Column="1"
+                Background="#d4e4f3"
+                BorderThickness="0"
+                ItemContainerStyle="{StaticResource uutStyle}"
+                ItemsSource="{Binding UUTList}"
+                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListBox.InputBindings />
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Width="{Binding RelativeSource={RelativeSource TemplatedParent},
-                                                   Path=ActualWidth}"
-                                   HorizontalAlignment="Left"
-                                   IsItemsHost="True" />
+                        <WrapPanel
+                            Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
+                            HorizontalAlignment="Left"
+                            IsItemsHost="True" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="160" Height="31">
                             <Grid.InputBindings>
-                                <MouseBinding Command="{Binding Path=DataContext.ViewUUTDataCommand,
-                                                                ElementName=uutListBox}"
-                                              CommandParameter="{Binding}"
-                                              MouseAction="LeftDoubleClick" />
+                                <MouseBinding
+                                    Command="{Binding Path=DataContext.ViewUUTDataCommand, ElementName=uutListBox}"
+                                    CommandParameter="{Binding}"
+                                    MouseAction="LeftDoubleClick" />
                             </Grid.InputBindings>
-                            <Image Width="26"
-                                   Height="26"
-                                   Source="{Binding StateBrush}" />
-                            <TextBlock VerticalAlignment="Center"
-                                       Text="{Binding Code}"
-                                       TextAlignment="Center" />
+                            <Image
+                                Width="26"
+                                Height="26"
+                                Source="{Binding StateBrush}" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="{Binding Code}"
+                                TextAlignment="Center" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
+
+        <Separator
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Height="10"
+            Background="Red" />
     </Grid>
 </UserControl>

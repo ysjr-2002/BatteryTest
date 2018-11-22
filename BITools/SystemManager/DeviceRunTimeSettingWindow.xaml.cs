@@ -44,7 +44,7 @@ namespace BITools.SystemManager
             {
                 DataGridRow rowItem = dgMonitorParam.ItemContainerGenerator.ContainerFromItem(o) as DataGridRow;
                 var model = rowItem.DataContext as MonitorParamViewModel;
-                if (model.ValType == (int)ValTypeEnum.Selector)
+                if (model.InputMode == (int)InputModeEnum.Selector)
                 {
                     var cmbCSMS = UIHelper.FindChild<ComboBox>(rowItem, "cmbCSMS");
                     model.Val = cmbCSMS.SelectedIndex.ToString();
@@ -66,7 +66,7 @@ namespace BITools.SystemManager
                     {
                         foreach (var channel in uut.ChannelList)
                         {
-                            if (selectedChannel.Code == channel.Code)
+                            if (channel.ChannelType == (int)ChannelTypeEnum.FZ)
                             {
                                 channel.MontiorParamList = selectedChannel.MontiorParamList;
                             }
@@ -85,7 +85,7 @@ namespace BITools.SystemManager
                         {
                             foreach (var channel in uut.ChannelList)
                             {
-                                if (selectedChannel.Code == channel.Code)
+                                if (channel.ChannelType == (int)ChannelTypeEnum.FZ)
                                 {
                                     channel.MontiorParamList = selectedChannel.MontiorParamList;
                                 }

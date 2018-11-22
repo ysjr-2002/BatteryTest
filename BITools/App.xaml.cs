@@ -1,4 +1,5 @@
-﻿using BIModel;
+﻿using BIDataAccess;
+using BIModel;
 using BITools.DataManager;
 using BITools.SystemManager;
 using LL.SenicSpot.Gate.Kernal;
@@ -20,18 +21,22 @@ namespace BITools
     public partial class App : Application
     {
         /*
-          负载通道1 电压电流上下限
-          配置和参数加使、能参数
-          点击机台，可以查看机台上次采集数据
-11-21
-0.老化参数为调用文件名
-1.AC输入为可输入，增加保存按钮，保存后不可修改
-2.状态对齐，加边框醒目
-3.层次间增加分隔符
-4.开始测试要醒目
+        负载通道1 电压电流上下限
+        配置和参数加使、能参数
+        点击机台，可以查看机台上次采集数据
+
+        11-21
+        0.老化参数为调用文件名
+        1.AC输入为可输入，增加保存按钮，保存后不可修改
+        2.状态对齐，加边框醒目
+        3.层次间增加分隔符
+        4.开始测试要醒目
         */
         protected override void OnStartup(StartupEventArgs e)
         {
+            SqliteHelper.Instance.Init("ysj.data");
+            new TestRun().CreateTable();
+
             var bnew = false;
             var appname = System.Windows.Forms.Application.ProductName;
             var mutex = new Mutex(true, appname, out bnew);

@@ -117,6 +117,13 @@ namespace BITools.ViewModel
             if (this.TCList == null || this.TCList.Count == 0)
                 return;
 
+            if (filePath.IsEmpty())
+            {
+                filePath = FileManager.SaveParamFile();
+                if (filePath.IsEmpty())
+                    return;
+            }
+
             var content = JsonConvert.SerializeObject(this.TCList);
             content = FunExt.JsonFormatter(content);
 

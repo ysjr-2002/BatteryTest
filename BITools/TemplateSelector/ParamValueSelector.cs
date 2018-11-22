@@ -33,10 +33,9 @@ namespace BITools.TemplateSelector
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             FrameworkElement element = container as FrameworkElement;
-
             var parent = element.Parent as FrameworkElement;
             var dc = parent.DataContext as MonitorParamViewModel;
-            if (dc.ValType == (int)ValTypeEnum.Selector)
+            if (dc.InputMode == (int)InputModeEnum.Selector)
             {
                 var dictImpl = new DictonaryService();
                 var list = dictImpl.QueryDictionary("CSMS");
@@ -52,9 +51,23 @@ namespace BITools.TemplateSelector
                 }
                 return datatemplate;
             }
-            else if (dc.ValType == (int)ValTypeEnum.Input)
+            else if (dc.InputMode == (int)InputModeEnum.Input)
             {
-                return element.FindResource("dtInput") as DataTemplate;
+                if (dc.ValType == (int)OutputEnum.V)
+                {
+                    var datatemplate = element.FindResource("dtInputV") as DataTemplate;
+                    return datatemplate;
+                }
+                else if (dc.ValType == (int)OutputEnum.A)
+                {
+                    var datatemplate = element.FindResource("dtInputA") as DataTemplate;
+                    return datatemplate;
+                }
+                else if (dc.ValType == (int)OutputEnum.N)
+                {
+                    var datatemplate = element.FindResource("dtInputN") as DataTemplate;
+                    return datatemplate;
+                }
             }
             return base.SelectTemplate(item, container);
         }

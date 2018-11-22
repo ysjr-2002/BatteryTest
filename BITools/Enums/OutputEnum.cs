@@ -19,6 +19,13 @@ namespace BITools.Enums
         /// 电流
         /// </summary>
         A,
-        T
+        /// <summary>
+        /// 温度
+        /// </summary>
+        T,
+        /// <summary>
+        /// 未知
+        /// </summary>
+        N
     }
 }

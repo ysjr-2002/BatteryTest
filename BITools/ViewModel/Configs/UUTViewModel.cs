@@ -86,8 +86,8 @@ namespace BITools.ViewModel.Configs
             var c2 = new ChannelViewModel { Code = "2", Name = "负载通道2", ChannelType = (int)ChannelTypeEnum.FZ };
             var c3 = new ChannelViewModel { Code = "3", Name = "机台通道", ChannelType = (int)ChannelTypeEnum.JT };
             var c4 = new ChannelViewModel { Code = "4", Name = "温度通道", ChannelType = (int)ChannelTypeEnum.Temperature };
-            c1.Init(2);
-            c2.Init(2);
+            c1.Init();
+            c2.Init();
             ChannelList.Add(c1);
             ChannelList.Add(c2);
             ChannelList.Add(c3);
