@@ -66,7 +66,7 @@ namespace BIDataAccess
                     {
                         if (!string.IsNullOrEmpty(autoKey) && item.ColumnName.Equals(autoKey))
                         {
-                            strSql.AppendLine(string.Format("[{0}] INTEGER PRIMARY KEY,", item.ColumnName));
+                            strSql.AppendLine(string.Format("[{0}] INTEGER PRIMARY KEY AUTOINCREMENT,", item.ColumnName));
                         }
                         else
                         {

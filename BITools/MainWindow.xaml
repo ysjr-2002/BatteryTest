@@ -8,9 +8,9 @@
     xmlns:local="clr-namespace:BITools"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
-    Title="节能回馈老化测试系统"
-    Width="1400"
-    Height="800"
+    Title=""
+    Width="1280"
+    Height="630"
     Style="{StaticResource WindowStyleWithMinMaxCloseBtn}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
@@ -26,8 +26,6 @@
         </Style>
         <SolidColorBrush x:Key="borderBrush" Color="#CCCCCC" />
         <converts:BoolToVisibilityConverter x:Key="boolToVisibility" />
-
-
     </Window.Resources>
     <Grid Margin="0,0">
         <Grid.RowDefinitions>
@@ -124,7 +122,7 @@
                 NormalImage="/BITools;component/Images/about.png"
                 NormalImagePlacement="Top" />
 
-            <syscontrols:RunStateView Grid.Column="8" />
+            <syscontrols:RunStateView Grid.Column="8" Visibility="Collapsed" />
         </Grid>
 
         <syscontrols:TCTabControl x:Name="tabs" Grid.Row="1" />

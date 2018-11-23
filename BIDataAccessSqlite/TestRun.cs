@@ -9,34 +9,54 @@ namespace BIDataAccess
 {
     public class TestRun
     {
-        private DataTable tabFileData;
+        private DataTable tabOrder;
+        private SqlInfo orderSqlInfo;
+
+        private DataTable tabCollectData;
         private SqlInfo fileSqlInfo;
 
-        public void CreateTable()
+        public void CreateOrderTable()
         {
-            tabFileData = new System.Data.DataTable();
-            tabFileData.TableName = "CollectData";
-            tabFileData.Columns.AddRange(new DataColumn[]
+            tabOrder = new DataTable();
+            tabOrder.TableName = "CPOrder";
+            tabOrder.Columns.AddRange(new DataColumn[]
             {
-                new DataColumn("ID",typeof(string)),
-                new DataColumn("TC",typeof(string)),
-                new DataColumn("Layer",typeof(string)),
-                new DataColumn("CPXH",typeof(string)),
-                new DataColumn("DHK",typeof(string)),
-                new DataColumn("ACInput",typeof(string)), //老化电压
-                new DataColumn("CSM",typeof(string)), //参数名
-                new DataColumn("YJPZCSM",typeof(byte[])),//硬件配置参数名
-                new DataColumn("User",typeof(string)), //用户
-                new DataColumn("SourceDesc",typeof(string)), //参数值
-                new DataColumn("Lat",typeof(double)), //老化开始时间
-                new DataColumn("Lon",typeof(double)), //老化结束时间
-                new DataColumn("MapKind",typeof(string)), //读取时间
-                new DataColumn("Content",typeof(string)), //
+                new DataColumn("OrderID",typeof(string)),
+                new DataColumn("CPXH",typeof(string)),         //产品型号
+                new DataColumn("DHK",typeof(string)),          //订单号
+                new DataColumn("ACInput",typeof(string)),      //老化电压
+                new DataColumn("PFileName",typeof(string)),    //参数名
+                new DataColumn("YJPZCSM",typeof(string)),      //硬件配置参数名
+                new DataColumn("User",typeof(string)),         //用户
+                new DataColumn("ParamContent",typeof(string)), //参数值
+                new DataColumn("StartTime",typeof(string)),    //老化开始时间
+                new DataColumn("EndTime",typeof(string))       //老化结束时间
             });
-            tabFileData.PrimaryKey = new DataColumn[] { tabFileData.Columns["ID"] };
-            fileSqlInfo = new SqlInfo(tabFileData, SqliteHelper.Instance);
+            tabOrder.PrimaryKey = new DataColumn[] { tabOrder.Columns["ID"] };
+            orderSqlInfo = new SqlInfo(tabOrder, SqliteHelper.Instance);
 
-            SqliteHelper.Instance.CreateTab(tabFileData);
+            SqliteHelper.Instance.CreateTab(tabOrder);
+        }
+
+        public void CreateCollectionDataTable()
+        {
+            tabCollectData = new DataTable();
+            tabCollectData.TableName = "CollectData";
+            tabCollectData.Columns.AddRange(new DataColumn[]
+            {
+                new DataColumn("ID",typeof(int)),
+                new DataColumn("OrderID",typeof(string)), //订单ID
+                new DataColumn("TC",typeof(string)),      //台车
+                new DataColumn("Layer",typeof(string)),   //层
+                new DataColumn("UUTCode",typeof(string)), //机台号
+                new DataColumn("Time",typeof(string)),    //读取时间 00:00:01
+                new DataColumn("Content",typeof(string)), //读取值
+            });
+
+            tabCollectData.PrimaryKey = new DataColumn[] { tabCollectData.Columns["ID"] };
+            fileSqlInfo = new SqlInfo(tabCollectData, SqliteHelper.Instance);
+
+            SqliteHelper.Instance.CreateTab(tabCollectData, true);
         }
 
         public void Query()

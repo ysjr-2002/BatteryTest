@@ -110,5 +110,11 @@ namespace BITools.ViewModel
             get { return this.GetValue(c => c.cpddh); }
             set { this.SetValue(c => c.cpddh, value); }
         }
+
+        public bool IsReadOnly
+        {
+            get { return this.GetValue(c => c.IsReadOnly); }
+            set { this.SetValue(c => c.IsReadOnly, value); }
+        }
     }
 }

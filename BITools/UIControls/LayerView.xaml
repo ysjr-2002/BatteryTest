@@ -7,53 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
     d:DesignHeight="300"
-    d:DesignWidth="1300"
+    d:DesignWidth="1200"
     mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="borderBrush" Color="#CCCCCC" />
-
         <Style TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-
-        <Style x:Key="cellStyle" TargetType="DataGridCell">
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                        <Border
-                            Name="bg"
-                            MinHeight="37"
-                            Margin="0,0,1,-1"
-                            Background="Transparent"
-                            BorderBrush="{StaticResource borderBrush}"
-                            BorderThickness="0,0,1,1"
-                            SnapsToDevicePixels="True">
-                            <ContentPresenter
-                                x:Name="TheContentPresenter"
-                                Margin="0,0,5,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="bg" Property="Background" Value="Red" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
     </UserControl.Resources>
     <Grid Grid.Row="1">
         <Grid.RowDefinitions>
@@ -77,6 +37,8 @@
             BorderThickness="1,1,1,0"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
+            CanUserResizeColumns="False"
+            CanUserSortColumns="False"
             ColumnHeaderHeight="30"
             ItemsSource="{Binding RunDataCollection}"
             Style="{StaticResource dgConfig}">
@@ -87,21 +49,35 @@
             </DataGrid.RowHeaderStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="80"
+                    Width="60"
                     Binding="{Binding sm}"
                     Header="扫描" />
                 <DataGridHyperlinkColumn
-                    Width="100"
-                    Binding="{Binding lhcsdy}"
-                    Header="老化参数调用" />
-                <DataGridTextColumn
                     Width="80"
-                    Binding="{Binding acsr}"
-                    Header="AC 输入" />
+                    Binding="{Binding lhcsdy}"
+                    Header="老化参数" />
+                <DataGridTemplateColumn Header="AC输入">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox
+                                    Width="60"
+                                    Height="24"
+                                    VerticalContentAlignment="Center"
+                                    BorderThickness="0"
+                                    IsReadOnly="{Binding IsReadOnly}"
+                                    Style="{StaticResource TBBaseStyle}"
+                                    Text="{Binding acsr, Mode=TwoWay}"
+                                    TextAlignment="Center" />
+                                <TextBlock VerticalAlignment="Center" Text="(V)" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn
                     Width="80"
                     Binding="{Binding aczt}"
-                    Header="AC 状态" />
+                    Header="AC状态" />
                 <DataGridTextColumn
                     Width="60"
                     Binding="{Binding zs}"
@@ -120,7 +96,7 @@
                     Width="60"
                     Binding="{Binding bll}"
                     Header="不良率" />
-                <DataGridTemplateColumn Width="200">
+                <DataGridTemplateColumn Width="150">
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Text="产品型号" />
@@ -128,10 +104,14 @@
                     </DataGridTemplateColumn.HeaderTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid HorizontalAlignment="Center">
                                 <TextBox
+                                    Width="140"
                                     Height="24"
                                     VerticalContentAlignment="Center"
+                                    BorderThickness="0"
+                                    IsReadOnly="{Binding IsReadOnly}"
+                                    Style="{StaticResource TBBaseStyle}"
                                     Text="{Binding cpxh, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </DataTemplate>
@@ -147,30 +127,28 @@
                         <DataTemplate>
                             <Grid>
                                 <TextBox
+                                    Width="140"
                                     Height="24"
                                     VerticalContentAlignment="Center"
+                                    BorderThickness="0"
+                                    IsReadOnly="{Binding IsReadOnly}"
+                                    Style="{StaticResource TBBaseStyle}"
                                     Text="{Binding cpddh, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="80">
-                    <DataGridTemplateColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="操作" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.HeaderTemplate>
+                <DataGridTemplateColumn Width="80" Header="操作">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Button
-                                    Grid.Column="1"
-                                    Width="40"
-                                    Height="24"
-                                    Command="{Binding SelectCPXHCommand}"
-                                    Content="保存"
-                                    DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" />
-                            </Grid>
+                            <Button
+                                Grid.Column="1"
+                                Width="60"
+                                Height="24"
+                                Command="{Binding SelectCPXHCommand}"
+                                Content="保存"
+                                DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+                                Style="{StaticResource CancelStyle}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -385,7 +363,7 @@
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Height="10"
+            Height="15"
             Background="Red" />
     </Grid>
 </UserControl>

@@ -44,12 +44,12 @@ namespace BITools.ViewModel
                 sbbh = layerConfig.Name,
                 sm = 1,
                 lhcsdy = System.IO.Path.GetFileNameWithoutExtension(paramFilePath),
-                acsr = "380V",
+                acsr = "380.00",
                 aczt = "OFF",
-                zs = 0,
+                zs = layerConfig.UUTList.Count,
                 hg = 0,
-                bl = 1,
-                bll = "99%"
+                bl = 0,
+                bll = "0%"
             };
             this.RunDataCollection.Add(deveInfo);
             this.lhsjEnum = LHSJEnum.LHZSJ;
@@ -182,8 +182,24 @@ namespace BITools.ViewModel
 
         private void SelectCPXH()
         {
-            var path = FileManager.OpenParamFile();
-            RunDataCollection.First().cpxh = path;
+            //var path = FileManager.OpenParamFile();
+            //RunDataCollection.First().cpxh = path;
+            if (deveInfo.acsr.IsEmpty())
+            {
+                MsgBox.WarningShow("请填写AC输入");
+                return;
+            }
+            if (deveInfo.cpxh.IsEmpty())
+            {
+                MsgBox.WarningShow("请填写产品型号");
+                return;
+            }
+            if (deveInfo.cpddh.IsEmpty())
+            {
+                MsgBox.WarningShow("请填写订单号");
+                return;
+            }
+            deveInfo.IsReadOnly = true;
         }
 
         private void LHSJ()
@@ -245,14 +261,17 @@ namespace BITools.ViewModel
             Task.Factory.StartNew(() =>
             {
                 //老化时间配置的小时
-
                 this.deveInfo.aczt = "On";
                 while (IsRuning && mre.WaitOne())
                 {
+                    ReadData();
                     Lhsj++;
                     LhbfbValue = (int)(((float)Lhsj / Lhzsj) * 100);
                     Lhbfb = "老化中 " + LhbfbValue + "%";
-                    Thread.Sleep(1000);
+                    int sleep = sysConfig.DataSaveSpan.ToInt32() * 1000;
+                    Thread.Sleep(sleep);
+
+                    deveInfo.sm++;
                 }
             });
         }

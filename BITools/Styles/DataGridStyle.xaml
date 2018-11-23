@@ -45,13 +45,15 @@
     <!--  表格边框线  -->
     <SolidColorBrush x:Key="DataGrid.Border.Brush" Color="#FFE2E2E2" />
 
-
     <Style x:Key="myCellstyle" TargetType="DataGridCell">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridCell">
                     <Border Background="Transparent">
-                        <ContentPresenter Margin="2,0,0,0" VerticalAlignment="Center" />
+                        <ContentPresenter
+                            Margin="2,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -92,7 +94,6 @@
         <Setter Property="VerticalGridLinesBrush" Value="{StaticResource sepeatorLineBrush}" />
         <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource sepeatorLineBrush}" />
     </Style>
-
 
 
     <Style x:Key="cellStyle" TargetType="DataGridCell">

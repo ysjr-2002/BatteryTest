@@ -35,7 +35,9 @@ namespace BITools
         protected override void OnStartup(StartupEventArgs e)
         {
             SqliteHelper.Instance.Init("ysj.data");
-            new TestRun().CreateTable();
+            var test = new TestRun();
+            test.CreateOrderTable();
+            test.CreateCollectionDataTable();
 
             var bnew = false;
             var appname = System.Windows.Forms.Application.ProductName;
