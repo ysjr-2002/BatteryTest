@@ -151,6 +151,7 @@
     <Compile Include="Enums\ChannelTypeEnum.cs" />
     <Compile Include="Enums\InterfaceEnum.cs" />
     <Compile Include="Enums\InputModeEnum.cs" />
+    <Compile Include="Enums\UUTStateEnum.cs" />
     <Compile Include="Helpers\FileDialogHelper.cs" />
     <Compile Include="Core\FileManager.cs" />
     <Compile Include="Core\FunExt.cs" />
@@ -612,6 +613,10 @@
       <Project>{bcffaa59-93b3-4fb3-b06e-7c1269287af4}</Project>
       <Name>BIDataAccessSqlite</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BIData\BIData.csproj">
+      <Project>{5C0C3908-3D21-4747-9DD0-96812FC7ADD5}</Project>
+      <Name>BIData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BILogic\BILogic.csproj">
       <Project>{3c4ffa3a-2433-4986-a83b-60fe69fcbf43}</Project>
       <Name>BILogic</Name>
@@ -658,7 +663,6 @@
     <Resource Include="Images\clock.png" />
     <Resource Include="Images\main\close_hover.png" />
     <Resource Include="Images\main\close_normal.png" />
-    <Resource Include="Images\Status\dj.png" />
     <Resource Include="Images\Status\lzyc.png" />
     <Resource Include="Images\Status\qy.png" />
     <Resource Include="Images\Status\ql.png" />
@@ -669,6 +673,7 @@
     <Resource Include="Images\Status\wsc.png" />
     <Resource Include="Images\Status\wcp.png" />
     <Resource Include="Images\save.png" />
+    <Resource Include="Images\Status\tj.png" />
     <Content Include="Libs\Common.dll" />
     <Resource Include="Resources\startloading.gif" />
     <Resource Include="Images\close.png" />

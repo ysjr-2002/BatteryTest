@@ -11,6 +11,8 @@ using BITools.Model;
 using BITools.Enums;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
+using BIDataAccess;
+using BIData;
 
 namespace BITools.ViewModel.Configs
 {
@@ -22,7 +24,7 @@ namespace BITools.ViewModel.Configs
         public UUTViewModel()
         {
             this.ChannelList = new ObservableCollection<ChannelViewModel>();
-            this.StateBrush = "/BITools;component/Images/Status/dj.png";
+            this.StateBrush = "/BITools;component/Images/Status/tj.png";
             this.IsEnable = true;
         }
 
@@ -54,12 +56,64 @@ namespace BITools.ViewModel.Configs
             set { this.SetValue(c => c.ChannelList, value); }
         }
 
-        public void ChangeState()
+        public void ParseData(string tc, string layer, int lhsj, string data, bool isSavedata)
         {
-            var s = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
-            var index = new Random(s).Next(0, 10);
+            var fzcount = this.ChannelList.Count(c => c.ChannelType == (int)ChannelTypeEnum.FZ);
+            var items = data.Split(';');
+            if (items.Length != fzcount)
+                return;
+
+            //负载通道1
+            var c1_sxv = ChannelList[0].MontiorParamList[3].Val.ToFloat();
+            var c1_sxa = ChannelList[0].MontiorParamList[5].Val.ToFloat();
+
+            var c1_xxv = ChannelList[0].MontiorParamList[4].Val.ToFloat();
+            var c1_xxa = ChannelList[0].MontiorParamList[6].Val.ToFloat();
+
+            //负载通道2
+            var c2_sxv = ChannelList[1].MontiorParamList[3].Val.ToFloat();
+            var c2_sxa = ChannelList[1].MontiorParamList[5].Val.ToFloat();
+
+            var c2_xxv = ChannelList[1].MontiorParamList[4].Val.ToFloat();
+            var c2_xxa = ChannelList[1].MontiorParamList[6].Val.ToFloat();
+
+
+            var fz1 = items[0].Split(',');
+            var c1_v = fz1[0].ToFloat();
+            var c1_a = fz1[1].ToFloat();
+
+            var fz2 = items[1].Split(',');
+            var c2_v = fz2[0].ToFloat();
+            var c2_a = fz2[1].ToFloat();
+
+            if (c1_v <= c1_sxv) //欠压->电压读取值小于上限
+            {
+                ChangeState(UUTStateEnum.qy);
+            }
+            if (c1_a <= c1_sxa) //欠流->电压读取值小于上限
+            {
+
+                ChangeState(UUTStateEnum.ql);
+            }
+
+
+            if (isSavedata)
+            {
+                OrderData orderdata = new OrderData();
+                orderdata.TC = tc;
+                orderdata.Layer = layer;
+                orderdata.UUTCode = this.Code;
+                orderdata.Time = FunExt.IntToTimeSpan(lhsj);
+                orderdata.Content = data;
+                DataOperator.Instance.SaveOrderData(orderdata);
+            }
+        }
+
+        private void ChangeState(UUTStateEnum state)
+        {
+            var index = (byte)state;
             if (index == 0)
-                StateBrush = "/BITools;component/Images/Status/dj.png";
+                StateBrush = "/BITools;component/Images/Status/tj.png";
             else if (index == 1)
                 StateBrush = "/BITools;component/Images/Status/lzyc.png";
             else if (index == 2)

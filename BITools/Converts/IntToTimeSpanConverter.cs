@@ -16,8 +16,7 @@ namespace BITools.Converts
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var val = System.Convert.ToInt32(value);
-            var ts = TimeSpan.FromSeconds(val);
-            var str = string.Format("{0}:{1}:{2}", ((int)ts.Hours).ToString("d2"), ((int)ts.Minutes).ToString("d2"), ((int)ts.Seconds).ToString("d2"));
+            var str = FunExt.IntToTimeSpan(val);
             return str;
         }
 

@@ -153,5 +153,12 @@ namespace BITools
             }
             return en.ToString();
         }
+
+        public static string IntToTimeSpan(int val)
+        {
+            var ts = TimeSpan.FromSeconds(val);
+            var str = string.Format("{0}:{1}:{2}", ((int)ts.Hours).ToString("d2"), ((int)ts.Minutes).ToString("d2"), ((int)ts.Seconds).ToString("d2"));
+            return str;
+        }
     }
 }

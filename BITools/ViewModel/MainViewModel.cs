@@ -38,6 +38,7 @@ namespace BITools.ViewModel
             if (filepath.IsEmpty())
                 return;
 
+            //var filepath = "10.tk";
             var content = System.IO.File.ReadAllText(filepath);
             var tcList = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
 
@@ -59,7 +60,7 @@ namespace BITools.ViewModel
                 {
                     //层
                     LayerView temp = new LayerView();
-                    LayerViewModel datacontext = new LayerViewModel(filepath, layer, config);
+                    LayerViewModel datacontext = new LayerViewModel(tc.Name, filepath, layer, config);
                     datacontext.UUTList = layer.UUTList;
                     datacontext.Refresh();
                     temp.DataContext = datacontext;

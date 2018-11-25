@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="30" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="/BITools;component/Images/Status/dj.png" />
+            <Image Grid.Column="0" Source="/BITools;component/Images/Status/tj.png" />
             <TextBlock
                 Grid.Column="1"
                 Margin="5,0,0,0"

@@ -119,7 +119,7 @@ namespace BIDataAccess
 
         internal System.Data.Common.DbParameter CreateInDbParam(string pName, Type colType, object value = null)
         {
-            System.Data.DbType dbType = ToDbType(colType);
+            DbType dbType = ToDbType(colType);
             return _db.CreateInDbParameter(pName, dbType, value);
         }
 
@@ -129,7 +129,7 @@ namespace BIDataAccess
             return _db.TableIsExist(tabName);
         }
 
-        private System.Data.DbType ToDbType(Type type)
+        private DbType ToDbType(Type type)
         {
             switch (type.Name.ToLower())
             {

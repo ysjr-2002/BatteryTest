@@ -62,8 +62,11 @@ namespace BIDataAccess
 
             foreach (string key in dicList.Keys)
             {
-                split = iIndex == dicList.Keys.Count - 1 ? "" : ",";
-                nLine = iIndex > 0 && iIndex % 5 == 0 ? Environment.NewLine : "";
+                if (PrimaryKey == key)
+                    continue;
+
+                split = iIndex == dicList.Keys.Count - 2 ? "" : ",";
+                //nLine = iIndex > 0 && iIndex % 5 == 0 ? Environment.NewLine : "";
 
                 sCol += key + split + nLine;
                 sParam += dicList[key].ParameterName + split + nLine;
@@ -71,11 +74,11 @@ namespace BIDataAccess
             }
 
             StrInsertSql.Clear();
-            StrInsertSql.AppendLine(string.Format("INSERT INTO {0} (", tab.TableName));
-            StrInsertSql.AppendLine(sCol);
-            StrInsertSql.AppendLine(")VALUES(");
-            StrInsertSql.AppendLine(sParam);
-            StrInsertSql.AppendLine(")");
+            StrInsertSql.Append(string.Format("INSERT INTO {0}(", tab.TableName));
+            StrInsertSql.Append(sCol);
+            StrInsertSql.Append(") VALUES(");
+            StrInsertSql.Append(sParam);
+            StrInsertSql.Append(")");
         }
 
         private void InitUpdateSql()
@@ -150,10 +153,8 @@ namespace BIDataAccess
             return this.dbInstance.ExecScalar(strSql);
         }
 
-        public bool IsExistsPrimary(string value)
+        public bool IsExistsPrimary(int value)
         {
-            if (string.IsNullOrEmpty(value)) return false;
-
             string primaryKey = tab.PrimaryKey[0].ColumnName;
             string strSql = string.Format("SELECT 1 FROM {0} WHERE {1} = '{2}'", tab.TableName, primaryKey, value);
             return !string.IsNullOrEmpty(this.dbInstance.ExecScalar(strSql));
@@ -200,7 +201,7 @@ namespace BIDataAccess
             return this.dbInstance.GetDataTable(strSql);
         }
 
-        public System.Data.DataRow GetDataByPrimarykey(string value)
+        public System.Data.DataRow GetDataByPrimarykey(int value)
         {
             if (!IsExistsPrimary(value)) return null;
             System.Data.DataTable tab = this.GetTab(string.Format(" AND {0} = '{1}'", PrimaryKey, value));

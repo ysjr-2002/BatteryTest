@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BatteryDBContext.cs" />
+    <Compile Include="DataOperator.cs" />
     <Compile Include="DBConfig.cs" />
     <Compile Include="DeviceConfigDal.cs" />
     <Compile Include="DictionaryDal.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="SqlInfo.cs" />
     <Compile Include="SQLiteDatabase.cs" />
     <Compile Include="SqliteHelper.cs" />
-    <Compile Include="TestRun.cs" />
     <Compile Include="UserDal.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +126,12 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BIData\BIData.csproj">
+      <Project>{5c0c3908-3d21-4747-9dd0-96812fc7add5}</Project>
+      <Name>BIData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net45\System.Data.SQLite.Core.targets')" />

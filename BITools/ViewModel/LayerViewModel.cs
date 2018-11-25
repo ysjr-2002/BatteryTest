@@ -1,4 +1,5 @@
-﻿using BIDataAccess;
+﻿using BIData;
+using BIDataAccess;
 using BIModel;
 using BITools.Core;
 using BITools.DataManager;
@@ -21,19 +22,20 @@ using System.Windows.Input;
 namespace BITools.ViewModel
 {
     /// <summary>
-    /// 一个台车可以有6层
-    /// 每层可以放6台设备
+    /// 层对象，每层可包含多个UUT
     /// </summary>
     public class LayerViewModel : PropertyNotifyObject
     {
+        private string tc;
         private DeveInfo deveInfo = null;
         private Config sysConfig;
         private Configs.LayerViewModel layerConfig;
         private string dataFolder;
         private string paramFilePath;
 
-        public LayerViewModel(string paramFilePath, Configs.LayerViewModel layerConfig, Config config)
+        public LayerViewModel(string tc, string paramFilePath, Configs.LayerViewModel layerConfig, Config config)
         {
+            this.tc = tc;
             this.paramFilePath = paramFilePath;
             this.layerConfig = layerConfig;
             this.sysConfig = config;
@@ -121,6 +123,9 @@ namespace BITools.ViewModel
             set { this.SetValue(c => c.Lhbfb, value); }
         }
 
+        /// <summary>
+        /// 老化百分比值
+        /// </summary>
         public int LhbfbValue
         {
             get { return this.GetValue(c => c.LhbfbValue); }
@@ -182,8 +187,6 @@ namespace BITools.ViewModel
 
         private void SelectCPXH()
         {
-            //var path = FileManager.OpenParamFile();
-            //RunDataCollection.First().cpxh = path;
             if (deveInfo.acsr.IsEmpty())
             {
                 MsgBox.WarningShow("请填写AC输入");
@@ -219,21 +222,21 @@ namespace BITools.ViewModel
             LHSJName = FunExt.GetDescription(lhsjEnum);
         }
 
-        private bool IsRuning = false;
+        private bool Issdcs = false;
         private ManualResetEvent mre = new ManualResetEvent(true);
         /// <summary>
         /// 上电检测
         /// </summary>
         private void SDJC()
         {
-            if (IsRuning)
+            if (Issdcs)
                 return;
 
             IsSDJCEnable = false;
-            IsRuning = true;
+            Issdcs = true;
             Task.Factory.StartNew(() =>
             {
-                while (IsRuning)
+                while (Issdcs)
                 {
                     ReadData();
                     int sleep = sysConfig.DataSaveSpan.ToInt32() * 1000;
@@ -242,6 +245,7 @@ namespace BITools.ViewModel
             });
         }
 
+        private bool Iskscs = false;
         /// <summary>
         /// 开始测试
         /// </summary>
@@ -255,23 +259,40 @@ namespace BITools.ViewModel
 
             BuildDataPath();
 
+            Order order = new Order();
+            order.acinput = deveInfo.acsr;
+            order.cpxh = deveInfo.cpxh;
+            order.ddh = deveInfo.cpddh;
+            order.user = BIModel.AppContext.UserName;
+            DataOperator.Instance.SaveOrder(order);
+
             IsKSCSEnable = false;
             IsZTCSEnable = true;
             IsTZCSEnable = true;
+            Iskscs = true;
+            Issdcs = false;
+            //读取数据
             Task.Factory.StartNew(() =>
             {
-                //老化时间配置的小时
                 this.deveInfo.aczt = "On";
-                while (IsRuning && mre.WaitOne())
+                while (Iskscs && mre.WaitOne())
                 {
                     ReadData();
+                    int sleep = sysConfig.DataSaveSpan.ToInt32() * 1000;
+                    Thread.Sleep(sleep);
+                    deveInfo.sm++;
+                }
+            });
+            //老化时间
+            Task.Factory.StartNew(() =>
+            {
+                while (Iskscs && mre.WaitOne())
+                {
                     Lhsj++;
                     LhbfbValue = (int)(((float)Lhsj / Lhzsj) * 100);
                     Lhbfb = "老化中 " + LhbfbValue + "%";
                     int sleep = sysConfig.DataSaveSpan.ToInt32() * 1000;
-                    Thread.Sleep(sleep);
-
-                    deveInfo.sm++;
+                    Thread.Sleep(1000);
                 }
             });
         }
@@ -301,7 +322,8 @@ namespace BITools.ViewModel
         /// </summary>
         private void TZCS()
         {
-            IsRuning = false;
+            Issdcs = false;
+            Iskscs = false;
         }
 
         /// <summary>
@@ -337,39 +359,17 @@ namespace BITools.ViewModel
 
         private void ReadData()
         {
-            if (UUTList.Count == 0)
-                return;
-
-            var fzcount = UUTList[0].ChannelList.Count(c => c.ChannelType == (int)ChannelTypeEnum.FZ);
             for (int i = 0; i < UUTList.Count; i++)
             {
                 var uut = UUTList[i];
-                var message = "";
-                GetMeasValueByUUTIndex(i, out message);
-
-                uut.ChangeState();
-
-                var items = message.Split(';');
-                if (items.Length != fzcount)
-                    break;
-
-                //负载电压开始
-                var s = 3;
-                for (int j = 0; j < items.Length; j++)
-                {
-                    var fz = message[j];
-                    var fzval = uut.ChannelList[j].MontiorParamList[1].Val;
-                    var v = uut.ChannelList[j].MontiorParamList[s].Val.ToFloat();
-                    var a = uut.ChannelList[j].MontiorParamList[s + 1].Val.ToFloat();
-                    s += 2;
-                }
-                Console.WriteLine(i);
-
+                var data = "";
+                GetMeasValueByUUTIndex(i, out data);
+                uut.ParseData(tc, Name, Lhsj, data, Iskscs);
                 Thread.Sleep(1);
             }
         }
 
-        private void GetMeasValueByUUTIndex(int uutIndex, out string message)
+        private void GetMeasValueByUUTIndex(int uutIndex, out string data)
         {
             //电压
             var seed = (int)(DateTime.Now.Ticks & 0xFFFFFFFF);
@@ -377,7 +377,7 @@ namespace BITools.ViewModel
             var fz1 = new Random(seed).Next(10, 15) + "," + new Random(seed).Next(1, 5);
             //负载2 电压,电流
             var fz2 = new Random(seed).Next(10, 15) + "," + new Random(seed).Next(1, 5);
-            message = string.Concat(fz1, ";", fz2);
+            data = string.Concat(fz1, ";", fz2);
         }
 
         void BuildDataPath()
@@ -390,7 +390,7 @@ namespace BITools.ViewModel
             if (System.IO.Directory.Exists(dataFolder) == false)
                 System.IO.Directory.CreateDirectory(dataFolder);
 
-            var db = System.IO.Path.Combine(dataFolder, "ysj.data");
+            var db = System.IO.Path.Combine(dataFolder, "bi.data");
             SqliteHelper.Instance.Init(db);
         }
 
