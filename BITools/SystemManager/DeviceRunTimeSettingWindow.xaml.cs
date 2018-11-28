@@ -40,6 +40,8 @@ namespace BITools.SystemManager
             if (selectedChannel == null)
                 return;
 
+            bool valOk = false;
+            List<string> tempList = new List<string>();
             foreach (object o in dgMonitorParam.Items)
             {
                 DataGridRow rowItem = dgMonitorParam.ItemContainerGenerator.ContainerFromItem(o) as DataGridRow;
@@ -52,8 +54,21 @@ namespace BITools.SystemManager
                 else
                 {
                     var txtVal = UIHelper.FindChild<TextBox>(rowItem, "txtVal");
-                    model.Val = txtVal.Text;
+                    var val = txtVal.Text;
+                    model.Val = val;
+                    tempList.Add(val);
                 }
+            }
+
+            if (tempList.Any(s => s.ToFloat() == 0))
+            {
+                MsgBox.WarningShow("电压或电流值不能为0");
+                return;
+            }
+            if ((tempList[2].ToFloat() >= tempList[3].ToFloat()) || (tempList[4].ToFloat() >= tempList[5].ToFloat()))
+            {
+                MsgBox.WarningShow("上限不能高于下限值");
+                return;
             }
 
             var list = dgMonitorParam.ItemsSource as ObservableCollection<MonitorParamViewModel>;

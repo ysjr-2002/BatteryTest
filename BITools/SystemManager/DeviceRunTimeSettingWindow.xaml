@@ -28,7 +28,7 @@
                     Name="cmbCSMS"
                     Width="110"
                     HorizontalAlignment="Left"
-                    SelectedIndex="{Binding Val, Converter={StaticResource stringToIntConverter}}">
+                    SelectedIndex="{Binding Val, Converter={StaticResource stringToIntConverter}, Mode=TwoWay}">
                     <ComboBoxItem Content="1-CC模式" />
                     <ComboBoxItem Content="2-CV模式" />
                     <ComboBoxItem Content="3-LED模式1" />
@@ -56,6 +56,7 @@
             </StackPanel>
         </DataTemplate>
 
+        <!--  可实现绑定 Mode=TwoWay, UpdateSourceTrigger=PropertyChanged  -->
         <DataTemplate x:Key="dtInputA">
             <StackPanel Orientation="Horizontal">
                 <TextBox
@@ -422,7 +423,7 @@
                                 Header="监控参数" />
                             <DataGridTemplateColumn Width="150" Header="值">
                                 <DataGridTemplateColumn.CellTemplateSelector>
-                                    <selector:ParamValueSelector  />
+                                    <selector:ParamValueSelector />
                                 </DataGridTemplateColumn.CellTemplateSelector>
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
