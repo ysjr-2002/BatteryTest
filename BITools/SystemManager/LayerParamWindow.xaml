@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:BITools.SystemManager"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
-    Title="层"
+    Title="层参数"
     Width="400"
     Height="300"
     FocusManager.FocusedElement="{Binding ElementName=txtCode}"

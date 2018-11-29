@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BITools.Enums
+namespace BICommon.Enums
 {
     /// <summary>
     /// 通道类型
     /// </summary>
-    enum ChannelTypeEnum : int
+    public enum ChannelTypeEnum : int
     {
         /// <summary>
         /// 负载

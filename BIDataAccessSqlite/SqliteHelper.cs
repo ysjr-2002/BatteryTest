@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIData;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -107,9 +108,66 @@ namespace BIDataAccess
             }
         }
 
+        public List<Order> QueryOrder(string condition, QueryPageInfo page)
+        {
+            var sql = "SELECT * FROM player where 1=1 {0} order by checktime ";
+            var sqlCount = "SELECT COUNT(*) FROM player where 1=1 {0}";
+            var sqlSplit = "limit {0} offset {0}*{1}";
+            sql = string.Format(sql, condition);
+            sqlCount = string.Format(sqlCount, condition);
+            page.RecordTotal = Convert.ToInt32(_db.ExecuteScalar(sqlCount));
+
+            sqlSplit = string.Format(sqlSplit, page.PageSize, page.PageIndex - 1);
+
+            sql += sqlSplit;
+
+            List<Order> list = new List<Order>();
+            using (var rdr = _db.ExecuteReader(sql))
+            {
+                if (rdr == null)
+                    return list;
+
+                while (rdr.Read())
+                {
+                    var runner = ReaderToRunner(rdr);
+                    list.Add(runner);
+                }
+            }
+            return list;
+        }
+
+        private Order ReaderToRunner(IDataReader rdr)
+        {
+            return new Order();
+            //var col = rdr["CheckTime"].ToString();
+            //DateTime? checkTime;
+            //if (col.IsEmpty())
+            //    checkTime = null;
+            //else
+            //    checkTime = col.ToDateTime();
+
+            //Order r = new Order
+            //{
+            //    Id = rdr["ID"].ToString(),
+            //    No = rdr["NO"].ToString(),
+            //    ChipCode = rdr["ChipCode"].ToString(),
+            //    Bib = rdr["BIB"].ToString(),
+            //    Name = rdr["Name"].ToString(),
+            //    Gender = rdr["Gender"].ToString(),
+            //    Photo = rdr["Photo"].ToString(),
+            //    Snap = rdr["Snap"].ToString(),
+            //    CheckTime = checkTime,
+            //    IsCheck = rdr["IsCheck"].ToInt32() == 1,
+            //    IsAlarm = rdr["Alarm"].ToInt32() == 1,
+            //    Group = rdr["IGroup"].ToString(),
+            //    BBCode = rdr["BBCode"].ToString(),
+            //    CardID = rdr["CardId"].ToString()
+            //};
+            //return r;
+        }
+
         private void WriteExcaption(string funName, Exception ex)
         {
-
         }
 
         internal System.Data.Common.DbParameter CreateInDbParam(string pName, System.Data.DbType dbType, object value = null)

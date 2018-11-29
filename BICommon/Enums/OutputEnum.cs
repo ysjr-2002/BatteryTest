@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BITools.Enums
+namespace BICommon.Enums
 {
     /// <summary>
     /// 负载通道输出类型
     /// </summary>
-    enum OutputEnum : int
+    public enum OutputEnum : int
     {
         /// <summary>
         /// 电压

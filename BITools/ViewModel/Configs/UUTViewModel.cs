@@ -8,11 +8,11 @@ using System.Collections.ObjectModel;
 using System.Windows.Media;
 using System.Windows;
 using BITools.Model;
-using BITools.Enums;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
 using BIDataAccess;
 using BIData;
+using BICommon.Enums;
 
 namespace BITools.ViewModel.Configs
 {

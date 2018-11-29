@@ -1,4 +1,4 @@
-﻿using BITools.Enums;
+﻿using BICommon.Enums;
 using BITools.ViewModel.Configs;
 using System;
 using System.Collections.Generic;

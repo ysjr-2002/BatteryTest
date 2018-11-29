@@ -420,6 +420,21 @@ namespace BIDataAccess
             return "";
         }
 
+        public IDataReader ExecuteReader(string cmdText)
+        {
+            var cnReader = new SQLiteConnection(dbConnection);
+            cnReader.Open();
+            SQLiteCommand cmd = new SQLiteCommand(cmdText, cnReader);
+            try
+            {
+                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Allows the programmer to easily update rows in the DB.
         /// </summary>

@@ -148,13 +148,8 @@
     <Compile Include="DataManager\CollectionDataWindow.xaml.cs">
       <DependentUpon>CollectionDataWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Enums\ChannelTypeEnum.cs" />
-    <Compile Include="Enums\InterfaceEnum.cs" />
-    <Compile Include="Enums\InputModeEnum.cs" />
-    <Compile Include="Enums\UUTStateEnum.cs" />
     <Compile Include="Helpers\FileDialogHelper.cs" />
     <Compile Include="Core\FileManager.cs" />
-    <Compile Include="Core\FunExt.cs" />
     <Compile Include="Converts\NetworkValueBrushConvert.cs" />
     <Compile Include="Converts\NullToVisibleConverter.cs" />
     <Compile Include="Core\PageInfo.cs" />
@@ -175,10 +170,7 @@
       <DependentUpon>LiveChartWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\LHSXInfo.cs" />
-    <Compile Include="Enums\OutputEnum.cs" />
-    <Compile Include="Enums\RepeatUnitEnum.cs" />
     <Compile Include="Model\TabControlCollapseMenuModel.cs" />
-    <Compile Include="Enums\TimeUnitEnum.cs" />
     <Compile Include="MsgBox.xaml.cs">
       <DependentUpon>MsgBox.xaml</DependentUpon>
     </Compile>
@@ -609,6 +601,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BICommon\BICommon.csproj">
+      <Project>{8b561caa-a3cc-4c24-ba78-7343bbb21387}</Project>
+      <Name>BICommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BIDataAccessSqlite\BIDataAccessSqlite.csproj">
       <Project>{bcffaa59-93b3-4fb3-b06e-7c1269287af4}</Project>
       <Name>BIDataAccessSqlite</Name>

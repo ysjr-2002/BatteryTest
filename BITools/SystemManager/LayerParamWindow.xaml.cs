@@ -40,9 +40,14 @@ namespace BITools.SystemManager
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            this.layer.LHSJ = txtTime.Text;
+            if (txtTime.Text.ToFloat() <= 0)
+            {
+                MsgBox.WarningShow("老化时间不能小于零");
+                return;
+            }
+            this.layer.LHSJ = txtTime.Text.ToFloat().ToString("f2");
             this.IsAllLayer = ckbAllLayer.IsChecked.GetValueOrDefault();
-            LayerViewModel = layer;
+            this.LayerViewModel = layer;
             this.DialogResult = true;
         }
 

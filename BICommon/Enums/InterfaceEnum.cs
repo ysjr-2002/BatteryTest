@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BITools.Enums
+namespace BICommon.Enums
 {
     /// <summary>
     /// 通讯方式
     /// </summary>
-    enum InterfaceEnum : int
+    public enum InterfaceEnum : int
     {
         /// <summary>
         /// 485

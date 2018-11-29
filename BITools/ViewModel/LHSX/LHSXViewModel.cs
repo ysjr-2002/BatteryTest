@@ -10,7 +10,7 @@ using System.Windows.Input;
 using Common.NotifyBase;
 using BIDataAccess.entities;
 using BILogic;
-using BITools.Enums;
+using BICommon.Enums;
 
 namespace BITools.ViewModel.LHSX
 {

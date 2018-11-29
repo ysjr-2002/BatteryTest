@@ -9,9 +9,11 @@
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
+    xmlns:vm="clr-namespace:BITools.ViewModel"
     Title="查看历史数据"
     Width="1200"
     Height="700"
+    d:DataContext="{d:DesignInstance vm:LiveDataViewModel}"
     Style="{StaticResource WindowStyleWithCloseBtn}"
     mc:Ignorable="d">
     <i:Interaction.Triggers>
@@ -52,7 +54,7 @@
                 <TextBlock Margin="10,0,0,0" Text="日期:" />
 
                 <syscontrols:HZDateTimePicker
-                    Width="180"
+                    Width="170"
                     Height="30"
                     Margin="5,0,0,0"
                     HorizontalAlignment="Left"
@@ -63,7 +65,7 @@
 
                 <TextBlock Margin="2,0" Text="至" />
                 <syscontrols:HZDateTimePicker
-                    Width="180"
+                    Width="170"
                     Height="30"
                     HorizontalAlignment="Left"
                     CustomFormat="yyyy-MM-dd HH:mm:ss"
@@ -105,8 +107,8 @@
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             IsReadOnly="True"
-            Style="{StaticResource dgConfig}"
-            ItemsSource="{Binding TCDataHistoryCollection}">
+            ItemsSource="{Binding TCDataHistoryCollection}"
+            Style="{StaticResource dgConfig}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="150"
@@ -189,7 +191,10 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Title="V" LabelFormatter="{Binding Formatter}" />
+                        <lvc:Axis
+                            Title="V"
+                            LabelFormatter="{Binding Formatter}"
+                            MinValue="0" />
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
                 <TextBlock
@@ -209,7 +214,10 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Title="A" LabelFormatter="{Binding Formatter}" />
+                        <lvc:Axis
+                            Title="A"
+                            LabelFormatter="{Binding Formatter}"
+                            MinValue="0" />
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
             </Grid>
@@ -219,8 +227,8 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     CanUserDeleteRows="False"
-                    Style="{StaticResource dgConfig}"
-                    ItemsSource="{Binding Records}">
+                    ItemsSource="{Binding Records}"
+                    Style="{StaticResource dgConfig}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="100"
@@ -251,8 +259,8 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     CanUserDeleteRows="False"
-                    Style="{StaticResource dgConfig}"
-                    ItemsSource="{Binding Unknowns}">
+                    ItemsSource="{Binding Unknowns}"
+                    Style="{StaticResource dgConfig}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="80"

@@ -134,7 +134,7 @@ namespace BITools.ViewModel
             UserCollection = new ObservableCollection<UserInfo>(temp);
             SelectedUser = UserCollection.First();
 
-            QujianCollection = FunExt.GetQuJian();
+            //QujianCollection = FunExt.GetQuJian();
             SelectedQujian = QujianCollection.FirstOrDefault();
         }
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BITools", "BITools\BITools.csproj", "{821B070A-6B62-4EB2-B19B-7A8A9502391A}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIDataAccessSqlite", "BIDataAccessSqlite\BIDataAccessSqlite.csproj", "{BCFFAA59-93B3-4FB3-B06E-7C1269287AF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIData", "BIData\BIData.csproj", "{5C0C3908-3D21-4747-9DD0-96812FC7ADD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BICommon", "BICommon\BICommon.csproj", "{8B561CAA-A3CC-4C24-BA78-7343BBB21387}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +53,15 @@ Global
 		{5C0C3908-3D21-4747-9DD0-96812FC7ADD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C0C3908-3D21-4747-9DD0-96812FC7ADD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C0C3908-3D21-4747-9DD0-96812FC7ADD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B561CAA-A3CC-4C24-BA78-7343BBB21387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B561CAA-A3CC-4C24-BA78-7343BBB21387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B561CAA-A3CC-4C24-BA78-7343BBB21387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B561CAA-A3CC-4C24-BA78-7343BBB21387}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B658504-B2F1-4E2D-B499-0C33B811F032}
 	EndGlobalSection
 EndGlobal

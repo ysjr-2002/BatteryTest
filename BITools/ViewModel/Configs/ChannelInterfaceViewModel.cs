@@ -1,4 +1,4 @@
-﻿using BITools.Enums;
+﻿using BICommon.Enums;
 using Common.NotifyBase;
 using System;
 using System.Collections.Generic;

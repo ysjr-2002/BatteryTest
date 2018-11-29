@@ -3,7 +3,6 @@ using BIDataAccess;
 using BIModel;
 using BITools.Core;
 using BITools.DataManager;
-using BITools.Enums;
 using BITools.Helpers;
 using BITools.ViewModel.Configs;
 using Common.NotifyBase;
@@ -260,10 +259,12 @@ namespace BITools.ViewModel
             BuildDataPath();
 
             Order order = new Order();
+            order.pfilename = deveInfo.lhcsdy;
             order.acinput = deveInfo.acsr;
             order.cpxh = deveInfo.cpxh;
             order.ddh = deveInfo.cpddh;
-            order.user = BIModel.AppContext.UserName;
+            order.user = AppContext.UserName;
+            order.starttime = DateTime.Now.ToStandard();
             DataOperator.Instance.SaveOrder(order);
 
             IsKSCSEnable = false;
@@ -390,8 +391,11 @@ namespace BITools.ViewModel
             if (System.IO.Directory.Exists(dataFolder) == false)
                 System.IO.Directory.CreateDirectory(dataFolder);
 
-            var db = System.IO.Path.Combine(dataFolder, "bi.data");
+            //var db = System.IO.Path.Combine(dataFolder, "bi.data");
+            var db = "bi.data";
             SqliteHelper.Instance.Init(db);
+            DataOperator.Instance.CreateOrderTable();
+            DataOperator.Instance.CreateOrderDataTable();
         }
 
         string GetFolderName(string name)

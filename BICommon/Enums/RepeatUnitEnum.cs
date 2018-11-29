@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BITools.Enums
+namespace BICommon.Enums
 {
     /// <summary>
-    /// 值输入方式
+    /// 重复开关单位
     /// </summary>
-    public enum InputModeEnum : int
+    public enum RepeatUnitEnum
     {
         /// <summary>
-        /// 选择
+        /// 分钟
         /// </summary>
-        Selector,
+        Fen,
         /// <summary>
-        /// 输入
+        /// 次数
         /// </summary>
-        Input
+        Ci
     }
 }

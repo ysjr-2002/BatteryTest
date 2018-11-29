@@ -1,7 +1,4 @@
-﻿using BIDataAccess.entities;
-using BITools.Enums;
-using BITools.Model;
-using Newtonsoft.Json;
+﻿using BICommon.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,11 +7,10 @@ using System.IO.Ports;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BITools
 {
-    static class FunExt
+    public static class FunExt
     {
         public static bool IsEmpty(this string str)
         {
@@ -85,13 +81,6 @@ namespace BITools
             return items;
         }
 
-        public static List<Dictonary> GetQuJian()
-        {
-            var items = new List<Dictonary>();
-            items.Insert(0, new Dictonary { Name = "全部", Value = "0" });
-            return items;
-        }
-
         public static string GetRepeatUnitName(int index)
         {
             var unit = (RepeatUnitEnum)index;
@@ -117,26 +106,27 @@ namespace BITools
         public static string JsonFormatter(string str)
         {
             //格式化json字符串
-            JsonSerializer serializer = new JsonSerializer();
-            TextReader tr = new StringReader(str);
-            JsonTextReader jtr = new JsonTextReader(tr);
-            object obj = serializer.Deserialize(jtr);
-            if (obj != null)
-            {
-                StringWriter textWriter = new StringWriter();
-                JsonTextWriter jsonWriter = new JsonTextWriter(textWriter)
-                {
-                    Formatting = Formatting.Indented,
-                    Indentation = 4,
-                    IndentChar = ' '
-                };
-                serializer.Serialize(jsonWriter, obj);
-                return textWriter.ToString();
-            }
-            else
-            {
-                return str;
-            }
+            //JsonSerializer serializer = new JsonSerializer();
+            //TextReader tr = new StringReader(str);
+            //JsonTextReader jtr = new JsonTextReader(tr);
+            //object obj = serializer.Deserialize(jtr);
+            //if (obj != null)
+            //{
+            //    StringWriter textWriter = new StringWriter();
+            //    JsonTextWriter jsonWriter = new JsonTextWriter(textWriter)
+            //    {
+            //        Formatting = Formatting.Indented,
+            //        Indentation = 4,
+            //        IndentChar = ' '
+            //    };
+            //    serializer.Serialize(jsonWriter, obj);
+            //    return textWriter.ToString();
+            //}
+            //else
+            //{
+            //    return str;
+            //}
+            return string.Empty;
         }
 
         public static string GetDescription(Enum en)

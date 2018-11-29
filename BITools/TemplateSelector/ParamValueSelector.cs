@@ -1,6 +1,6 @@
-﻿using BIDataAccess.entities;
+﻿using BICommon.Enums;
+using BIDataAccess.entities;
 using BILogic;
-using BITools.Enums;
 using BITools.Helpers;
 using BITools.ViewModel.Configs;
 using System;

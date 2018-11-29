@@ -1,4 +1,4 @@
-﻿using BITools.Enums;
+﻿using BICommon.Enums;
 using BITools.Helpers;
 using BITools.ViewModel;
 using BITools.ViewModel.Configs;
@@ -40,7 +40,6 @@ namespace BITools.SystemManager
             if (selectedChannel == null)
                 return;
 
-            bool valOk = false;
             List<string> tempList = new List<string>();
             foreach (object o in dgMonitorParam.Items)
             {
@@ -62,14 +61,21 @@ namespace BITools.SystemManager
 
             if (tempList.Any(s => s.ToFloat() == 0))
             {
-                MsgBox.WarningShow("电压或电流值不能为0");
+                MsgBox.WarningShow("电压或电流值不能为零");
                 return;
             }
             if ((tempList[2].ToFloat() >= tempList[3].ToFloat()) || (tempList[4].ToFloat() >= tempList[5].ToFloat()))
             {
-                MsgBox.WarningShow("上限不能高于下限值");
+                MsgBox.WarningShow("上限值不能高于下限值");
                 return;
             }
+
+            ((MonitorParamViewModel)dgMonitorParam.Items[1]).Val = tempList[0];
+            ((MonitorParamViewModel)dgMonitorParam.Items[2]).Val = tempList[1];
+            ((MonitorParamViewModel)dgMonitorParam.Items[3]).Val = tempList[2];
+            ((MonitorParamViewModel)dgMonitorParam.Items[4]).Val = tempList[3];
+            ((MonitorParamViewModel)dgMonitorParam.Items[5]).Val = tempList[4];
+            ((MonitorParamViewModel)dgMonitorParam.Items[6]).Val = tempList[5];
 
             var list = dgMonitorParam.ItemsSource as ObservableCollection<MonitorParamViewModel>;
             if (ckbLayer.IsChecked.GetValueOrDefault())
