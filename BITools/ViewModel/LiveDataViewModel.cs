@@ -1,4 +1,6 @@
-﻿using BIDataAccess.entities;
+﻿using BIData;
+using BIDataAccess;
+using BIDataAccess.entities;
 using BILogic;
 using BIModel;
 using Common.NotifyBase;
@@ -11,6 +13,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BITools.ViewModel
@@ -22,7 +25,7 @@ namespace BITools.ViewModel
     {
         public LiveDataViewModel()
         {
-            TCDataHistoryCollection = new ObservableCollection<TCRecord>();
+            TCDataHistoryCollection = new ObservableCollection<Order>();
             Records = new ObservableCollection<DataRecord>();
             Unknowns = new ObservableCollection<RecordStatus>();
 
@@ -79,7 +82,7 @@ namespace BITools.ViewModel
         /// <summary>
         /// 台车老化历史记录
         /// </summary>
-        public ObservableCollection<TCRecord> TCDataHistoryCollection
+        public ObservableCollection<Order> TCDataHistoryCollection
         {
             get { return this.GetValue(c => c.TCDataHistoryCollection); }
             set { this.SetValue(c => c.TCDataHistoryCollection, value); }
@@ -135,16 +138,31 @@ namespace BITools.ViewModel
             SelectedUser = UserCollection.First();
 
             //QujianCollection = FunExt.GetQuJian();
-            SelectedQujian = QujianCollection.FirstOrDefault();
+            //SelectedQujian = QujianCollection.FirstOrDefault();
         }
 
-        private void QueryData()
+        private async void QueryData()
         {
             this.TCDataHistoryCollection.Clear();
             this.Records.Clear();
             this.Unknowns.Clear();
 
-            this.TCDataHistoryCollection.Add(new TCRecord { cpdhh = "343434343", jx = "L-23232", qj = "L2", lhzsj = "23:32:32", czy = "admin", path = "c:\\data.xls" });
+
+            await Task.Factory.StartNew(() =>
+            {
+                QueryPageInfo page = new QueryPageInfo();
+                page.PageIndex = 1;
+                page.PageSize = 20;
+                var list = SqliteHelper.Instance.QueryOrder("", page);
+                foreach (var item in list)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        this.TCDataHistoryCollection.Add(item);
+                    });
+                }
+            });
+
             this.Records.Add(new DataRecord { Time = "12:22:00", Input = "220", X = "℃", Voltage = "23", Ammeter = "34" });
 
             this.Unknowns.Add(new RecordStatus { Index = 1, Status = "未连接" });

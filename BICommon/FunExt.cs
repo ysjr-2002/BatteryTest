@@ -24,6 +24,16 @@ namespace BITools
             return i;
         }
 
+        public static int ToInt32(this object obj)
+        {
+            if (obj == null)
+                return 0;
+
+            var i = 0;
+            Int32.TryParse(obj.ToString(), out i);
+            return i;
+        }
+
         public static float ToFloat(this string str)
         {
             var i = 0f;

@@ -34,6 +34,7 @@ namespace BITools
         */
         protected override void OnStartup(StartupEventArgs e)
         {
+            //SqliteHelper.Instance.Init("bi.data");
             var bnew = false;
             var appname = System.Windows.Forms.Application.ProductName;
             var mutex = new Mutex(true, appname, out bnew);
@@ -41,7 +42,7 @@ namespace BITools
             {
                 AppContext.UserName = "admin";
                 NinjectKernal.Instance.Load();
-                var window = new TCRecordDataWindow();
+                var window = new MainWindow();
                 Application.Current.MainWindow = window;
                 window.Show();
             }

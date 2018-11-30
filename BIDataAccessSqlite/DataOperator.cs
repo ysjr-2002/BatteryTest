@@ -1,4 +1,4 @@
-﻿using BIData;
+﻿using BIModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -58,6 +58,7 @@ namespace BIDataAccess
                 new DataColumn("UUTCode",typeof(string)), //机台号
                 new DataColumn("Time",typeof(string)),    //读取时间 00:00:01
                 new DataColumn("Content",typeof(string)), //读取值
+                new DataColumn("SysTime",typeof(string)), //读取值
             });
 
             tabOrderData.PrimaryKey = new DataColumn[] { tabOrderData.Columns["ID"] };
@@ -156,6 +157,7 @@ namespace BIDataAccess
             orderDataSqlInfo.SetDbParamValue("UUTCode", file.UUTCode);
             orderDataSqlInfo.SetDbParamValue("Time", file.Time);
             orderDataSqlInfo.SetDbParamValue("Content", file.Content);
+            orderDataSqlInfo.SetDbParamValue("SysTime", file.SysTime);
         }
     }
 }

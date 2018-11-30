@@ -291,4 +291,75 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="WindowStyleNoMax" TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}" />
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="Title" Value="{Binding ElementName=myTitle, Path=Text}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border Background="{StaticResource WindowBackGround}" SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border
+                                x:Name="TitleBar"
+                                Grid.Row="0"
+                                Height="30"
+                                Background="{StaticResource WindowCaptionBackground}"
+                                MouseLeftButtonDown="Window_MouseLeftButtonDown"
+                                SnapsToDevicePixels="True">
+                                <Grid SnapsToDevicePixels="True">
+                                    <TextBlock
+                                        x:Name="myTitle"
+                                        Margin="8,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Foreground="White"
+                                        Text="{TemplateBinding Title}" />
+                                    <Button
+                                        Margin="0,0,28,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Click="minButton_Click"
+                                        Style="{StaticResource FrameCaptionMinButtonStyle}"
+                                        ToolTip="{DynamicResource G_299}" />
+                                    <Button
+                                        x:Name="closeButton"
+                                        Margin="0,0,4,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Click="closeButton_Click"
+                                        Style="{StaticResource FrameCaptionCloseButtonStyle}"
+                                        ToolTip="{DynamicResource G_105}" />
+                                </Grid>
+                            </Border>
+                            <Border
+                                Grid.Row="1"
+                                BorderBrush="{StaticResource WindowBorderBrush}"
+                                BorderThickness="1,0,1,1"
+                                SnapsToDevicePixels="True">
+                                <AdornerDecorator ClipToBounds="True">
+                                    <ContentPresenter />
+                                </AdornerDecorator>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="closeButton" />
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                <Setter Property="Template" Value="{StaticResource WindowTemplateKey}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

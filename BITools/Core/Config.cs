@@ -40,7 +40,6 @@ namespace BITools.Core
             get { return this.GetValue(c => c.FCom); }
             set { this.SetValue(c => c.FCom, value); }
         }
-
         public string AName
         {
             get { return this.GetValue(c => c.AName); }

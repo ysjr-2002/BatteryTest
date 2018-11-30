@@ -112,24 +112,28 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="150"
-                    Binding="{Binding cpdhh}"
+                    Binding="{Binding ddh}"
                     Header="产品订单号" />
                 <DataGridTextColumn
                     Width="150"
-                    Binding="{Binding jx}"
-                    Header="机型名" />
+                    Binding="{Binding cpxh}"
+                    Header="产品型号" />
                 <DataGridTextColumn
-                    Width="150"
-                    Binding="{Binding qj}"
-                    Header="区间" />
+                    Width="100"
+                    Binding="{Binding acinput}"
+                    Header="AC输入" />
                 <DataGridTextColumn
-                    Width="150"
-                    Binding="{Binding lhzsj}"
-                    Header="老化总时间" />
+                    Width="100"
+                    Binding="{Binding pfilename}"
+                    Header="参数文件" />
                 <DataGridTextColumn
-                    Width="150"
-                    Binding="{Binding czy}"
+                    Width="100"
+                    Binding="{Binding user}"
                     Header="操作员" />
+                <DataGridTextColumn
+                    Width="130"
+                    Binding="{Binding starttime}"
+                    Header="开始时间" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding path}"

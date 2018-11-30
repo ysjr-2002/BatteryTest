@@ -1,18 +1,19 @@
-﻿<Window x:Class="BITools.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:converts="clr-namespace:BITools.Converts"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:local="clr-namespace:BITools"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:syscontrols="clr-namespace:BITools.UIControls"
-        Title="节能回馈老化测试系统"
-        Width="1260"
-        Height="650"
-        Style="{StaticResource WindowStyleWithMinMaxCloseBtn}"
-        WindowStartupLocation="CenterScreen"
-        mc:Ignorable="d">
+﻿<Window
+    x:Class="BITools.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converts="clr-namespace:BITools.Converts"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:BITools"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syscontrols="clr-namespace:BITools.UIControls"
+    Title="节能回馈老化测试系统"
+    Width="1260"
+    Height="650"
+    Style="{StaticResource WindowStyleNoMax}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
     <!--  节能回馈老化测试系统-BTS100  -->
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -46,72 +47,80 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <syscontrols:ButtonEx Grid.Column="0"
-                                  Width="80"
-                                  BorderThickness="0"
-                                  Command="{Binding LoadParamCommand}"
-                                  Content="加载参数"
-                                  ImageHeight="24"
-                                  NormalImage="/BITools;component/Images/login.png"
-                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="0"
+                Width="80"
+                BorderThickness="0"
+                Command="{Binding LoadParamCommand}"
+                Content="加载参数"
+                ImageHeight="24"
+                NormalImage="/BITools;component/Images/login.png"
+                NormalImagePlacement="Top" />
 
-            <syscontrols:ButtonEx Grid.Column="1"
-                                  Width="80"
-                                  BorderThickness="0"
-                                  Command="{Binding LoginUserCommand}"
-                                  Content="登录用户"
-                                  ImageHeight="24"
-                                  NormalImage="/BITools;component/Images/login.png"
-                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="1"
+                Width="80"
+                BorderThickness="0"
+                Command="{Binding LoginUserCommand}"
+                Content="登录用户"
+                ImageHeight="24"
+                NormalImage="/BITools;component/Images/login.png"
+                NormalImagePlacement="Top" />
 
-            <syscontrols:ButtonEx Grid.Column="2"
-                                  Width="80"
-                                  BorderThickness="0"
-                                  Command="{Binding UserManagerCommand}"
-                                  Content="用户管理"
-                                  ImageHeight="24"
-                                  NormalImage="/BITools;component/Images/user.png"
-                                  NormalImagePlacement="Top" />
-            <syscontrols:ButtonEx Grid.Column="3"
-                                  Width="80"
-                                  BorderThickness="0"
-                                  Command="{Binding DeviceConfigCommand}"
-                                  Content="设备设置"
-                                  ImageHeight="24"
-                                  NormalImage="/BITools;component/Images/xtsz.png"
-                                  NormalImagePlacement="Top" />
-            <syscontrols:ButtonEx Grid.Column="4"
-                                  Width="80"
-                                  BorderThickness="0"
-                                  Command="{Binding SystemParamCommand}"
-                                  Content="参数编辑"
-                                  ImageHeight="24"
-                                  NormalImage="/BITools;component/Images/param.png"
-                                  NormalImagePlacement="Top" />
-            <syscontrols:ButtonEx Grid.Column="5"
-                                  Width="80"
-                                  BorderThickness="0"
-                                  Command="{Binding ReportCommand}"
-                                  Content="报表查询"
-                                  ImageHeight="24"
-                                  NormalImage="/BITools;component/Images/report.png"
-                                  NormalImagePlacement="Top" />
-            <syscontrols:ButtonEx Grid.Column="6"
-                                  Width="80"
-                                  BorderThickness="0"
-                                  Command="{Binding SystemSettingCommand}"
-                                  Content="系统设置"
-                                  ImageHeight="24"
-                                  NormalImage="/BITools;component/Images/xtsz.png"
-                                  NormalImagePlacement="Top" />
-            <syscontrols:ButtonEx Grid.Column="7"
-                                  Width="80"
-                                  BorderThickness="0"
-                                  Command="{Binding AboutCommand}"
-                                  Content="软件关于"
-                                  ImageHeight="24"
-                                  NormalImage="/BITools;component/Images/about.png"
-                                  NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="2"
+                Width="80"
+                BorderThickness="0"
+                Command="{Binding UserManagerCommand}"
+                Content="用户管理"
+                ImageHeight="24"
+                NormalImage="/BITools;component/Images/user.png"
+                NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="3"
+                Width="80"
+                BorderThickness="0"
+                Command="{Binding DeviceConfigCommand}"
+                Content="设备设置"
+                ImageHeight="24"
+                NormalImage="/BITools;component/Images/xtsz.png"
+                NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="4"
+                Width="80"
+                BorderThickness="0"
+                Command="{Binding SystemParamCommand}"
+                Content="参数编辑"
+                ImageHeight="24"
+                NormalImage="/BITools;component/Images/param.png"
+                NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="5"
+                Width="80"
+                BorderThickness="0"
+                Command="{Binding ReportCommand}"
+                Content="报表查询"
+                ImageHeight="24"
+                NormalImage="/BITools;component/Images/report.png"
+                NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="6"
+                Width="80"
+                BorderThickness="0"
+                Command="{Binding SystemSettingCommand}"
+                Content="系统设置"
+                ImageHeight="24"
+                NormalImage="/BITools;component/Images/xtsz.png"
+                NormalImagePlacement="Top" />
+            <syscontrols:ButtonEx
+                Grid.Column="7"
+                Width="80"
+                BorderThickness="0"
+                Command="{Binding AboutCommand}"
+                Content="软件关于"
+                ImageHeight="24"
+                NormalImage="/BITools;component/Images/about.png"
+                NormalImagePlacement="Top" />
 
             <syscontrols:RunStateView Grid.Column="8" Visibility="Visible" />
         </Grid>

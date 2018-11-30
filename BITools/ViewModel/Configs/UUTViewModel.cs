@@ -11,8 +11,8 @@ using BITools.Model;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
 using BIDataAccess;
-using BIData;
 using BICommon.Enums;
+using BIModel;
 
 namespace BITools.ViewModel.Configs
 {
@@ -96,7 +96,6 @@ namespace BITools.ViewModel.Configs
                 ChangeState(UUTStateEnum.ql);
             }
 
-
             if (isSavedata)
             {
                 OrderData orderdata = new OrderData();
@@ -105,6 +104,7 @@ namespace BITools.ViewModel.Configs
                 orderdata.UUTCode = this.Code;
                 orderdata.Time = FunExt.IntToTimeSpan(lhsj);
                 orderdata.Content = data;
+                orderdata.SysTime = DateTime.Now.ToStandard();
                 DataOperator.Instance.SaveOrderData(orderdata);
             }
         }

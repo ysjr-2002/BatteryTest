@@ -128,9 +128,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BIData\BIData.csproj">
-      <Project>{5c0c3908-3d21-4747-9dd0-96812fc7add5}</Project>
-      <Name>BIData</Name>
+    <ProjectReference Include="..\BICommon\BICommon.csproj">
+      <Project>{8B561CAA-A3CC-4C24-BA78-7343BBB21387}</Project>
+      <Name>BICommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BIModel\BIModel.csproj">
+      <Project>{1ED8FE59-4EA2-4D20-B380-948BB1AB0031}</Project>
+      <Name>BIModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

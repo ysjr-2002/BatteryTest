@@ -292,7 +292,6 @@ namespace BITools.ViewModel
                     Lhsj++;
                     LhbfbValue = (int)(((float)Lhsj / Lhzsj) * 100);
                     Lhbfb = "老化中 " + LhbfbValue + "%";
-                    int sleep = sysConfig.DataSaveSpan.ToInt32() * 1000;
                     Thread.Sleep(1000);
                 }
             });

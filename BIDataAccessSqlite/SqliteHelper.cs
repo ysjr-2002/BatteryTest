@@ -1,4 +1,5 @@
-﻿using BIData;
+﻿using BIModel;
+using BITools;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -110,15 +111,14 @@ namespace BIDataAccess
 
         public List<Order> QueryOrder(string condition, QueryPageInfo page)
         {
-            var sql = "SELECT * FROM player where 1=1 {0} order by checktime ";
-            var sqlCount = "SELECT COUNT(*) FROM player where 1=1 {0}";
+            var sql = "SELECT * FROM CPOrder where 1=1 {0} order by StartTime ";
+            var sqlCount = "SELECT COUNT(*) FROM CPOrder where 1=1 {0}";
             var sqlSplit = "limit {0} offset {0}*{1}";
             sql = string.Format(sql, condition);
             sqlCount = string.Format(sqlCount, condition);
             page.RecordTotal = Convert.ToInt32(_db.ExecuteScalar(sqlCount));
 
             sqlSplit = string.Format(sqlSplit, page.PageSize, page.PageIndex - 1);
-
             sql += sqlSplit;
 
             List<Order> list = new List<Order>();
@@ -138,32 +138,23 @@ namespace BIDataAccess
 
         private Order ReaderToRunner(IDataReader rdr)
         {
-            return new Order();
-            //var col = rdr["CheckTime"].ToString();
-            //DateTime? checkTime;
-            //if (col.IsEmpty())
-            //    checkTime = null;
-            //else
-            //    checkTime = col.ToDateTime();
+            var startTime = rdr["StartTime"].ToString();
+            var endTime = rdr["EndTime"].ToString();
 
-            //Order r = new Order
-            //{
-            //    Id = rdr["ID"].ToString(),
-            //    No = rdr["NO"].ToString(),
-            //    ChipCode = rdr["ChipCode"].ToString(),
-            //    Bib = rdr["BIB"].ToString(),
-            //    Name = rdr["Name"].ToString(),
-            //    Gender = rdr["Gender"].ToString(),
-            //    Photo = rdr["Photo"].ToString(),
-            //    Snap = rdr["Snap"].ToString(),
-            //    CheckTime = checkTime,
-            //    IsCheck = rdr["IsCheck"].ToInt32() == 1,
-            //    IsAlarm = rdr["Alarm"].ToInt32() == 1,
-            //    Group = rdr["IGroup"].ToString(),
-            //    BBCode = rdr["BBCode"].ToString(),
-            //    CardID = rdr["CardId"].ToString()
-            //};
-            //return r;
+            Order order = new Order
+            {
+                ID = rdr["ID"].ToInt32(),
+                cpxh = rdr["cpxh"].ToString(),
+                ddh = rdr["ddh"].ToString(),
+                acinput = rdr["acinput"].ToString(),
+                pfilename = rdr["pfilename"].ToString(),
+                YJPZCSM = rdr["YJPZCSM"].ToString(),
+                user = rdr["user"].ToString(),
+                paramcontent = rdr["paramcontent"].ToString(),
+                starttime = startTime,
+                endtime = endTime,
+            };
+            return order;
         }
 
         private void WriteExcaption(string funName, Exception ex)
