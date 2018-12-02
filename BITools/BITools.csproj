@@ -134,6 +134,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Base\BaseWindow.cs" />
+    <Compile Include="Charts\AmpereChartViewModel.cs" />
+    <Compile Include="Charts\UCAmpereChart.xaml.cs">
+      <DependentUpon>UCAmpereChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\UCVoltageChart.xaml.cs">
+      <DependentUpon>UCVoltageChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Charts\VoltageChartViewModel.cs" />
     <Compile Include="ChartTestViewModel.cs" />
     <Compile Include="Converts\BoolToVisibilityConverter.cs" />
     <Compile Include="Converts\ComVisibilityConverter.cs" />
@@ -213,6 +221,9 @@
     </Compile>
     <Compile Include="SystemManager\TCConfigWindow.xaml.cs">
       <DependentUpon>TCConfigWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManager\TCParamWindow.xaml.cs">
+      <DependentUpon>TCParamWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemManager\UIControls\DataSaveView.xaml.cs">
       <DependentUpon>DataSaveView.xaml</DependentUpon>
@@ -314,6 +325,14 @@
     <Compile Include="ViewModel\PassWordViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="ViewModel\UserManagerViewModel.cs" />
+    <Page Include="Charts\UCAmpereChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Charts\UCVoltageChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="DataManager\CollectionDataWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -470,6 +489,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SystemManager\TCConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemManager\TCParamWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

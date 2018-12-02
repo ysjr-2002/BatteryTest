@@ -10,7 +10,7 @@
     xmlns:syscontrols="clr-namespace:BITools.UIControls"
     Title="节能回馈老化测试系统"
     Width="1260"
-    Height="650"
+    Height="750"
     Style="{StaticResource WindowStyleNoMax}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">

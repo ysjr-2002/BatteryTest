@@ -76,7 +76,7 @@
                 Margin="5,0,0,0"
                 HorizontalAlignment="Left"
                 IncrementText="1"
-                MaxValue="4"
+                MaxValue="100"
                 MinValue="1" />
 
             <TextBlock

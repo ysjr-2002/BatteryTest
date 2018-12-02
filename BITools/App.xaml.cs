@@ -31,10 +31,22 @@ namespace BITools
         2.状态对齐，加边框醒目
         3.层次间增加分隔符
         4.开始测试要醒目
+
+
+
+12.2
+1.温度控制卡
+2.温度读取卡
+3.水流控制卡
+4.电器控制卡
+
         */
+
+        
         protected override void OnStartup(StartupEventArgs e)
         {
-            //SqliteHelper.Instance.Init("bi.data");
+            SqliteHelper.Instance.Init("bi.data");
+            DataOperator.Instance.CreateOrderDataTable();
             var bnew = false;
             var appname = System.Windows.Forms.Application.ProductName;
             var mutex = new Mutex(true, appname, out bnew);

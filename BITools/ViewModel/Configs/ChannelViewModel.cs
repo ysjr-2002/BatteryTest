@@ -56,9 +56,9 @@ namespace BITools.ViewModel.Configs
             {
                 //通讯接口
                 ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetV("1"));
-                ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetA("1"));
-                ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetV("2"));
                 ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetA("2"));
+                //ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetV("2"));
+                //ChannelInterfaceList.Add(ChannelInterfaceViewModel.GetA("2"));
 
                 //监控参数
                 MontiorParamList.Add(new MonitorParamViewModel { Code = "1", InputMode = (int)InputModeEnum.Selector, Name = "负载模式", Val = "", ValType = (int)OutputEnum.N });

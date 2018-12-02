@@ -1,4 +1,5 @@
-﻿using BITools.ViewModel;
+﻿using BITools.Charts;
+using BITools.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,9 @@ namespace BITools.DataManager
         {
             InitializeComponent();
             this.DataContext = new LiveDataViewModel();
+
+            this.vChart.DataContext = new VoltageChartViewModel();
+            this.aChart.DataContext = new AmpereChartViewModel();
         }
     }
 }

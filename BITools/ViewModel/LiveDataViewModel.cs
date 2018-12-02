@@ -1,5 +1,4 @@
-﻿using BIData;
-using BIDataAccess;
+﻿using BIDataAccess;
 using BIDataAccess.entities;
 using BILogic;
 using BIModel;

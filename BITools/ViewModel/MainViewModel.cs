@@ -30,15 +30,15 @@ namespace BITools.ViewModel
         public override void Loaded()
         {
             base.Loaded();
+            LoadConfig();
         }
 
         private void LoadConfig()
         {
-            var filepath = FileManager.OpenParamFile();
-            if (filepath.IsEmpty())
-                return;
-
-            //var filepath = "10.tk";
+            //var filepath = FileManager.OpenParamFile();
+            //if (filepath.IsEmpty())
+            //    return;
+            var filepath = "10.tk";
             var content = System.IO.File.ReadAllText(filepath);
             var tcList = JsonConvert.DeserializeObject<ObservableCollection<ViewModel.Configs.TCViewModel>>(content);
 

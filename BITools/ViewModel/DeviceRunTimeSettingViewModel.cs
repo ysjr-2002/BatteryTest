@@ -27,13 +27,16 @@ namespace BITools.ViewModel
             service = new DeviceConfigService();
         }
 
+
+        public ICommand EditTCCommand { get { return new DelegateCommand<TCViewModel>(EditTC); } }
+
         public ICommand LoadConfigCommand { get { return new DelegateCommand(LoadConfig); } }
         public ICommand SaveConfigCommand { get { return new DelegateCommand(SaveConfig); } }
 
         public ICommand LoadFileCommand { get { return new DelegateCommand(LoadFile); } }
         public ICommand SaveFileCommand { get { return new DelegateCommand(SaveFile); } }
         public ICommand SaveAsFileCommand { get { return new DelegateCommand(SaveAsFile); } }
-        
+
 
         public ICommand ClearConfigCommand { get { return new DelegateCommand(ClarConfig); } }
 
@@ -47,6 +50,12 @@ namespace BITools.ViewModel
         {
             get { return this.GetValue(c => c.TCList); }
             set { this.SetValue(c => c.TCList, value); }
+        }
+
+        private void EditTC(TCViewModel tc)
+        {
+            var window = new TCParamWindow();
+            window.ShowDialog();
         }
 
         private DeviceConfig currentConfig;
@@ -98,6 +107,7 @@ namespace BITools.ViewModel
             System.IO.File.WriteAllText(filePath, content);
             MsgBox.SuccessShow("保存成功！");
         }
+
 
         private void SaveAsFile()
         {
