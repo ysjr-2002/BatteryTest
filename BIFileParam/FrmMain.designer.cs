@@ -121,6 +121,7 @@
             // tvTree
             // 
             this.tvTree.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tvTree.FullRowSelect = true;
             this.tvTree.Location = new System.Drawing.Point(0, 57);
             this.tvTree.Name = "tvTree";
             this.tvTree.Size = new System.Drawing.Size(282, 599);
@@ -184,19 +185,19 @@
             this.tsmiAddFZ,
             this.tsmiDelFZ});
             this.FZContextMenuStrip.Name = "contextMenuStrip1";
-            this.FZContextMenuStrip.Size = new System.Drawing.Size(176, 80);
+            this.FZContextMenuStrip.Size = new System.Drawing.Size(139, 52);
             // 
             // tsmiAddFZ
             // 
             this.tsmiAddFZ.Name = "tsmiAddFZ";
-            this.tsmiAddFZ.Size = new System.Drawing.Size(175, 24);
+            this.tsmiAddFZ.Size = new System.Drawing.Size(138, 24);
             this.tsmiAddFZ.Text = "添加设备";
             this.tsmiAddFZ.Click += new System.EventHandler(this.tsmiAddFZ_Click);
             // 
             // tsmiDelFZ
             // 
             this.tsmiDelFZ.Name = "tsmiDelFZ";
-            this.tsmiDelFZ.Size = new System.Drawing.Size(175, 24);
+            this.tsmiDelFZ.Size = new System.Drawing.Size(138, 24);
             this.tsmiDelFZ.Text = "删除";
             this.tsmiDelFZ.Click += new System.EventHandler(this.tsmiDelFZ_Click);
             // 

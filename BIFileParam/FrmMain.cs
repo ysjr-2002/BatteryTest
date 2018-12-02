@@ -34,18 +34,36 @@ namespace BIFileParam
                 var node = new TreeNode(window.InstrumentName);
                 node.ContextMenuStrip = FZContextMenuStrip;
                 root.Nodes.Add(node);
+                if (root.IsExpanded == false)
+                {
+                    root.Expand();
+                }
             }
         }
 
         private void tsmiAddFZ_Click(object sender, EventArgs e)
         {
-           
+            var window = new FrmFZType();
+            var dialog = window.ShowDialog();
+            if (dialog == DialogResult.OK)
+            {
+                //var node = new TreeNode(window.InstrumentName);
+                //node.ContextMenuStrip = FZContextMenuStrip;
+                //root.Nodes.Add(node);
+                //if (root.IsExpanded == false)
+                //{
+                //    root.Expand();
+                //}
+            }
         }
 
         private void tsmiDelFZ_Click(object sender, EventArgs e)
         {
-            TreeNode node = sender as TreeNode;
-            root.Nodes.Remove(node);
+            var node = tvTree.SelectedNode;
+            if (node != null)
+            {
+                root.Nodes.Remove(node);
+            }
         }
     }
 }

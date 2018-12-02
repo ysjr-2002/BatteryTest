@@ -65,7 +65,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmFZType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmFZType";
+            this.Text = "负载类型";
             this.ResumeLayout(false);
 
         }
