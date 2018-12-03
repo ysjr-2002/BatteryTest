@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreeNodeTag.cs" />
     <EmbeddedResource Include="Base\FixForm.resx">
       <DependentUpon>FixForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,6 +143,19 @@
       <Project>{1ed8fe59-4ea2-4d20-b380-948bb1ab0031}</Project>
       <Name>BIModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Snap\WeChat Image_20181203211534.png" />
+    <Content Include="Snap\WeChat Image_20181203211541.png" />
+    <Content Include="Snap\WeChat Image_20181203211545.png" />
+    <Content Include="Snap\WeChat Image_20181203211550.png" />
+    <Content Include="Snap\WeChat Image_20181203211555.png" />
+    <Content Include="Snap\WeChat Image_20181203211559.png" />
+    <Content Include="Snap\WeChat Image_20181203211604.png" />
+    <Content Include="Snap\WeChat Image_20181203211609.png" />
+    <Content Include="Snap\WeChat Image_20181203211613.png" />
+    <Content Include="Snap\WeChat Image_20181203211620.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

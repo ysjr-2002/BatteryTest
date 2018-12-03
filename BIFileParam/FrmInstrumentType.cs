@@ -22,7 +22,7 @@ namespace BIFileParam
             var list = await AccessDBHelper.InstrumentList();
             foreach (var item in list)
             {
-                listBox1.Items.Add(item.InstrumentName);
+                lbInstrumentType.Items.Add(item.InstrumentName);
             }
         }
 
@@ -30,7 +30,18 @@ namespace BIFileParam
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            InstrumentName = listBox1.SelectedItem.ToString();
+            InstrumentName = lbInstrumentType.SelectedItem.ToString();
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void lbInstrumentType_DoubleClick(object sender, EventArgs e)
+        {
+            InstrumentName = lbInstrumentType.SelectedItem.ToString();
             this.DialogResult = DialogResult.OK;
         }
     }

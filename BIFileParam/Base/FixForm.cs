@@ -15,6 +15,7 @@ namespace BIFileParam
         public FixForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
     }
 }
