@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\HWCfgFileModel.cs" />
+    <Compile Include="Access\HWCfgModel.cs" />
     <Compile Include="Access\InstrumentModel.cs" />
     <Compile Include="AppContext.cs" />
     <Compile Include="DataRecord.cs" />

@@ -1,4 +1,5 @@
-﻿using Common.NotifyBase;
+﻿using BICommon;
+using Common.NotifyBase;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

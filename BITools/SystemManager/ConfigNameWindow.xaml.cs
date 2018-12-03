@@ -1,4 +1,5 @@
-﻿using BITools.ViewModel.Configs;
+﻿using BICommon;
+using BITools.ViewModel.Configs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

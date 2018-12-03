@@ -16,5 +16,21 @@ namespace BIFileParam
         {
             InitializeComponent();
         }
+
+        public string FZType { get; set; }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if(listBox1.SelectedItem != null)
+            {
+                FZType = listBox1.SelectedItem.ToString();
+                this.DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
     }
 }

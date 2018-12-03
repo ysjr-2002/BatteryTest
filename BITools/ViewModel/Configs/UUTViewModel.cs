@@ -11,8 +11,9 @@ using BITools.Model;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
 using BIDataAccess;
-using BICommon.Enums;
 using BIModel;
+using BICommon.Enums;
+using BICommon;
 
 namespace BITools.ViewModel.Configs
 {

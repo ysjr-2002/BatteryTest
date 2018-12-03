@@ -13,6 +13,7 @@ using BIDataAccess.entities;
 using BILogic;
 using BITools.Core;
 using BITools.ViewModel.Configs;
+using BICommon;
 
 namespace BITools.ViewModel
 {

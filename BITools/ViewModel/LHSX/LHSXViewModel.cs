@@ -11,6 +11,7 @@ using Common.NotifyBase;
 using BIDataAccess.entities;
 using BILogic;
 using BICommon.Enums;
+using BICommon;
 
 namespace BITools.ViewModel.LHSX
 {

@@ -12,6 +12,7 @@ using System.ComponentModel;
 using Xceed.Wpf.Toolkit;
 using System.Windows.Input;
 using System.Threading;
+using BICommon;
 
 namespace BITools.UIControls
 {
@@ -176,7 +177,6 @@ namespace BITools.UIControls
                 }
                 var time = _textBox.Text.ToDateTime();
             }
-
         }
 
         void Dameer_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)

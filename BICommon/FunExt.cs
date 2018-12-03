@@ -9,10 +9,15 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace BITools
+namespace BICommon
 {
     public static class FunExt
     {
+        public static string getUUID()
+        {
+            return Guid.NewGuid().ToString("N");
+        }
+
         public static bool IsEmpty(this string str)
         {
             return string.IsNullOrEmpty(str);
@@ -67,6 +72,21 @@ namespace BITools
             items.Add("COM8");
             items.Add("COM9");
             items.Add("COM10");
+            return items;
+        }
+
+        public static List<string> Bauds()
+        {
+            var items = SerialPort.GetPortNames().ToList();
+            items.Clear();
+            items.Add("4800");
+            items.Add("7200");
+            items.Add("9600");
+            items.Add("14400");
+            items.Add("19200");
+            items.Add("38400");
+            items.Add("57600");
+            items.Add("115200");
             return items;
         }
 

@@ -1,4 +1,5 @@
-﻿using BIDataAccess.entities;
+﻿using BICommon;
+using BIDataAccess.entities;
 using BILogic;
 using BIModel;
 using BITools.Core;

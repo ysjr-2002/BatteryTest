@@ -161,7 +161,6 @@
     <Compile Include="Converts\NetworkValueBrushConvert.cs" />
     <Compile Include="Converts\NullToVisibleConverter.cs" />
     <Compile Include="Core\PageInfo.cs" />
-    <Compile Include="Core\Util.cs" />
     <Compile Include="DataManager\TCRecordDataWindow.xaml.cs">
       <DependentUpon>TCRecordDataWindow.xaml</DependentUpon>
     </Compile>
@@ -631,6 +630,10 @@
     <ProjectReference Include="..\BIDataAccessSqlite\BIDataAccessSqlite.csproj">
       <Project>{bcffaa59-93b3-4fb3-b06e-7c1269287af4}</Project>
       <Name>BIDataAccessSqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BIFileParam\BIFileParam.csproj">
+      <Project>{bd6fa00a-82ef-44c5-af36-0c7cd2965d41}</Project>
+      <Name>BIFileParam</Name>
     </ProjectReference>
     <ProjectReference Include="..\BILogic\BILogic.csproj">
       <Project>{3c4ffa3a-2433-4986-a83b-60fe69fcbf43}</Project>

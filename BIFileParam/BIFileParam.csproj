@@ -46,7 +46,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessDBHelper.cs" />
-    <Compile Include="ContextMenuHelper.cs" />
+    <Compile Include="Base\FixForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\FixForm.Designer.cs">
+      <DependentUpon>FixForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Sepeator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SP.Designer.cs">
+      <DependentUpon>SP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCfgList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCfgList.Designer.cs">
+      <DependentUpon>FrmCfgList.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmFZType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +79,12 @@
     <Compile Include="FrmInstrumentType.Designer.cs">
       <DependentUpon>FrmInstrumentType.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmInterFaceType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInterFaceType.Designer.cs">
+      <DependentUpon>FrmInterFaceType.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,11 +93,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Base\FixForm.resx">
+      <DependentUpon>FixForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCfgList.resx">
+      <DependentUpon>FrmCfgList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmFZType.resx">
       <DependentUpon>FrmFZType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmInstrumentType.resx">
       <DependentUpon>FrmInstrumentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInterFaceType.resx">
+      <DependentUpon>FrmInterFaceType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
@@ -99,6 +134,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BICommon\BICommon.csproj">
+      <Project>{8B561CAA-A3CC-4C24-BA78-7343BBB21387}</Project>
+      <Name>BICommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BIModel\BIModel.csproj">
       <Project>{1ed8fe59-4ea2-4d20-b380-948bb1ab0031}</Project>
       <Name>BIModel</Name>

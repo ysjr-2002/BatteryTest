@@ -1,4 +1,5 @@
-﻿using BIDataAccess;
+﻿using BICommon;
+using BIDataAccess;
 using BIModel;
 using BITools.Core;
 using BITools.DataManager;

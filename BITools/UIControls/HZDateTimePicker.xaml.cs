@@ -12,6 +12,7 @@ using System.ComponentModel;
 using Xceed.Wpf.Toolkit;
 using System.Windows.Input;
 using System.Threading;
+using BICommon;
 
 namespace BITools.UIControls
 {

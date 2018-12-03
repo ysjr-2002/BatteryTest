@@ -11,6 +11,7 @@ using System.Windows.Input;
 using BITools.Core;
 using System.IO;
 using System.Windows;
+using BICommon;
 
 namespace BITools.ViewModel
 {

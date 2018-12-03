@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BIModel.Access
 {
+    /// <summary>
+    /// 仪器实体
+    /// </summary>
     public class InstrumentModel
     {
         public string InstrumentName { get; set; }

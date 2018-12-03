@@ -1,4 +1,5 @@
-﻿using BILogic;
+﻿using BICommon;
+using BILogic;
 using BIModel;
 using Common.NotifyBase;
 using Microsoft.Practices.Prism.Commands;

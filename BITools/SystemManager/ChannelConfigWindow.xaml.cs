@@ -1,4 +1,5 @@
-﻿using BICommon.Enums;
+﻿using BICommon;
+using BICommon.Enums;
 using BITools.ViewModel.Configs;
 using System;
 using System.Collections.Generic;

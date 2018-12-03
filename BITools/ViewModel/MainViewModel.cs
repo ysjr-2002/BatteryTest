@@ -1,4 +1,5 @@
-﻿using BITools.Core;
+﻿using BICommon;
+using BITools.Core;
 using BITools.SystemManager;
 using BITools.UIControls;
 using Common.NotifyBase;

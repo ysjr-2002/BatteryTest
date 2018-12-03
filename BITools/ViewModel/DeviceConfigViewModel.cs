@@ -14,6 +14,7 @@ using BIModel;
 using BILogic;
 using BITools.ViewModel.Configs;
 using BITools.Core;
+using BICommon;
 
 namespace BITools.ViewModel
 {
