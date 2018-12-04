@@ -16,7 +16,7 @@ namespace BIFileParam
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            Application.Run(new FrmInterFaceType("8,115200"));
         }
     }
 }

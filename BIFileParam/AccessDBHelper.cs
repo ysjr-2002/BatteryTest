@@ -42,6 +42,18 @@ namespace BIFileParam
             }
         }
 
+        public static async void SaveFile(HWCfgFileModel model)
+        {
+            var sql = "insert into HWCfgFileList() values('{0}','{0}','{0}','{0}','{0}')";
+            using (OleDbConnection conn = new OleDbConnection(connection))
+            {
+                conn.Open();
+                sql = string.Format(sql, model);
+                var cmd = new OleDbCommand(sql, conn);
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
         /// <summary>
         /// 仪器列表
         /// </summary>

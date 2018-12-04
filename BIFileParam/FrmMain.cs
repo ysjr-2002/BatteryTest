@@ -25,6 +25,7 @@ namespace BIFileParam
         private void FrmMain_Load(object sender, EventArgs e)
         {
             root = new TreeNode("目录树");
+            root.ImageIndex = 0;
             root.ContextMenuStrip = rootContextMenuStrip;
             tvTree.Nodes.Add(root);
 
@@ -56,7 +57,10 @@ namespace BIFileParam
 
         private void tsmiInstrumentDelAll_Click(object sender, EventArgs e)
         {
-            root.Nodes.Clear();
+            if (MessageHelper.Confirm("确认情况所有仪器吗？") == DialogResult.Yes)
+            {
+                root.Nodes.Clear();
+            }
         }
 
         private void tsmiAddFZ_Click(object sender, EventArgs e)
@@ -157,6 +161,19 @@ namespace BIFileParam
                 {
                     dgModel.Rows[e.RowIndex].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     dgModel.Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();
+                }
+            }
+        }
+
+        private void dgModel_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var window = new FrmInterFaceType("");
+                var dialog = window.ShowDialog();
+                if (dialog == DialogResult.OK)
+                {
+
                 }
             }
         }

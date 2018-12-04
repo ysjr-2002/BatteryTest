@@ -41,6 +41,7 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.tvTree = new System.Windows.Forms.TreeView();
+            this.imageListTree = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgModel = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,24 +78,25 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1156, 30);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(984, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.fileToolStripMenuItem.Text = "文件";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 30);
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1156, 3);
+            this.panel1.Size = new System.Drawing.Size(984, 2);
             this.panel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -105,9 +107,9 @@
             this.toolStripSeparator1,
             this.toolStripButton3,
             this.toolStripButton2});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 33);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 27);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1156, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(984, 27);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -116,7 +118,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(63, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(56, 24);
             this.toolStripButton1.Text = "打开";
             // 
             // toolStripSeparator1
@@ -129,7 +131,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(63, 24);
+            this.toolStripButton3.Size = new System.Drawing.Size(56, 24);
             this.toolStripButton3.Text = "保存";
             // 
             // toolStripButton2
@@ -137,7 +139,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(63, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(56, 24);
             this.toolStripButton2.Text = "退出";
             // 
             // tvTree
@@ -145,16 +147,27 @@
             this.tvTree.Dock = System.Windows.Forms.DockStyle.Left;
             this.tvTree.FullRowSelect = true;
             this.tvTree.HideSelection = false;
-            this.tvTree.Location = new System.Drawing.Point(0, 60);
+            this.tvTree.ImageIndex = 0;
+            this.tvTree.ImageList = this.imageListTree;
+            this.tvTree.Location = new System.Drawing.Point(0, 54);
+            this.tvTree.Margin = new System.Windows.Forms.Padding(2);
             this.tvTree.Name = "tvTree";
-            this.tvTree.Size = new System.Drawing.Size(281, 688);
+            this.tvTree.SelectedImageIndex = 0;
+            this.tvTree.Size = new System.Drawing.Size(212, 507);
             this.tvTree.TabIndex = 3;
             this.tvTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvTree_AfterSelect);
+            // 
+            // imageListTree
+            // 
+            this.imageListTree.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTree.ImageStream")));
+            this.imageListTree.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListTree.Images.SetKeyName(0, "roo.png");
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(281, 60);
+            this.splitContainer1.Location = new System.Drawing.Point(212, 54);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -165,8 +178,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgModule);
-            this.splitContainer1.Size = new System.Drawing.Size(875, 688);
-            this.splitContainer1.SplitterDistance = 303;
+            this.splitContainer1.Size = new System.Drawing.Size(772, 507);
+            this.splitContainer1.SplitterDistance = 223;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 4;
             // 
             // dgModel
@@ -183,14 +197,16 @@
             this.Column6});
             this.dgModel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgModel.Location = new System.Drawing.Point(0, 0);
+            this.dgModel.Margin = new System.Windows.Forms.Padding(2);
             this.dgModel.MultiSelect = false;
             this.dgModel.Name = "dgModel";
             this.dgModel.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgModel.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgModel.Size = new System.Drawing.Size(875, 303);
+            this.dgModel.Size = new System.Drawing.Size(772, 223);
             this.dgModel.TabIndex = 0;
             this.dgModel.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgModel_CellFormatting);
+            this.dgModel.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgModel_CellMouseDoubleClick);
             // 
             // Column1
             // 
@@ -252,12 +268,13 @@
             this.Column12});
             this.dgModule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgModule.Location = new System.Drawing.Point(0, 0);
+            this.dgModule.Margin = new System.Windows.Forms.Padding(2);
             this.dgModule.MultiSelect = false;
             this.dgModule.Name = "dgModule";
             this.dgModule.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgModule.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgModule.Size = new System.Drawing.Size(875, 381);
+            this.dgModule.Size = new System.Drawing.Size(772, 281);
             this.dgModule.TabIndex = 1;
             this.dgModule.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgModule_CellFormatting);
             // 
@@ -301,33 +318,34 @@
             this.tsmiInstrumentAdd,
             this.tsmiInstrumentDelAll});
             this.rootContextMenuStrip.Name = "contextMenuStrip1";
-            this.rootContextMenuStrip.Size = new System.Drawing.Size(145, 56);
+            this.rootContextMenuStrip.Size = new System.Drawing.Size(125, 48);
             // 
             // tsmiInstrumentAdd
             // 
             this.tsmiInstrumentAdd.Name = "tsmiInstrumentAdd";
-            this.tsmiInstrumentAdd.Size = new System.Drawing.Size(144, 26);
+            this.tsmiInstrumentAdd.Size = new System.Drawing.Size(124, 22);
             this.tsmiInstrumentAdd.Text = "添加仪器";
             this.tsmiInstrumentAdd.Click += new System.EventHandler(this.tsmiInstrumentAdd_Click);
             // 
             // tsmiInstrumentDelAll
             // 
             this.tsmiInstrumentDelAll.Name = "tsmiInstrumentDelAll";
-            this.tsmiInstrumentDelAll.Size = new System.Drawing.Size(144, 26);
+            this.tsmiInstrumentDelAll.Size = new System.Drawing.Size(124, 22);
             this.tsmiInstrumentDelAll.Text = "删除所有";
             this.tsmiInstrumentDelAll.Click += new System.EventHandler(this.tsmiInstrumentDelAll_Click);
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1156, 748);
+            this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.tvTree);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "参数编辑";
@@ -377,6 +395,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column12;
         private System.Windows.Forms.ToolStripMenuItem tsmiInstrumentDelAll;
+        private System.Windows.Forms.ImageList imageListTree;
     }
 }
 
