@@ -51,7 +51,6 @@ namespace BIFileParam
 
             var model = dgFiles.Rows[e.RowIndex].DataBoundItem as HWCfgFileModel;
             this.FileName = model.HWName;
-            //this.DialogResult = DialogResult.OK;
             this.Hide();
             new FrmMain(FileName).ShowDialog();
         }

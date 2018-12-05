@@ -15,7 +15,7 @@ namespace BIFileParam
     /// </summary>
     public static class AccessDBHelper
     {
-        static readonly string connection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=HWconfig.mdb";
+        static readonly string connection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=BIHWconfig.mdb";
 
         /// <summary>
         /// 文件列表
