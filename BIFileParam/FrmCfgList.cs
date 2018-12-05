@@ -31,6 +31,12 @@ namespace BIFileParam
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (dgFiles.SelectedRows == null || dgFiles.SelectedRows.Count == 0)
+                return;
+
+            var model = dgFiles.SelectedRows[0].DataBoundItem as HWCfgFileModel;
+            this.FileName = model.HWName;
+            this.DialogResult = DialogResult.OK;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -40,11 +46,14 @@ namespace BIFileParam
 
         private void dgFiles_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //if (e.RowIndex == -1)
-            //    return;
+            if (e.RowIndex == -1)
+                return;
 
             var model = dgFiles.Rows[e.RowIndex].DataBoundItem as HWCfgFileModel;
-            this.DialogResult = DialogResult.OK;
+            this.FileName = model.HWName;
+            //this.DialogResult = DialogResult.OK;
+            this.Hide();
+            new FrmMain(FileName).ShowDialog();
         }
 
         private void dgFiles_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -54,5 +63,7 @@ namespace BIFileParam
                 dgFiles.Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();
             }
         }
+
+        public string FileName { get; set; }
     }
 }

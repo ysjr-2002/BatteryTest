@@ -47,6 +47,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.rb485 = new System.Windows.Forms.RadioButton();
+            this.rb232 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -60,16 +62,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 11);
+            this.tabControl1.Location = new System.Drawing.Point(60, 48);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(336, 290);
+            this.tabControl1.Size = new System.Drawing.Size(275, 253);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.numericUpDown1);
-            this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.cmbStopBit);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.cmbDataBit);
@@ -83,22 +83,22 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(328, 264);
+            this.tabPage1.Size = new System.Drawing.Size(267, 227);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "RS232";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(100, 233);
+            this.numericUpDown1.Location = new System.Drawing.Point(115, 12);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 21);
+            this.numericUpDown1.Size = new System.Drawing.Size(90, 21);
             this.numericUpDown1.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(41, 238);
+            this.label6.Location = new System.Drawing.Point(58, 15);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 10;
@@ -110,7 +110,9 @@
             this.cmbStopBit.FormattingEnabled = true;
             this.cmbStopBit.Items.AddRange(new object[] {
             "0",
-            "1"});
+            "1",
+            "2",
+            "1.5"});
             this.cmbStopBit.Location = new System.Drawing.Point(99, 190);
             this.cmbStopBit.Name = "cmbStopBit";
             this.cmbStopBit.Size = new System.Drawing.Size(121, 20);
@@ -151,9 +153,9 @@
             this.cmbCheck.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCheck.FormattingEnabled = true;
             this.cmbCheck.Items.AddRange(new object[] {
-            "偶",
+            "无",
             "奇",
-            "无"});
+            "偶"});
             this.cmbCheck.Location = new System.Drawing.Point(99, 108);
             this.cmbCheck.Name = "cmbCheck";
             this.cmbCheck.Size = new System.Drawing.Size(121, 20);
@@ -217,7 +219,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(170, 12);
+            this.btnOK.Location = new System.Drawing.Point(153, 12);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(80, 24);
@@ -229,7 +231,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(264, 12);
+            this.btnCancel.Location = new System.Drawing.Point(247, 12);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(80, 24);
@@ -244,9 +246,9 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 303);
+            this.panel1.Location = new System.Drawing.Point(0, 307);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(359, 47);
+            this.panel1.Size = new System.Drawing.Size(342, 47);
             this.panel1.TabIndex = 1;
             // 
             // label7
@@ -255,22 +257,47 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Top;
             this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(359, 2);
+            this.label7.Size = new System.Drawing.Size(342, 2);
             this.label7.TabIndex = 4;
             this.label7.Text = "label7";
+            // 
+            // rb485
+            // 
+            this.rb485.AutoSize = true;
+            this.rb485.Location = new System.Drawing.Point(12, 14);
+            this.rb485.Name = "rb485";
+            this.rb485.Size = new System.Drawing.Size(41, 16);
+            this.rb485.TabIndex = 2;
+            this.rb485.TabStop = true;
+            this.rb485.Text = "485";
+            this.rb485.UseVisualStyleBackColor = true;
+            // 
+            // rb232
+            // 
+            this.rb232.AutoSize = true;
+            this.rb232.Location = new System.Drawing.Point(12, 68);
+            this.rb232.Name = "rb232";
+            this.rb232.Size = new System.Drawing.Size(41, 16);
+            this.rb232.TabIndex = 3;
+            this.rb232.TabStop = true;
+            this.rb232.Text = "232";
+            this.rb232.UseVisualStyleBackColor = true;
             // 
             // FrmInterFaceType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 350);
+            this.ClientSize = new System.Drawing.Size(342, 354);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.rb232);
+            this.Controls.Add(this.rb485);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmInterFaceType";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RS232";
             this.Load += new System.EventHandler(this.FrmInterFaceType_Load);
             this.tabControl1.ResumeLayout(false);
@@ -279,6 +306,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -303,5 +331,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.RadioButton rb485;
+        private System.Windows.Forms.RadioButton rb232;
     }
 }
