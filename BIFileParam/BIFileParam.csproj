@@ -74,11 +74,11 @@
     <Compile Include="FrmCfgList.Designer.cs">
       <DependentUpon>FrmCfgList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmFZType.cs">
+    <Compile Include="FrmModelType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmFZType.Designer.cs">
-      <DependentUpon>FrmFZType.cs</DependentUpon>
+    <Compile Include="FrmModelType.Designer.cs">
+      <DependentUpon>FrmModelType.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmInstrumentType.cs">
       <SubType>Form</SubType>
@@ -101,14 +101,15 @@
     <Compile Include="MessageHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
     <EmbeddedResource Include="Base\FixForm.resx">
       <DependentUpon>FixForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCfgList.resx">
       <DependentUpon>FrmCfgList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmFZType.resx">
-      <DependentUpon>FrmFZType.cs</DependentUpon>
+    <EmbeddedResource Include="FrmModelType.resx">
+      <DependentUpon>FrmModelType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmInstrumentType.resx">
       <DependentUpon>FrmInstrumentType.cs</DependentUpon>

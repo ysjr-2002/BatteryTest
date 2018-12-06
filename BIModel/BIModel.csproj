@@ -40,11 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\BaseM.cs" />
     <Compile Include="Access\HWCfgFileModel.cs" />
     <Compile Include="Access\HWCfgInstrumentModel.cs" />
     <Compile Include="Access\HWCfgModel.cs" />
     <Compile Include="Access\HWCfgModule.cs" />
     <Compile Include="Access\InstrumentModel.cs" />
+    <Compile Include="Access\ModelList.cs" />
     <Compile Include="AppContext.cs" />
     <Compile Include="DataRecord.cs" />
     <Compile Include="LHSJEnum.cs" />

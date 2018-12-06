@@ -19,7 +19,7 @@ namespace BIFileParam
 
         public static DialogResult Confirm(string text)
         {
-            return MessageBox.Show(text, "确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return MessageBox.Show(text, "确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
         }
     }
 }

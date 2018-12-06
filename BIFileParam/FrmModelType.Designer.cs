@@ -1,6 +1,6 @@
 ﻿namespace BIFileParam
 {
-    partial class FrmFZType
+    partial class FrmModelType
     {
         /// <summary>
         /// Required designer variable.
@@ -29,37 +29,37 @@
         private void InitializeComponent()
         {
             this.btnOK = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbModel = new System.Windows.Forms.ListBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(320, 7);
+            this.btnOK.Location = new System.Drawing.Point(240, 5);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(107, 32);
+            this.btnOK.Size = new System.Drawing.Size(80, 24);
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "确定";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // listBox1
+            // lbModel
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Items.AddRange(new object[] {
-            "JN60",
-            "LH30K"});
-            this.listBox1.Location = new System.Drawing.Point(12, 7);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(302, 436);
-            this.listBox1.TabIndex = 2;
+            this.lbModel.FormattingEnabled = true;
+            this.lbModel.ItemHeight = 12;
+            this.lbModel.Location = new System.Drawing.Point(9, 5);
+            this.lbModel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbModel.Name = "lbModel";
+            this.lbModel.Size = new System.Drawing.Size(228, 328);
+            this.lbModel.TabIndex = 2;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(320, 50);
+            this.btnCancel.Location = new System.Drawing.Point(240, 38);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(107, 32);
+            this.btnCancel.Size = new System.Drawing.Size(80, 24);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -67,18 +67,20 @@
             // 
             // FrmFZType
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 455);
+            this.ClientSize = new System.Drawing.Size(324, 341);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lbModel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmFZType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "负载类型";
+            this.Load += new System.EventHandler(this.FrmFZType_Load);
             this.ResumeLayout(false);
 
         }
@@ -86,7 +88,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbModel;
         private System.Windows.Forms.Button btnCancel;
     }
 }
