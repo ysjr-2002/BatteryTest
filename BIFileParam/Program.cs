@@ -16,7 +16,8 @@ namespace BIFileParam
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain("HangJia"));
+            Application.Run(new FrmCfgList());
+            //Application.Run(new FrmMain("HangJia"));
         }
     }
 }

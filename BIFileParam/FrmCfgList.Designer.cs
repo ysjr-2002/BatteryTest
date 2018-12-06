@@ -185,7 +185,10 @@
             this.ClientSize = new System.Drawing.Size(473, 404);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmCfgList";
             this.Text = "FrmCfgList";
             this.Load += new System.EventHandler(this.FrmCfgList_Load);

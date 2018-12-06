@@ -148,6 +148,7 @@ namespace BIFileParam
                     InstrumentName = window.InstrumentName,
                     HWName = filename,
                 };
+                node.Tag = filename + splitchar + node.Text;
                 AccessDBHelper.Insert(model);
             }
         }
