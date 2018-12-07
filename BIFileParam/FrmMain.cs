@@ -40,16 +40,16 @@ namespace BIFileParam
             cmbActive.Visible = false;
             cmbActive.DrawMode = DrawMode.OwnerDrawVariable;
             cmbActive.DrawItem += new DrawItemEventHandler(this.cboBoxPostID_DrawItem);
-            cmbActive.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
-            cmbActive.LostFocus += ComboBox1_LostFocus;
+            cmbActive.SelectedIndexChanged += cmbActive_SelectedIndexChanged;
+            cmbActive.LostFocus += cmbActive_LostFocus;
         }
 
-        private void ComboBox1_LostFocus(object sender, EventArgs e)
+        private void cmbActive_LostFocus(object sender, EventArgs e)
         {
             cmbActive.Visible = false;
         }
 
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbActive_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgModel.CurrentCell.Value = Util.GetActiveBoolToValDisplay(cmbActive.Text);
         }
@@ -322,7 +322,7 @@ namespace BIFileParam
                 if (dgModel.Columns[e.ColumnIndex].DataPropertyName == "InterfaceParameter")
                 {
                     var model = dgModel.Rows[e.RowIndex].DataBoundItem as HWCfgModel;
-                    var window = new FrmInterFaceType(model.InterfaceParameter);
+                    var window = new FrmInterFaceType(model);
                     var dialog = window.ShowDialog();
                     if (dialog == DialogResult.OK)
                     {
@@ -356,6 +356,15 @@ namespace BIFileParam
         private void dgModel_Scroll(object sender, ScrollEventArgs e)
         {
             cmbActive.Visible = false;
+        }
+
+        private void tsmiExit_Click(object sender, EventArgs e)
+        {
+            var dialog = MessageHelper.ConfirmEx("确认退出?");
+            if (dialog == DialogResult.OK)
+            {
+                this.Close();
+            }
         }
     }
 }

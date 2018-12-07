@@ -30,7 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudAdd = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbStopBit = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,11 +47,9 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.rb485 = new System.Windows.Forms.RadioButton();
-            this.rb232 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdd)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,14 +60,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(60, 48);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(275, 253);
+            this.tabControl1.Size = new System.Drawing.Size(323, 289);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.nudAdd);
+            this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.cmbStopBit);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.cmbDataBit);
@@ -83,22 +83,22 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(267, 227);
+            this.tabPage1.Size = new System.Drawing.Size(315, 263);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "RS232";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // nudAdd
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(115, 12);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(90, 21);
-            this.numericUpDown1.TabIndex = 11;
+            this.nudAdd.Location = new System.Drawing.Point(99, 227);
+            this.nudAdd.Name = "nudAdd";
+            this.nudAdd.Size = new System.Drawing.Size(121, 21);
+            this.nudAdd.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(58, 15);
+            this.label6.Location = new System.Drawing.Point(42, 230);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 10;
@@ -211,7 +211,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(328, 264);
+            this.tabPage2.Size = new System.Drawing.Size(315, 263);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Test";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -261,37 +261,11 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "label7";
             // 
-            // rb485
-            // 
-            this.rb485.AutoSize = true;
-            this.rb485.Location = new System.Drawing.Point(12, 14);
-            this.rb485.Name = "rb485";
-            this.rb485.Size = new System.Drawing.Size(41, 16);
-            this.rb485.TabIndex = 2;
-            this.rb485.TabStop = true;
-            this.rb485.Text = "485";
-            this.rb485.UseVisualStyleBackColor = true;
-            // 
-            // rb232
-            // 
-            this.rb232.AutoSize = true;
-            this.rb232.Location = new System.Drawing.Point(12, 68);
-            this.rb232.Name = "rb232";
-            this.rb232.Size = new System.Drawing.Size(41, 16);
-            this.rb232.TabIndex = 3;
-            this.rb232.TabStop = true;
-            this.rb232.Text = "232";
-            this.rb232.UseVisualStyleBackColor = true;
-            // 
             // FrmInterFaceType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(342, 354);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.rb232);
-            this.Controls.Add(this.rb485);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -303,10 +277,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdd)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -315,7 +288,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudAdd;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbStopBit;
         private System.Windows.Forms.Label label5;
@@ -331,7 +304,5 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RadioButton rb485;
-        private System.Windows.Forms.RadioButton rb232;
     }
 }

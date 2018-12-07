@@ -17,6 +17,6 @@ namespace BIModel.Access
 
         public string Author { get; set; }
 
-        public bool SystemDefault { get; set; }
+        public int SystemDefault { get; set; }
     }
 }

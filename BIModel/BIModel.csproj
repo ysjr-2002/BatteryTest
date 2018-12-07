@@ -46,7 +46,9 @@
     <Compile Include="Access\HWCfgModel.cs" />
     <Compile Include="Access\HWCfgModule.cs" />
     <Compile Include="Access\InstrumentModel.cs" />
+    <Compile Include="Access\InterfaceList.cs" />
     <Compile Include="Access\ModelList.cs" />
+    <Compile Include="Access\ModuleList.cs" />
     <Compile Include="AppContext.cs" />
     <Compile Include="DataRecord.cs" />
     <Compile Include="LHSJEnum.cs" />
