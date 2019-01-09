@@ -22,6 +22,8 @@ namespace BIFileParam
             InitializeComponent();
         }
 
+        public HWCfgFileModel HWFile { get; set; }
+
         private async void FrmCfgList_Load(object sender, EventArgs e)
         {
             dgFiles.AutoGenerateColumns = false;
@@ -29,8 +31,7 @@ namespace BIFileParam
 
             var fileList = await AccessDBHelper.CfgList();
             dgFiles.DataSource = fileList;
-            this.FileName = fileList.FirstOrDefault().HWName;
-            this.txtFileName.Text = this.FileName;
+            this.txtFileName.Text = fileList.FirstOrDefault().HWName;
 
             dgFiles.TopLeftHeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgFiles.TopLeftHeaderCell.Value = "No.";
@@ -45,7 +46,7 @@ namespace BIFileParam
             }
         }
 
-        public string FileName { get; set; }
+       
 
         private void dgFiles_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -53,7 +54,7 @@ namespace BIFileParam
                 return;
 
             var model = dgFiles.Rows[e.RowIndex].DataBoundItem as HWCfgFileModel;
-            this.FileName = model.HWName;
+            this.HWFile = model;
             txtFileName.Text = model.HWName;
         }
 
@@ -69,7 +70,7 @@ namespace BIFileParam
 
             var model = dgFiles.SelectedRows[0].DataBoundItem as HWCfgFileModel;
             this.DialogResult = DialogResult.OK;
-            new FrmMain(FileName).ShowDialog();
+            new FrmMain(HWFile).ShowDialog();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

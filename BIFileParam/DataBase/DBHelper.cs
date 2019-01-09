@@ -58,7 +58,7 @@ namespace BIFileParam
         public static async void SaveHWCfgFileModel(HWCfgFileModel model)
         {
             var sql = "insert into HWCfgFileList values('{0}','{1}','{2}',{3})";
-            sql = string.Format(model.HWName, model.HWTime, model.Author, model.SystemDefault);
+            sql = string.Format(sql, model.HWName, model.HWTime, model.Author, model.SystemDefault);
             using (var conn = DBFactory.Create())
             {
                 conn.Open();
@@ -317,6 +317,13 @@ namespace BIFileParam
             }
         }
 
+        public static Task<List<HWCfgModule>> HWCfgModuleListByHWName(string hwname)
+        {
+            var condition = " where HWName='{0}' ";
+            condition = string.Format(condition, hwname);
+            return HWCfgModuleList(condition);
+        }
+
         public static Task<List<HWCfgModule>> HWCfgModuleListByInstrumentName(string hwname, string instrumentname)
         {
             var condition = " where HWName='{0}' and InstrumentName='{1}'";
@@ -363,7 +370,7 @@ namespace BIFileParam
             }
         }
 
-        private static async void InsertHWCfgModule(HWCfgModule module)
+        public static async void InsertHWCfgModule(HWCfgModule module)
         {
             //6 SpecifiedIndex
             var sql = "insert into HWCfgModule values('{0}','{1}','{2}',{3},'{4}',{5},{6},{7},{8},'{9}',{10},{11},{12})";
@@ -486,6 +493,47 @@ namespace BIFileParam
                 {
                 }
                 return list;
+            }
+        }
+
+        public static void RemoveAllByHWFileName(string hwname)
+        {
+            var sql1 = string.Format("delete from HWCfgFileList where HWName='{0}'", hwname);
+            var sql2 = string.Format("delete from HWCfgInstrument where HWName='{0}'", hwname);
+            var sql3 = string.Format("delete from HWCfgModel where HWName='{0}'", hwname);
+            var sql4 = string.Format("delete from HWCfgModule where HWName='{0}'", hwname);
+            using (var conn = DBFactory.Create())
+            {
+                conn.Open();
+                using (var trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        var cmd = conn.CreateCommand();
+                        cmd.Transaction = trans;
+
+                        cmd.CommandText = sql1;
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = sql2;
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = sql3;
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = sql4;
+                        cmd.ExecuteNonQuery();
+
+                        trans.Commit();
+                    }
+                    catch
+                    {
+                        trans.Rollback();
+                    }
+                    finally
+                    {
+                    }
+                }
             }
         }
     }

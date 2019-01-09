@@ -16,9 +16,8 @@ namespace BIFileParam
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmCfgList());
-            //Application.Run(new FrmMain("HangJia"));
-            //Application.Run(new Form1());
+            //Application.Run(new FrmCfgList());
+            Application.Run(new FrmMain(new BIModel.Access.HWCfgFileModel { HWName = "HangJia", HWTime = DateTime.Now, Author = "ysj", SystemDefault = 0 }));
         }
     }
 }

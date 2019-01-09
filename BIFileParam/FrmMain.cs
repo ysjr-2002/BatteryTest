@@ -14,7 +14,6 @@ namespace BIFileParam
 {
     public partial class FrmMain : Form
     {
-        private string filename = "";
         private TreeNode root = null;
         private static readonly char splitchar = '_';
         private static readonly string fix_add = "添加 ";
@@ -24,10 +23,27 @@ namespace BIFileParam
 
         private static readonly Color fixColor = ColorTranslator.FromHtml("#FFFFE1");
 
-        public FrmMain(string filename = "test")
+        /// <summary>
+        /// 文件
+        /// </summary>
+        private HWCfgFileModel hwFile = null;
+        /// <summary>
+        /// 仪器
+        /// </summary>
+        private List<HWCfgInstrumentModel> instrumentList = null;
+        /// <summary>
+        /// 类型
+        /// </summary>
+        private List<HWCfgModel> modelList = null;
+        /// <summary>
+        /// Module
+        /// </summary>
+        private List<HWCfgModule> moduleList = null;
+
+        public FrmMain(HWCfgFileModel hwFile)
         {
             InitializeComponent();
-            this.filename = filename;
+            this.hwFile = hwFile;
             dgModel.AutoGenerateColumns = false;
             dgModule.AutoGenerateColumns = false;
             BuildActiveCombobox();
@@ -67,8 +83,8 @@ namespace BIFileParam
 
         private async void FrmMain_Load(object sender, EventArgs e)
         {
-            root = new TreeNode("仪器-(" + filename + ")");
-            root.Tag = filename;
+            root = new TreeNode("仪器-(" + hwFile.HWName + ")");
+            root.Tag = hwFile.HWName;
             root.ImageIndex = 0;
             root.ContextMenuStrip = rootContextMenuStrip;
             tvTree.Nodes.Add(root);
@@ -77,16 +93,18 @@ namespace BIFileParam
             dgModule.TopLeftHeaderCell.Value = "Model No.";
 
             //加载仪器
-            var instrumentList = await AccessDBHelper.GetInstrumentModelList(filename);
+            instrumentList = await AccessDBHelper.GetInstrumentModelList(hwFile.HWName);
+            modelList = await AccessDBHelper.HWCfgModelListByHWName(hwFile.HWName);
+            //await AccessDBHelper.HWCfgModelListByInstrumentName(hwFile.HWName, item.InstrumentName);
             foreach (var item in instrumentList)
             {
                 var node = new TreeNode(item.InstrumentName);
-                node.Tag = filename + splitchar + item.InstrumentName;
+                node.Tag = hwFile.HWName + splitchar + item.InstrumentName;
                 node.ContextMenuStrip = GetSecondContextMenuStrip(node);
                 root.Nodes.Add(node);
 
-                var deviceList = await AccessDBHelper.HWCfgModelListByInstrumentName(filename, item.InstrumentName);
-                foreach (var device in deviceList)
+                var subList = modelList.Where(s => s.HWName == hwFile.HWName && s.InstrumentName == item.InstrumentName);
+                foreach (var device in subList)
                 {
                     var subnode = new TreeNode(device.ModelName);
                     subnode.Tag = device;
@@ -95,9 +113,11 @@ namespace BIFileParam
                 }
             }
             root.Expand();
+
+            moduleList = await AccessDBHelper.HWCfgModuleListByHWName(hwFile.HWName);
         }
 
-        private async void tvTree_AfterSelect(object sender, TreeViewEventArgs e)
+        private void tvTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             var node = e.Node;
             if (node.Tag.GetType() == typeof(string))
@@ -106,21 +126,22 @@ namespace BIFileParam
                 var array = tag.Split(splitchar);
                 if (array.Length == 1)
                 {
-                    var deviceList = await AccessDBHelper.HWCfgModelListByHWName(array[0]);
-                    dgModel.DataSource = deviceList;
+                    //根
+                    dgModel.DataSource = modelList.Where(s => s.HWName == array[0]).ToList();
                 }
                 else
                 {
-                    var deviceList = await AccessDBHelper.HWCfgModelListByInstrumentName(array[0], array[1]);
-                    dgModel.DataSource = deviceList;
-                    dgModule.DataSource = await AccessDBHelper.HWCfgModuleListByInstrumentName(array[0], array[1]);
+                    //类型
+                    dgModel.DataSource = modelList.Where(s => s.HWName == array[0] && s.InstrumentName == array[1]).ToList();
+                    dgModule.DataSource = moduleList.Where(s => s.HWName == array[0] && s.InstrumentName == array[1]).ToList();
                 }
             }
             else
             {
+                //仪器
                 var model = (HWCfgModel)node.Tag;
                 dgModel.DataSource = new HWCfgModel[] { model };
-                dgModule.DataSource = await AccessDBHelper.HWCfgModuleListByInstrumentName(model.HWName, model.InstrumentName, model.ModelName);
+                dgModule.DataSource = moduleList.Where(s => s.HWName == model.HWName && s.InstrumentName == model.InstrumentName && s.ModelName == model.ModelName).ToList();
             }
         }
 
@@ -143,13 +164,13 @@ namespace BIFileParam
                     root.Expand();
                 }
 
-                var model = new HWCfgInstrumentModel
+                var instrument = new HWCfgInstrumentModel
                 {
                     InstrumentName = window.InstrumentName,
-                    HWName = filename,
+                    HWName = hwFile.HWName,
                 };
-                node.Tag = filename + splitchar + node.Text;
-                AccessDBHelper.Insert(model);
+                node.Tag = hwFile.HWName + splitchar + node.Text;
+                instrumentList.Add(instrument);
             }
         }
 
@@ -157,14 +178,14 @@ namespace BIFileParam
         {
             if (MessageHelper.Confirm("确认删除所有仪器吗？") == DialogResult.Yes)
             {
-                AccessDBHelper.DeleteInstrumentByHWName(filename);
-                AccessDBHelper.DeleteModelByHWName(filename);
-                AccessDBHelper.DeleteModuleByHWName(filename);
+                AccessDBHelper.DeleteInstrumentByHWName(hwFile.HWName);
+                AccessDBHelper.DeleteModelByHWName(hwFile.HWName);
+                AccessDBHelper.DeleteModuleByHWName(hwFile.HWName);
                 root.Nodes.Clear();
             }
         }
 
-        private async void tsmiAddFZ_Click(object sender, EventArgs e)
+        private void tsmiAddFZ_Click(object sender, EventArgs e)
         {
             var memuItem = sender as ToolStripItem;
             var node = memuItem.Tag as TreeNode;
@@ -173,18 +194,17 @@ namespace BIFileParam
             var dialog = window.ShowDialog();
             if (dialog == DialogResult.OK)
             {
-                var modelList = window.ModelList;
-                var subNode = new TreeNode(modelList.ModelName);
+                var modeltype = window.ModelList;
+                var subNode = new TreeNode(modeltype.ModelName);
 
                 var array = node.Tag.ToString().Split(splitchar);
                 var model = new HWCfgModel();
-                model.ModelName = modelList.ModelName;
+                model.ModelName = modeltype.ModelName;
                 model.HWName = array[0];
                 model.InstrumentName = array[1];
-                model.Interface = modelList.InterfaceAvailable;
-                model.InterfaceParameter = modelList.DefaultParameter;
+                model.Interface = modeltype.InterfaceAvailable;
+                model.InterfaceParameter = modeltype.DefaultParameter;
                 model.ModelIndex = node.Nodes.Count + 1;
-                AccessDBHelper.Insert(model);
 
                 subNode.Tag = model;
                 subNode.ContextMenuStrip = GetDeleteContextMenuStrip(node);
@@ -194,8 +214,7 @@ namespace BIFileParam
                     node.Expand();
                 }
 
-                var deviceList = await AccessDBHelper.HWCfgModelListByInstrumentName(array[0], array[1]);
-                dgModel.DataSource = deviceList;
+                modelList.Add(model);
             }
         }
 
@@ -210,8 +229,15 @@ namespace BIFileParam
             if (dialog == DialogResult.Yes)
             {
                 node.Nodes.Clear();
-                AccessDBHelper.DeleteModel(array[0], array[1]);
+                //AccessDBHelper.DeleteModel(array[0], array[1]);
                 AccessDBHelper.DeleteModule(array[0], array[1]);
+
+                var model = modelList.Find(s => s.HWName == array[0] && s.InstrumentName == array[1]);
+                modelList.Remove(model);
+
+                var module = moduleList.Find(s => s.HWName == array[0] && s.InstrumentName == array[1]);
+                moduleList.Remove(module);
+
                 dgModel.DataSource = null;
                 dgModule.DataSource = null;
             }
@@ -244,6 +270,11 @@ namespace BIFileParam
             return menu;
         }
 
+        /// <summary>
+        /// 删除Model
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void tsmiDel_Click(object sender, EventArgs e)
         {
             var memuItem = sender as ToolStripItem;
@@ -257,12 +288,15 @@ namespace BIFileParam
                     parent.Nodes.Remove(node);
                 }
                 var model = node.Tag as HWCfgModel;
-                AccessDBHelper.DeleteModel(model);
+                //AccessDBHelper.DeleteModel(model);
+                //var array = parent.Tag.ToString().Split(splitchar);
+                //var deviceList = await AccessDBHelper.HWCfgModelListByInstrumentName(array[0], array[1]);
+                //dgModel.DataSource = deviceList;
+                //dgModule.DataSource = await AccessDBHelper.HWCfgModuleListByInstrumentName(array[0], array[1]);
 
-                var array = parent.Tag.ToString().Split(splitchar);
-                var deviceList = await AccessDBHelper.HWCfgModelListByInstrumentName(array[0], array[1]);
-                dgModel.DataSource = deviceList;
-                dgModule.DataSource = await AccessDBHelper.HWCfgModuleListByInstrumentName(array[0], array[1]);
+                modelList.Remove(model);
+                var module = moduleList.Find(s => s.HWName == model.HWName && s.InstrumentName == model.InstrumentName && s.ModelName == model.ModelName);
+                moduleList.Remove(module);
             }
         }
 
@@ -365,6 +399,36 @@ namespace BIFileParam
             {
                 this.Close();
             }
+        }
+
+        private void Save()
+        {
+            AccessDBHelper.RemoveAllByHWFileName(hwFile.HWName);
+            //保存文件 
+            AccessDBHelper.SaveHWCfgFileModel(hwFile);
+
+            //保存仪器 
+            foreach (var instrument in instrumentList)
+            {
+                AccessDBHelper.Insert(instrument);
+            }
+
+            //保存Model
+            foreach (var model in modelList)
+            {
+                AccessDBHelper.Insert(model);
+            }
+
+            //保存Module
+            foreach (var module in moduleList)
+            {
+                AccessDBHelper.InsertHWCfgModule(module);
+            }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Save();
         }
     }
 }
